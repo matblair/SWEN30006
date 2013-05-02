@@ -45,10 +45,9 @@ public class TestState extends BasicGameState implements KeyListener {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		bg = new Image("assets/levels/floor.png");
-		world = new World(new Vec2(0.0f, -9.8f));
 	
 		// Static Body
-	    Vec2 gravity = new Vec2(0,-10);
+	    Vec2 gravity = new Vec2(0,-9.8f);
 	    world = new World(gravity);
 	    BodyDef groundBodyDef = new BodyDef();
 	    groundBodyDef.position.set(0, 0);
@@ -66,7 +65,7 @@ public class TestState extends BasicGameState implements KeyListener {
 			throws SlickException {
 		bg.draw(0, 0);
 		player.draw(gc);
-		world.drawDebugData();
+		//world.drawDebugData();
 	}
 
 	@Override
@@ -77,23 +76,23 @@ public class TestState extends BasicGameState implements KeyListener {
 		
 		Input input = gc.getInput();
 		if (input.isKeyDown(Input.KEY_RIGHT) && player.getBody().getContactList()==null) {
-			player.getBody().applyForceToCenter(new Vec2(50,0));
+			player.getBody().applyForceToCenter(new Vec2(10,0));
 		} else if ((input.isKeyDown(Input.KEY_RIGHT))){
-			player.getBody().applyLinearImpulse(new Vec2((float) 0.3,0), player.getBody().getPosition());
+			player.getBody().applyLinearImpulse(new Vec2((float) 0.1,0), player.getBody().getPosition());
 		}
 		if (input.isKeyDown(Input.KEY_LEFT) && player.getBody().getContactList()==null) {
-			player.getBody().applyForceToCenter(new Vec2(-50,0));
+			player.getBody().applyForceToCenter(new Vec2(-10,0));
 		} else if ((input.isKeyDown(Input.KEY_LEFT))){
-			player.getBody().applyLinearImpulse(new Vec2((float) -0.3,0), player.getBody().getPosition());
+			player.getBody().applyLinearImpulse(new Vec2((float) -0.1,0), player.getBody().getPosition());
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE) && player.getBody().getContactList()!=null){
-			player.getBody().applyLinearImpulse(new Vec2(0,60), player.getBody().getPosition());
+			player.getBody().applyLinearImpulse(new Vec2(0,15), player.getBody().getPosition());
 		}
 	}
 
 	@Override
 	public int getID() {
-		return TestState.StateId;
+		return StateId;
 	}
 	
 	@Override
@@ -123,7 +122,6 @@ public class TestState extends BasicGameState implements KeyListener {
 	 public void toggleFullscreen(final GameContainer gc, final boolean fullscreen)
 			    throws SlickException{    	
 			    	if(fullscreen){
-			    		
 			    		Portal2D.setFullscreen();
 			    		gc.setFullscreen(fullscreen);
 			    		level.updateGameState(gc);

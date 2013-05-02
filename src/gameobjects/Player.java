@@ -28,14 +28,4 @@ public class Player extends GameObject{
 			setObject(getObject_right());
 		}
 	}
-	
-	public void updatePos(final double dir_x, final double dir_y, final double delta)
-			throws SlickException {	
-		checkDirection(dir_x);
-		setX(getX()+dir_x*delta);
-		setY(getY()+dir_y*delta);
-	}
-	
-	
-
 }

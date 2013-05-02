@@ -2,8 +2,6 @@ package gameobjects;
 
 import gamestates.PhysUtils;
 
-import java.awt.geom.Point2D;
-
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Image;
@@ -17,22 +15,15 @@ import org.jbox2d.dynamics.World;
 import org.newdawn.slick.GameContainer;
 
 public class GameObject {
-	/** Position as a point (Double) **/
-	private Point2D.Double position;
-	/** Whether or not this unit blocks the passage of other units **/
-	private boolean blocked;
-	/** Render positions **/
-	private double xRender, yRender;	
 	/** The object's image **/
 	private Image object;
 	/** The left and right facing images for the players **/
 	private Image object_right;
 	private Image object_left; 
-	/** Whether or not the object is currently visible **/
-	private boolean visible;
+
 	/** The objects name **/
 	private String name;
-	Body body;
+	private Body body;
 	private Vec2 dimensions; // JBox dimensions
 
 	public GameObject (String imgloc, Vec2 location, World world)
@@ -45,7 +36,7 @@ public class GameObject {
 		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(object.getWidth(), object.getHeight()));
 		createBody(location,world);		
 		System.out.printf ("(x,y) = (%4.2f,%4.2f)\n", location.x, location.y);
-		System.out.printf ("(w,h) = (%4.2f,%4.2f)\n", dimensions.x, dimensions.y);
+		System.out.printf ("(w,h) = (%4.2f,%4.2f)\n", dimensions.x/2, dimensions.y/2);
 	}
 	
 	private void createBody(Vec2 location, World world){
@@ -55,7 +46,7 @@ public class GameObject {
 		body = world.createBody(bodyDef);
 		
 		PolygonShape dynamicBox = new PolygonShape();
-		dynamicBox.setAsBox(dimensions.x, dimensions.y);
+		dynamicBox.setAsBox(dimensions.x/2, dimensions.y/2);
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = dynamicBox;
 		fixtureDef.density=1;
@@ -71,41 +62,24 @@ public class GameObject {
 		return dimensions;
 	}
 	
+	/** Returns the top left position of the player
+	 * @return Top left position of player as a JBox position
+	 */
+	public Vec2 getTopLeftLoc() {
+		Vec2 addVec = new Vec2(-dimensions.x/2, dimensions.y/2);
+		return body.getPosition().add(addVec);
+	}
+	
 	public void draw(GameContainer gc) {
-		Vec2 slickPos = PhysUtils.JBoxToSlickVec(body.getPosition());
+		Vec2 slickPos = PhysUtils.JBoxToSlickVec(getTopLeftLoc());
 		object.draw(slickPos.x, gc.getHeight()-slickPos.y);
 	}
 
-	
-	public void setPosition(final Point2D.Double position) {
-		this.position = position;
-	}
-	public Point2D.Double getPosition() {
-		return position;
-	}
-	public float getX() {
-		return (float)getPosition().x;
-	}
-	public float getY() {
-		return (float)getPosition().y;
-	}
-	public void setX(Double X) {
-		this.position.x=X;
-	}
-	public void setY(Double Y) {
-		this.position.y=Y;
-	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public boolean isVisible() {
-		return visible;
-	}
-	public void setVisible(boolean visible) {
-		this.visible = visible;
 	}
 	public Image getObject_left() {
 		return object_left;
@@ -118,24 +92,6 @@ public class GameObject {
 	}
 	public void setObject(Image object) {
 		this.object = object;
-	}
-	public double getxRender() {
-		return xRender;
-	}
-	public void setxRender(double xRender) {
-		this.xRender = xRender;
-	}
-	public double getyRender() {
-		return yRender;
-	}
-	public void setyRender(double yRender) {
-		this.yRender = yRender;
-	}
-	public boolean isBlocked() {
-		return blocked;
-	}
-	public void setBlocked(boolean blocked) {
-		this.blocked = blocked;
 	}
 	public Image getObject_right() {
 		return object_right;
