@@ -44,6 +44,7 @@ public class GameState extends BasicGameState implements KeyListener {
 			throws SlickException {
 		int dir_x = 0;
 		Input input = gc.getInput();
+		
 		if (input.isKeyDown(Input.KEY_RIGHT))
 			dir_x++;
 		if (input.isKeyDown(Input.KEY_LEFT))
@@ -51,6 +52,7 @@ public class GameState extends BasicGameState implements KeyListener {
 		if (input.isKeyPressed(Input.KEY_SPACE) && level.getPlayer().getBody().getContactList()!=null){
 			level.getPlayer().getBody().applyLinearImpulse(new Vec2(0,15), level.getPlayer().getBody().getPosition());
 		}
+		
 		cam.follow(gc, level.getPlayer());
 		level.update(dir_x, delta, sbg);
 	}
