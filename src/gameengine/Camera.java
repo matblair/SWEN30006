@@ -1,127 +1,52 @@
 package gameengine;
 
-
 import gameobjects.GameObject;
-import gameobjects.Player;
+import gamestates.PhysUtils;
+
+import org.jbox2d.common.Vec2;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.tiled.TiledMap;
 
-
-public class Camera{
-
-	/** x and y render coordinates, in logical pixels **/
-	private int xrender, yrender;
-	/** Centre x and y positions (logical to the screen) **/
-	private float ycentre, xcentre;
-	/** The current screenwidth and height determined by the GameContainer **/
-	private int screenwidth, screenheight;
-	/** The unit to follow **/
-	private GameObject follow;
-	/** The boundaries for our field of view, x coordinates **/
-	private int xmin,xmax;
-	/** The boundaries for our field of view, y coordinates **/
-	private int ymin,ymax;
-
-
-	public Camera(final TiledMap map, final GameContainer gc) 
-			throws SlickException{
+public class Camera {
+	private Vec2 location, bounds, dimensions; // JBox coords
+	
+	public Camera(Vec2 bounds) {
+		this.bounds = bounds;
+		location = new Vec2();
+		dimensions = new Vec2();
 	}
 
-	/** Update the camera rendering position for each frame.
-	 */
-	public void update(final Player player, final TiledMap map)
-			throws SlickException{
-		/** Normalies the centre point of the character to follow and adjusts as follows **/
-		// Update the xrender and yrender position
-		setXrender((int)((-1*(follow.getPosition().x-xcentre)%map.getTileWidth())));
-		setYrender((int)((-1*(follow.getPosition().y-ycentre)%map.getTileHeight())));
+	public void follow(GameContainer gc, GameObject obj) {
+		dimensions.x = PhysUtils.pixelsToMetres(gc.getWidth());
+		dimensions.y = PhysUtils.pixelsToMetres(gc.getHeight());
+		
+		this.location = obj.getBody().getPosition().add(dimensions.mul(0.5f).negate());
+		bound(gc);
 	}
 
-	/** Follows the prescribed unit **/
-	public void followUnit(final GameObject unit){
-		follow = unit;
-	}
-
-	/** Checks whether or not a unit is within the camera's field of view and if so renders it in the
-	 * appropriate position relative to the logical frame
-	 */
-	public void updateFOV(final TiledMap map)
-			throws SlickException{
-		// We calculate the current field of view.
-	}
-
-	/** Checks if a GameObject is within the field of view **/
-	public boolean checkRender(final GameObject object)
-			throws SlickException {
-		if((object.getPosition().x>=(getXmin()+getXrender())) && (object.getPosition().x<= (xmax-getXrender()))){
-			if((object.getPosition().y>= (getYmin()+getYrender()))&&(object.getPosition().y<=(ymax-getYrender()))){
-				// Then the unit is within bounds of our field of view and must be rendered.
-				object.setVisible(true);
-				return true;	
-			}
+	private void bound(GameContainer gc) {
+		if (location.x < 0) {
+			location.x = 0;
+		} else if (location.x > bounds.x - dimensions.x) {
+			location.x = bounds.x - dimensions.x;
 		}
-		object.setVisible(false);
-		return false;
+		
+		if (location.y < 0) {
+			location.y = 0;
+		} else if (location.y > bounds.y - dimensions.y) {
+			location.y = bounds.y - dimensions.y;
+		}
 	}
-
-
-	/** Updatesthe screensize based on the current size of the GameContainer and determines
-	 * new tileoffsets accordingly 
-	 * @param gc The game container
-	 * @param map The map
-	 */
-	public void updateScreenSize(final GameContainer gc, final TiledMap map){
-		setScreenwidth(gc.getWidth());
-		setScreenheight(gc.getHeight());
-
-		xcentre = (float) (getScreenwidth()*0.5);
+	
+	public boolean inView(GameObject obj) {
+		// TODO: correct this
+		return true;
 	}
-
-	public int getXrender() {
-		return xrender;
+	
+	public Vec2 getDimensions() {
+		return dimensions;
 	}
-
-	public void setXrender(final int xrender) {
-		this.xrender = xrender;
-	}
-
-	public int getYrender() {
-		return yrender;
-	}
-
-	public void setYrender(final int yrender) {
-		this.yrender = yrender;
-	}
-	public int getXmin() {
-		return xmin;
-	}
-
-	public void setXmin(final int xmin) {
-		this.xmin = xmin;
-	}
-
-	public int getYmin() {
-		return ymin;
-	}
-
-	public void setYmin(final int ymin) {
-		this.ymin = ymin;
-	}
-
-	public int getScreenwidth() {
-		return screenwidth;
-	}
-
-	public void setScreenwidth(final int screenwidth) {
-		this.screenwidth = screenwidth;
-	}
-
-	public int getScreenheight() {
-		return screenheight;
-	}
-
-	public void setScreenheight(final int screenheight) {
-		this.screenheight = screenheight;
+	
+	public Vec2 getLocation() {
+		return location;
 	}
 }

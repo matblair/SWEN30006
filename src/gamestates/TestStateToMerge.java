@@ -6,6 +6,7 @@ package gamestates;
  * Modified by Mathew Blair [mblair]
  */
 
+import gameengine.Portal2D;
 import gameworlds.TestWorld;
 
 import org.newdawn.slick.AppGameContainer;

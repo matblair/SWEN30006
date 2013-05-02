@@ -5,7 +5,6 @@ import org.jbox2d.dynamics.World;
 import org.newdawn.slick.SlickException;
 
 public class Player extends GameObject{
-
 	private static Player player;
 
 	public Player(final String imgloc,Vec2 pos, World world) throws SlickException {
@@ -19,13 +18,5 @@ public class Player extends GameObject{
 		}
 		return player;
 		
-	}
-	public void checkDirection( final double dir_x){
-		if(dir_x<0){
-			setObject(getObject_left());
-		}
-		else if (dir_x>0){
-			setObject(getObject_right());
-		}
 	}
 }

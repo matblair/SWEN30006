@@ -1,4 +1,8 @@
-package gamestates;
+package gameengine;
+
+import gamestates.MainMenuState;
+import gamestates.PauseState;
+import gamestates.TestState;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -6,11 +10,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.LoadingList;
 import org.newdawn.slick.state.StateBasedGame;
 
-
 public class Portal2D extends StateBasedGame {
 	public static final int PAUSESTATE = 2;
 	public static final int TESTGAMESTATE = 1;
-	public static final int MAINMENU = 0;
+	public static final int MAINMENUSTATE = 0;
 
     /** Screen width, in pixels. */
     public static final int screenwidth = 800;
@@ -31,10 +34,10 @@ public class Portal2D extends StateBasedGame {
 	@Override
 	public void initStatesList(final GameContainer gc) throws SlickException {
 		LoadingList.setDeferredLoading(true);
-		this.addState(new TestState(TESTGAMESTATE));
-		this.addState(new MainMenuState(MAINMENU));
+		this.addState(new MainMenuState());
+		this.addState(new TestState());
 		this.addState(new PauseState(PAUSESTATE));
-	    this.enterState(MAINMENU);
+	    this.enterState(MAINMENUSTATE);
 	}
 	
 	 /** Start-up method. Creates the game and runs it.

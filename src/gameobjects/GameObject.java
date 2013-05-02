@@ -12,8 +12,6 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-import org.newdawn.slick.GameContainer;
-
 public class GameObject {
 	/** The object's image **/
 	private Image object;
@@ -40,10 +38,11 @@ public class GameObject {
 	}
 	
 	private void createBody(Vec2 location, World world){
-		BodyDef bodyDef = new BodyDef();
-		bodyDef.type = BodyType.DYNAMIC;
-		bodyDef.position.set(location);
-		body = world.createBody(bodyDef);
+		BodyDef bd = new BodyDef();
+		bd.type = BodyType.DYNAMIC;
+		bd.position.set(location);
+		bd.fixedRotation = true;
+		body = world.createBody(bd);
 		
 		PolygonShape dynamicBox = new PolygonShape();
 		dynamicBox.setAsBox(dimensions.x/2, dimensions.y/2);
@@ -62,17 +61,16 @@ public class GameObject {
 		return dimensions;
 	}
 	
+	public Vec2 getLocation() {
+		return body.getPosition();
+	}
+	
 	/** Returns the top left position of the player
 	 * @return Top left position of player as a JBox position
 	 */
 	public Vec2 getTopLeftLoc() {
 		Vec2 addVec = new Vec2(-dimensions.x/2, dimensions.y/2);
 		return body.getPosition().add(addVec);
-	}
-	
-	public void draw(GameContainer gc) {
-		Vec2 slickPos = PhysUtils.JBoxToSlickVec(getTopLeftLoc());
-		object.draw(slickPos.x, gc.getHeight()-slickPos.y);
 	}
 
 	public String getName() {
@@ -81,20 +79,16 @@ public class GameObject {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Image getObject_left() {
-		return object_left;
-	}
-	public void setObject_left(Image object_left) {
-		this.object_left = object_left;
-	}
-	public Image getObject() {
+	
+	public Image getImage() {
 		return object;
 	}
 	public void setObject(Image object) {
 		this.object = object;
 	}
-	public Image getObject_right() {
-		return object_right;
+	
+	public void setObject_left(Image object_left) {
+		this.object_left = object_left;
 	}
 	public void setObject_right(Image object_right) {
 		this.object_right = object_right;

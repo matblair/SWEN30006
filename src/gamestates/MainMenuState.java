@@ -1,5 +1,7 @@
 package gamestates;
 
+import gameengine.Portal2D;
+
 import java.util.HashMap;
 import java.util.Vector;
 import java.util.Map;
@@ -18,7 +20,7 @@ import resourcemanagers.FontLoader;
 
 public class MainMenuState extends BasicGameState implements KeyListener {
 	/** The state id for this part **/
-    private static int StateId = 0;
+    private static int StateId = Portal2D.MAINMENUSTATE;
     private boolean listening=true;
     boolean debug, fullscreen;
     private Font retro;
@@ -30,11 +32,10 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	private Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	private int menuItemSelected = 0;
 	
-	public MainMenuState(final int gameplaystate) throws SlickException
+	public MainMenuState() throws SlickException
 	    {
 	    	super();
 	    	retro = FontLoader.loadFont("assets/fonts/RETRO.TTF", 18);
-	    	TestState.setId(gameplaystate);
 	        debug = false;
 	        fullscreen = false;
 	    }

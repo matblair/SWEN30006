@@ -1,6 +1,6 @@
 package resourcemanagers;
 
-import gamestates.Portal2D;
+import gameengine.Portal2D;
 
 import java.io.File;
 import java.io.FileInputStream;
