@@ -22,7 +22,7 @@ public class RenderEngine {
 		Vec2 slickCamDim = PhysUtils.JBoxToSlickVec(cam.getDimensions());
 		Vec2 topLeftCoord = new Vec2(slickCamLoc.x, bg.getHeight() - slickCamLoc.y - slickCamDim.y);
 		Vec2 bottomRightCoord = new Vec2(slickCamLoc.x + slickCamDim.x, bg.getHeight() - slickCamLoc.y);
-		bg.draw(0, 0, 800, 600, topLeftCoord.x, topLeftCoord.y, bottomRightCoord.x, bottomRightCoord.y);
+		bg.draw(0, 0, slickCamDim.x, slickCamDim.y, topLeftCoord.x, topLeftCoord.y, bottomRightCoord.x, bottomRightCoord.y);
 		//bg.draw(0,0);
 	}
 }

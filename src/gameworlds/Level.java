@@ -30,11 +30,11 @@ public class Level {
 		Vec2 gravity = new Vec2(0,-9.8f);
 		world = new World(gravity);
 		PhysUtils.addWall(world, 0, 0, 100, 1); //floor
-		PhysUtils.addWall(world, 0, 0, 0.5f, 10); //left wall
-		PhysUtils.addWall(world, 0, 8.823f, 100, 0); //top
-		PhysUtils.addWall(world, 10, 2.5f, 4, 0.25f);
-		PhysUtils.addWall(world, 14, 3.5f, 4, 0.25f);
-		PhysUtils.addWall(world, 99.5f, 0, 0.5f, 10); //right wall
+		PhysUtils.addWall(world, 0, 0, 0.5f, 20); //left wall
+		PhysUtils.addWall(world, 0, 17.14f, 100, 0); //top
+		PhysUtils.addWall(world, 10, 2.5f, 4, 0.25f);//first thing
+		PhysUtils.addWall(world, 14, 3.95f, 4, 0.25f);//second thing
+		PhysUtils.addWall(world, 19.5f, 0, 0.5f, 20); //right wall
 
 		// Dynamic Body
 		player = new Player("/assets/sprites/chell.png",new Vec2(2, 5), world);
@@ -46,10 +46,10 @@ public class Level {
 		RenderEngine.drawGameObject(player, cam);
 	}
 
-	public void update(int delta, StateBasedGame sbg) throws SlickException {
+	public void update(float dir_x, int delta, StateBasedGame sbg) throws SlickException {
 		float timeStep = (float)delta/1000;
 		world.step(timeStep, velocityIterations, positionIterations);
-		
+		player.checkDirection(dir_x);
 	}
 	
 	public Player getPlayer() {

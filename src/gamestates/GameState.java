@@ -18,7 +18,6 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameState extends BasicGameState implements KeyListener {
 	private static int StateId = Portal2D.TESTGAMESTATE; // State ID
 	private Camera cam;
-	
 	private boolean listening=true;
 	private Level level;
 
@@ -59,7 +58,7 @@ public class GameState extends BasicGameState implements KeyListener {
 			level.getPlayer().getBody().applyLinearImpulse(new Vec2(0,15), level.getPlayer().getBody().getPosition());
 		}
 		cam.follow(gc, level.getPlayer());
-		level.update(delta, sbg);
+		level.update(0, delta, sbg);
 	}
 
 	@Override

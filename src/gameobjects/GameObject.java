@@ -15,10 +15,6 @@ import org.jbox2d.dynamics.World;
 public class GameObject {
 	/** The object's image **/
 	private Image object;
-	/** The left and right facing images for the players **/
-	private Image object_right;
-	@SuppressWarnings("unused")
-	private Image object_left; 
 
 	/** The objects name **/
 	private String name;
@@ -27,12 +23,9 @@ public class GameObject {
 
 	public GameObject (String imgloc, Vec2 location, World world)
 			throws SlickException {
-		object_right = new Image(imgloc);
-		setObject_left(object_right.getFlippedCopy(true,false));
-		setObject(object_right);
-		object = object_right;
+		setObject(new Image(imgloc));
 
-		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(object.getWidth(), object.getHeight()));
+		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(getObject().getWidth(), getObject().getHeight()));
 		createBody(location,world);		
 		System.out.printf ("(x,y) = (%4.2f,%4.2f)\n", location.x, location.y);
 		System.out.printf ("(w,h) = (%4.2f,%4.2f)\n", dimensions.x/2, dimensions.y/2);
@@ -82,17 +75,15 @@ public class GameObject {
 	}
 	
 	public Image getImage() {
-		return object;
+		return getObject();
 	}
 	public void setObject(Image object) {
 		this.object = object;
 	}
-	
-	public void setObject_left(Image object_left) {
-		this.object_left = object_left;
-	}
-	public void setObject_right(Image object_right) {
-		this.object_right = object_right;
+
+
+	public Image getObject() {
+		return object;
 	}
 
 
