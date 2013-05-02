@@ -6,6 +6,8 @@ bin
 .metadata
 
 # Other files and folders
+.classpath
+.project
 .settings/
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
