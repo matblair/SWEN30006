@@ -17,12 +17,12 @@ import org.xml.sax.SAXException;
 
 public class Stateloader {
 
-	public static String WASTELAND_ID = "WASTELANDSTATE"; //$NON-NLS-1$
-	public static String WETLAND_ID = "WETLANDSTATE"; //$NON-NLS-1$
-	public static String HOMEWORLD_ID = "HOMEWORLD"; //$NON-NLS-1$
-	public static String DESERT_ID = "DESERTWORLDSTATE"; //$NON-NLS-1$
-	public static String EASTLAND_ID = "EASTLANDSTATE"; //$NON-NLS-1$
-	public static String MAIN_ID = "MAINWORLDSTATE"; //$NON-NLS-1$
+	public static String WASTELAND_ID = "WASTELANDSTATE";  
+	public static String WETLAND_ID = "WETLANDSTATE";  
+	public static String HOMEWORLD_ID = "HOMEWORLD";  
+	public static String DESERT_ID = "DESERTWORLDSTATE";  
+	public static String EASTLAND_ID = "EASTLANDSTATE";  
+	public static String MAIN_ID = "MAINWORLDSTATE";  
 	
 	public Stateloader(){
 	}
@@ -37,21 +37,21 @@ public class Stateloader {
 		try {
 			docBuilder = docBuilderFactory.newDocumentBuilder();
 		} catch (final ParserConfigurationException e) {
-			throw new SlickException(Messages.getString("Stateloader.error"), e); //$NON-NLS-1$
+			throw new SlickException(Messages.getString("Stateloader.error"), e);  
 		}
 		Document doc = null;
 		try {
 			doc = docBuilder.parse (is);
 		} catch (final SAXException e) {
-			throw new SlickException(Messages.getString("Stateloader.Errormessage"), e); //$NON-NLS-1$
+			throw new SlickException(Messages.getString("Stateloader.Errormessage"), e);  
 		} catch (final IOException e) {
-			throw new SlickException(Messages.getString("Stateloader.error_2"), e); //$NON-NLS-1$
+			throw new SlickException(Messages.getString("Stateloader.error_2"), e);  
 		}
 
 		// normalize text representation
 		doc.getDocumentElement ().normalize ();
 
-		final NodeList listResources = doc.getElementsByTagName(Messages.getString("Stateloader.rsrc")); //$NON-NLS-1$
+		final NodeList listResources = doc.getElementsByTagName(Messages.getString("Stateloader.rsrc"));  
 
 		final int totalResources = listResources.getLength();
 
@@ -63,9 +63,9 @@ public class Stateloader {
 			final Node resourceNode = listResources.item(resourceIdx);
 			if(resourceNode.getNodeType() == Node.ELEMENT_NODE){
 				final Element resourceElement = (Element)resourceNode;
-				final String type = resourceElement.getAttribute(Messages.getString("Stateloader.type")); //$NON-NLS-1$
-				if(type.equals(Messages.getString("Stateloader.aggressive"))){ //$NON-NLS-1$
-				}else if(type.equals(Messages.getString("Stateloader.object"))){ //$NON-NLS-1$
+				final String type = resourceElement.getAttribute(Messages.getString("Stateloader.type"));  
+				if(type.equals(Messages.getString("Stateloader.aggressive"))){  
+				}else if(type.equals(Messages.getString("Stateloader.object"))){  
 				}
 			}
 		}
