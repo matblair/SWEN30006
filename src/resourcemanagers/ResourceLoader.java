@@ -18,12 +18,10 @@ public class ResourceLoader {
 	
 	/** A simple xml resource loader **/
 	/** Main function reads all data and calls sub functions to create the units**/
-	
 
 	private static ResourceLoader manager;
-	
-	private ResourceLoader(){
-
+	/**Constructor doesn't need to do anything **/
+	private ResourceLoader(){	
 	}
 	
 	public static ResourceLoader getResourceManagerXML()
@@ -32,12 +30,8 @@ public class ResourceLoader {
 			manager = new ResourceLoader();
 		}
 		return manager;
-		
 	}
 	
-	
-	/** A basic xml data loader from the slick code tutorials **/
-
 	public void loadResources(final InputStream is) throws SlickException{
 	  loadResources(is, false);
 	}
