@@ -61,7 +61,7 @@ public class AssetManager {
 		switch(stateid){
 			case(Portal2D.TESTGAMESTATE): resourcepath = teststate;
 			break;
-			case(Portal2D.MAINMENU): resourcepath = mainmenu;
+			case(Portal2D.MAINMENUSTATE): resourcepath = mainmenu;
 			break;
 		}
 		if(resourcepath!=null){

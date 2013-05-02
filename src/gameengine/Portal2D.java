@@ -2,7 +2,7 @@ package gameengine;
 
 import gamestates.MainMenuState;
 import gamestates.PauseState;
-import gamestates.TestState;
+import gamestates.GameState;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -35,7 +35,7 @@ public class Portal2D extends StateBasedGame {
 	public void initStatesList(final GameContainer gc) throws SlickException {
 		LoadingList.setDeferredLoading(true);
 		this.addState(new MainMenuState());
-		this.addState(new TestState());
+		this.addState(new GameState());
 		this.addState(new PauseState(PAUSESTATE));
 	    this.enterState(MAINMENUSTATE);
 	}

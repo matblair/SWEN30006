@@ -34,7 +34,7 @@ public class PauseState extends BasicGameState implements KeyListener {
 	    {
 	    	super();
 	    	retro = FontLoader.loadFont("assets/fonts/RETRO.TTF", 18);
-	    	TestState.setId(gameplaystate);
+	    	GameState.setId(gameplaystate);
 	        debug = false;
 	        fullscreen = false;
 	    }

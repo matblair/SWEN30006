@@ -1,6 +1,6 @@
 package gameobjects;
 
-import gamestates.PhysUtils;
+import gameengine.PhysUtils;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -17,6 +17,7 @@ public class GameObject {
 	private Image object;
 	/** The left and right facing images for the players **/
 	private Image object_right;
+	@SuppressWarnings("unused")
 	private Image object_left; 
 
 	/** The objects name **/

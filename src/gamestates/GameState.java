@@ -1,14 +1,13 @@
 package gamestates;
 
-import gameobjects.Player;
-import gameworlds.TestWorld;
-import gameengine.*;
+import gameengine.Camera;
+import gameengine.PhysUtils;
+import gameengine.Portal2D;
+import gameworlds.Level;
 
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
@@ -16,20 +15,14 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class TestState extends BasicGameState implements KeyListener {
+public class GameState extends BasicGameState implements KeyListener {
 	private static int StateId = Portal2D.TESTGAMESTATE; // State ID
-	private Image bg;
-	private World world;
 	private Camera cam;
 	
 	private boolean listening=true;
-	private Player player;
-	private TestWorld level;
-	
-	private int velocityIterations = 6;
-	private int positionIterations = 2;
+	private Level level;
 
-	public TestState()
+	public GameState()
 	{
 		super();
 	}
@@ -37,54 +30,36 @@ public class TestState extends BasicGameState implements KeyListener {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		bg = new Image("assets/levels/bg.png");
-		cam = new Camera(PhysUtils.SlickToJBoxVec(new Vec2(bg.getWidth(), bg.getHeight())));
-
-		// Static Body
-		Vec2 gravity = new Vec2(0,-9.8f);
-		world = new World(gravity);
-
-		PhysUtils.addWall(world, 0, 0, 100, 1); //floor
-		PhysUtils.addWall(world, 0, 0, 0.5f, 10); //left wall
-		PhysUtils.addWall(world, 0, 8.823f, 100, 0); //top
-		
-		PhysUtils.addWall(world, 10, 2.5f, 4, 0.25f);
-		PhysUtils.addWall(world, 14, 3.5f, 4, 0.25f);
-
-		// Dynamic Body
-		player = new Player("/assets/sprites/chell.png",new Vec2(2, 5), world);
+		level = new Level(gc);
+		cam = new Camera(PhysUtils.SlickToJBoxVec(new Vec2(level.getBg().getWidth(), level.getBg().getHeight())));
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		RenderEngine.drawBG(bg, cam);
-		RenderEngine.drawGameObject(player, cam);
-		//world.drawDebugData();
+		level.render(g, false, cam, gc);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		float timeStep = (float)delta/1000;
-		world.step(timeStep, velocityIterations, positionIterations);
-
-		Input input = gc.getInput();
-		if (input.isKeyDown(Input.KEY_RIGHT) && player.getBody().getContactList()==null) {
-			player.getBody().applyForceToCenter(new Vec2(10,0));
-		} else if ((input.isKeyDown(Input.KEY_RIGHT))){
-			player.getBody().applyLinearImpulse(new Vec2((float) 0.1,0), player.getBody().getPosition());
-		}
-		if (input.isKeyDown(Input.KEY_LEFT) && player.getBody().getContactList()==null) {
-			player.getBody().applyForceToCenter(new Vec2(-10,0));
-		} else if ((input.isKeyDown(Input.KEY_LEFT))){
-			player.getBody().applyLinearImpulse(new Vec2((float) -0.1,0), player.getBody().getPosition());
-		}
-		if (input.isKeyPressed(Input.KEY_SPACE) && player.getBody().getContactList()!=null){
-			player.getBody().applyLinearImpulse(new Vec2(0,15), player.getBody().getPosition());
-		}
 		
-		cam.follow(gc, player);
+		Input input = gc.getInput();
+		if (input.isKeyDown(Input.KEY_RIGHT) && level.getPlayer().getBody().getContactList()==null) {
+			level.getPlayer().getBody().applyForceToCenter(new Vec2(10,0));
+		} else if ((input.isKeyDown(Input.KEY_RIGHT))){
+			level.getPlayer().getBody().applyLinearImpulse(new Vec2((float) 0.1,0), level.getPlayer().getBody().getPosition());
+		}
+		if (input.isKeyDown(Input.KEY_LEFT) && level.getPlayer().getBody().getContactList()==null) {
+			level.getPlayer().getBody().applyForceToCenter(new Vec2(-10,0));
+		} else if ((input.isKeyDown(Input.KEY_LEFT))){
+			level.getPlayer().getBody().applyLinearImpulse(new Vec2((float) -0.1,0), level.getPlayer().getBody().getPosition());
+		}
+		if (input.isKeyPressed(Input.KEY_SPACE) && level.getPlayer().getBody().getContactList()!=null){
+			level.getPlayer().getBody().applyLinearImpulse(new Vec2(0,15), level.getPlayer().getBody().getPosition());
+		}
+		cam.follow(gc, level.getPlayer());
+		level.update(delta, sbg);
 	}
 
 	@Override
@@ -113,7 +88,7 @@ public class TestState extends BasicGameState implements KeyListener {
 	public void setInput(Input input) {input.addKeyListener(this);}
 
 	public static void setId(final int stateId) {
-		TestState.StateId = stateId;
+		GameState.StateId = stateId;
 	}
 
 	public void toggleFullscreen(final GameContainer gc, final boolean fullscreen)

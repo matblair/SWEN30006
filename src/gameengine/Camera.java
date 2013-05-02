@@ -1,7 +1,6 @@
 package gameengine;
 
 import gameobjects.GameObject;
-import gamestates.PhysUtils;
 
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.GameContainer;
