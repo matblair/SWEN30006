@@ -2,6 +2,7 @@ package gameobjects;
 
 import gameengine.PhysUtils;
 
+import org.jbox2d.collision.WorldManifold;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Image;
@@ -11,6 +12,7 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.contacts.ContactEdge;
 
 public class GameObject {
 	/** The object's image **/
@@ -20,6 +22,9 @@ public class GameObject {
 	private String name;
 	private Body body;
 	private Vec2 dimensions; // JBox dimensions
+	
+	private final int maxAngleForGround = 45;
+	private final float maxYNormForGround = (float)Math.asin(maxAngleForGround/180*Math.PI);
 
 	public GameObject (String imgloc, Vec2 location, World world)
 			throws SlickException {
@@ -64,12 +69,17 @@ public class GameObject {
 	}
 	
 	public boolean isOnGround() {
-		// TODO: Come up with a better implementation of this. Perhaps check where collision is occurring?
-		if (body.getContactList() == null) {
-			return false;
-		} else {
-			return true;
+		ContactEdge edge = this.getBody().getContactList();
+		WorldManifold wm = new WorldManifold();
+		Vec2 normal;
+		while (edge != null) {
+			edge.contact.getWorldManifold(wm);
+			normal = wm.normal;
+			if (normal.y > maxYNormForGround)
+				return true;
+			edge = edge.next;
 		}
+		return false;
 	}
 	
 	/** Returns the top left position of the player
