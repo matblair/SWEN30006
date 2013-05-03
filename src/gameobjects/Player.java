@@ -15,7 +15,7 @@ public class Player extends GameObject{
 	private final float maxRunVelocity = 5;
 	private final float accelFactor = 0.02f;
 	private final float accelInAir = 0.01f;
-	private final float jumpFactor = 10;
+	private final float jumpFactor = 8;
 	
 	public Player(final String imgloc, Vec2 pos, World world) throws SlickException {
 		super(imgloc, pos, world);
