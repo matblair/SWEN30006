@@ -9,10 +9,13 @@ public class Player extends GameObject{
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
-	private static Player player;	
+	private static Player player;
+	
+	// Constants related to player movement
 	private final float maxRunVelocity = 5;
 	private final float accelFactor = 0.02f;
 	private final float accelInAir = 0.01f;
+	private final float jumpFactor = 10;
 	
 	public Player(final String imgloc, Vec2 pos, World world) throws SlickException {
 		super(imgloc, pos, world);
@@ -28,6 +31,7 @@ public class Player extends GameObject{
 		return player;
 		
 	}
+	
 	public void moveXDir(float dir_x, float delta){
 		if (dir_x < 0) {
 			faceLeft();
@@ -44,6 +48,13 @@ public class Player extends GameObject{
 		} else if (Math.signum(dir_x) != Math.signum(xVelocity) || Math.abs(xVelocity) < (maxRunVelocity - 1)) {
 			// If in the air and not already moving quickly
 			getBody().applyLinearImpulse(new Vec2 (dir_x * accelInAir * getMass() * delta, 0), getLocation());
+		}
+	}
+	
+	public void jump() {
+		if (isOnGround()){
+			float impulse = getMass() * jumpFactor;
+			getBody().applyLinearImpulse(new Vec2(0,impulse), getLocation());
 		}
 	}
 	
