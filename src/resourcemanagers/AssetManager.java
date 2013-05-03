@@ -1,10 +1,13 @@
 package resourcemanagers;
 
+import gameworlds.Level;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.jbox2d.common.Vec2;
@@ -23,32 +26,33 @@ public class AssetManager {
 	private LevelLoader levelLoader;
 
 	/**Creates a resource repository of commonly used items **/
-	private Map<String, Image> imageResources; //All images used for game objects
-	private Map<String, Sound> soundResources; //All sounds resources
-	private Map<String, Vec2> vectorResources; //All vector locations
-	private Map<String, Image> uiElementResources; //All UI Resources
-	private Map<String, String> levelXmlResources; //All the level xml resources
-	private Map<String, Font> fontResources; //All the level xml resources
-	private Map<String, Animation> animationResources; //All the level xml resources
+	private static Map<String, Image> imageResources; //All images used for game objects
+	private static Map<String, Sound> soundResources; //All sounds resources
+	private static Map<String, Vec2> vectorResources; //All vector locations
+	private static Map<String, Image> uiElementResources; //All UI Resources
+	private static Map<String, String> levelXmlResources; //All the level xml resources
+	private static Map<String, Font> fontResources; //All the level xml resources
+	private static Map<String, Animation> animationResources; //All the level xml resources
 	
 	//General File Locations
-	@SuppressWarnings("unused")
-	private static final String xmlresources = "assets/xmlresources/";
-	private static final String generalresource = "assets/";
-	private static final String xmlpath ="";
+	private static final String loadinglist ="loadinglist.xml";
+	private static final String generalresource = "assets/xmlresources/";
 
-	// World loader
-	@SuppressWarnings("unused")
-	private static LevelLoader loader;
-
+	
 	private AssetManager(){	
-		loader = new LevelLoader();
+		// Create all the static variables so that they are not null.
 		resourceLoader = new ResourceLoader();
 		levelLoader = new LevelLoader();
-		//Initialise all the maps.
+		imageResources = new HashMap<String, Image>();
+		soundResources = new HashMap<String, Sound>();
+		vectorResources = new HashMap<String, Vec2>();
+		uiElementResources = new HashMap<String, Image>();
+		levelXmlResources = new HashMap<String, String>();
+		fontResources = new HashMap<String, Font>();
+		animationResources = new HashMap<String, Animation>();
 	}
 
-	public static AssetManager getResourceManager()
+	public static AssetManager getAssetManager()
 			throws SlickException{
 		if(manager==null){
 			manager = new AssetManager();
@@ -57,7 +61,7 @@ public class AssetManager {
 	}
 
 	public void loadAllGameAssets(){
-		final File f = new File(xmlpath, generalresource);
+		final File f = new File(loadinglist, generalresource);
 		InputStream is = null;
 		try {
 			is = new FileInputStream(f);
@@ -75,15 +79,16 @@ public class AssetManager {
 		}
 	}
 	
-	public void loadLevel( final int levelid){
+	public Level loadLevel( final int levelid) throws SlickException{
 		String resourcepath = "";
+		Level level = new Level();
 		// Have to set resource path based on level id, hash map of level ids?
 		if(resourcepath!=null){
-			final File f = new File(xmlpath, resourcepath);
+			final File f = new File(loadinglist, resourcepath);
 			InputStream is = null;
 			try {
 				is = new FileInputStream(f);
-				levelLoader.loadResources(is, true);
+				levelLoader.loadLevel(is, true, level);
 
 			} catch (final FileNotFoundException e) {
 				e.printStackTrace();
@@ -97,33 +102,108 @@ public class AssetManager {
 				}
 			}
 		}
+		
+		return level;
 	}
 	
-	public Image requestImage(String imgid){
+	public static Image requestImage(String imgid){
 		return imageResources.get(imgid);
 	}
 
-	public Vec2 requestVec(String vecid){
+	public static Vec2 requestVec(String vecid){
 		return vectorResources.get(vecid);
 	}
 	
-	public Sound requestSound(String soundid){
+	public static Sound requestSound(String soundid){
 		return soundResources.get(soundid);
 	}
 	
-	public Image requestUIElement(String uiid){
+	public static Image requestUIElement(String uiid){
 		return uiElementResources.get(uiid);
 	}
-	public String requestLevelXMLPath(String levelid){
+	public static String requestLevelXMLPath(String levelid){
 		return levelXmlResources.get(levelid);
 	}
 	
-	public Font requestFontResource(String fontid){
+	public static Font requestFontResource(String fontid){
 		return fontResources.get(fontid);
 	}
 	
-	public Animation requestAnimationResources(String animid){
+	public static Animation requestAnimationResources(String animid){
 		return animationResources.get(animid);
+	}
+
+	public ResourceLoader getResourceLoader() {
+		return resourceLoader;
+	}
+
+	public LevelLoader getLevelLoader() {
+		return levelLoader;
+	}
+
+	public static Map<String, Image> getImageResources() {
+		return imageResources;
+	}
+
+	public static Map<String, Sound> getSoundResources() {
+		return soundResources;
+	}
+
+	public static Map<String, Vec2> getVectorResources() {
+		return vectorResources;
+	}
+
+	public static Map<String, Image> getUiElementResources() {
+		return uiElementResources;
+	}
+
+	public static Map<String, String> getLevelXmlResources() {
+		return levelXmlResources;
+	}
+
+	public static Map<String, Font> getFontResources() {
+		return fontResources;
+	}
+
+	public static Map<String, Animation> getAnimationResources() {
+		return animationResources;
+	}
+
+	public void setResourceLoader(ResourceLoader resourceLoader) {
+		this.resourceLoader = resourceLoader;
+	}
+
+	public void setLevelLoader(LevelLoader levelLoader) {
+		this.levelLoader = levelLoader;
+	}
+
+	public static void setImageResources(Map<String, Image> imageResources) {
+		AssetManager.imageResources = imageResources;
+	}
+
+	public static void setSoundResources(Map<String, Sound> soundResources) {
+		AssetManager.soundResources = soundResources;
+	}
+
+	public static void setVectorResources(Map<String, Vec2> vectorResources) {
+		AssetManager.vectorResources = vectorResources;
+	}
+
+	public static void setUiElementResources(Map<String, Image> uiElementResources) {
+		AssetManager.uiElementResources = uiElementResources;
+	}
+
+	public static void setLevelXmlResources(Map<String, String> levelXmlResources) {
+		AssetManager.levelXmlResources = levelXmlResources;
+	}
+
+	public static void setFontResources(Map<String, Font> fontResources) {
+		AssetManager.fontResources = fontResources;
+	}
+
+	public static void setAnimationResources(
+			Map<String, Animation> animationResources) {
+		AssetManager.animationResources = animationResources;
 	}
 	
 }
