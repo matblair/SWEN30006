@@ -1,5 +1,7 @@
 package resourcemanagers;
 
+import gameworlds.Level;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -77,15 +79,16 @@ public class AssetManager {
 		}
 	}
 	
-	public void loadLevel( final int levelid){
+	public Level loadLevel( final int levelid) throws SlickException{
 		String resourcepath = "";
+		Level level = new Level();
 		// Have to set resource path based on level id, hash map of level ids?
 		if(resourcepath!=null){
 			final File f = new File(loadinglist, resourcepath);
 			InputStream is = null;
 			try {
 				is = new FileInputStream(f);
-				levelLoader.loadResources(is, true);
+				levelLoader.loadLevel(is, true, level);
 
 			} catch (final FileNotFoundException e) {
 				e.printStackTrace();
@@ -99,6 +102,8 @@ public class AssetManager {
 				}
 			}
 		}
+		
+		return level;
 	}
 	
 	public static Image requestImage(String imgid){

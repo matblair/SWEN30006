@@ -1,5 +1,7 @@
 package resourcemanagers;
 
+import gameworlds.Level;
+
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.DocumentBuilder;
@@ -20,11 +22,7 @@ public class LevelLoader {
 	public LevelLoader(){
 	}
 
-	/** A basic xml data loader from the slick code tutorials **/
-	public void loadResources(final InputStream is) throws SlickException{
-		loadResources(is, false);
-	}
-	public void loadResources(final InputStream is, final boolean deferred) throws SlickException {
+	public void loadLevel(final InputStream is, final boolean deferred, Level level) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
 		try {
@@ -80,27 +78,22 @@ public class LevelLoader {
 	}
 
 	private void addElementAsPortal(Element resourceElement) {
-		// TODO Auto-generated method stub
 
 	}
 
 	private void addElementAsPlatform(Element resourceElement) {
-		// TODO Auto-generated method stub
 
 	}
 
 	private void addElementAsTurret(Element resourceElement) {
-		// TODO Auto-generated method stub
 
 	}
 
 	private void addElementAsWall(Element resourceElement) {
-		// TODO Auto-generated method stub
 
 	}
 
 	private void addElementAsCube(Element resourceElement) {
-		// TODO Auto-generated method stub
 
 	}
 }

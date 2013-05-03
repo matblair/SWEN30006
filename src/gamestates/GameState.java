@@ -29,7 +29,7 @@ public class GameState extends BasicGameState implements KeyListener {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		level = new Level(gc,0);
+		level = new Level();
 		cam = new Camera(PhysUtils.SlickToJBoxVec(new Vec2(level.getBg().getWidth(), level.getBg().getHeight())));
 	}
 

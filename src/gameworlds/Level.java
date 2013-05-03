@@ -46,7 +46,6 @@ public class Level {
 	/** Our physics world **/
 	private World world;
 	/** Our portal physics world **/
-	@SuppressWarnings("unused")
 	private World portalWorld;
 	/** Our Physics Engine Constants **/
 	private int velocityIterations = 6;
@@ -54,6 +53,21 @@ public class Level {
 	/** Gravity **/
 	private Vec2 gravity = new Vec2(0,-18f);
 
+	public Level(){
+		// Create physics worlds
+		world = new World(gravity);
+		portalWorld = new World(new Vec2(0,0));
+		
+		//Initialises ArrayLists
+		cubes = new ArrayList<CompanionCube>();
+		walls = new ArrayList<Wall>();
+		doors = new ArrayList<Door>();
+		platforms = new ArrayList<MovingPlatform>();
+		portals = new ArrayList<Portal>();
+		lilSwitches = new ArrayList<LittleSwitch>();
+		bigSwitches = new ArrayList<BigSwitch>();	
+	}
+	
 	public Level(GameContainer gc, int id) throws SlickException {
 		assetManager = AssetManager.getAssetManager();
 		setBg(new Image("assets/levels/bg.png"));
@@ -102,6 +116,41 @@ public class Level {
 
 	public void updateGameState(GameContainer gc) {
 		// TODO Auto-generated method stub
-		
+	}
+	
+	public World getPhysWolrd(){
+		return world;
+	}
+
+	public World getPoralWorld(){
+		return portalWorld;
+	}
+	
+	public void addCube(CompanionCube cube){
+		cubes.add(cube);
+	}
+	
+	public void addWall(Wall wall){
+		walls.add(wall);
+	}
+	
+	public void addDoor(Door door){
+		doors.add(door);
+	}
+	
+	public void addPortal(Portal portal){
+		portals.add(portal);
+	}
+	
+	public void addMovingPlatform(MovingPlatform platform){
+		platforms.add(platform);
+	}
+	
+	public void addBigSwitch(BigSwitch s){
+		bigSwitches.add(s);
+	}
+	
+	public void addLilSwitch(LittleSwitch s){
+		lilSwitches.add(s);
 	}
 }
