@@ -30,10 +30,10 @@ public class Player extends GameObject{
 		setObject_left(sprite_right.getFlippedCopy(true,false));
 	}
 
-	public static Player getPlayer(final String imgloc,Vec2 pos, World world)
+	public static Player getPlayer(final String imgid,Vec2 pos, World world)
 	throws SlickException{
 		if(player==null){
-			player = new Player(imgloc,pos,world);
+			player = new Player(imgid,pos,world);
 		}
 		return player;
 	}
