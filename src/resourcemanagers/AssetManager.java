@@ -23,7 +23,7 @@ public class AssetManager {
 	/** The resource loader **/
 	private static  ResourceLoader resourceLoader = new ResourceLoader();
 	/** The level loader **/
-	private LevelLoader levelLoader = new LevelLoader();
+	private static LevelLoader levelLoader = new LevelLoader();
 
 	/**Creates a resource repository of commonly used items **/
 	private static Map<String, Image> imageResources = new HashMap<String, Image>(); //All images used for game objects
@@ -32,15 +32,15 @@ public class AssetManager {
 	private static Map<String, Image> uiElementResources = new HashMap<String, Image>(); //All UI Resources
 	private static Map<String, String> 	levelXmlResources = new HashMap<String, String>(); //All the level xml resources
 	private static Map<String, Font> fontResources = new HashMap<String, Font>(); //All the level xml resources
-	private static Map<String, Animation> 		animationResources = new HashMap<String, Animation>();; //All the level xml resources
-	
+	private static Map<String, Animation> animationResources = new HashMap<String, Animation>();; //All the level xml resources
+
 	private static int totalresources=0;
-	
+
 	//General File Locations
 	private static final String loadinglist ="loadinglist.xml";
 	private static final String generalresource = "assets/xmlresources/";
 
-	
+
 	private AssetManager(){				
 	}
 
@@ -69,45 +69,42 @@ public class AssetManager {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(imageResources.size() +"images loaded.");
-		System.out.println(soundResources.size() +"sounds loaded.");
-		System.out.println(vectorResources.size() +"vectors loaded.");
-		System.out.println(uiElementResources.size() +"ui elements loaded.");
-		System.out.println(levelXmlResources.size() +"xml levels loaded.");
-		System.out.println(fontResources.size() +"fonts loaded.");
-		System.out.println(animationResources.size() +"animations loaded.");
-
-
-		System.out.println(totalresources +"Resources Loaded");
+		System.out.println(imageResources.size() +" images loaded.");
+		System.out.println(soundResources.size() +" sounds loaded.");
+		System.out.println(vectorResources.size() +" vectors loaded.");
+		System.out.println(uiElementResources.size() +" ui elements loaded.");
+		System.out.println(levelXmlResources.size() +" xml levels loaded.");
+		System.out.println(fontResources.size() +" fonts loaded.");
+		System.out.println(animationResources.size() +" animations loaded.");
+		System.out.println(totalresources +" resources loaded in total");
 	}
-	
-	public Level loadLevel( final int levelid) throws SlickException{
-		String resourcepath = "";
-		Level level = new Level();
-		// Have to set resource path based on level id, hash map of level ids?
-		if(resourcepath!=null){
-			final File f = new File(loadinglist, resourcepath);
-			InputStream is = null;
-			try {
-				is = new FileInputStream(f);
-				levelLoader.loadLevel(is, true, level);
 
-			} catch (final FileNotFoundException e) {
+	public static Level loadLevel( final String levelid) throws SlickException{
+		String levelxml = AssetManager.requestLevelXMLPath(levelid);
+		Level level = new Level();
+
+		// Have to set resource path based on level id, hash map of level ids?
+		final File f = new File(generalresource, levelxml);
+		InputStream is = null;
+		try {
+			is = new FileInputStream(f);
+			levelLoader.loadLevel(is, true, level);
+
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (final SlickException e) {
+			e.printStackTrace();
+		} finally	{
+			try {
+				is.close();
+			} catch (final IOException e) {
 				e.printStackTrace();
-			} catch (final SlickException e) {
-				e.printStackTrace();
-			} finally	{
-				try {
-					is.close();
-				} catch (final IOException e) {
-					e.printStackTrace();
-				}
 			}
 		}
-		
+
 		return level;
 	}
-	
+
 	public static Image requestImage(String imgid){
 		return imageResources.get(imgid);
 	}
@@ -115,22 +112,22 @@ public class AssetManager {
 	public static Vec2 requestVec(String vecid){
 		return vectorResources.get(vecid);
 	}
-	
+
 	public static Sound requestSound(String soundid){
 		return soundResources.get(soundid);
 	}
-	
+
 	public static Image requestUIElement(String uiid){
 		return uiElementResources.get(uiid);
 	}
 	public static String requestLevelXMLPath(String levelid){
 		return levelXmlResources.get(levelid);
 	}
-	
+
 	public static Font requestFontResource(String fontid){
 		return fontResources.get(fontid);
 	}
-	
+
 	public static Animation requestAnimationResources(String animid){
 		return animationResources.get(animid);
 	}
@@ -207,6 +204,6 @@ public class AssetManager {
 			Map<String, Animation> animationResources) {
 		AssetManager.animationResources = animationResources;
 	}
-	
+
 }
 

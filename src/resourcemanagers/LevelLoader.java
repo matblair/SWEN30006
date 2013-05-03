@@ -1,5 +1,6 @@
 package resourcemanagers;
 
+import gameobjects.Player;
 import gameworlds.Level;
 
 import java.io.IOException;
@@ -8,6 +9,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException; 
 
+import org.jbox2d.common.Vec2;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.LoadingList;
 import org.w3c.dom.Document;
@@ -68,31 +71,51 @@ public class LevelLoader {
 					addElementAsPortal(resourceElement,level);
 				}else if(type.equals("SWITCH")){  
 					addElementAsSwitch(resourceElement,level);
+				}else if(type.equals("BACKGROUNDIMG")){
+					level.setBg(new Image(resourceElement.getTextContent()));
+				}else if(type.equals("PLAYER")){
+					addElementAsPlayer(resourceElement,level);
 				}
 			}
 		}
 	}
 
 	private void addElementAsSwitch(Element resourceElement, Level level) {
-		
+		String imgid = resourceElement.getAttribute("imgid");
+
 	}
 
 	private void addElementAsPortal(Element resourceElement, Level level) {
+		String imgid = resourceElement.getAttribute("imgid");
 
 	}
 
 	private void addElementAsPlatform(Element resourceElement, Level level) {
-
+		String imgid = resourceElement.getAttribute("imgid");
+		
 	}
 
 	private void addElementAsTurret(Element resourceElement, Level level) {
+		String imgid = resourceElement.getAttribute("imgid");
 
 	}
 
 	private void addElementAsWall(Element resourceElement, Level level) {
+		String imgid = resourceElement.getAttribute("imgid");
+		
 
 	}
 
 	private void addElementAsCube(Element resourceElement, Level level) {
+		String imgid = resourceElement.getAttribute("imgid");
+
+	}
+	
+	private void addElementAsPlayer(Element resourceElement, Level level) throws SlickException{
+		String imgid = resourceElement.getAttribute("imgid");
+		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
+		Float ystart = Float.parseFloat(resourceElement.getAttribute("startx"));
+		Vec2 startloc = new Vec2(xstart,ystart);
+		Player newplayer = new Player(imgid,startloc, level.getPhysWolrd());
 	}
 }

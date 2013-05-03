@@ -70,7 +70,7 @@ public class Level {
 	
 	public Level(GameContainer gc, int id) throws SlickException {
 		assetManager = AssetManager.getAssetManager();
-		setBg(new Image("assets/levels/bg.png"));
+		setBg(new Image("assets/levels/levelone.png"));
 		levelid=id;
 		
 		// Static Body
@@ -84,7 +84,7 @@ public class Level {
 		PhysUtils.addWall(world, 19.5f, 0, 0.5f, 20); //right wall
 		
 		// Dynamic Body
-		player = Player.getPlayer("CHELLSPRITE",new Vec2(2, 5), world);
+		player = new Player("CHELLSPRITE",new Vec2(2, 5), world);
 	}
 
 	public void render(Graphics g, boolean debug,Camera cam, GameContainer gc) {

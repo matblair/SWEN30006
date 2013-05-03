@@ -98,7 +98,7 @@ public class ResourceLoader {
 	}
 
 	private void addElementAsLevelXML(Element resourceElement) {	
-		String xml=null;
+		String xml=resourceElement.getTextContent();
 		String id=resourceElement.getAttribute("id");
 		AssetManager.getLevelXmlResources().put(id, xml);
 	}

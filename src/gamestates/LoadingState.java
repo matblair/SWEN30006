@@ -1,6 +1,7 @@
 package gamestates;
 
 import gameengine.Portal2D;
+import gameworlds.Level;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -36,8 +37,10 @@ public class LoadingState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta){
 	}
 
-	public void loadLevel(){
-		
+	public void loadLevel(StateBasedGame sbg) throws SlickException{
+		Level level = AssetManager.loadLevel("TESTLEVEL");
+		GameState.setLevel(level);
+		sbg.enterState(Portal2D.GAMESTATE);
 	}
 	
 	public void loadNextLevel(){

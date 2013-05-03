@@ -6,6 +6,12 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.World;
 
 public class PhysUtils {
+	
+	public static final int STATIC=0;
+	public static final int KINEMATIC=1;
+	public static final int DYNAMIC=2; 
+	public static final int PORTAL=3;
+
 	private static int scaleFactor = 68;
 	
 	/** Convert vector from metres to pixels.

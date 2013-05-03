@@ -106,11 +106,17 @@ public class GameState extends BasicGameState implements KeyListener {
 		}		
 	}
 	
-	public void loadLevel(int levelId, GameContainer gc) throws SlickException{
-		level= new Level(gc, levelId);
-	}
-	
 	public void exitLevel(GameContainer gc, StateBasedGame sbg){		
 		sbg.enterState(Portal2D.LOADSTATE);
 	}
+	
+	public static void setLevel(Level newLevel){
+		level=newLevel;
+	}
+	
+	public static Level getLevel(){
+		return level;
+	}
+	
+	
 }

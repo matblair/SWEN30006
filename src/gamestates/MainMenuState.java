@@ -47,8 +47,6 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		// Load all resources in resource manager//
-		System.out.println("here");
-
 		// Menu items
 		menuItems.add("Start Game");
 		menuItems.add("Achievements");

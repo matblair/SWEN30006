@@ -1,5 +1,7 @@
 package gameobjects;
 
+import gameengine.PhysUtils;
+
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.newdawn.slick.Image;
@@ -9,7 +11,6 @@ public class Player extends GameObject{
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
-	private static Player player;
 	
 	// Constants related to player movement
 	private final float maxRunVelocity = 5;
@@ -19,24 +20,17 @@ public class Player extends GameObject{
 	
 	/** Constructor
 	 * 
-	 * @param imgloc Path to the image to be used for the sprite
+	 * @param imgid The Sprites Image Id to get resource
 	 * @param pos Coordinates in metres specifying where the player spawns.
 	 * @param world The JBox world in which the players physical body should be added.
 	 * @throws SlickException
 	 */
 	public Player(final String imgloc, Vec2 pos, World world) throws SlickException {
-		super(imgloc, pos, world);
+		super(imgloc, pos, world, PhysUtils.DYNAMIC);
 		sprite_right=getImage();				
 		setObject_left(sprite_right.getFlippedCopy(true,false));
 	}
 
-	public static Player getPlayer(final String imgid,Vec2 pos, World world)
-	throws SlickException{
-		if(player==null){
-			player = new Player(imgid,pos,world);
-		}
-		return player;
-	}
 	
 	/** Tell the player to move in a certain direction.
 	 * 

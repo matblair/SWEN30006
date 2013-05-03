@@ -3,9 +3,16 @@
 <resources>
 		
 	<!-- Start Location -->
-	<resource type="spawnpoint" id="SPAWN" posx = "10097.800000001342" posy="12650.900000002153"></resource>
+	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="5"></resource>
 	<!-- Walls -->
-	<resource type="wall" id="GAMEWALL" xStart="1240" yStart="2980" xWidth="400" yWidth="50" xTarget="5420" yTarget="6070"></resource>
+	<resource type="WALL" id="floor" xStart="0" yStart="0" width="100" height="1"></resource>
+	<resource type="WALL" id="leftwall" xStart="0" yStart="0" width="0.5" height="20"></resource>
+	<resource type="WALL" id="top" xStart="0" yStart="17.14" width="100" height="0"></resource>
+	<resource type="WALL" id="firstplatform" xStart="10" yStart="2.5" width="4" height="0.25"></resource>
+	<resource type="WALL" id="secontplatform" xStart="14" yStart="3.95f" width="4" height="0.25"></resource>
+	<resource type="WALL" id="rightwall" xStart="19.5" yStart="0" width="0.5" height="20"></resource>
+
+
 	<!--  Doors -->
 	<!resource type="door" id="SAVESTONE" posx = "100" posy="100"></resource>
 	<!--  Cubes -->
@@ -20,7 +27,7 @@
 	<!-- Music -->
 	<!resource type="MUSIC" id="LEV1_BACKGROUND" location = "assets/music/levelone/background.ogg" ></resource>
 	<!-- Background -->
-	<resource type="bgimg" id="BACKGROUND" location = "assets/levels/levelone.jpg"></resource>
+	<resource type="BACKGROUNDIMG" location = "assets/levels/levelone.jpg"></resource>
 
 
 		

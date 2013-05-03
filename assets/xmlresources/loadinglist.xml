@@ -11,9 +11,8 @@
 	<resource type="IMAGE" id="CHELLSPRITE">assets/sprites/chell.png</resource>
 	<resource type="IMAGE" id="HITBOX">assets/sprites/hitbox.png</resource>
 
-
 	<!-- LevelXML -->
-
+	<resource type="LEVELXML" id="TESTLEVEL">testlevel.xml</resource>
 	<!-- Animations -->
 
 	<!-- Fonts -->

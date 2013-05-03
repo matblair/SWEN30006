@@ -19,6 +19,8 @@ import resourcemanagers.AssetManager;
 public class GameObject {
 	/** The object's image **/
 	private Image sprite;
+	
+	
 
 	/** The objects name **/
 	private String name;
@@ -28,19 +30,28 @@ public class GameObject {
 	private final int maxAngleForGround = 45;
 	private final float maxYNormForGround = (float)Math.asin(maxAngleForGround/180*Math.PI);
 
-	public GameObject (String imgid, Vec2 location, World world)
+	public GameObject (String imgid, Vec2 location, World world, int bodytype)
 			throws SlickException {
 		setSprite(AssetManager.requestImage(imgid));
 		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(getImage().getWidth(), getImage().getHeight()));
-		createBody(location,world);		
+		createBody(location,world,2);		
 		System.out.printf ("(x,y) = (%4.2f,%4.2f)\n", location.x, location.y);
 		System.out.printf ("(w,h) = (%4.2f,%4.2f)\n", dimensions.x/2, dimensions.y/2);
 	}
 	
-	private void createBody(Vec2 location, World world){
+	private void createBody(Vec2 location, World world, int bodytype){
 		BodyDef bd = new BodyDef();
-		bd.type = BodyType.DYNAMIC;
 		bd.position.set(location);
+		
+		/*switch (bodytype){
+			case PhysUtils.STATIC: bd.type = BodyType.STATIC;
+			case PhysUtils.DYNAMIC: bd.type = BodyType.DYNAMIC;
+			case PhysUtils.KINEMATIC: bd.type = BodyType.KINEMATIC;
+			case PhysUtils.PORTAL: bd.type = BodyType.STATIC;
+			default: bd.type = BodyType.STATIC;
+		}*/
+		
+		bd.type = BodyType.DYNAMIC;
 		bd.fixedRotation = true;
 		body = world.createBody(bd);
 		
