@@ -30,14 +30,12 @@ Then we assign a new branch and switch to it
 
         git checkout yourname
         
+Then update to track all remote branches
+        
+        git fetch
+        
 This will then track the remote branches I have setup on the server
-        
 I have created the branches on the server already so you can use those, they are james for Jamie, joana for Joana and champ for Champ. 
-        
-After which we have to add everything to your new branch.
-
-        git add .
-        
 Now you can work with the branch you have, and it shouldn't affect the master branch. You can commit to that branch as follows
 
         git commit -a -m "your message here"
