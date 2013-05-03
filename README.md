@@ -16,7 +16,7 @@ In order to push to the repository you will have to have a github account, which
 
 Usage is very straight forward and operates very similarly to svn. To clone a git repository to your computer (i.e. pull down the master branch) we type:
 
-        git clone https://www.github.com/matblair/SWEN30006 $path_to_desired_location
+        git clone https://www.github.com/matblair/SWEN30006 path/to/localdirectory
         
 The difference lies in how we branch and merge. As a default security protocol we should never be working on the master copy (i.e. the trunk) we should all create our own branch on our own computer so that we don't necessarily corrupt the master. Only known good working code should be published to the trunk and if you publish something that breaks anything to the trunk I will chase you down. 
 
