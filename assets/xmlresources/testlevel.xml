@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+		
+	<!-- Start Location -->
+	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="5">assets/sprites/chell.png</resource>
+	<!-- Walls -->
+	<resource type="WALL" id="floor" xStart="0" yStart="0" width="100" height="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="leftwall" xStart="0" yStart="0" width="0.5" height="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="top" xStart="0" yStart="17.14" width="100" height="0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="firstplatform" xStart="10" yStart="2.5" width="4" height="0.25">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="secontplatform" xStart="14" yStart="3.95f" width="4" height="0.25">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="rightwall" xStart="19.5" yStart="0" width="0.5" height="20">assets/sprites/wall.png</resource>
+	<!-- Background -->
+	<resource type="BACKGROUNDIMG">assets/levels/levelone.jpg</resource>
+
+
+		
+</resources>
