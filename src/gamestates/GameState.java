@@ -19,7 +19,7 @@ public class GameState extends BasicGameState implements KeyListener {
 	private static int StateId = Portal2D.TESTGAMESTATE; // State ID
 	private Camera cam;
 	private boolean listening=true;
-	private Level level;
+	private static Level level;
 
 	public GameState()
 	{
@@ -29,7 +29,7 @@ public class GameState extends BasicGameState implements KeyListener {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		level = new Level(gc);
+		level = new Level(gc,0);
 		cam = new Camera(PhysUtils.SlickToJBoxVec(new Vec2(level.getBg().getWidth(), level.getBg().getHeight())));
 	}
 
@@ -49,12 +49,12 @@ public class GameState extends BasicGameState implements KeyListener {
 			dir_x++;
 		if (input.isKeyDown(Input.KEY_LEFT))
 			dir_x--;
-		if (input.isKeyPressed(Input.KEY_SPACE) && level.getPlayer().getBody().getContactList()!=null){
-			level.getPlayer().getBody().applyLinearImpulse(new Vec2(0,15), level.getPlayer().getBody().getPosition());
+		if (input.isKeyPressed(Input.KEY_SPACE) && level.getLevelPlayer().isOnGround()){
+			level.getLevelPlayer().getBody().applyLinearImpulse(new Vec2(0,20), level.getLevelPlayer().getBody().getPosition());
 		}
 		
-		cam.follow(gc, level.getPlayer());
-		level.update(dir_x, delta, sbg);
+		cam.follow(gc, level.getLevelPlayer());
+		level.update(dir_x,0, delta, sbg);
 	}
 
 	@Override
@@ -98,5 +98,13 @@ public class GameState extends BasicGameState implements KeyListener {
 			gc.setFullscreen(fullscreen);
 			level.updateGameState(gc);
 		}		
+	}
+	
+	public void loadLevel(int levelId, GameContainer gc) throws SlickException{
+		level= new Level(gc, levelId);
+	}
+	
+	public void exitLevel(GameContainer gc, StateBasedGame sbg){		
+		sbg.enterState(Portal2D.LOADSTATE);
 	}
 }

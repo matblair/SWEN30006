@@ -9,12 +9,12 @@ public class PhysUtils {
 	private static int scaleFactor = 68;
 	
 	public static Vec2 JBoxToSlickVec (Vec2 from) {
-		Vec2 to = new Vec2(from.x * scaleFactor, from.y * scaleFactor);
+		Vec2 to = from.mul(scaleFactor);
 		return to;
 	}
 
 	public static Vec2 SlickToJBoxVec (Vec2 from) {
-		Vec2 to = new Vec2(from.x / scaleFactor, from.y / scaleFactor);
+		Vec2 to = from.mul(1f/scaleFactor);
 		return to;
 	}
 	

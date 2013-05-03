@@ -14,7 +14,7 @@ import org.jbox2d.dynamics.World;
 
 public class GameObject {
 	/** The object's image **/
-	private Image object;
+	private Image sprite;
 
 	/** The objects name **/
 	private String name;
@@ -23,9 +23,9 @@ public class GameObject {
 
 	public GameObject (String imgloc, Vec2 location, World world)
 			throws SlickException {
-		setObject(new Image(imgloc));
+		setSprite(new Image(imgloc));
 
-		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(getObject().getWidth(), getObject().getHeight()));
+		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(getImage().getWidth(), getImage().getHeight()));
 		createBody(location,world);		
 		System.out.printf ("(x,y) = (%4.2f,%4.2f)\n", location.x, location.y);
 		System.out.printf ("(w,h) = (%4.2f,%4.2f)\n", dimensions.x/2, dimensions.y/2);
@@ -59,6 +59,19 @@ public class GameObject {
 		return body.getPosition();
 	}
 	
+	public float getMass() {
+		return body.getMass();
+	}
+	
+	public boolean isOnGround() {
+		// TODO: Come up with a better implementation of this. Perhaps check where collision is occurring?
+		if (body.getContactList() == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	/** Returns the top left position of the player
 	 * @return Top left position of player as a JBox position
 	 */
@@ -70,21 +83,16 @@ public class GameObject {
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 	
 	public Image getImage() {
-		return getObject();
+		return sprite;
 	}
-	public void setObject(Image object) {
-		this.object = object;
+	
+	public void setSprite(Image sprite) {
+		this.sprite = sprite;
 	}
-
-
-	public Image getObject() {
-		return object;
-	}
-
-
 }

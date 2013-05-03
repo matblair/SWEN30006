@@ -33,12 +33,12 @@ public class FontLoader
 		}
 		catch (final java.io.IOException e)
 		{
-			throw new SlickException(Messages.getString("FontLoader.Error_file") //$NON-NLS-1$
+			throw new SlickException("Could not open font file "
 					+ ttf_filename);
 		}
 		catch (final java.awt.FontFormatException e)
 		{
-			throw new SlickException(Messages.getString("FontLoader.Error_font") + ttf_filename); //$NON-NLS-1$
+			throw new SlickException("Could not load font" + ttf_filename);
 		}
 		// Create a "derived font" with the correct font size
 		awtfont = awtfont.deriveFont(textsize);

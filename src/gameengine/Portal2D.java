@@ -14,9 +14,10 @@ public class Portal2D extends StateBasedGame {
 	public static final int PAUSESTATE = 2;
 	public static final int TESTGAMESTATE = 1;
 	public static final int MAINMENUSTATE = 0;
+	public static final int LOADSTATE = 3;
 
     /** Screen width, in pixels. */
-    public static final int screenwidth = 1280;
+    public static final int screenwidth = 1024;
     /** Screen height, in pixels. */
     public static final int screenheight = 768;
 	/** The app game container **/

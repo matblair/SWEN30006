@@ -2,52 +2,19 @@
 
 <resources>
 	<!-- GeneralResources -->
-	<!-- UserInterface -->
+	
+	<!-- UIElements -->
 	<resource type="uiimage" id="panel">assets/userinterface/panel.png</resource>
 	
-	<!-- Objects -->
-	<resource type="object" id="AMULET" hpChange="400" damageChange="0" cooldownChange="0">assets/items/amulet.png</resource>
-	<resource type="object" id="BOOK" hpChange="0" damageChange="0" cooldownChange="-200">assets/items/book.png</resource>
-	<resource type="object" id="FIRESWORD" hpChange="0" damageChange="10" cooldownChange="0">assets/items/sword.png</resource>
-	<resource type="object" id="ELIXIR" hpChange="0" damageChange="0" cooldownChange="0">assets/items/elixir.png</resource>
-	<resource type="object" id="BASICARMOUR" hpChange="150" damageChange="0" cooldownChange="0">assets/items/armor.png</resource>
-	<resource type="object" id="ARMOUR-GOLDEN" hpChange="300" damageChange="0" cooldownChange="0">assets/items/armor-golden.png</resource>
-	<resource type="object" id="KEY" hpChange="0" damageChange="0" cooldownChange="0">assets/items/key.png</resource>
-	<resource type="object" id="DOOR" hpChange="0" damageChange="0" cooldownChange="0">assets/items/rock4.png</resource>
-	<resource type="object" id="BOMB" hpChange="-100" damageChange="0" cooldownChange="0">assets/items/bomb.png</resource>
-	<resource type="object" id="SAVESTONE" hpChange="0" damageChange="0" cooldownChange="0">assets/items/rock-cairn.png</resource>
-	
+	<!-- Music -->
+	<!resource type="uiimage" id="panel">assets/userinterface/panel.png</resource>
+
+
 	<!-- Characters -->
-	<resource type="character" id="Bandit" maxHP="40" damage="8" cooldown="200" aggressive="true" blocked="true" chaseDistance="230">assets/units/enemies/bandit.png</resource>
-	<resource type="character" id="Dreadbat" maxHP="40" damage="0" cooldown="0" aggressive="false" blocked="false" chaseDistance="180">assets/units/enemies/dreadbat.png</resource>
-	<resource type="character" id="Necromancer" maxHP="140" damage="30" cooldown="400" aggressive="true" blocked="true" chaseDistance="130">assets/units/enemies/necromancer.png</resource>
-	<resource type="character" id="Skeleton" maxHP="100" damage="16" cooldown="500" aggressive="true" blocked="true" chaseDistance="280">assets/units/enemies/skeleton.png</resource>
-	<resource type="character" id="Zombie" maxHP="60" damage="10" cooldown="800" aggressive="true" blocked="true" chaseDistance="180">assets/units/enemies/zombie.png</resource>
-	<resource type="character" id="Player" maxHP="100" damage="26" cooldown="600" aggressive="true" blocked="true" chaseDistance="80">assets/units/player.png</resource>
-	<resource type="character" id="Garth" maxHP="1" damage="0" cooldown="0" aggressive="false" blocked="true" chaseDistance="0">assets/units/villagers/peasant.png</resource>
-	<resource type="character" id="Prince" maxHP="1" damage="0" cooldown="0" aggressive="false" blocked="true" chaseDistance="0">assets/units/villagers/prince.png</resource>
-	<resource type="character" id="Elvira" maxHP="1" damage="0" cooldown="0" aggressive="false" blocked="true" chaseDistance="0">assets/units/villagers/shaman.png</resource>
-	<resource type="character" id="Odourous Troll" maxHP="100" damage="10" cooldown="900" aggressive="false" blocked="true" chaseDistance="0">assets/units/enemies/homelandboss.png</resource>
-	<resource type="character" id="Fire Dragon" maxHP="200" damage="25" cooldown="700" aggressive="false" blocked="true" chaseDistance="0">assets/units/enemies/eastlandboss.png</resource>
-	<resource type="character" id="Sandy Yeti" maxHP="150" damage="15" cooldown="800" aggressive="false" blocked="true" chaseDistance="0">assets/units/enemies/desertlandboss.png</resource>
-	<resource type="character" id="Mutated Cuttlefish" maxHP="250" damage="35" cooldown="600" aggressive="false" blocked="true" chaseDistance="0">assets/units/enemies/wetlandboss.png</resource>
-	<resource type="character" id="Sword Guardian" maxHP="300" damage="40" cooldown="500" aggressive="false" blocked="true" chaseDistance="0">assets/units/enemies/swordboss.png</resource>
-	
-	
-		<!-- Maps -->
-	<resource type="TiledMap" id="OVERWORLD_MAP" datapath="assets/mapdata">assets/mapdata/MainOverworld.tmx</resource>
-	<resource type="TiledMap" id="HOMEWORLD_MAP" datapath="assets/mapdata">assets/mapdata/hometown.tmx</resource>
-	<resource type="TiledMap" id="DESERTLAND_MAP" datapath="assets/mapdata">assets/mapdata/desertworld.tmx</resource>
-	<resource type="TiledMap" id="EASTLAND_MAP" datapath="assets/mapdata">assets/mapdata/eastland.tmx</resource>
-	<resource type="TiledMap" id="WETLAND_MAP" datapath="assets/mapdata">assets/mapdata/waterworld.tmx</resource>
-	<resource type="TiledMap" id="WASTELAND_MAP" datapath="assets/mapdata">assets/mapdata/evilwastelands.tmx</resource>
-	
-	<!--  Animations -->
-	<resource type="Animation" id="death" totalimages="8" imagetype=".png">/assets/animations/dieunit/flame-burst-</resource>
-	
-	<!-- Pickups -->
-	<resource type="pickup" id="SMALLHEALTHPICKUP" hpChange="50" magicChange="0" coinChange="0">assets/items/ball-magenta.png</resource>
-	
-	
+	<resource type="bgimg" id="BACKGROUND" location = "assets/levels/levelone.jpg"></resource>
+
+	<!-- Objects -->
+	<resource type="bgimg" id="BACKGROUND" location = "assets/levels/levelone.jpg"></resource>
+
 	
 </resources>

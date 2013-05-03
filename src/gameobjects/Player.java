@@ -6,18 +6,20 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Player extends GameObject{
-	private static Player player;
 	/** The left and right facing images for the players **/
-	private Image object_right;
-	private Image object_left; 
+	private Image sprite_right;
+	private Image sprite_left; 
+	private static Player player;	
+	private final float maxRunVelocity = 5;
+	private final float accelFactor = 0.02f;
+	private final float accelInAir = 0.01f;
 	
-	public Player(final String imgloc,Vec2 pos, World world) throws SlickException {
+	public Player(final String imgloc, Vec2 pos, World world) throws SlickException {
 		super(imgloc, pos, world);
-		object_right=getObject();				
-		setObject_left(object_right.getFlippedCopy(true,false));
-
+		sprite_right=getImage();				
+		setObject_left(sprite_right.getFlippedCopy(true,false));
 	}
-	
+
 	public static Player getPlayer(final String imgloc,Vec2 pos, World world)
 	throws SlickException{
 		if(player==null){
@@ -26,21 +28,38 @@ public class Player extends GameObject{
 		return player;
 		
 	}
-
-	public void checkDirection(float dir_x) {
-		if(dir_x<0){
-			System.out.printf("dir_x is %f",dir_x);
-			setObject(object_left);
-		} else if(dir_x>0){
-			setObject(object_right);
+	public void moveXDir(float dir_x, float delta){
+		if (dir_x < 0) {
+			faceLeft();
+		} else if (dir_x > 0) {
+			faceRight();
+		}
+		
+		float xVelocity = getBody().getLinearVelocity().x;
+		if (this.isOnGround()) {
+			// Allow walk forces when on the ground
+			float impulse = getMass() * ((dir_x * maxRunVelocity) - xVelocity) * accelFactor * delta;
+			getBody().applyLinearImpulse(new Vec2 (impulse, 0), getLocation());
+			
+		} else if (Math.signum(dir_x) != Math.signum(xVelocity) || Math.abs(xVelocity) < (maxRunVelocity - 1)) {
+			// If in the air and not already moving quickly
+			getBody().applyLinearImpulse(new Vec2 (dir_x * accelInAir * getMass() * delta, 0), getLocation());
 		}
 	}
 	
-	
-	public void setObject_left(Image object_left) {
-		this.object_left = object_left;
+	public void faceLeft() {
+		this.setSprite(sprite_left);
 	}
-	public void setObject_right(Image object_right) {
-		this.object_right = object_right;
+	
+	public void faceRight() {
+		this.setSprite(sprite_right);
+	}
+	
+	public void setObject_left(Image sprite_left) {
+		this.sprite_left = sprite_left;
+	}
+	
+	public void setObject_right(Image sprite_right) {
+		this.sprite_right = sprite_right;
 	}
 }
