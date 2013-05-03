@@ -8,10 +8,19 @@ import org.newdawn.slick.GameContainer;
 public class Camera {
 	private Vec2 location, bounds, dimensions; // JBox coords
 	
+	public Camera(){
+		location = new Vec2();
+		dimensions = new Vec2();
+	}
+	
 	public Camera(Vec2 bounds) {
 		this.bounds = bounds;
 		location = new Vec2();
 		dimensions = new Vec2();
+	}
+	
+	public void setBounds(Vec2 bounds){
+		this.bounds = bounds;
 	}
 	
 	/** Udpate the camera location such that it follows the player.

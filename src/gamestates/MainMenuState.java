@@ -83,6 +83,9 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		if(enterstate!=-1){
+			if(enterstate==Portal2D.GAMESTATE){
+				LoadingState.loadLevel(sbg,0);
+			}
 			sbg.enterState(enterstate);
 		}
 		return;

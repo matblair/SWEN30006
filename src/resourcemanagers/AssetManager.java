@@ -89,7 +89,6 @@ public class AssetManager {
 		try {
 			is = new FileInputStream(f);
 			levelLoader.loadLevel(is, true, level);
-
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (final SlickException e) {
@@ -102,6 +101,12 @@ public class AssetManager {
 			}
 		}
 
+		return level;
+	}
+
+	public static Level loadTestLevel() throws SlickException{
+		Level level = new Level();
+		levelLoader.loadTestLevel(level);
 		return level;
 	}
 
@@ -170,10 +175,6 @@ public class AssetManager {
 
 	public void setResourceLoader(ResourceLoader resourceLoader) {
 		AssetManager.resourceLoader = resourceLoader;
-	}
-
-	public void setLevelLoader(LevelLoader levelLoader) {
-		this.levelLoader = levelLoader;
 	}
 
 	public static void setImageResources(Map<String, Image> imageResources) {

@@ -21,7 +21,6 @@ public class Level {
 	AssetManager assetManager;
 	
 	/** The level id **/
-	@SuppressWarnings("unused")
 	private int levelid;
 	/** Our background image for the level **/
 	private Image bg;
@@ -66,25 +65,6 @@ public class Level {
 		portals = new ArrayList<Portal>();
 		lilSwitches = new ArrayList<LittleSwitch>();
 		bigSwitches = new ArrayList<BigSwitch>();	
-	}
-	
-	public Level(GameContainer gc, int id) throws SlickException {
-		assetManager = AssetManager.getAssetManager();
-		setBg(new Image("assets/levels/levelone.png"));
-		levelid=id;
-		
-		// Static Body
-		world = new World(gravity);
-		
-		PhysUtils.addWall(world, 0, 0, 100, 1); //floor
-		PhysUtils.addWall(world, 0, 0, 0.5f, 20); //left wall
-		PhysUtils.addWall(world, 0, 17.14f, 100, 0); //top
-		PhysUtils.addWall(world, 10, 2.5f, 4, 0.25f);//first thing
-		PhysUtils.addWall(world, 14, 3.95f, 4, 0.25f);//second thing
-		PhysUtils.addWall(world, 19.5f, 0, 0.5f, 20); //right wall
-		
-		// Dynamic Body
-		player = new Player("CHELLSPRITE",new Vec2(2, 5), world);
 	}
 
 	public void render(Graphics g, boolean debug,Camera cam, GameContainer gc) {
@@ -152,5 +132,9 @@ public class Level {
 	
 	public void addLilSwitch(LittleSwitch s){
 		lilSwitches.add(s);
+	}
+
+	public int getLevelId() {
+		return levelid;
 	}
 }

@@ -84,7 +84,4 @@ public class Player extends GameObject{
 		this.sprite_left = sprite_left;
 	}
 	
-	private void setObject_right(Image sprite_right) {
-		this.sprite_right = sprite_right;
-	}
 }

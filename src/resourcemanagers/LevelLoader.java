@@ -1,5 +1,6 @@
 package resourcemanagers;
 
+import gameengine.PhysUtils;
 import gameobjects.Player;
 import gameworlds.Level;
 
@@ -25,6 +26,22 @@ public class LevelLoader {
 	public LevelLoader(){
 	}
 
+	public void loadTestLevel(Level level) throws SlickException{
+		//Physics Walls
+		PhysUtils.addWall(level.getPhysWolrd(), 0, 0, 100, 1); //floor
+		PhysUtils.addWall(level.getPhysWolrd(), 0, 0, 0.5f, 20); //left wall
+		PhysUtils.addWall(level.getPhysWolrd(), 0, 17.14f, 100, 0); //top
+		PhysUtils.addWall(level.getPhysWolrd(), 10, 2.5f, 4, 0.25f);//first thing
+		PhysUtils.addWall(level.getPhysWolrd(), 14, 3.95f, 4, 0.25f);//second thing
+		PhysUtils.addWall(level.getPhysWolrd(), 19.5f, 0, 0.5f, 20); //right wall
+	
+		// Dynamic Body
+		Player player = new Player("CHELLSPRITE",new Vec2(2, 5), level.getPhysWolrd());
+		level.setLevelPlayer(player);
+		
+		level.setBg(new Image("assets/levels/levelone.png"));
+	}
+	
 	public void loadLevel(final InputStream is, final boolean deferred, Level level) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
@@ -53,6 +70,10 @@ public class LevelLoader {
 			LoadingList.setDeferredLoading(true);
 		}
 
+		int players=0;
+		int walls=0;
+		int backgroundimg=0;
+		
 		for(int resourceIdx = 0; resourceIdx < totalResources; resourceIdx++){
 			final Node resourceNode = listResources.item(resourceIdx);
 			if(resourceNode.getNodeType() == Node.ELEMENT_NODE){
@@ -63,6 +84,7 @@ public class LevelLoader {
 					addElementAsCube(resourceElement,level);
 				}else if(type.equals("WALL")){  
 					addElementAsWall(resourceElement,level);
+					walls++;
 				}else if(type.equals("TURRET")){  
 					addElementAsTurret(resourceElement,level);
 				}else if(type.equals("PLATFORM")){  
@@ -73,41 +95,46 @@ public class LevelLoader {
 					addElementAsSwitch(resourceElement,level);
 				}else if(type.equals("BACKGROUNDIMG")){
 					level.setBg(new Image(resourceElement.getTextContent()));
+					backgroundimg++;
 				}else if(type.equals("PLAYER")){
 					addElementAsPlayer(resourceElement,level);
+					players++;
 				}
 			}
 		}
+		
+		System.out.println(players +" players added");
+		System.out.println(backgroundimg +" backgrounds added");
+		System.out.println(walls +" walls added");
+
 	}
 
 	private void addElementAsSwitch(Element resourceElement, Level level) {
-		String imgid = resourceElement.getAttribute("imgid");
 
 	}
 
 	private void addElementAsPortal(Element resourceElement, Level level) {
-		String imgid = resourceElement.getAttribute("imgid");
-
+		
 	}
 
 	private void addElementAsPlatform(Element resourceElement, Level level) {
-		String imgid = resourceElement.getAttribute("imgid");
 		
 	}
 
 	private void addElementAsTurret(Element resourceElement, Level level) {
-		String imgid = resourceElement.getAttribute("imgid");
 
 	}
 
 	private void addElementAsWall(Element resourceElement, Level level) {
-		String imgid = resourceElement.getAttribute("imgid");
-		
+		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
+		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
+		Float width = Float.parseFloat(resourceElement.getAttribute("width"));
+		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
+		PhysUtils.addWall(level.getPhysWolrd(), startx, starty, width, height); //floor
 
 	}
 
 	private void addElementAsCube(Element resourceElement, Level level) {
-		String imgid = resourceElement.getAttribute("imgid");
 
 	}
 	
@@ -117,5 +144,6 @@ public class LevelLoader {
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("startx"));
 		Vec2 startloc = new Vec2(xstart,ystart);
 		Player newplayer = new Player(imgid,startloc, level.getPhysWolrd());
+		level.setLevelPlayer(newplayer);
 	}
 }

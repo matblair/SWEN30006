@@ -37,14 +37,17 @@ public class LoadingState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta){
 	}
 
-	public void loadLevel(StateBasedGame sbg) throws SlickException{
-		Level level = AssetManager.loadLevel("TESTLEVEL");
+	public static void loadLevel(StateBasedGame sbg, int levelid) throws SlickException{
+		Level level = AssetManager.loadTestLevel();
 		GameState.setLevel(level);
+		GameState.updateCamera();
 		sbg.enterState(Portal2D.GAMESTATE);
 	}
 	
-	public void loadNextLevel(){
-		
+	public void loadNextLevel(StateBasedGame sbg) throws SlickException{
+		int levelid = GameState.getLevel().getLevelId();
+		levelid++;
+		loadLevel(sbg,levelid);
 	}
 	
 

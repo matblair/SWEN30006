@@ -34,7 +34,7 @@ public class GameObject {
 			throws SlickException {
 		setSprite(AssetManager.requestImage(imgid));
 		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(getImage().getWidth(), getImage().getHeight()));
-		createBody(location,world,2);		
+		createBody(location,world,PhysUtils.DYNAMIC);		
 		System.out.printf ("(x,y) = (%4.2f,%4.2f)\n", location.x, location.y);
 		System.out.printf ("(w,h) = (%4.2f,%4.2f)\n", dimensions.x/2, dimensions.y/2);
 	}
@@ -43,12 +43,17 @@ public class GameObject {
 		BodyDef bd = new BodyDef();
 		bd.position.set(location);
 		
-		/*switch (bodytype){
-			case PhysUtils.STATIC: bd.type = BodyType.STATIC;
-			case PhysUtils.DYNAMIC: bd.type = BodyType.DYNAMIC;
-			case PhysUtils.KINEMATIC: bd.type = BodyType.KINEMATIC;
-			case PhysUtils.PORTAL: bd.type = BodyType.STATIC;
-			default: bd.type = BodyType.STATIC;
+		/* I have to work out why this doesn't work to set body type?
+		 * Jamie any ideas?
+		switch (bodytype){
+			case PhysUtils.STATIC: 
+				bd.type = BodyType.STATIC;
+			case PhysUtils.DYNAMIC:
+				bd.type = BodyType.DYNAMIC;
+			case PhysUtils.KINEMATIC:
+				bd.type = BodyType.KINEMATIC;
+			case PhysUtils.PORTAL: 
+				bd.type = BodyType.STATIC;
 		}*/
 		
 		bd.type = BodyType.DYNAMIC;

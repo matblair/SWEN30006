@@ -17,7 +17,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class GameState extends BasicGameState implements KeyListener {
 	private static int StateId = Portal2D.GAMESTATE; // State ID
-	private Camera cam;
+	private static Camera cam;
 	private boolean listening=true;
 	private static Level level;
 
@@ -29,8 +29,8 @@ public class GameState extends BasicGameState implements KeyListener {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		level = new Level(gc,0);
-		cam = new Camera(PhysUtils.SlickToJBoxVec(new Vec2(level.getBg().getWidth(), level.getBg().getHeight())));
+		level = new Level();
+		cam = new Camera();
 	}
 
 	@Override
@@ -112,11 +112,17 @@ public class GameState extends BasicGameState implements KeyListener {
 	
 	public static void setLevel(Level newLevel){
 		level=newLevel;
+		System.out.println("level successfully set");
 	}
 	
 	public static Level getLevel(){
 		return level;
 	}
+	
+	public static void updateCamera(){
+		cam.setBounds(PhysUtils.SlickToJBoxVec(new Vec2(level.getBg().getWidth(), level.getBg().getHeight())));
+	}
+	
 	
 	
 }
