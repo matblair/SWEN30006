@@ -8,20 +8,43 @@ import org.jbox2d.dynamics.World;
 public class PhysUtils {
 	private static int scaleFactor = 68;
 	
+	/** Convert vector from metres to pixels.
+	 * 
+	 * @param from Vector in metres.
+	 * @return Vector in pixels.
+	 */
 	public static Vec2 JBoxToSlickVec (Vec2 from) {
 		Vec2 to = from.mul(scaleFactor);
 		return to;
 	}
 
+	/** Convert vector from pixels to metres.
+	 * 
+	 * @param from Vector in pixels.
+	 * @return Vector in metres.
+	 */
 	public static Vec2 SlickToJBoxVec (Vec2 from) {
 		Vec2 to = from.mul(1f/scaleFactor);
 		return to;
 	}
 	
+	/** Convert from pixels to metres.
+	 * 
+	 * @param from Value in pixels.
+	 * @return Value in metres.
+	 */
 	public static float pixelsToMetres (float pixels) {
 		return pixels / scaleFactor;
 	}
 
+	/** Add a wall body to the game world.
+	 * 
+	 * @param world The JBox world in which the wall should be added
+	 * @param x Left coordinate of wall
+	 * @param y Bottom coordinate of wall
+	 * @param w Width of wall
+	 * @param h Height of wall
+	 */
 	public static void addWall (World world, float x, float y, float w, float h) {
 		BodyDef bd = new BodyDef();
 		bd.position.set(x + w / 2, y + h / 2);

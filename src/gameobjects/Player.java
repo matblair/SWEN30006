@@ -17,6 +17,13 @@ public class Player extends GameObject{
 	private final float accelInAir = 0.01f;
 	private final float jumpFactor = 10;
 	
+	/** Constructor
+	 * 
+	 * @param imgloc Path to the image to be used for the sprite
+	 * @param pos Coordinates in metres specifying where the player spawns.
+	 * @param world The JBox world in which the players physical body should be added.
+	 * @throws SlickException
+	 */
 	public Player(final String imgloc, Vec2 pos, World world) throws SlickException {
 		super(imgloc, pos, world);
 		sprite_right=getImage();				
@@ -29,9 +36,13 @@ public class Player extends GameObject{
 			player = new Player(imgloc,pos,world);
 		}
 		return player;
-		
 	}
 	
+	/** Tell the player to move in a certain direction.
+	 * 
+	 * @param dir_x The direction (and scale) of which to move. Should be [-1,1], which corresponds to [FullLeft, FullRight]
+	 * @param delta Number of milliseconds since last update.
+	 */
 	public void moveXDir(float dir_x, float delta){
 		if (dir_x < 0) {
 			faceLeft();
@@ -51,6 +62,9 @@ public class Player extends GameObject{
 		}
 	}
 	
+	/** Make the player jump.
+	 * 
+	 */
 	public void jump() {
 		if (isOnGround()){
 			float impulse = getMass() * jumpFactor;
@@ -58,19 +72,25 @@ public class Player extends GameObject{
 		}
 	}
 	
+	/** Make the player face left.
+	 * 
+	 */
 	public void faceLeft() {
 		this.setSprite(sprite_left);
 	}
 	
+	/** Make the player face right.
+	 * 
+	 */
 	public void faceRight() {
 		this.setSprite(sprite_right);
 	}
 	
-	public void setObject_left(Image sprite_left) {
+	private void setObject_left(Image sprite_left) {
 		this.sprite_left = sprite_left;
 	}
 	
-	public void setObject_right(Image sprite_right) {
+	private void setObject_right(Image sprite_right) {
 		this.sprite_right = sprite_right;
 	}
 }

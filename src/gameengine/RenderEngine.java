@@ -5,6 +5,11 @@ import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Image;
 
 public class RenderEngine {
+	/** Render a GameObject to the screen (if it is in view).
+	 * 
+	 * @param obj The GameObject to render.
+	 * @param cam The camera object that defines the field of view.
+	 */
 	public static void drawGameObject (GameObject obj, Camera cam) {		
 		if (!cam.inView(obj)) {
 			return;
@@ -17,6 +22,11 @@ public class RenderEngine {
 		obj.getImage().drawCentered(slickRenderPoint.x, slickRenderPoint.y);
 	}
 	
+	/** Draw a background image. Will also work for foreground overlays.
+	 * 
+	 * @param bg The image to draw.
+	 * @param cam The camera object that defines the field of view.
+	 */
 	public static void drawBG (Image bg, Camera cam) {
 		Vec2 slickCamLoc = PhysUtils.JBoxToSlickVec(cam.getLocation());
 		Vec2 slickCamDim = PhysUtils.JBoxToSlickVec(cam.getDimensions());
