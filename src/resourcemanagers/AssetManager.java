@@ -31,6 +31,20 @@ public class AssetManager {
 	private Map<String, Font> fontResources; //All the level xml resources
 	private Map<String, Animation> animationResources; //All the level xml resources
 	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+	/** Added some comments to test merging **/
+
 	
 	//General File Locations
 	@SuppressWarnings("unused")
@@ -39,6 +53,7 @@ public class AssetManager {
 	private static final String xmlpath ="";
 
 	// World loader
+	@SuppressWarnings("unused")
 	private static LevelLoader loader;
 
 	private AssetManager(){	
