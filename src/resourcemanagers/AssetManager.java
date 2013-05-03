@@ -21,35 +21,27 @@ public class AssetManager {
 	/** End Role will be to load all resources at start of game that are universal, call level loader to load new levels **/
 	private static AssetManager manager;
 	/** The resource loader **/
-	private  ResourceLoader resourceLoader;
+	private static  ResourceLoader resourceLoader = new ResourceLoader();
 	/** The level loader **/
-	private LevelLoader levelLoader;
+	private LevelLoader levelLoader = new LevelLoader();
 
 	/**Creates a resource repository of commonly used items **/
-	private static Map<String, Image> imageResources; //All images used for game objects
-	private static Map<String, Sound> soundResources; //All sounds resources
-	private static Map<String, Vec2> vectorResources; //All vector locations
-	private static Map<String, Image> uiElementResources; //All UI Resources
-	private static Map<String, String> levelXmlResources; //All the level xml resources
-	private static Map<String, Font> fontResources; //All the level xml resources
-	private static Map<String, Animation> animationResources; //All the level xml resources
+	private static Map<String, Image> imageResources = new HashMap<String, Image>(); //All images used for game objects
+	private static Map<String, Sound> soundResources = new HashMap<String, Sound>(); //All sounds resources
+	private static Map<String, Vec2> vectorResources = new HashMap<String, Vec2>(); //All vector locations
+	private static Map<String, Image> uiElementResources = new HashMap<String, Image>(); //All UI Resources
+	private static Map<String, String> 	levelXmlResources = new HashMap<String, String>(); //All the level xml resources
+	private static Map<String, Font> fontResources = new HashMap<String, Font>(); //All the level xml resources
+	private static Map<String, Animation> 		animationResources = new HashMap<String, Animation>();; //All the level xml resources
+	
+	private static int totalresources=0;
 	
 	//General File Locations
 	private static final String loadinglist ="loadinglist.xml";
 	private static final String generalresource = "assets/xmlresources/";
 
 	
-	private AssetManager(){	
-		// Create all the static variables so that they are not null.
-		resourceLoader = new ResourceLoader();
-		levelLoader = new LevelLoader();
-		imageResources = new HashMap<String, Image>();
-		soundResources = new HashMap<String, Sound>();
-		vectorResources = new HashMap<String, Vec2>();
-		uiElementResources = new HashMap<String, Image>();
-		levelXmlResources = new HashMap<String, String>();
-		fontResources = new HashMap<String, Font>();
-		animationResources = new HashMap<String, Animation>();
+	private AssetManager(){				
 	}
 
 	public static AssetManager getAssetManager()
@@ -60,12 +52,12 @@ public class AssetManager {
 		return manager;
 	}
 
-	public void loadAllGameAssets(){
-		final File f = new File(loadinglist, generalresource);
+	public static void loadAllGameAssets(){
+		final File f = new File(generalresource, loadinglist);
 		InputStream is = null;
 		try {
 			is = new FileInputStream(f);
-			resourceLoader.loadResources(is, true);
+			totalresources=resourceLoader.loadResources(is, true);
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (final SlickException e) {
@@ -77,6 +69,16 @@ public class AssetManager {
 				e.printStackTrace();
 			}
 		}
+		System.out.println(imageResources.size() +"images loaded.");
+		System.out.println(soundResources.size() +"sounds loaded.");
+		System.out.println(vectorResources.size() +"vectors loaded.");
+		System.out.println(uiElementResources.size() +"ui elements loaded.");
+		System.out.println(levelXmlResources.size() +"xml levels loaded.");
+		System.out.println(fontResources.size() +"fonts loaded.");
+		System.out.println(animationResources.size() +"animations loaded.");
+
+
+		System.out.println(totalresources +"Resources Loaded");
 	}
 	
 	public Level loadLevel( final int levelid) throws SlickException{
@@ -170,7 +172,7 @@ public class AssetManager {
 	}
 
 	public void setResourceLoader(ResourceLoader resourceLoader) {
-		this.resourceLoader = resourceLoader;
+		AssetManager.resourceLoader = resourceLoader;
 	}
 
 	public void setLevelLoader(LevelLoader levelLoader) {

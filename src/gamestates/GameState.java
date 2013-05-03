@@ -16,7 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 public class GameState extends BasicGameState implements KeyListener {
-	private static int StateId = Portal2D.TESTGAMESTATE; // State ID
+	private static int StateId = Portal2D.GAMESTATE; // State ID
 	private Camera cam;
 	private boolean listening=true;
 	private static Level level;
@@ -64,7 +64,7 @@ public class GameState extends BasicGameState implements KeyListener {
 
 	@Override
 	public void keyPressed(int key, char c) {
-		System.out.println("Key pressed in LevelState int: " + key);
+		//System.out.println("Key pressed in LevelState int: " + key);
 		switch (key) {
 		default:
 			break;
@@ -72,7 +72,9 @@ public class GameState extends BasicGameState implements KeyListener {
 	}
 
 	@Override
-	public void keyReleased(int key, char c) {System.out.println("Key released in LevelState int: " + key);}
+	public void keyReleased(int key, char c) {
+		//System.out.println("Key released in LevelState int: " + key);
+	}
 
 	@Override
 	public void inputEnded() {listening = false;}

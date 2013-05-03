@@ -33,8 +33,7 @@ public class FontLoader
 		}
 		catch (final java.io.IOException e)
 		{
-			throw new SlickException("Could not open font file "
-					+ ttf_filename);
+			throw new SlickException("Could not open font file" + ttf_filename);
 		}
 		catch (final java.awt.FontFormatException e)
 		{

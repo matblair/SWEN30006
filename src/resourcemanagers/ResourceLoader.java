@@ -13,6 +13,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.loading.LoadingList;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -28,11 +29,7 @@ public class ResourceLoader {
 	public ResourceLoader(){	
 	}
 
-	public void loadResources(final InputStream is) throws SlickException{
-		loadResources(is, true);
-	}
-
-	public void loadResources(final InputStream is, final boolean deferred) throws SlickException {
+	public int loadResources(final InputStream is, final boolean deferred) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
 		try {
@@ -60,6 +57,7 @@ public class ResourceLoader {
 			LoadingList.setDeferredLoading(true);
 		}
 
+		int resourcenumber=0;
 
 		for(int resourceIdx = 0; resourceIdx < totalResources; resourceIdx++){
 
@@ -70,57 +68,69 @@ public class ResourceLoader {
 
 				final String type = resourceElement.getAttribute("type");  
 
-				if(type.equals("IMAGE")){  
+				if(type.equals("IMAGE")){ 
+					resourcenumber++;
 					addElementAsImage(resourceElement);
 				}else if(type.equals("SOUND")){  
 					addElementAsSound(resourceElement);
+					resourcenumber++;
+
 				}else if(type.equals("UIELEMENT")){  
 					addElementAsUIElement(resourceElement);
+					resourcenumber++;
+
 				}else if(type.equals("LEVELXML")){  
 					addElementAsLevelXML(resourceElement);
+					resourcenumber++;
+
 				}else if(type.equals("ANIMATION")){
 					addElementAsAnimation(resourceElement);
+					resourcenumber++;
+
 				}else if(type.equals("FONT")){
 					addElementAsFont(resourceElement);
+					resourcenumber++;
+
 				}
 			}
 		}
-
+		return resourcenumber;
 	}
 
 	private void addElementAsLevelXML(Element resourceElement) {	
 		String xml=null;
-		String id=null;
+		String id=resourceElement.getAttribute("id");
 		AssetManager.getLevelXmlResources().put(id, xml);
 	}
 
-	private void addElementAsImage(Element resourceElement) {
-		Image newimg=null;
-		String imgid=null;
+	private void addElementAsImage(Element resourceElement) throws DOMException, SlickException {
+		Image newimg= new Image(resourceElement.getTextContent());
+		String imgid= resourceElement.getAttribute("id");
 		AssetManager.getImageResources().put(imgid, newimg);
 	}
 	
 	private void addElementAsSound(Element resourceElement) {
 		Sound newsound=null;
-		String soundid=null;
+		String soundid=resourceElement.getAttribute("id");
 		AssetManager.getSoundResources().put(soundid, newsound);
 	}
 
 	private void addElementAsUIElement(Element resourceElement) {
 		Image newimg=null;
-		String uiid=null;
+		String uiid=resourceElement.getAttribute("id");
 		AssetManager.getUiElementResources().put(uiid, newimg);
 	}
 	
 	private void addElementAsAnimation(Element resourceElement) {
 		Animation newanim=null;
-		String animid=null;
+		String animid=resourceElement.getAttribute("id");
 		AssetManager.getAnimationResources().put(animid, newanim);
 	}
 	
-	private void addElementAsFont(Element resourceElement) {
-		Font font=null;
-		String fontid=null;
+	private void addElementAsFont(Element resourceElement) throws DOMException, SlickException {
+		float fontsize = (float)Integer.parseInt(resourceElement.getAttribute("fontsize"));
+		Font font= FontLoader.loadFont(resourceElement.getTextContent(), fontsize);
+		String fontid=resourceElement.getAttribute("id");
 		AssetManager.getFontResources().put(fontid, font);
 	}
 

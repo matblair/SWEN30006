@@ -4,17 +4,20 @@
 	<!-- GeneralResources -->
 	
 	<!-- UIElements -->
-	<resource type="uiimage" id="panel">assets/userinterface/panel.png</resource>
 	
-	<!-- Music -->
-	<!resource type="uiimage" id="panel">assets/userinterface/panel.png</resource>
+	<!-- Sounds -->
+
+	<!-- Images -->
+	<resource type="IMAGE" id="CHELLSPRITE">assets/sprites/chell.png</resource>
+	<resource type="IMAGE" id="HITBOX">assets/sprites/hitbox.png</resource>
 
 
-	<!-- Characters -->
-	<resource type="bgimg" id="BACKGROUND" location = "assets/levels/levelone.jpg"></resource>
+	<!-- LevelXML -->
 
-	<!-- Objects -->
-	<resource type="bgimg" id="BACKGROUND" location = "assets/levels/levelone.jpg"></resource>
+	<!-- Animations -->
+
+	<!-- Fonts -->
+	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>
 
 	
 </resources>

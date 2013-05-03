@@ -14,6 +14,8 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.ContactEdge;
 
+import resourcemanagers.AssetManager;
+
 public class GameObject {
 	/** The object's image **/
 	private Image sprite;
@@ -26,10 +28,9 @@ public class GameObject {
 	private final int maxAngleForGround = 45;
 	private final float maxYNormForGround = (float)Math.asin(maxAngleForGround/180*Math.PI);
 
-	public GameObject (String imgloc, Vec2 location, World world)
+	public GameObject (String imgid, Vec2 location, World world)
 			throws SlickException {
-		setSprite(new Image(imgloc));
-
+		setSprite(AssetManager.requestImage(imgid));
 		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(getImage().getWidth(), getImage().getHeight()));
 		createBody(location,world);		
 		System.out.printf ("(x,y) = (%4.2f,%4.2f)\n", location.x, location.y);
