@@ -45,6 +45,10 @@ Once you have commited you should be able to push your branch to the server. Fir
 
         git config push.default current
 
+Then whenever you want to push your branch to the server, commit first to the local directory then type:
+
+        git push
+
 Then that will commit your branch to the server. If you are 100% confident there are no issues with your code you can merge with master, which we do as so.
 
         git checkout master
