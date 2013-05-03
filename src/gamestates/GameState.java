@@ -16,7 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 public class GameState extends BasicGameState implements KeyListener {
-	private static int StateId = Portal2D.TESTGAMESTATE; // State ID
+	private static int StateId = Portal2D.GAMESTATE; // State ID
 	private Camera cam;
 	private boolean listening=true;
 	private static Level level;

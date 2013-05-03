@@ -1,12 +1,16 @@
 package gamestates;
 
+import gameengine.Portal2D;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class AchievementState extends BasicGameState {
+public class AchievementState extends BasicGameState implements KeyListener{
+	private static int StateId = Portal2D.ACHIEVEMENTSTATE; // State ID
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
@@ -31,8 +35,7 @@ public class AchievementState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
-		return 0;
+		return StateId;
 	}
 
 }

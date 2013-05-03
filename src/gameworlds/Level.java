@@ -84,7 +84,7 @@ public class Level {
 		PhysUtils.addWall(world, 19.5f, 0, 0.5f, 20); //right wall
 		
 		// Dynamic Body
-		player = Player.getPlayer("/assets/sprites/chell.png",new Vec2(2, 5), world);
+		player = Player.getPlayer("CHELLSPRITE",new Vec2(2, 5), world);
 	}
 
 	public void render(Graphics g, boolean debug,Camera cam, GameContainer gc) {

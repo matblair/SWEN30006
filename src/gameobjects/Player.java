@@ -17,8 +17,8 @@ public class Player extends GameObject{
 	private final float accelInAir = 0.01f;
 	private final float jumpFactor = 10;
 	
-	public Player(final String imgloc, Vec2 pos, World world) throws SlickException {
-		super(imgloc, pos, world);
+	public Player(final String imgid, Vec2 pos, World world) throws SlickException {
+		super(imgid, pos, world);
 		sprite_right=getImage();				
 		setObject_left(sprite_right.getFlippedCopy(true,false));
 	}
