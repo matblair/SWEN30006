@@ -33,7 +33,6 @@ public class AssetManager {
 	private static Map<String, Animation> animationResources; //All the level xml resources
 	
 	//General File Locations
-	@SuppressWarnings("unused")
 	private static final String loadinglist ="loadinglist.xml";
 	private static final String generalresource = "assets/xmlresources/";
 
@@ -51,7 +50,7 @@ public class AssetManager {
 		animationResources = new HashMap<String, Animation>();
 	}
 
-	public static AssetManager getResourceManager()
+	public static AssetManager getAssetManager()
 			throws SlickException{
 		if(manager==null){
 			manager = new AssetManager();

@@ -76,8 +76,7 @@ public class LevelLoader {
 	}
 
 	private void addElementAsSwitch(Element resourceElement) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	private void addElementAsPortal(Element resourceElement) {

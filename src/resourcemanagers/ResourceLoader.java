@@ -7,7 +7,11 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Font;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.loading.LoadingList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -74,21 +78,50 @@ public class ResourceLoader {
 					addElementAsUIElement(resourceElement);
 				}else if(type.equals("LEVELXML")){  
 					addElementAsLevelXML(resourceElement);
+				}else if(type.equals("ANIMATION")){
+					addElementAsAnimation(resourceElement);
+				}else if(type.equals("FONT")){
+					addElementAsFont(resourceElement);
 				}
 			}
 		}
 
 	}
 
-	private void addElementAsLevelXML(Element resourceElement) {		
+	private void addElementAsLevelXML(Element resourceElement) {	
+		String xml=null;
+		String id=null;
+		AssetManager.getLevelXmlResources().put(id, xml);
 	}
 
 	private void addElementAsImage(Element resourceElement) {
+		Image newimg=null;
+		String imgid=null;
+		AssetManager.getImageResources().put(imgid, newimg);
 	}
 	
 	private void addElementAsSound(Element resourceElement) {
+		Sound newsound=null;
+		String soundid=null;
+		AssetManager.getSoundResources().put(soundid, newsound);
 	}
 
 	private void addElementAsUIElement(Element resourceElement) {
+		Image newimg=null;
+		String uiid=null;
+		AssetManager.getUiElementResources().put(uiid, newimg);
 	}
+	
+	private void addElementAsAnimation(Element resourceElement) {
+		Animation newanim=null;
+		String animid=null;
+		AssetManager.getAnimationResources().put(animid, newanim);
+	}
+	
+	private void addElementAsFont(Element resourceElement) {
+		Font font=null;
+		String fontid=null;
+		AssetManager.getFontResources().put(fontid, font);
+	}
+
 }

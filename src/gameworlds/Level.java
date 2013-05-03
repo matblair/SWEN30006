@@ -12,8 +12,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.util.ResourceLoader;
-
 import resourcemanagers.AssetManager;
 
 
@@ -57,7 +55,7 @@ public class Level {
 	private Vec2 gravity = new Vec2(0,-18f);
 
 	public Level(GameContainer gc, int id) throws SlickException {
-		
+		assetManager = AssetManager.getAssetManager();
 		setBg(new Image("assets/levels/bg.png"));
 		levelid=id;
 		
