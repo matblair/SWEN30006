@@ -28,9 +28,11 @@ This is how we do it: first checkout master (which should do nothing but will en
         
 Then we assign a new branch and switch to it
 
-        git checkout -b yourname
+        git checkout yourname
         
-I have created the branches on the server already so you can use those, they are james for Jamie, joanna for Joanna and champ for Champ. 
+This will then track the remote branches I have setup on the server
+        
+I have created the branches on the server already so you can use those, they are james for Jamie, joana for Joana and champ for Champ. 
         
 After which we have to add everything to your new branch.
 
