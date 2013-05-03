@@ -34,6 +34,10 @@ Then update to track all remote branches
         
         git fetch
         
+Then merge to update your branch to master
+
+        git merge master
+        
 This will then track the remote branches I have setup on the server
 I have created the branches on the server already so you can use those, they are james for Jamie, joana for Joana and champ for Champ. 
 Now you can work with the branch you have, and it shouldn't affect the master branch. You can commit to that branch as follows
@@ -61,9 +65,12 @@ Once you have done the above process and the master branch properly runs, I'm ha
         git commit -a -m "your message about what you changed here"
         git push
         
-Then switch back to your current branch
+Then switch back to your current branch and update to master again
 
         git checkout yourname
+        git merge master
+        git commit -a -m "updated to master point"
+        git push
         
 And you should be good to go. I will be maintaining a backup of the git repository (I have a shell script set up to download the master every 4 hours and keep a revised copy of that on a separate hard drive) so if anything does go dramatically wrong we can rever to that but this seems to be the best method.
 
