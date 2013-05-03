@@ -20,7 +20,7 @@ Usage is very straight forward and operates very similarly to svn. To clone a gi
         
 The difference lies in how we branch and merge. As a default security protocol we should never be working on the master copy (i.e. the trunk) we should all create our own branch on our own computer so that we don't necessarily corrupt the master. Only known good working code should be published to the trunk and if you publish something that breaks anything to the trunk I will chase you down. 
 
-Ensure that you are in '$path_to_desired_location' before continuing. This should be the directory you are working with for the project in eclipse.
+Ensure that you are in 'path/to/localdirectory' before continuing. This should be the directory you are working with for the project in eclipse.
 
 This is how we do it: first checkout master (which should do nothing but will ensure you are in the correct directory)
         
@@ -28,7 +28,7 @@ This is how we do it: first checkout master (which should do nothing but will en
         
 Then we assign a new branch and switch to it
 
-        git checkout -b $yourname
+        git checkout -b yourname
         
 I have created the branches on the server already so you can use those, they are james for Jamie, joanna for Joanna and champ for Champ. 
         
@@ -48,7 +48,7 @@ Once you have commited you should be able to push your branch to the server. Fir
 Then that will commit your branch to the server. If you are 100% confident there are no issues with your code you can merge with master, which we do as so.
 
         git checkout master
-        git merge $branchname
+        git merge yourname
 
 This should bring up git fastforward merge, which should do everything for you. If it doesn't then I'd rather you try merge by hand, the way that the project is set up we should never be working on the same thing at the same time so this is easier than stuffing up the git master by not using the diff merge correctly.
 
@@ -59,7 +59,7 @@ Once you have done the above process and the master branch properly runs, I'm ha
         
 Then switch back to your current branch
 
-        git checkout $yourbranchname
+        git checkout yourname
         
 And you should be good to go. I will be maintaining a backup of the git repository (I have a shell script set up to download the master every 4 hours and keep a revised copy of that on a separate hard drive) so if anything does go dramatically wrong we can rever to that but this seems to be the best method.
 
