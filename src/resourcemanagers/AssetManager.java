@@ -30,21 +30,6 @@ public class AssetManager {
 	private Map<String, String> levelXmlResources; //All the level xml resources
 	private Map<String, Font> fontResources; //All the level xml resources
 	private Map<String, Animation> animationResources; //All the level xml resources
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-	/** Added some comments to test merging **/
-
 	
 	//General File Locations
 	@SuppressWarnings("unused")
