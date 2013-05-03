@@ -57,43 +57,42 @@ public class LevelLoader {
 				final String type = resourceElement.getAttribute("type");  
 
 				if(type.equals("CUBE")){  
-					addElementAsCube(resourceElement);
+					addElementAsCube(resourceElement,level);
 				}else if(type.equals("WALL")){  
-					addElementAsWall(resourceElement);
+					addElementAsWall(resourceElement,level);
 				}else if(type.equals("TURRET")){  
-					addElementAsTurret(resourceElement);
+					addElementAsTurret(resourceElement,level);
 				}else if(type.equals("PLATFORM")){  
-					addElementAsPlatform(resourceElement);
+					addElementAsPlatform(resourceElement,level);
 				}else if(type.equals("PORTAL")){  
-					addElementAsPortal(resourceElement);
+					addElementAsPortal(resourceElement,level);
 				}else if(type.equals("SWITCH")){  
-					addElementAsSwitch(resourceElement);
+					addElementAsSwitch(resourceElement,level);
 				}
 			}
 		}
 	}
 
-	private void addElementAsSwitch(Element resourceElement) {
+	private void addElementAsSwitch(Element resourceElement, Level level) {
 		
 	}
 
-	private void addElementAsPortal(Element resourceElement) {
+	private void addElementAsPortal(Element resourceElement, Level level) {
 
 	}
 
-	private void addElementAsPlatform(Element resourceElement) {
+	private void addElementAsPlatform(Element resourceElement, Level level) {
 
 	}
 
-	private void addElementAsTurret(Element resourceElement) {
+	private void addElementAsTurret(Element resourceElement, Level level) {
 
 	}
 
-	private void addElementAsWall(Element resourceElement) {
+	private void addElementAsWall(Element resourceElement, Level level) {
 
 	}
 
-	private void addElementAsCube(Element resourceElement) {
-
+	private void addElementAsCube(Element resourceElement, Level level) {
 	}
 }
