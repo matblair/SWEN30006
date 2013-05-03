@@ -54,7 +54,7 @@ public class Level {
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	/** Gravity **/
-	private Vec2 gravity = new Vec2(0,-12.8f);
+	private Vec2 gravity = new Vec2(0,-18f);
 
 	public Level(GameContainer gc, int id) throws SlickException {
 		

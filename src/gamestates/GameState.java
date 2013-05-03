@@ -49,8 +49,8 @@ public class GameState extends BasicGameState implements KeyListener {
 			dir_x++;
 		if (input.isKeyDown(Input.KEY_LEFT))
 			dir_x--;
-		if (input.isKeyPressed(Input.KEY_SPACE) && level.getLevelPlayer().isOnGround()){
-			level.getLevelPlayer().getBody().applyLinearImpulse(new Vec2(0,20), level.getLevelPlayer().getBody().getPosition());
+		if (input.isKeyPressed(Input.KEY_SPACE)) {
+			level.getLevelPlayer().jump();
 		}
 		
 		cam.follow(gc, level.getLevelPlayer());
