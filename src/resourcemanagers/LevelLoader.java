@@ -1,6 +1,7 @@
 package resourcemanagers;
 
 import gameengine.PhysUtils;
+import gameobjects.CompanionCube;
 import gameobjects.Player;
 import gameworlds.Level;
 
@@ -160,8 +161,14 @@ public class LevelLoader {
 		
 	}
 
-	private void addElementAsCube(Element resourceElement, Level level) {
+	private void addElementAsCube(Element resourceElement, Level level) throws SlickException {
+		String imgid = resourceElement.getAttribute("id");
+		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
+		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
+		Vec2 startloc = new Vec2(xstart,ystart);
 
+		CompanionCube cube = new CompanionCube(imgid, startloc, level.getPhysWolrd());
+		level.addCube(cube);
 	}
 	
 	private void addElementAsPlayer(Element resourceElement, Level level) throws SlickException{

@@ -70,6 +70,11 @@ public class Level {
 	public void render(Graphics g, boolean debug,Camera cam, GameContainer gc) {
 		RenderEngine.drawBG(bg, cam);
 		RenderEngine.drawGameObject(player, cam);
+		for (CompanionCube cube: cubes) {
+			RenderEngine.drawGameObject(cube,cam);
+			
+		}
+		
 	}
 
 	public void update(float dir_x, float dir_y, int delta, StateBasedGame sbg) throws SlickException {
