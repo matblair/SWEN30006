@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException; 
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.LoadingList;
@@ -29,15 +30,34 @@ public class LevelLoader {
 	public void loadTestLevel(Level level) throws SlickException{
 		//Physics Walls
 		PhysUtils.addWall(level.getPhysWolrd(), 0, 0, 100, 1); //floor
+		Body bdlist = level.getPhysWolrd().getBodyList();	
+		System.out.println("added floor wall with id: " + bdlist);
+
 		PhysUtils.addWall(level.getPhysWolrd(), 0, 0, 0.5f, 20); //left wall
+		bdlist = level.getPhysWolrd().getBodyList();	
+		System.out.println("added left wall with id: " + bdlist);
+		
 		PhysUtils.addWall(level.getPhysWolrd(), 0, 17.14f, 100, 0); //top
+		bdlist = level.getPhysWolrd().getBodyList();	
+		System.out.println("added top wall with id: " + bdlist);
+		
 		PhysUtils.addWall(level.getPhysWolrd(), 10, 2.5f, 4, 0.25f);//first thing
+		bdlist = level.getPhysWolrd().getBodyList();	
+		System.out.println("added first platform wall with id: " + bdlist);
+		
 		PhysUtils.addWall(level.getPhysWolrd(), 14, 3.95f, 4, 0.25f);//second thing
+		bdlist = level.getPhysWolrd().getBodyList();	
+		System.out.println("added second platform wall with id: " + bdlist);
+		
 		PhysUtils.addWall(level.getPhysWolrd(), 19.5f, 0, 0.5f, 20); //right wall
-	
+		bdlist = level.getPhysWolrd().getBodyList();	
+		System.out.println("added right wall with id: " + bdlist);
+
 		// Dynamic Body
 		Player player = new Player("CHELLSPRITE",new Vec2(2, 5), level.getPhysWolrd());
 		level.setLevelPlayer(player);
+		System.out.println(player.getBody() + " is the players body id");
+		System.out.println(player.getBody().getType()+ " is the players body type");
 		
 		level.setBg(new Image("assets/levels/levelone.png"));
 	}
@@ -62,10 +82,10 @@ public class LevelLoader {
 		// normalize text representation
 		doc.getDocumentElement ().normalize ();
 
-		final NodeList listResources = doc.getElementsByTagName("Could not load resources");  
+		final NodeList listResources = doc.getElementsByTagName("resource");  
 
 		final int totalResources = listResources.getLength();
-
+		System.out.println(totalResources + " total resources");
 		if(deferred){
 			LoadingList.setDeferredLoading(true);
 		}
@@ -79,12 +99,12 @@ public class LevelLoader {
 			if(resourceNode.getNodeType() == Node.ELEMENT_NODE){
 				final Element resourceElement = (Element)resourceNode;
 				final String type = resourceElement.getAttribute("type");  
-
+				System.out.println(type);
 				if(type.equals("CUBE")){  
 					addElementAsCube(resourceElement,level);
-				}else if(type.equals("WALL")){  
-					addElementAsWall(resourceElement,level);
+				}else if(type.equals("WALL")){ 
 					walls++;
+					addElementAsWall(resourceElement,level);
 				}else if(type.equals("TURRET")){  
 					addElementAsTurret(resourceElement,level);
 				}else if(type.equals("PLATFORM")){  
@@ -94,11 +114,11 @@ public class LevelLoader {
 				}else if(type.equals("SWITCH")){  
 					addElementAsSwitch(resourceElement,level);
 				}else if(type.equals("BACKGROUNDIMG")){
-					level.setBg(new Image(resourceElement.getTextContent()));
 					backgroundimg++;
+					level.setBg(new Image(resourceElement.getTextContent()));
 				}else if(type.equals("PLAYER")){
-					addElementAsPlayer(resourceElement,level);
 					players++;
+					addElementAsPlayer(resourceElement,level);
 				}
 			}
 		}
@@ -130,8 +150,14 @@ public class LevelLoader {
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Float width = Float.parseFloat(resourceElement.getAttribute("width"));
 		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
-		PhysUtils.addWall(level.getPhysWolrd(), startx, starty, width, height); //floor
+		PhysUtils.addWall(level.getPhysWolrd(), startx, starty, width, height);
 
+		//Debug code
+		Body bdlist = level.getPhysWolrd().getBodyList();	
+		System.out.println("added wall with id: " + bdlist + " to "+ startx + " ," + starty + " ," + width + " ," + height);
+	
+	
+		
 	}
 
 	private void addElementAsCube(Element resourceElement, Level level) {
@@ -139,11 +165,17 @@ public class LevelLoader {
 	}
 	
 	private void addElementAsPlayer(Element resourceElement, Level level) throws SlickException{
-		String imgid = resourceElement.getAttribute("imgid");
+		String imgid = resourceElement.getAttribute("id");
 		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
-		Float ystart = Float.parseFloat(resourceElement.getAttribute("startx"));
+		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
+		System.out.println(xstart + ", " + ystart + ", " + imgid);
 		Vec2 startloc = new Vec2(xstart,ystart);
+		
 		Player newplayer = new Player(imgid,startloc, level.getPhysWolrd());
 		level.setLevelPlayer(newplayer);
+		
+		//Debug Code
+		System.out.println(newplayer.getBody() + " is the players body id");
+		System.out.println(newplayer.getBody().getType()+ " is the players body type");
 	}
 }

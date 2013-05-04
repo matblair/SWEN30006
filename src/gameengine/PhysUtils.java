@@ -59,4 +59,13 @@ public class PhysUtils {
 		box.setAsBox(w/2, h/2);
 		body.createFixture(box, 0);
 	}
+	
+	public static void printAllBodyIds(World world){
+		System.out.println(world.getBodyCount()+" bodies in the physics world");	
+		org.jbox2d.dynamics.Body bodylist = world.getBodyList();
+		while(bodylist!=null){
+			System.out.println(bodylist + " is the body id");
+			bodylist=bodylist.getNext();
+		}
+	}
 }

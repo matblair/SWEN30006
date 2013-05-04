@@ -30,7 +30,7 @@ public class AssetManager {
 	private static Map<String, Sound> soundResources = new HashMap<String, Sound>(); //All sounds resources
 	private static Map<String, Vec2> vectorResources = new HashMap<String, Vec2>(); //All vector locations
 	private static Map<String, Image> uiElementResources = new HashMap<String, Image>(); //All UI Resources
-	private static Map<String, String> 	levelXmlResources = new HashMap<String, String>(); //All the level xml resources
+	private static Map<Integer, String> 	levelXmlResources = new HashMap<Integer, String>(); //All the level xml resources
 	private static Map<String, Font> fontResources = new HashMap<String, Font>(); //All the level xml resources
 	private static Map<String, Animation> animationResources = new HashMap<String, Animation>();; //All the level xml resources
 
@@ -79,8 +79,9 @@ public class AssetManager {
 		System.out.println(totalresources +" resources loaded in total");
 	}
 
-	public static Level loadLevel( final String levelid) throws SlickException{
+	public static Level loadLevel( final int levelid) throws SlickException{
 		String levelxml = AssetManager.requestLevelXMLPath(levelid);
+		System.out.println(levelxml + " level id is: "+ levelid);
 		Level level = new Level();
 
 		// Have to set resource path based on level id, hash map of level ids?
@@ -88,7 +89,7 @@ public class AssetManager {
 		InputStream is = null;
 		try {
 			is = new FileInputStream(f);
-			levelLoader.loadLevel(is, true, level);
+			levelLoader.loadLevel(is, false, level);
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (final SlickException e) {
@@ -100,7 +101,6 @@ public class AssetManager {
 				e.printStackTrace();
 			}
 		}
-
 		return level;
 	}
 
@@ -125,7 +125,7 @@ public class AssetManager {
 	public static Image requestUIElement(String uiid){
 		return uiElementResources.get(uiid);
 	}
-	public static String requestLevelXMLPath(String levelid){
+	public static String requestLevelXMLPath(int levelid){
 		return levelXmlResources.get(levelid);
 	}
 
@@ -161,7 +161,7 @@ public class AssetManager {
 		return uiElementResources;
 	}
 
-	public static Map<String, String> getLevelXmlResources() {
+	public static Map<Integer, String> getLevelXmlResources() {
 		return levelXmlResources;
 	}
 
@@ -193,7 +193,7 @@ public class AssetManager {
 		AssetManager.uiElementResources = uiElementResources;
 	}
 
-	public static void setLevelXmlResources(Map<String, String> levelXmlResources) {
+	public static void setLevelXmlResources(Map<Integer, String> levelXmlResources) {
 		AssetManager.levelXmlResources = levelXmlResources;
 	}
 
