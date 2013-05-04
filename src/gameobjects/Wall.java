@@ -8,9 +8,10 @@ import org.newdawn.slick.SlickException;
 
 public class Wall extends GameObject {
 
-	public Wall(String imgid, Vec2 location, World world)
+	public Wall(String imgid, Vec2 location, float width, float height, World world)
 			throws SlickException {
-		super("", location, world, PhysUtils.STATIC);
+		super();
+		PhysUtils.addWall(world, location.x, location.y, width, height);
 		// TODO Auto-generated constructor stub
 	}
 
