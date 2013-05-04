@@ -12,10 +12,8 @@ public class CompanionCube extends GameObject {
 	
 	public CompanionCube(String imgloc, Vec2 location, World world)
 			throws SlickException {
-		
-		
-		super(imgloc, location, world, PhysUtils.DYNAMIC);
-		
+	
+		super(imgloc, location, world, PhysUtils.DYNAMIC);		
 		getBody().setFixedRotation(false);
 		getBody().getFixtureList().setRestitution(cubeRestitution);
 	}

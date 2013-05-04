@@ -3,6 +3,7 @@ package resourcemanagers;
 import gameengine.PhysUtils;
 import gameobjects.CompanionCube;
 import gameobjects.Player;
+import gameobjects.Wall;
 import gameworlds.Level;
 
 import java.io.IOException;
@@ -146,19 +147,20 @@ public class LevelLoader {
 
 	}
 
-	private void addElementAsWall(Element resourceElement, Level level) {
+	private void addElementAsWall(Element resourceElement, Level level) throws SlickException {
+		String imgid = resourceElement.getAttribute("id");
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Float width = Float.parseFloat(resourceElement.getAttribute("width"));
 		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
-		PhysUtils.addWall(level.getPhysWolrd(), startx, starty, width, height);
+		Vec2 startloc = new Vec2(startx,starty);
+		Wall wall = new Wall(imgid,startloc, width, height,level.getPhysWolrd());
 
-		//Debug code
-		Body bdlist = level.getPhysWolrd().getBodyList();	
+		Body bdlist = level.getPhysWolrd().getBodyList();
+		wall.setBodyId(bdlist.toString());
+		level.addWall(wall);
 		System.out.println("added wall with id: " + bdlist + " to "+ startx + " ," + starty + " ," + width + " ," + height);
 	
-	
-		
 	}
 
 	private void addElementAsCube(Element resourceElement, Level level) throws SlickException {
@@ -167,7 +169,10 @@ public class LevelLoader {
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
 		Vec2 startloc = new Vec2(xstart,ystart);
 
+		
 		CompanionCube cube = new CompanionCube(imgid, startloc, level.getPhysWolrd());
+		Body bdlist = level.getPhysWolrd().getBodyList();
+		cube.setBodyId(bdlist.toString());
 		level.addCube(cube);
 	}
 	
@@ -179,6 +184,8 @@ public class LevelLoader {
 		Vec2 startloc = new Vec2(xstart,ystart);
 		
 		Player newplayer = new Player(imgid,startloc, level.getPhysWolrd());
+		Body bdlist = level.getPhysWolrd().getBodyList();
+		newplayer.setBodyId(bdlist.toString());
 		level.setLevelPlayer(newplayer);
 		
 		//Debug Code
