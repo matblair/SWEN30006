@@ -8,10 +8,9 @@ import org.newdawn.slick.SlickException;
 
 public class MovingPlatform extends GameObject {
 
-	public MovingPlatform(String imgloc, Vec2 location, World world)
+	public MovingPlatform(String imgid, Vec2 location, float width, float height, World world)
 			throws SlickException {
-		super(imgloc, location, world, PhysUtils.KINEMATIC);
-		// TODO Auto-generated constructor stub
+		super(imgid,location,world, PhysUtils.STATIC);
 	}
 
 }

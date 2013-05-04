@@ -1,5 +1,9 @@
 package gameengine;
+import java.util.Map;
+
+import gameobjects.CompanionCube;
 import gameobjects.GameObject;
+import gameobjects.MovingPlatform;
 
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Image;
@@ -10,6 +14,13 @@ public class RenderEngine {
 	 * @param obj The GameObject to render.
 	 * @param cam The camera object that defines the field of view.
 	 */
+	
+	public static void drawGameObjects(Map<String, CompanionCube> cubes, Camera cam){
+		for (CompanionCube obj : cubes.values()) {
+			drawGameObject(obj,cam);
+		}
+	}
+	
 	public static void drawGameObject (GameObject obj, Camera cam) {		
 		if (!cam.inView(obj)) {
 			return;
@@ -35,4 +46,13 @@ public class RenderEngine {
 		bg.draw(0, 0, slickCamDim.x, slickCamDim.y, topLeftCoord.x, topLeftCoord.y, bottomRightCoord.x, bottomRightCoord.y);
 		//bg.draw(0,0);
 	}
+
+	public static void drawPlatforms(Map<String, MovingPlatform> platforms,
+			Camera cam) {
+		for (MovingPlatform obj : platforms.values()) {
+			drawGameObject(obj,cam);
+		}		
+	}
+	
+	
 }
