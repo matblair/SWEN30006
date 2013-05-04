@@ -14,6 +14,10 @@ public class Player extends GameObject{
 	private Image sprite_right;
 	private Image sprite_left; 
 	
+	/** Variables for intereaction **/
+	@SuppressWarnings("unused")
+	private boolean carryingcube=false;
+	
 	// Constants related to player movement
 	private final float maxRunVelocity = 5;
 	private final float accelFactor = 0.02f;
@@ -90,6 +94,7 @@ public class Player extends GameObject{
 		WorldManifold wm = new WorldManifold();
 		while (edge != null) {
 			edge.contact.getWorldManifold(wm);
+			
 			//We want to check if any of the bodys we are in contact with are interactabe and if so 
 			// do the right thin.
 		}

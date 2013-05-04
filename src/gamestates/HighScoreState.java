@@ -60,10 +60,6 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 			Random rn = new Random();
 			int value = rn.nextInt(2000);
 			scores.set(j, value);
-			
-			
-			
-		
 		} 
 		Collections.sort(scores);
 	}
@@ -115,7 +111,6 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 			int stateid=Portal2D.HIGHSCORESTATE;
 			switch (selected){
 			case 1:
-				LoadingState.loadLevel(sbg,0);
 				stateid=Portal2D.MAINMENUSTATE;
                 break;
 			}
@@ -176,11 +171,6 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	public static void setStringMaps(Map<String, Integer> strings) {
 		stringMaps = strings;
 	}
-	
-	
-	
-	
-	
 	
 	public static HighScoreState getInstance()
     {

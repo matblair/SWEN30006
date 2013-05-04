@@ -2,6 +2,7 @@ package resourcemanagers;
 
 import gameengine.PhysUtils;
 import gameobjects.CompanionCube;
+import gameobjects.MovingPlatform;
 import gameobjects.Player;
 import gameobjects.Wall;
 import gameworlds.Level;
@@ -139,8 +140,20 @@ public class LevelLoader {
 		
 	}
 
-	private void addElementAsPlatform(Element resourceElement, Level level) {
-		
+	private void addElementAsPlatform(Element resourceElement, Level level) throws SlickException{
+		String imgid = resourceElement.getAttribute("id");
+		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
+		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
+		Float width = Float.parseFloat(resourceElement.getAttribute("width"));
+		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
+		Vec2 startloc = new Vec2(startx,starty);
+		MovingPlatform platform = new MovingPlatform(imgid,startloc, width, height,level.getPhysWolrd());
+
+		Body bdlist = level.getPhysWolrd().getBodyList();
+		platform.setBodyId(bdlist.toString());
+		level.addMovingPlatform(platform, platform.getBodyId());
+		System.out.println("added wall with id: " + bdlist + " to "+ startx + " ," + starty + " ," + width + " ," + height);
+	
 	}
 
 	private void addElementAsTurret(Element resourceElement, Level level) {
@@ -158,7 +171,7 @@ public class LevelLoader {
 
 		Body bdlist = level.getPhysWolrd().getBodyList();
 		wall.setBodyId(bdlist.toString());
-		level.addWall(wall);
+		level.addWall(wall, wall.getBodyId());
 		System.out.println("added wall with id: " + bdlist + " to "+ startx + " ," + starty + " ," + width + " ," + height);
 	
 	}
@@ -173,7 +186,7 @@ public class LevelLoader {
 		CompanionCube cube = new CompanionCube(imgid, startloc, level.getPhysWolrd());
 		Body bdlist = level.getPhysWolrd().getBodyList();
 		cube.setBodyId(bdlist.toString());
-		level.addCube(cube);
+		level.addCube(cube, cube.getBodyId());
 	}
 	
 	private void addElementAsPlayer(Element resourceElement, Level level) throws SlickException{
