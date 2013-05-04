@@ -20,8 +20,8 @@ public class GameObject {
 	/** The object's image **/
 	private Image sprite;
 	
-	
-
+	/** The objects body id **/
+	private static String bodyId;
 	/** The objects name **/
 	private String name;
 	private Body body;
@@ -37,6 +37,10 @@ public class GameObject {
 		createBody(location,world,bodytype);		
 		System.out.printf ("(x,y) = (%4.2f,%4.2f)\n", location.x, location.y);
 		System.out.printf ("(w,h) = (%4.2f,%4.2f)\n", dimensions.x/2, dimensions.y/2);
+	}
+	
+	public GameObject(){
+		
 	}
 	
 	private void createBody(Vec2 location, World world, int bodytype){
@@ -123,5 +127,19 @@ public class GameObject {
 	
 	public void setSprite(Image sprite) {
 		this.sprite = sprite;
+	}
+
+	/**
+	 * @return the bodyId
+	 */
+	public String getBodyId() {
+		return bodyId;
+	}
+
+	/**
+	 * @param bodyId the bodyId to set
+	 */
+	public void setBodyId(String bodyId) {
+		GameObject.bodyId = bodyId;
 	}
 }
