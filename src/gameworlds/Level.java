@@ -71,7 +71,7 @@ public class Level {
 		RenderEngine.drawBG(bg, cam);
 		RenderEngine.drawGameObject(player, cam);
 		RenderEngine.drawGameObjects(cubes, cam);
-		RenderEngine.drawPlatforms(platforms, cam);
+		RenderEngine.drawGameObjects(platforms, cam);
 		
 	}
 

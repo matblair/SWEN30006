@@ -1,16 +1,15 @@
 package gameengine;
+
 import java.util.Map;
 
-import gameobjects.CompanionCube;
 import gameobjects.GameObject;
-import gameobjects.MovingPlatform;
 
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Image;
 
 public class RenderEngine {
-	public static void drawGameObjects(Map<String, CompanionCube> cubes, Camera cam){
-		for (CompanionCube obj : cubes.values()) {
+	public static <T extends GameObject> void drawGameObjects(Map<String, T> map, Camera cam){
+		for (T obj : map.values()) {
 			drawGameObject(obj,cam);
 		}
 	}
@@ -46,11 +45,5 @@ public class RenderEngine {
 		Vec2 topLeftCoord = new Vec2(slickCamLoc.x, bg.getHeight() - slickCamLoc.y - slickCamDim.y);
 		Vec2 bottomRightCoord = new Vec2(slickCamLoc.x + slickCamDim.x, bg.getHeight() - slickCamLoc.y);
 		bg.draw(0, 0, slickCamDim.x, slickCamDim.y, topLeftCoord.x, topLeftCoord.y, bottomRightCoord.x, bottomRightCoord.y);
-	}
-
-	public static void drawPlatforms(Map<String, MovingPlatform> platforms, Camera cam) {
-		for (MovingPlatform obj : platforms.values()) {
-			drawGameObject(obj,cam);
-		}		
 	}
 }
