@@ -13,7 +13,7 @@
 	<resource type="PLATFORM" id="SMALLPLATFORM" xStart="10.0" yStart="2.5" width="4.0" height="0.25">assets/sprites/wall.png</resource>
 	<resource type="PLATFORM" id="PLATFORM" xStart="6.0" yStart="6" width="4.0" height="0.25">assets/sprites/wall.png</resource>
 	<resource type="PLATFORM" id="SMALLPLATFORM" xStart="12" yStart="8" width="4.0" height="0.25">assets/sprites/wall.png</resource>
-	<resource type="PLATFORM" id="SMALLPLATFORM" xStart="8" yStart="11" width="4.0" height="0.25">assets/sprites/wall.png</resource>
+	<resource type="PLATFORM" id="SMALLPLATFORM" xStart="8" yStart="10" width="4.0" height="0.25">assets/sprites/wall.png</resource>
 	<resource type="PLATFORM" id="PLATFORM" xStart="1" yStart="18" width="4.0" height="0.25">assets/sprites/wall.png</resource>
 
 	<!-- Background -->
