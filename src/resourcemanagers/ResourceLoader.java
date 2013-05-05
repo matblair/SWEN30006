@@ -115,8 +115,8 @@ public class ResourceLoader {
 		AssetManager.getSoundResources().put(soundid, newsound);
 	}
 
-	private void addElementAsUIElement(Element resourceElement) {
-		Image newimg=null;
+	private void addElementAsUIElement(Element resourceElement) throws DOMException, SlickException {
+		Image newimg=new Image(resourceElement.getTextContent());
 		String uiid=resourceElement.getAttribute("id");
 		AssetManager.getUiElementResources().put(uiid, newimg);
 	}
