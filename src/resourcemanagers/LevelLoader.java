@@ -32,32 +32,32 @@ public class LevelLoader {
 
 	public void loadTestLevel(Level level) throws SlickException{
 		//Physics Walls
-		PhysUtils.addWall(level.getPhysWolrd(), 0, 0, 100, 1); //floor
-		Body bdlist = level.getPhysWolrd().getBodyList();	
+		PhysUtils.addWall(level.getPhysWorld(), 0, 0, 100, 1); //floor
+		Body bdlist = level.getPhysWorld().getBodyList();	
 		System.out.println("added floor wall with id: " + bdlist);
 
-		PhysUtils.addWall(level.getPhysWolrd(), 0, 0, 0.5f, 20); //left wall
-		bdlist = level.getPhysWolrd().getBodyList();	
+		PhysUtils.addWall(level.getPhysWorld(), 0, 0, 0.5f, 20); //left wall
+		bdlist = level.getPhysWorld().getBodyList();	
 		System.out.println("added left wall with id: " + bdlist);
 		
-		PhysUtils.addWall(level.getPhysWolrd(), 0, 17.14f, 100, 0); //top
-		bdlist = level.getPhysWolrd().getBodyList();	
+		PhysUtils.addWall(level.getPhysWorld(), 0, 17.14f, 100, 0); //top
+		bdlist = level.getPhysWorld().getBodyList();	
 		System.out.println("added top wall with id: " + bdlist);
 		
-		PhysUtils.addWall(level.getPhysWolrd(), 10, 2.5f, 4, 0.25f);//first thing
-		bdlist = level.getPhysWolrd().getBodyList();	
+		PhysUtils.addWall(level.getPhysWorld(), 10, 2.5f, 4, 0.25f);//first thing
+		bdlist = level.getPhysWorld().getBodyList();	
 		System.out.println("added first platform wall with id: " + bdlist);
 		
-		PhysUtils.addWall(level.getPhysWolrd(), 14, 3.95f, 4, 0.25f);//second thing
-		bdlist = level.getPhysWolrd().getBodyList();	
+		PhysUtils.addWall(level.getPhysWorld(), 14, 3.95f, 4, 0.25f);//second thing
+		bdlist = level.getPhysWorld().getBodyList();	
 		System.out.println("added second platform wall with id: " + bdlist);
 		
-		PhysUtils.addWall(level.getPhysWolrd(), 19.5f, 0, 0.5f, 20); //right wall
-		bdlist = level.getPhysWolrd().getBodyList();	
+		PhysUtils.addWall(level.getPhysWorld(), 19.5f, 0, 0.5f, 20); //right wall
+		bdlist = level.getPhysWorld().getBodyList();	
 		System.out.println("added right wall with id: " + bdlist);
 
 		// Dynamic Body
-		Player player = new Player("CHELLSPRITE",new Vec2(2, 5), level.getPhysWolrd());
+		Player player = new Player("CHELLSPRITE",new Vec2(2, 5), level.getPhysWorld());
 		level.setLevelPlayer(player);
 		System.out.println(player.getBody() + " is the players body id");
 		System.out.println(player.getBody().getType()+ " is the players body type");
@@ -147,13 +147,9 @@ public class LevelLoader {
 		Float width = Float.parseFloat(resourceElement.getAttribute("width"));
 		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
 		Vec2 startloc = new Vec2(startx,starty);
-		MovingPlatform platform = new MovingPlatform(imgid,startloc, width, height,level.getPhysWolrd());
+		MovingPlatform platform = new MovingPlatform(imgid, startloc, width, height, level.getPhysWorld());
 
-		Body bdlist = level.getPhysWolrd().getBodyList();
-		platform.setBodyId(bdlist.toString());
 		level.addMovingPlatform(platform, platform.getBodyId());
-		System.out.println("added wall with id: " + bdlist + " to "+ startx + " ," + starty + " ," + width + " ," + height);
-	
 	}
 
 	private void addElementAsTurret(Element resourceElement, Level level) {
@@ -167,13 +163,9 @@ public class LevelLoader {
 		Float width = Float.parseFloat(resourceElement.getAttribute("width"));
 		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
 		Vec2 startloc = new Vec2(startx,starty);
-		Wall wall = new Wall(imgid,startloc, width, height,level.getPhysWolrd());
+		Wall wall = new Wall(imgid,startloc, width, height,level.getPhysWorld());
 
-		Body bdlist = level.getPhysWolrd().getBodyList();
-		wall.setBodyId(bdlist.toString());
 		level.addWall(wall, wall.getBodyId());
-		System.out.println("added wall with id: " + bdlist + " to "+ startx + " ," + starty + " ," + width + " ," + height);
-	
 	}
 
 	private void addElementAsCube(Element resourceElement, Level level) throws SlickException {
@@ -183,9 +175,7 @@ public class LevelLoader {
 		Vec2 startloc = new Vec2(xstart,ystart);
 
 		
-		CompanionCube cube = new CompanionCube(imgid, startloc, level.getPhysWolrd());
-		Body bdlist = level.getPhysWolrd().getBodyList();
-		cube.setBodyId(bdlist.toString());
+		CompanionCube cube = new CompanionCube(imgid, startloc, level.getPhysWorld());
 		level.addCube(cube, cube.getBodyId());
 	}
 	
@@ -196,9 +186,7 @@ public class LevelLoader {
 		System.out.println(xstart + ", " + ystart + ", " + imgid);
 		Vec2 startloc = new Vec2(xstart,ystart);
 		
-		Player newplayer = new Player(imgid,startloc, level.getPhysWolrd());
-		Body bdlist = level.getPhysWolrd().getBodyList();
-		newplayer.setBodyId(bdlist.toString());
+		Player newplayer = new Player(imgid,startloc, level.getPhysWorld());
 		level.setLevelPlayer(newplayer);
 		
 		//Debug Code

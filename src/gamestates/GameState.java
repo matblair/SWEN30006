@@ -6,6 +6,7 @@ import gameengine.Portal2D;
 import gameworlds.Level;
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -63,8 +64,16 @@ public class GameState extends BasicGameState implements KeyListener {
 
 	@Override
 	public void keyPressed(int key, char c) {
-		//System.out.println("Key pressed in LevelState int: " + key);
+		System.out.println("Key pressed in LevelState int: " + key);
 		switch (key) {
+		case Input.KEY_E:
+			System.out.println("Looking for body IDs of objects in contact with player...");
+			ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
+			while (edge != null) {
+				System.out.println("Found " + edge.other);
+				edge = edge.next;
+			}
+			break;
 		default:
 			break;
 		}
