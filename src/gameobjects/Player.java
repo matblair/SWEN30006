@@ -1,11 +1,18 @@
 package gameobjects;
 
 import gameengine.PhysUtils;
+import gamestates.GameState;
+import gameworlds.Level;
 
 import org.jbox2d.collision.WorldManifold;
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.ContactEdge;
+import org.jbox2d.dynamics.joints.Joint;
+import org.jbox2d.dynamics.joints.JointDef;
+import org.jbox2d.dynamics.joints.JointType;
+import org.jbox2d.dynamics.joints.WeldJointDef;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -89,16 +96,30 @@ public class Player extends GameObject{
 		this.sprite_left = sprite_left;
 	}
 	
-	public void interact(World world){
-		ContactEdge edge = this.getBody().getContactList();
-		WorldManifold wm = new WorldManifold();
+	public void interact(World world, Level level){
+		System.out.println("Looking for body IDs of objects in contact with player...");
+		ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
 		while (edge != null) {
-			edge.contact.getWorldManifold(wm);
+			System.out.println("Found " + edge.other + " of type " + level.isInteractable(edge.other));
+			String type=level.isInteractable(edge.other);
+			if(type.equals("cube")){
+				String bodyId=edge.other.toString();
+				interactWithCube(level.getCube(bodyId));
+			}
+			edge = edge.next;
 			
-			//We want to check if any of the bodys we are in contact with are interactabe and if so 
-			// do the right thin.
-		}
-		
+		}	
+	}
+	
+	public void interactWithCube(CompanionCube cube){
+		WeldJointDef def = new WeldJointDef();
+		def.bodyA=this.getBody();
+		def.bodyB=cube.getBody();
+		JointType jtype = JointType.WELD;
+		def.type = jtype;
+		GameState.getLevel().getPhysWorld().createJoint(def);
+		System.out.println(cube.getBody().m_jointList);
+		//cube.getBody().applyLinearImpulse(new Vec2(0,10), cube.getBody().getPosition());
 	}
 	
 }

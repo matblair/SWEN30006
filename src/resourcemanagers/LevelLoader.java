@@ -148,7 +148,6 @@ public class LevelLoader {
 		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
 		Vec2 startloc = new Vec2(startx,starty);
 		MovingPlatform platform = new MovingPlatform(imgid, startloc, width, height, level.getPhysWorld());
-
 		level.addMovingPlatform(platform, platform.getBodyId());
 	}
 
@@ -164,7 +163,6 @@ public class LevelLoader {
 		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
 		Vec2 startloc = new Vec2(startx,starty);
 		Wall wall = new Wall(imgid,startloc, width, height,level.getPhysWorld());
-
 		level.addWall(wall, wall.getBodyId());
 	}
 
