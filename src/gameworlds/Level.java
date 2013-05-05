@@ -146,7 +146,7 @@ public class Level {
 		return cubes.get(bodyId);
 	}
 	
-	public String isInteractable(Body other){
+	public String getBodyType(Body other){
 		String key = other.toString();
 		String type="";
 		if(cubes.containsKey(key)){
