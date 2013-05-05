@@ -15,7 +15,7 @@ import resourcemanagers.AssetManager;
 public class LoadingState extends BasicGameState {
 	private static int StateId = Portal2D.LOADSTATE; // State ID
 	private static boolean finishedloading=false;
-	private static boolean drawnloadingscreen=false;
+	//private static boolean drawnloadingscreen=false;
 
 	public LoadingState() throws SlickException
 	{

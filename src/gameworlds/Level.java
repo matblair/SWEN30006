@@ -6,6 +6,7 @@ import gameengine.*;
 import gameobjects.*;
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -139,5 +140,31 @@ public class Level {
 
 	public int getLevelId() {
 		return levelid;
+	}
+	
+	public CompanionCube getCube(String bodyId){
+		return cubes.get(bodyId);
+	}
+	
+	public String isInteractable(Body other){
+		String key = other.toString();
+		String type="";
+		if(cubes.containsKey(key)){
+			type="cube";
+		}else if(bigSwitches.containsKey(key)){
+			type="bigswitch";
+		}else if(lilSwitches.containsKey(key)){
+			type="lilswitch";
+		}else if(portals.containsKey(key)){
+			type="portal";
+		}else if(doors.containsKey(key)){
+			type="door";
+		}else if(platforms.containsKey(key)){
+			type="platform";
+		}else if(walls.containsKey(key)){
+			type="wall";
+		}
+		return type;
+		
 	}
 }
