@@ -23,7 +23,7 @@ public class Camera {
 		this.bounds = bounds;
 	}
 	
-	/** Udpate the camera location such that it follows the player.
+	/** Update the camera location such that it follows the player.
 	 * Camera is bounded to the edge of the map, so that dead areas beyond the edges of the map shouldn't ever be rendered.
 	 * 
 	 * @param gc The GameContainer in which the view must be bound.
