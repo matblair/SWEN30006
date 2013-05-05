@@ -10,9 +10,15 @@
 	<!-- Images -->
 	<resource type="IMAGE" id="CHELLSPRITE">assets/sprites/chell.png</resource>
 	<resource type="IMAGE" id="HITBOX">assets/sprites/hitbox.png</resource>
+	<resource type="IMAGE" id="CUBE">assets/sprites/cube.png</resource>
+	<resource type="IMAGE" id="PLATFORM">assets/sprites/longlevel.png</resource>
+	<resource type="IMAGE" id="SMALLPLATFORM">assets/sprites/shortlevel.png</resource>
+
 
 	<!-- LevelXML -->
-	<resource type="LEVELXML" id="TESTLEVEL">testlevel.xml</resource>
+	<resource type="LEVELXML" id="1">levels/testlevel.xml</resource>
+	<resource type="LEVELXML" id="0">levels/levelone.xml</resource>
+
 	<!-- Animations -->
 
 	<!-- Fonts -->

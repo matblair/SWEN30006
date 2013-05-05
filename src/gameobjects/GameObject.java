@@ -20,8 +20,8 @@ public class GameObject {
 	/** The object's image **/
 	private Image sprite;
 	
-	
-
+	/** The objects body id **/
+	private static String bodyId;
 	/** The objects name **/
 	private String name;
 	private Body body;
@@ -34,29 +34,33 @@ public class GameObject {
 			throws SlickException {
 		setSprite(AssetManager.requestImage(imgid));
 		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(getImage().getWidth(), getImage().getHeight()));
-		createBody(location,world,PhysUtils.DYNAMIC);		
+		createBody(location,world,bodytype);		
 		System.out.printf ("(x,y) = (%4.2f,%4.2f)\n", location.x, location.y);
 		System.out.printf ("(w,h) = (%4.2f,%4.2f)\n", dimensions.x/2, dimensions.y/2);
+	}
+	
+	public GameObject(){
+		
 	}
 	
 	private void createBody(Vec2 location, World world, int bodytype){
 		BodyDef bd = new BodyDef();
 		bd.position.set(location);
-		
-		/* I have to work out why this doesn't work to set body type?
-		 * Jamie any ideas?
 		switch (bodytype){
 			case PhysUtils.STATIC: 
 				bd.type = BodyType.STATIC;
+				break;
 			case PhysUtils.DYNAMIC:
 				bd.type = BodyType.DYNAMIC;
+				break;
 			case PhysUtils.KINEMATIC:
 				bd.type = BodyType.KINEMATIC;
+				break;
 			case PhysUtils.PORTAL: 
 				bd.type = BodyType.STATIC;
-		}*/
+				break;
+		}
 		
-		bd.type = BodyType.DYNAMIC;
 		bd.fixedRotation = true;
 		body = world.createBody(bd);
 		
@@ -92,6 +96,8 @@ public class GameObject {
 		while (edge != null) {
 			edge.contact.getWorldManifold(wm);
 			normal = wm.normal;
+			//System.out.println(edge.contact.m_fixtureB.getBody());
+			//System.out.println(normal + " is the normal");
 			if (normal.y > maxYNormForGround)
 				return true;
 			edge = edge.next;
@@ -121,5 +127,19 @@ public class GameObject {
 	
 	public void setSprite(Image sprite) {
 		this.sprite = sprite;
+	}
+
+	/**
+	 * @return the bodyId
+	 */
+	public String getBodyId() {
+		return bodyId;
+	}
+
+	/**
+	 * @param bodyId the bodyId to set
+	 */
+	public void setBodyId(String bodyId) {
+		GameObject.bodyId = bodyId;
 	}
 }

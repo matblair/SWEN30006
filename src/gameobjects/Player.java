@@ -2,8 +2,10 @@ package gameobjects;
 
 import gameengine.PhysUtils;
 
+import org.jbox2d.collision.WorldManifold;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -12,6 +14,10 @@ public class Player extends GameObject{
 	private Image sprite_right;
 	private Image sprite_left; 
 	
+	/** Variables for intereaction **/
+	@SuppressWarnings("unused")
+	private boolean carryingcube=false;
+	
 	// Constants related to player movement
 	private final float maxRunVelocity = 5;
 	private final float accelFactor = 0.02f;
@@ -19,7 +25,6 @@ public class Player extends GameObject{
 	private final float jumpFactor = 10;
 	
 	/** Constructor
-	 * 
 	 * @param imgid The Sprites Image Id to get resource
 	 * @param pos Coordinates in metres specifying where the player spawns.
 	 * @param world The JBox world in which the players physical body should be added.
@@ -82,6 +87,18 @@ public class Player extends GameObject{
 	
 	private void setObject_left(Image sprite_left) {
 		this.sprite_left = sprite_left;
+	}
+	
+	public void interact(World world){
+		ContactEdge edge = this.getBody().getContactList();
+		WorldManifold wm = new WorldManifold();
+		while (edge != null) {
+			edge.contact.getWorldManifold(wm);
+			
+			//We want to check if any of the bodys we are in contact with are interactabe and if so 
+			// do the right thin.
+		}
+		
 	}
 	
 }

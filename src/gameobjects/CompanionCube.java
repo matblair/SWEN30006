@@ -7,11 +7,15 @@ import org.jbox2d.dynamics.World;
 import org.newdawn.slick.SlickException;
 
 public class CompanionCube extends GameObject {
-
+	
+	private static float cubeRestitution=0.8f;
+	
 	public CompanionCube(String imgloc, Vec2 location, World world)
 			throws SlickException {
-		super(imgloc, location, world, PhysUtils.DYNAMIC);
-		// TODO Auto-generated constructor stub
+	
+		super(imgloc, location, world, PhysUtils.DYNAMIC);		
+		getBody().setFixedRotation(false);
+		getBody().getFixtureList().setRestitution(cubeRestitution);
 	}
 
 }

@@ -1,6 +1,6 @@
 package gameworlds;
-
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import gameengine.*;
 import gameobjects.*;
@@ -28,19 +28,19 @@ public class Level {
 	/** Our Player **/
 	private Player player;
 	/** A vector containing all cubes **/
-	protected ArrayList<CompanionCube> cubes;
+	protected Map<String,CompanionCube> cubes;
 	/** A vector containing all walls **/
-	protected ArrayList<Wall> walls;
+	protected Map<String,Wall> walls;
 	/** A vector containing all doors **/
-	protected ArrayList<Door> doors;
+	protected Map<String,Door> doors;
 	/** A vector containing all platforms **/
-	protected ArrayList<MovingPlatform> platforms;
+	protected Map<String,MovingPlatform> platforms;
 	/** A vector containing all portals **/
-	protected ArrayList<Portal> portals;
+	protected Map<String,Portal> portals;
 	/** A vector containing all switches **/
-	protected ArrayList<LittleSwitch> lilSwitches;
+	protected Map<String,LittleSwitch> lilSwitches;
 	/** A vector containing all switches **/
-	protected ArrayList<BigSwitch> bigSwitches;
+	protected Map<String,BigSwitch> bigSwitches;
 	
 	/** Our physics world **/
 	private World world;
@@ -58,18 +58,21 @@ public class Level {
 		portalWorld = new World(new Vec2(0,0));
 		
 		//Initialises ArrayLists
-		cubes = new ArrayList<CompanionCube>();
-		walls = new ArrayList<Wall>();
-		doors = new ArrayList<Door>();
-		platforms = new ArrayList<MovingPlatform>();
-		portals = new ArrayList<Portal>();
-		lilSwitches = new ArrayList<LittleSwitch>();
-		bigSwitches = new ArrayList<BigSwitch>();	
+		cubes = new HashMap<String,CompanionCube>();
+		walls = new HashMap<String,Wall>();
+		doors = new HashMap<String,Door>();
+		platforms = new HashMap<String,MovingPlatform>();
+		portals = new HashMap<String,Portal>();
+		lilSwitches = new HashMap<String,LittleSwitch>();
+		bigSwitches = new HashMap<String,BigSwitch>();	
 	}
 
 	public void render(Graphics g, boolean debug,Camera cam, GameContainer gc) {
 		RenderEngine.drawBG(bg, cam);
 		RenderEngine.drawGameObject(player, cam);
+		RenderEngine.drawGameObjects(cubes, cam);
+		RenderEngine.drawPlatforms(platforms, cam);
+		
 	}
 
 	public void update(float dir_x, float dir_y, int delta, StateBasedGame sbg) throws SlickException {
@@ -106,32 +109,32 @@ public class Level {
 		return portalWorld;
 	}
 	
-	public void addCube(CompanionCube cube){
-		cubes.add(cube);
+	public void addCube(CompanionCube cube, String bodyid){
+		cubes.put(bodyid, cube);
 	}
 	
-	public void addWall(Wall wall){
-		walls.add(wall);
+	public void addWall(Wall wall, String bodyid){
+		walls.put(bodyid,wall);
 	}
 	
-	public void addDoor(Door door){
-		doors.add(door);
+	public void addDoor(Door door, String bodyid){
+		doors.put(bodyid,door);
 	}
 	
-	public void addPortal(Portal portal){
-		portals.add(portal);
+	public void addPortal(Portal portal, String bodyid){
+		portals.put(bodyid,portal);
 	}
 	
-	public void addMovingPlatform(MovingPlatform platform){
-		platforms.add(platform);
+	public void addMovingPlatform(MovingPlatform platform, String bodyid){
+		platforms.put(bodyid,platform);
 	}
 	
-	public void addBigSwitch(BigSwitch s){
-		bigSwitches.add(s);
+	public void addBigSwitch(BigSwitch s, String bodyid){
+		bigSwitches.put(bodyid,s);
 	}
 	
-	public void addLilSwitch(LittleSwitch s){
-		lilSwitches.add(s);
+	public void addLilSwitch(LittleSwitch s, String bodyid){
+		lilSwitches.put(bodyid,s);
 	}
 
 	public int getLevelId() {
