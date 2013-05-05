@@ -76,6 +76,8 @@ public class Player extends GameObject{
 	public void jump() {
 		if (isOnGround()){
 			float impulse = getMass() * jumpFactor;
+			System.out.println(impulse);
+			System.out.println(getLocation());
 			getBody().applyLinearImpulse(new Vec2(0,impulse), getLocation());
 		}
 	}
@@ -118,10 +120,13 @@ public class Player extends GameObject{
 
 	public void pickupCube(CompanionCube cube){
 		if(!holdingcube){
-			MassData massData= new MassData();
-			massData.mass=0.000001f;
+			System.out.println(this.getMass());
+			System.out.println(cube.getMass());
+			MassData massData=null;
+			massData = new MassData();
+			massData.mass=0.000001f;			
 			cube.getBody().setMassData(massData);
-			cube.getBody().setFixedRotation(true);
+			System.out.println(cube.getMass());
 			cube.getBody().setAngularVelocity(0.0f);
 			PrismaticJointDef def = new PrismaticJointDef();
 			def.bodyA=this.getBody();
@@ -130,10 +135,12 @@ public class Player extends GameObject{
 			def.type = jtype;
 			def.enableLimit=true;
 			def.enableMotor=true;
-			def.upperTranslation=1.4f;
+			def.upperTranslation=2;
 			def.collideConnected=true;
 			GameState.getLevel().getPhysWorld().createJoint(def);
 			System.out.println(cube.getBody().m_jointList);
+			System.out.println(this.getMass());
+
 			holdingcube=true;
 			cubecarrying = cube;
 		}
