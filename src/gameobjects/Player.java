@@ -108,19 +108,20 @@ public class Player extends GameObject{
 	public void interact(World world, Level level){
 		if(holdingcube){
 			interactWithCube(cubecarrying);
-		}
-		System.out.println("Looking for body IDs of objects in contact with player...");
-		ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
-		while (edge != null) {
-			System.out.println("Found " + edge.other + " of type " + level.isInteractable(edge.other));
-			String type=level.isInteractable(edge.other);
-			if(type.equals("cube")){
-				String bodyId=edge.other.toString();
-				interactWithCube(level.getCube(bodyId));
-			}
-			edge = edge.next;
+		} else {
+			System.out.println("Looking for body IDs of objects in contact with player...");
+			ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
+			while (edge != null) {
+				System.out.println("Found " + edge.other + " of type " + level.isInteractable(edge.other));
+				String type=level.isInteractable(edge.other);
+				if(type.equals("cube")){
+					String bodyId=edge.other.toString();
+					interactWithCube(level.getCube(bodyId));
+				}
+				edge = edge.next;
 
-		}	
+			}	
+		}
 	}
 
 	public void interactWithCube(CompanionCube cube){
@@ -129,6 +130,7 @@ public class Player extends GameObject{
 			MassData massData= new MassData();
 			massData.mass=0.0001f;
 			cube.getBody().setMassData(massData);
+			cube.getBody().setFixedRotation(true);
 			PrismaticJointDef def = new PrismaticJointDef();
 			def.bodyA=this.getBody();
 			def.bodyB=cube.getBody();
@@ -143,8 +145,10 @@ public class Player extends GameObject{
 		}
 		else if(holdingcube) {
 			System.out.println("shold be dropping it");
-			MassData massData= new MassData();
+			MassData massData=new MassData();
 			massData.mass=oldcubemass;
+			cube.getBody().setMassData(massData);
+			cube.getBody().setFixedRotation(false);
 			Joint joint=cube.getBody().getJointList().joint;
 			GameState.getLevel().getPhysWorld().destroyJoint(joint);
 			holdingcube=false;
