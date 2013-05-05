@@ -43,7 +43,7 @@ public class GameObject {
 		
 	}
 	
-	private void createBody(Vec2 location, World world, int bodytype){
+	private void createBody(Vec2 location, World world, int bodytype) {
 		BodyDef bd = new BodyDef();
 		bd.position.set(location);
 		switch (bodytype){
@@ -63,6 +63,7 @@ public class GameObject {
 		
 		bd.fixedRotation = true;
 		body = world.createBody(bd);
+		setBodyId(body.toString());
 		
 		PolygonShape dynamicBox = new PolygonShape();
 		dynamicBox.setAsBox(dimensions.x/2, dimensions.y/2);
@@ -85,6 +86,10 @@ public class GameObject {
 		return body.getPosition();
 	}
 	
+	public float getRotation() {
+		return body.getAngle();
+	}
+	
 	public float getMass() {
 		return body.getMass();
 	}
@@ -98,8 +103,9 @@ public class GameObject {
 			normal = wm.normal;
 			//System.out.println(edge.contact.m_fixtureB.getBody());
 			//System.out.println(normal + " is the normal");
-			if (normal.y > maxYNormForGround)
+			if (normal.y > maxYNormForGround) {
 				return true;
+			}
 			edge = edge.next;
 		}
 		return false;
@@ -139,7 +145,7 @@ public class GameObject {
 	/**
 	 * @param bodyId the bodyId to set
 	 */
-	public void setBodyId(String bodyId) {
+	private void setBodyId(String bodyId) {
 		GameObject.bodyId = bodyId;
 	}
 }

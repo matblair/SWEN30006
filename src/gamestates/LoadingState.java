@@ -48,7 +48,7 @@ public class LoadingState extends BasicGameState {
 		GameState.updateCamera();
 		
 		//Debug code
-		PhysUtils.printAllBodyIds(GameState.getLevel().getPhysWolrd());
+		PhysUtils.printAllBodyIds(GameState.getLevel().getPhysWorld());
 		
 		sbg.enterState(Portal2D.GAMESTATE);
 		finishedloading=true;

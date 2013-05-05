@@ -101,11 +101,11 @@ public class Level {
 		// TODO Auto-generated method stub
 	}
 	
-	public World getPhysWolrd(){
+	public World getPhysWorld(){
 		return world;
 	}
 
-	public World getPoralWorld(){
+	public World getPortalWorld(){
 		return portalWorld;
 	}
 	
@@ -133,7 +133,7 @@ public class Level {
 		bigSwitches.put(bodyid,s);
 	}
 	
-	public void addLilSwitch(LittleSwitch s, String bodyid){
+	public void addLittleSwitch(LittleSwitch s, String bodyid){
 		lilSwitches.put(bodyid,s);
 	}
 

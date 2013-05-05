@@ -14,7 +14,7 @@ public class Player extends GameObject{
 	private Image sprite_right;
 	private Image sprite_left; 
 	
-	/** Variables for intereaction **/
+	/** Variables for interaction **/
 	@SuppressWarnings("unused")
 	private boolean carryingcube=false;
 	

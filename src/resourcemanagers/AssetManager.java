@@ -79,7 +79,7 @@ public class AssetManager {
 		System.out.println(totalresources +" resources loaded in total");
 	}
 
-	public static Level loadLevel( final int levelid) throws SlickException{
+	public static Level loadLevel(final int levelid) throws SlickException{
 		String levelxml = AssetManager.requestLevelXMLPath(levelid);
 		System.out.println(levelxml + " level id is: "+ levelid);
 		Level level = new Level();
