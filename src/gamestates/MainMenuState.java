@@ -10,6 +10,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
@@ -34,9 +35,11 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	private boolean listening=true;
 	boolean debug, fullscreen;
 	private static Font font;
+	private static Image menubg;
+	private static Image menutile;
 	private int selected =-1;
 	private static String titleText = new String("Welcome to Portal 2D");
-	private static String subtitleText = new String("Version 0.1");
+	private static String subtitleText = new String("Version 0.4");
 
 	private static Vector<String> menuItems = new Vector<String>();
 	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
@@ -48,6 +51,8 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	{
 		super();
 		font = AssetManager.requestFontResource("RETROFONT");
+		menubg = AssetManager.requestUIElement("MENUBG");
+		menutile = AssetManager.requestUIElement("MENUTILING");
 		debug = false;
 		fullscreen = false;
 
@@ -57,6 +62,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 			throws SlickException {
 		// Load all resources in resource manager//
 		// Menu items
+		
 		menuItems.add("Start Game");
 		menuItems.add("Achievements");
 		menuItems.add("High Scores");
@@ -73,18 +79,20 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		menubg.draw(50,50);
 		g.setFont(font);
-		g.setColor(Color.white);
-		g.drawString(titleText, 40, 40);
-		g.drawString(subtitleText, 40, 60);
+		g.setBackground(Color.white);
+		g.setColor(Color.gray);
+		g.drawString(titleText, 140, 380);
+		g.drawString(subtitleText, 227, 400);
 
 		for (int i = 0; i < menuItems.size(); i++) {
 			if (i ==  menuItemSelected) {
-				g.setColor(Color.yellow);
+				g.setColor(Color.orange);
 			} else {
-				g.setColor(Color.white);
+				g.setColor(Color.darkGray);
 			}
-			g.drawString(menuItems.get(i), 40, 100 + i * 20);
+			g.drawString(menuItems.get(i), 120, 440 + i * 20);
 		}
 	
 

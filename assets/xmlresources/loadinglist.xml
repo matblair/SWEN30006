@@ -4,7 +4,9 @@
 	<!-- GeneralResources -->
 	
 	<!-- UIElements -->
-	
+	<resource type="UIELEMENT" id="MENUBG">assets/sprites/menubg.jpg</resource>
+	<resource type="UIELEMENT" id="MENUTILING">assets/sprites/menutiling.png</resource>
+
 	<!-- Sounds -->
 
 	<!-- Images -->
