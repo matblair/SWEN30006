@@ -65,15 +65,15 @@ public class AchievementState extends BasicGameState implements KeyListener{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		g.setFont(font);
-		g.setColor(Color.white);
+		g.setColor(Color.black);
 		g.drawString(titleText, 40, 40);
 		g.drawString(subtitleText, 40, 60);
 
 		for (int i = 0; i < menuItems.size(); i++) {
 			if (i ==  menuItemSelected) {
-				g.setColor(Color.yellow);
+				g.setColor(Color.orange);
 			} else {
-				g.setColor(Color.white);
+				g.setColor(Color.black);
 			}
 			g.drawString(menuItems.get(i), 40, 700);
 		}
