@@ -6,9 +6,9 @@ import org.newdawn.slick.SlickException;
 
 public class BigSwitch extends Switch {
 
-	public BigSwitch(String imgloc, Vec2 location, World world)
+	public BigSwitch(String imgloc, Vec2 location, World world, int bodytype)
 			throws SlickException {
-		super(imgloc, location, world);
+		super(imgloc, location, world, bodytype);
 		// TODO Auto-generated constructor stub
 	}
 

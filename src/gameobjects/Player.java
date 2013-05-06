@@ -18,6 +18,7 @@ public class Player extends GameObject{
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
+	private boolean facingleft=false;
 
 	/** Is holding cube? **/
 	private boolean holdingcube=false;
@@ -53,9 +54,13 @@ public class Player extends GameObject{
 	 */
 	public void moveXDir(float dir_x, float delta){
 		if (dir_x < 0) {
-			faceLeft();
+			if(!facingleft){
+				faceLeft();
+			}
 		} else if (dir_x > 0) {
-			faceRight();
+			if(facingleft){
+				faceRight();
+			}
 		}
 
 		float xVelocity = getBody().getLinearVelocity().x;
@@ -86,14 +91,22 @@ public class Player extends GameObject{
 	 * 
 	 */
 	public void faceLeft() {
+		if(holdingcube){
+			cubecarrying.getBody().setTransform(this.getLocation().add(new Vec2(-1,0)), 0);
+		}
 		this.setSprite(sprite_left);
+		facingleft=true;
 	}
 
 	/** Make the player face right.
 	 * 
 	 */
 	public void faceRight() {
+		if(holdingcube){
+			cubecarrying.getBody().setTransform(this.getLocation().add(new Vec2(1,0)), 0);
+		}
 		this.setSprite(sprite_right);
+		facingleft=false;
 	}
 
 	private void setObject_left(Image sprite_left) {
@@ -118,15 +131,28 @@ public class Player extends GameObject{
 		}
 	}
 
+	public void teleport(){
+		this.getBody().setTransform(new Vec2(2,17), 0f);
+	}
+	public void teleportHoriz(){
+		Vec2 currentvel = this.getBody().getLinearVelocity();
+		Float x = currentvel.x;
+		Float y = currentvel.y;
+		System.out.println(this.getBody().getLinearVelocity());
+		Vec2 transVec = new Vec2(-y,-x);
+		this.getBody().setTransform(new Vec2(0.5f,14), 0f);
+		this.getBody().setLinearVelocity(transVec);
+		System.out.println("After: " +this.getBody().getLinearVelocity());
+
+	}
+
+
 	public void pickupCube(CompanionCube cube){
-		if(!holdingcube){
-			System.out.println(this.getMass());
-			System.out.println(cube.getMass());
+		while(!holdingcube){
 			MassData massData=null;
 			massData = new MassData();
 			massData.mass=0.000001f;			
 			cube.getBody().setMassData(massData);
-			System.out.println(cube.getMass());
 			cube.getBody().setAngularVelocity(0.0f);
 			PrismaticJointDef def = new PrismaticJointDef();
 			def.bodyA=this.getBody();
@@ -135,12 +161,9 @@ public class Player extends GameObject{
 			def.type = jtype;
 			def.enableLimit=true;
 			def.enableMotor=true;
-			def.upperTranslation=2;
+			def.upperTranslation=1;
 			def.collideConnected=true;
 			GameState.getLevel().getPhysWorld().createJoint(def);
-			System.out.println(cube.getBody().m_jointList);
-			System.out.println(this.getMass());
-
 			holdingcube=true;
 			cubecarrying = cube;
 		}

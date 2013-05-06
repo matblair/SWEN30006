@@ -54,7 +54,11 @@ public class GameState extends BasicGameState implements KeyListener {
 		if (input.isKeyPressed(Input.KEY_E)){
 			level.getLevelPlayer().interact(level.getPhysWorld(), level);
 		}
-		
+		if (input.isKeyPressed(Input.KEY_T)){
+			level.getLevelPlayer().teleport();
+		}if (input.isKeyPressed(Input.KEY_Y)){
+			level.getLevelPlayer().teleportHoriz();
+		}		
 		cam.follow(gc, level.getLevelPlayer());
 		level.update(dir_x,0, delta, sbg);
 	}
