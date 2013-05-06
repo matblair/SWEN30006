@@ -2,6 +2,7 @@ package resourcemanagers;
 
 import gameengine.PhysUtils;
 import gameobjects.CompanionCube;
+import gameobjects.LittleSwitch;
 import gameobjects.MovingPlatform;
 import gameobjects.Player;
 import gameobjects.Wall;
@@ -132,8 +133,16 @@ public class LevelLoader {
 
 	}
 
-	private void addElementAsSwitch(Element resourceElement, Level level) {
-
+	private void addElementAsSwitch(Element resourceElement, Level level) throws SlickException{
+		String imgid = resourceElement.getAttribute("id");
+		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
+		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
+		String doorid = resourceElement.getAttribute("doorid");
+		Vec2 startloc = new Vec2(startx,starty);
+		
+		LittleSwitch newswitch = new LittleSwitch(imgid, startloc, level.getPhysWorld(), doorid);
+		level.addLittleSwitch(newswitch, newswitch.getBodyId());
+		
 	}
 
 	private void addElementAsPortal(Element resourceElement, Level level) {
