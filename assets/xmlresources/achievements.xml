@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+		
+	<!-- Achievements -->
+	<resource id="RISINGSUN" achid="0" name="Rising Sun" locked="false">Description goes here</resource>
+	<resource id="RISINGSUN" achid="1" name="Test Two" locked="false">Description goes here</resource>
+	<resource id="RISINGSUN" achid="2" name="Woooh Achievements" locked="false">Description goes here</resource>
+	<resource id="RISINGSUN" achid="3" name="Locked" locked="true">Description goes here</resource>
+	<resource id="RISINGSUN" achid="4" name="Can't Have this" locked="true">Description goes here</resource>
+
+
+</resources>
