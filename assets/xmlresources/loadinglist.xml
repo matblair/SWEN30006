@@ -16,18 +16,24 @@
 	<resource type="IMAGE" id="PLATFORM">assets/sprites/longlevel.png</resource>
 	<resource type="IMAGE" id="SMALLPLATFORM">assets/sprites/shortlevel.png</resource>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
 >>>>>>> champ
+=======
+>>>>>>> joana
 	<resource type="IMAGE" id="SMALLSWITCH">assets/sprites/smallswitch.png</resource>
 	<resource type="IMAGE" id="DOOROPEN">assets/sprites/dooropen.png</resource>
 	<resource type="IMAGE" id="DOORCLOSE">assets/sprites/doorclosed.png</resource>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/joana
 >>>>>>> champ
+=======
+>>>>>>> joana
 
 
 	<!-- LevelXML -->

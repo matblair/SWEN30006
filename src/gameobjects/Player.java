@@ -179,7 +179,7 @@ public class Player extends GameObject{
 		cubecarrying=null;
 	}
 	
-	public void enterPortal(Portal portal){
+	public void enterPortal(Portal portal) {
 		Vec2 newloc = portal.getLocation();
 		Vec2 transformedVel = this.getBody().getLinearVelocity();
 		
