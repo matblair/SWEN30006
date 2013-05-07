@@ -39,7 +39,7 @@ public class InputLoader {
 		}
 
 		// normalize text representation
-		doc.getDocumentElement ().normalize ();
+		doc.getDocumentElement().normalize ();
 
 		final NodeList listResources = doc.getElementsByTagName("resource");  
 

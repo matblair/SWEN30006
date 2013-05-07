@@ -73,7 +73,7 @@ public class AchievementLoader {
 		String achid = resourceElement.getAttribute("achid");
 		String name = resourceElement.getAttribute("name");
 		String description = resourceElement.getTextContent();
-		boolean locked = Boolean.parseBoolean(resourceElement.getAttribute("locked"));
-		AssetManager.getAchievementMap().put(achid, new Achievement(name, description, !locked, imgid));
+		boolean unlocked = Boolean.parseBoolean(resourceElement.getAttribute("unlocked"));
+		AssetManager.getAchievementMap().put(achid, new Achievement(name, description, unlocked, imgid));
 	}
 }

@@ -5,9 +5,6 @@ import gameengine.Portal2D;
 import gameengine.InputManager;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -22,10 +19,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AssetManager;
 
-public class AchievementState extends BasicGameState implements KeyListener{
-
-	/** Menu options for selection **/
-	private static int MENU_MAINMENU = 1;
+public class AchievementState extends BasicGameState implements KeyListener {
 	/** The state id for this part **/
 	private static int StateId = Portal2D.ACHIEVEMENTSTATE; // State ID
 
@@ -34,9 +28,6 @@ public class AchievementState extends BasicGameState implements KeyListener{
 	private static Font font, titleFont;
 	private static String titleText = new String("Achievements");
 	private static String subtitleText = new String("Version 0.4");
-
-	private static Vector<String> menuItems = new Vector<String>();
-	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 
 	private Collection<Achievement> achievements;
 	private int achievementSelected;
@@ -48,10 +39,6 @@ public class AchievementState extends BasicGameState implements KeyListener{
 
 	public AchievementState() throws SlickException {
 		super();
-		font = AssetManager.requestFontResource("RETROFONT");
-		titleFont = AssetManager.requestFontResource("TITLEFONT");
-		debug = false;
-		fullscreen = false;
 	}
 
 	@Override
@@ -62,13 +49,20 @@ public class AchievementState extends BasicGameState implements KeyListener{
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		menuItems.add("Main Menu");
-		stringMaps.put("Main Menu", MENU_MAINMENU);
+		font = AssetManager.requestFontResource("RETROFONT");
+		titleFont = AssetManager.requestFontResource("TITLEFONT");
+		debug = false;
+		fullscreen = false;
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-
+		Input input = gc.getInput();
+		
+		if (input.isKeyDown(InputManager.BACK)) {
+			System.out.println("leaving");
+			sbg.enterState(Portal2D.MAINMENUSTATE);
+		}
 	}
 
 	@Override
@@ -81,7 +75,8 @@ public class AchievementState extends BasicGameState implements KeyListener{
 		g.drawString(subtitleText, 40, 80);
 
 		Image image;
-		int index = 0, x, y;
+		int index = 0;
+		int x, y;
 		int width = gc.getWidth();
 		String text;
 
@@ -91,9 +86,13 @@ public class AchievementState extends BasicGameState implements KeyListener{
 
 			if (index == achievementSelected) {
 				g.drawRect(x, y, 100, 100); // Replace this with glow or shadow or whatever
+				
 				text = a.getName();
+				g.setColor(Color.darkGray);
 				g.drawString(text, 40, 120);
+				
 				text = a.getDescription();
+				g.setColor(Color.gray);
 				g.drawString(text, 300, 120);
 			}
 
@@ -138,9 +137,6 @@ public class AchievementState extends BasicGameState implements KeyListener{
 				achievementSelected += itemsPerRow;
 			if (achievementSelected >= achievements.size())
 				achievementSelected = achievements.size() - 1;
-
-		} else if (key == InputManager.SELECT) {
-			//selected=stringMaps.get(menuItems.get(menuItemSelected));
 		}
 	}
 
@@ -158,8 +154,4 @@ public class AchievementState extends BasicGameState implements KeyListener{
 
 	@Override
 	public void setInput(Input input) {input.addKeyListener(this);}
-
-	public static Vector<String> getMenuItems() {
-		return menuItems;
-	}
 }
