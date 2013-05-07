@@ -16,12 +16,12 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
-public class InputLoader {
+public class LockStatusLoader {
 
-	public InputLoader(){
+	public LockStatusLoader(){
 	}
 
-	public void loadInput(final InputStream is, final boolean deferred) throws SlickException {
+	public void lockLockStatus(final InputStream is, final boolean deferred) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
 		try {

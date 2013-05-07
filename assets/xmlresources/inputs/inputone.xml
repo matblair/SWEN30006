@@ -3,20 +3,19 @@
 <resources>
 		
 	<!-- Walls -->
-	<resource type="BACK" key="WALL" >inputresource</resource>
-	<resource type="SELECT" key="WALL" >inputresource</resource>
-	<resource type="NAVLEFT" key="WALL" >inputresource</resource>
-	<resource type="NAVRIGHT" key="WALL" >inputresource</resource>
-	<resource type="NAVDOWN" key="WALL" >inputresource</resource>
-	<resource type="NAVUP" key="WALL" >inputresource</resource>
-	<resource type="LEFT" key="WALL" >inputresource</resource>
-	<resource type="RIGHT" key="WALL" >inputresource</resource>
-	<resource type="UP" key="WALL" >inputresource</resource>
-	<resource type="DOWN" key="WALL" >inputresource</resource>
-	<resource type="JUMP" key="WALL" >inputresource</resource>
-	<resource type="PAUSE" key="WALL" >inputresource</resource>
-	<resource type="SHOOT" key="WALL" >inputresource</resource>
-	<resource type="INTERACT" key="WALL" >inputresource</resource>
+	<resource type="BACK" key="1" >inputresource</resource>
+	<resource type="SELECT" key="28" >inputresource</resource>
+	<resource type="NAVLEFT" key="203" >inputresource</resource>
+	<resource type="NAVRIGHT" key="205" >inputresource</resource>
+	<resource type="NAVDOWN" key="208" >inputresource</resource>
+	<resource type="NAVUP" key="200" >inputresource</resource>
+	<resource type="LEFT" key="203" >inputresource</resource>
+	<resource type="RIGHT" key="205" >inputresource</resource>
+	<resource type="JUMP" key="57" >inputresource</resource>
+	<resource type="PAUSE" key="1" >inputresource</resource>
+	<resource type="SHOOT_BLUE" key="30" >inputresource</resource>
+	<resource type="SHOOT_ORANGE" key="31" >inputresource</resource>
+	<resource type="INTERACT" key="18" >inputresource</resource>
 
 		
 </resources>

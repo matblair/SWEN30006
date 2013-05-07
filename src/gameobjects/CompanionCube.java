@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
 
 public class CompanionCube extends GameObject {
 	
-	private static float cubeRestitution=0.8f;
+	private static float cubeRestitution=0.35f;
 	
 	public CompanionCube(String imgloc, Vec2 location, World world)
 			throws SlickException {

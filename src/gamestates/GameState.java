@@ -46,7 +46,6 @@ public class GameState extends BasicGameState implements KeyListener {
 		int dir_x = 0;
 		Input input = gc.getInput();
 		
-		Object InputManager;
 		if (input.isKeyDown(InputManager.MOVE_RIGHT))
 			dir_x++;
 		if (input.isKeyDown(InputManager.MOVE_LEFT))
