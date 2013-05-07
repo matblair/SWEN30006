@@ -231,10 +231,4 @@ public class HighScoreState extends BasicGameState implements KeyListener{
     {
         return scores;
     }
-	
-	
-	
-	
-	
-	
 }
