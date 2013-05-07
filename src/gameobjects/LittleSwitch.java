@@ -15,7 +15,6 @@ public class LittleSwitch extends Switch {
 		super(imgloc, location, world, PhysUtils.STATIC);
 		setDoorId(door);
 		
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

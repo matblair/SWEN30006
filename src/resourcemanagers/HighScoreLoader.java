@@ -81,7 +81,5 @@ public class HighScoreLoader {
 
 	}
 	
-	private void saveHighScores(){
-		
-	}
+
 }
