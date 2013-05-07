@@ -178,6 +178,7 @@ public class Player extends GameObject{
 		holdingcube=false;
 		cubecarrying=null;
 	}
+<<<<<<< HEAD
 	
 	public void enterPortal(Portal portal) {
 		Vec2 newloc = portal.getLocation();
@@ -185,5 +186,7 @@ public class Player extends GameObject{
 		
 
 	}
+=======
+>>>>>>> joana
 
 }

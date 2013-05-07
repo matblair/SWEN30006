@@ -19,11 +19,17 @@ import org.newdawn.slick.state.StateBasedGame;
 import resourcemanagers.AssetManager;
 
 public class AchievementState extends BasicGameState implements KeyListener{
+<<<<<<< HEAD
 	
 	/** Menu options for selection **/
 	private static int MENU_MAINMENU = 1;
 	
 
+=======
+
+	/** Menu options for selection **/
+	private static int MENU_MAINMENU = 1;
+>>>>>>> joana
 
 
 	private static int StateId = Portal2D.ACHIEVEMENTSTATE; // State ID
@@ -31,6 +37,12 @@ public class AchievementState extends BasicGameState implements KeyListener{
 	
 
 
+<<<<<<< HEAD
+=======
+
+	////////////////////////////////////
+
+>>>>>>> joana
 	/** The state id for this part **/
 	private boolean listening=true;
 	boolean debug, fullscreen;
@@ -56,6 +68,12 @@ public class AchievementState extends BasicGameState implements KeyListener{
 		fullscreen = false;
 
 	}
+<<<<<<< HEAD
+=======
+	////////////////////////////////////
+
+
+>>>>>>> joana
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
@@ -106,6 +124,7 @@ public class AchievementState extends BasicGameState implements KeyListener{
 		g.setColor(Color.black);
 		g.drawString(titleText, 40, 40);
 		g.drawString(subtitleText, 40, 60);
+<<<<<<< HEAD
 
 		for (int i = 0; i < menuItems.size(); i++) {
 			if (i ==  menuItemSelected) {
@@ -120,6 +139,8 @@ public class AchievementState extends BasicGameState implements KeyListener{
 		g.setColor(Color.black);
 		g.drawString(titleText, 40, 40);
 		g.drawString(subtitleText, 40, 60);
+=======
+>>>>>>> joana
 		g.drawString(description, 400, 60);
 
 		for (int i = 0; i < menuItems.size(); i++) {
@@ -157,7 +178,12 @@ public class AchievementState extends BasicGameState implements KeyListener{
 			case 1:
 				LoadingState.loadLevel(sbg,0);
 				stateid=Portal2D.MAINMENUSTATE;
+<<<<<<< HEAD
                 break;
+=======
+
+				break; 
+>>>>>>> joana
 			case 11:
 				description = "description 1";
 				break; 
@@ -167,7 +193,10 @@ public class AchievementState extends BasicGameState implements KeyListener{
 			case 21:
 				description = "description 6";
 				break; 
+<<<<<<< HEAD
 
+=======
+>>>>>>> joana
 			}
 			selected=-1;
 			sbg.enterState(stateid);
