@@ -15,6 +15,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Player extends GameObject{
+	private static final float MAXCUBEDIST = 1;
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
@@ -161,7 +162,8 @@ public class Player extends GameObject{
 			def.type = jtype;
 			def.enableLimit=true;
 			def.enableMotor=true;
-			def.upperTranslation=1;
+			def.lowerTranslation=0.1f;
+			def.upperTranslation=0.2f;
 			def.collideConnected=true;
 			GameState.getLevel().getPhysWorld().createJoint(def);
 			holdingcube=true;
@@ -177,6 +179,18 @@ public class Player extends GameObject{
 		GameState.getLevel().getPhysWorld().destroyJoint(joint);
 		holdingcube=false;
 		cubecarrying=null;
+	}
+
+	public void checkCube(){
+		if(holdingcube){
+			Vec2 cubepos = cubecarrying.getLocation();
+			Vec2 playerpos = this.getLocation();	
+			float dist = cubepos.sub(playerpos).length();
+			System.out.println(dist);
+			if(dist>MAXCUBEDIST){
+				dropCube();
+			}
+		}
 	}
 
 }
