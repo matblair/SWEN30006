@@ -71,7 +71,6 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 		stringMaps.put("High Scores", MENU_HIGHSCORES);
 		stringMaps.put("Options", MENU_OPTIONS);
 		stringMaps.put("Test World",  MENU_TESTGAME);
-
 	}
 
 	@Override
