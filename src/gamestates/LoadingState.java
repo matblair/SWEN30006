@@ -15,13 +15,15 @@ import resourcemanagers.AssetManager;
 public class LoadingState extends BasicGameState {
 	private static int StateId = Portal2D.LOADSTATE; // State ID
 	private static boolean finishedloading=false;
+	@SuppressWarnings("unused")
+	private static int leveltoload=0;
 	//private static boolean drawnloadingscreen=false;
 
 	public LoadingState() throws SlickException
 	{
 		super();
 		AssetManager.loadAllGameAssets();
-		System.out.println("resources loaded");	
+		AssetManager.loadInput(0);
 	}
 
 	@Override
@@ -49,7 +51,7 @@ public class LoadingState extends BasicGameState {
 		Level level = AssetManager.loadLevel(levelid);
 		GameState.setLevel(level);
 		GameState.updateCamera();
-		
+	
 		//Debug code
 		PhysUtils.printAllBodyIds(GameState.getLevel().getPhysWorld());
 		

@@ -15,6 +15,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Player extends GameObject{
+	private static final float MAXCUBEDIST = 1.3f;
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
@@ -178,12 +179,18 @@ public class Player extends GameObject{
 		holdingcube=false;
 		cubecarrying=null;
 	}
-	
-	public void enterPortal(Portal portal) {
-		Vec2 newloc = portal.getLocation();
-		Vec2 transformedVel = this.getBody().getLinearVelocity();
-		
 
+	
+	public void checkCube(){
+		if(holdingcube){
+			Vec2 cubepos = cubecarrying.getLocation();
+			Vec2 playerpos = this.getLocation();	
+			float dist = cubepos.sub(playerpos).length();
+			System.out.println(dist);
+			if(dist>MAXCUBEDIST){
+				dropCube();
+			}
+		}
 	}
 
 }

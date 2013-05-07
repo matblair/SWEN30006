@@ -81,6 +81,7 @@ public class Level {
 		float timeStep = (float)delta/1000;
 		world.step(timeStep, velocityIterations, positionIterations);
 		player.moveXDir(dir_x, delta);
+		player.checkCube();
 	}
 	
 	public Player getLevelPlayer() {

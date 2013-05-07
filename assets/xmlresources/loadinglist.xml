@@ -4,26 +4,33 @@
 	<!-- GeneralResources -->
 	
 	<!-- UIElements -->
-	<resource type="UIELEMENT" id="MENUBG">assets/sprites/menubg.jpg</resource>
-	<resource type="UIELEMENT" id="MENUTILING">assets/sprites/menutiling.png</resource>
+	<resource type="UIELEMENT" id="MENUBG">assets/sprites/uielements/menubg.jpg</resource>
+	<resource type="UIELEMENT" id="MENUTILING">assets/sprites/uielements/menutiling.png</resource>
 
 	<!-- Sounds -->
 
 	<!-- Images -->
-	<resource type="IMAGE" id="CHELLSPRITE">assets/sprites/chell.png</resource>
-	<resource type="IMAGE" id="HITBOX">assets/sprites/hitbox.png</resource>
-	<resource type="IMAGE" id="CUBE">assets/sprites/cube.png</resource>
-	<resource type="IMAGE" id="PLATFORM">assets/sprites/longlevel.png</resource>
-	<resource type="IMAGE" id="SMALLPLATFORM">assets/sprites/shortlevel.png</resource>
-	<resource type="IMAGE" id="SMALLSWITCH">assets/sprites/smallswitch.png</resource>
-	<resource type="IMAGE" id="DOOROPEN">assets/sprites/dooropen.png</resource>
-	<resource type="IMAGE" id="DOORCLOSE">assets/sprites/doorclosed.png</resource>
+	<resource type="IMAGE" id="CHELLSPRITE">assets/sprites/gameobjects/chell.png</resource>
+	<resource type="IMAGE" id="HITBOX">assets/sprites/gameobjects/hitbox.png</resource>
+	<resource type="IMAGE" id="CUBE">assets/sprites/gameobjects/cube.png</resource>
+	<resource type="IMAGE" id="PLATFORM">assets/sprites/levelobjects/longlevel.png</resource>
+	<resource type="IMAGE" id="SMALLPLATFORM">assets/sprites/levelobjects/shortlevel.png</resource>
+	<resource type="IMAGE" id="SMALLSWITCH">assets/sprites/gameobjects/smallswitch.png</resource>
+	<resource type="IMAGE" id="DOOROPEN">assets/sprites/levelobjects/dooropen.png</resource>
+	<resource type="IMAGE" id="DOORCLOSE">assets/sprites/levelobjects/doorclosed.png</resource>
 
+
+	<!-- Achievement Images -->
+	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>
 
 
 	<!-- LevelXML -->
 	<resource type="LEVELXML" id="1">levels/testlevel.xml</resource>
 	<resource type="LEVELXML" id="0">levels/levelone.xml</resource>
+
+	<!-- Input XML -->
+	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
+
 
 	<!-- Animations -->
 

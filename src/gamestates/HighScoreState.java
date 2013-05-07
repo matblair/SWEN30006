@@ -70,7 +70,6 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		// TODO Auto-generated method stub
 		menuItems.add("Main Menu");
 		stringMaps.put("Main Menu", MENU_MAINMENU);
 	}
@@ -78,7 +77,6 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		// TODO Auto-generated method stub
 		g.setFont(font);
 		g.setColor(Color.black);
 		g.drawString(titleText, 40, 40);
@@ -105,9 +103,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
-			throws SlickException {
-		// TODO Auto-generated method stub
-		
+			throws SlickException {		
 		if(selected!=-1){
 			int stateid=Portal2D.HIGHSCORESTATE;
 			switch (selected){
@@ -204,7 +200,6 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 			try {
 				instance = new HighScoreState();
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
   
