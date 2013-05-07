@@ -24,6 +24,8 @@ public class AssetManager {
 	private static  ResourceLoader resourceLoader = new ResourceLoader();
 	/** The level loader **/
 	private static LevelLoader levelLoader = new LevelLoader();
+	/** The input manager **/
+	private static InputLoader inputloader = new InputLoader();
 
 	/**Creates a resource repository of commonly used items **/
 	private static Map<String, Image> imageResources = new HashMap<String, Image>(); //All images used for game objects
@@ -31,6 +33,7 @@ public class AssetManager {
 	private static Map<String, Vec2> vectorResources = new HashMap<String, Vec2>(); //All vector locations
 	private static Map<String, Image> uiElementResources = new HashMap<String, Image>(); //All UI Resources
 	private static Map<Integer, String> 	levelXmlResources = new HashMap<Integer, String>(); //All the level xml resources
+	private static Map<Integer, String> 	inputXmlResources = new HashMap<Integer, String>(); //All the level xml resources
 	private static Map<String, Font> fontResources = new HashMap<String, Font>(); //All the level xml resources
 	private static Map<String, Animation> animationResources = new HashMap<String, Animation>();; //All the level xml resources
 
@@ -74,6 +77,7 @@ public class AssetManager {
 		System.out.println(vectorResources.size() +" vectors loaded.");
 		System.out.println(uiElementResources.size() +" ui elements loaded.");
 		System.out.println(levelXmlResources.size() +" xml levels loaded.");
+		System.out.println(inputXmlResources.size() +" input xml loaded.");
 		System.out.println(fontResources.size() +" fonts loaded.");
 		System.out.println(animationResources.size() +" animations loaded.");
 		System.out.println(totalresources +" resources loaded in total");
@@ -103,6 +107,28 @@ public class AssetManager {
 		}
 		return level;
 	}
+	
+	public static void loadInput(int inputtype) throws SlickException{
+		String inputxml = AssetManager.requestInputXMLPath(inputtype);
+		// Have to set resource path based on level id, hash map of level ids?
+		final File f = new File(generalresource, inputxml);
+		InputStream is = null;
+		try {
+			is = new FileInputStream(f);
+			inputloader.loadInput(is, false);
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (final SlickException e) {
+			e.printStackTrace();
+		} finally	{
+			try {
+				is.close();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 
 	public static Level loadTestLevel() throws SlickException{
 		Level level = new Level();
@@ -127,6 +153,9 @@ public class AssetManager {
 	}
 	public static String requestLevelXMLPath(int levelid){
 		return levelXmlResources.get(levelid);
+	}
+	public static String requestInputXMLPath(int inputid){
+		return inputXmlResources.get(inputid);
 	}
 
 	public static Font requestFontResource(String fontid){
@@ -164,6 +193,9 @@ public class AssetManager {
 	public static Map<Integer, String> getLevelXmlResources() {
 		return levelXmlResources;
 	}
+	public static Map<Integer, String> getInputResources() {
+		return inputXmlResources;
+	}
 
 	public static Map<String, Font> getFontResources() {
 		return fontResources;
@@ -196,6 +228,10 @@ public class AssetManager {
 	public static void setLevelXmlResources(Map<Integer, String> levelXmlResources) {
 		AssetManager.levelXmlResources = levelXmlResources;
 	}
+	
+	public static void setInputXmlResources(Map<Integer, String> setInputXmlResources) {
+		AssetManager.inputXmlResources = setInputXmlResources;
+	}
 
 	public static void setFontResources(Map<String, Font> fontResources) {
 		AssetManager.fontResources = fontResources;
@@ -205,6 +241,8 @@ public class AssetManager {
 			Map<String, Animation> animationResources) {
 		AssetManager.animationResources = animationResources;
 	}
+
+	
 
 }
 

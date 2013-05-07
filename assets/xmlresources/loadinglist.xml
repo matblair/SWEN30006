@@ -25,6 +25,10 @@
 	<resource type="LEVELXML" id="1">levels/testlevel.xml</resource>
 	<resource type="LEVELXML" id="0">levels/levelone.xml</resource>
 
+	<!-- Input XML -->
+	<resource type="INPUTXML" id="1">inputs/inputone.xml</resource>
+
+
 	<!-- Animations -->
 
 	<!-- Fonts -->

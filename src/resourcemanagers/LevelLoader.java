@@ -166,10 +166,11 @@ public class LevelLoader {
 
 	private void addElementAsWall(Element resourceElement, Level level) throws SlickException {
 		String imgid = resourceElement.getAttribute("id");
-		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
+		Float startx =   Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Float width = Float.parseFloat(resourceElement.getAttribute("width"));
 		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
+		
 		Vec2 startloc = new Vec2(startx,starty);
 		Wall wall = new Wall(imgid,startloc, width, height,level.getPhysWorld());
 		level.addWall(wall, wall.getBodyId());
@@ -180,8 +181,6 @@ public class LevelLoader {
 		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
 		Vec2 startloc = new Vec2(xstart,ystart);
-
-		
 		CompanionCube cube = new CompanionCube(imgid, startloc, level.getPhysWorld());
 		level.addCube(cube, cube.getBodyId());
 	}
@@ -191,8 +190,8 @@ public class LevelLoader {
 		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
 		System.out.println(xstart + ", " + ystart + ", " + imgid);
-		Vec2 startloc = new Vec2(xstart,ystart);
 		
+		Vec2 startloc = new Vec2(xstart,ystart);
 		Player newplayer = new Player(imgid,startloc, level.getPhysWorld());
 		level.setLevelPlayer(newplayer);
 		

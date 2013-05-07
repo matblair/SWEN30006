@@ -90,11 +90,19 @@ public class ResourceLoader {
 				}else if(type.equals("FONT")){
 					addElementAsFont(resourceElement);
 					resourcenumber++;
-
+				}else if(type.equals("INPUTXML")){
+					addElementAsInputMap(resourceElement);
+					resourcenumber++;
 				}
 			}
 		}
 		return resourcenumber;
+	}
+
+	private void addElementAsInputMap(Element resourceElement) {	
+		String xml = resourceElement.getTextContent();
+		int id = Integer.parseInt(resourceElement.getAttribute("id"));
+		AssetManager.getInputResources().put(id,xml);
 	}
 
 	private void addElementAsLevelXML(Element resourceElement) {	
