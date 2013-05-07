@@ -179,7 +179,7 @@ public class Player extends GameObject{
 		holdingcube=false;
 		cubecarrying=null;
 	}
-	
+
 	
 	public void checkCube(){
 		if(holdingcube){
