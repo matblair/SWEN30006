@@ -135,6 +135,32 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 		switch(key) {
 		case Input.KEY_ENTER:
 			selected=stringMaps.get(menuItems.get(menuItemSelected));
+		case Input.KEY_RIGHT:
+			scores = new ArrayList<Integer>();
+			
+			for (int i=0; i< 10; i++){
+				scores.add(new Integer(0));
+			}
+			
+			for (int j=0; j< 10; j++){
+				Random rn = new Random();
+				int value = rn.nextInt(2000);
+				scores.set(j, value);
+			} 
+			Collections.sort(scores);
+		case Input.KEY_LEFT:
+			scores = new ArrayList<Integer>();
+			
+			for (int i=0; i< 10; i++){
+				scores.add(new Integer(0));
+			}
+			
+			for (int j=0; j< 10; j++){
+				Random rn = new Random();
+				int value = rn.nextInt(2000);
+				scores.set(j, value);
+			} 
+			Collections.sort(scores);
 		}
 	}
 
