@@ -2,6 +2,7 @@ package gamestates;
 
 import gameengine.Portal2D;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -41,13 +42,16 @@ public class AchievementState extends BasicGameState implements KeyListener{
 	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	private static int menuItemSelected = 0;
 	
+	ArrayList<String> achievements = null;
+	
 	public AchievementState() throws SlickException
 	{
 		super();
 		font = AssetManager.requestFontResource("RETROFONT");
 		debug = false;
 		fullscreen = false;
-
+		//achievements = (ArrayList<String>) AssetManager.getVectorResources();
+		
 	}
     ////////////////////////////////////
 	
