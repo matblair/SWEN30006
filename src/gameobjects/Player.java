@@ -4,7 +4,6 @@ import gameengine.PhysUtils;
 import gamestates.GameState;
 import gameworlds.Level;
 
-import org.jbox2d.collision.WorldManifold;
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
