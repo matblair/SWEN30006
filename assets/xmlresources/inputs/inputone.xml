@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+		
+	<!-- Walls -->
+	<resource type="BACK" key="WALL" >inputresource</resource>
+	<resource type="SELECT" key="WALL" >inputresource</resource>
+	<resource type="NAVLEFT" key="WALL" >inputresource</resource>
+	<resource type="NAVRIGHT" key="WALL" >inputresource</resource>
+	<resource type="NAVDOWN" key="WALL" >inputresource</resource>
+	<resource type="NAVUP" key="WALL" >inputresource</resource>
+	<resource type="LEFT" key="WALL" >inputresource</resource>
+	<resource type="RIGHT" key="WALL" >inputresource</resource>
+	<resource type="UP" key="WALL" >inputresource</resource>
+	<resource type="DOWN" key="WALL" >inputresource</resource>
+	<resource type="JUMP" key="WALL" >inputresource</resource>
+	<resource type="PAUSE" key="WALL" >inputresource</resource>
+	<resource type="SHOOT" key="WALL" >inputresource</resource>
+	<resource type="INTERACT" key="WALL" >inputresource</resource>
+
+		
+</resources>
