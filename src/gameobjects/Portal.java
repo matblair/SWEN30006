@@ -8,10 +8,17 @@ import org.newdawn.slick.SlickException;
 
 public class Portal extends GameObject {
 
+	Portal otherconnection;
+
+	
 	public Portal(String imgloc, Vec2 location, World world)
 			throws SlickException {
 		super(imgloc, location, world, PhysUtils.PORTAL);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void linkPortals(Portal portal){
+		otherconnection = portal;
 	}
 
 }
