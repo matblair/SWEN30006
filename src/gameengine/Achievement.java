@@ -5,7 +5,7 @@ import org.newdawn.slick.Image;
 import resourcemanagers.AssetManager;
 
 public class Achievement {
-	private Image image, imageUnfocused;
+	private Image image, imageLocked;
 	private String name, description;
 	private boolean unlocked;
 	
@@ -16,7 +16,27 @@ public class Achievement {
 		this.description = description;
 		this.unlocked = unlocked;
 		image = AssetManager.requestAchiemeventResource("RISINGSUN");
-		imageUnfocused = image.copy();
-		imageUnfocused.setImageColor(filterAmount, filterAmount, filterAmount);
+		imageLocked = image.copy();
+		imageLocked.setImageColor(filterAmount, filterAmount, filterAmount);
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public boolean isUnlocked() {
+		return unlocked;
+	}
+	
+	public Image getUnlockedImage() {
+		return image;
+	}
+	
+	public Image getLockedImage() {
+		return imageLocked;
 	}
 }

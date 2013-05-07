@@ -36,6 +36,7 @@
 
 	<!-- Fonts -->
 	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>
+    <resource type="FONT" id="TITLEFONT" fontsize="30">assets/fonts/RETRO.ttf</resource>
 
 	
 </resources>
