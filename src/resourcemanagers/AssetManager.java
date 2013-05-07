@@ -1,5 +1,6 @@
 package resourcemanagers;
 
+import gameengine.Achievement;
 import gameworlds.Level;
 
 import java.io.File;
@@ -7,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,22 +28,28 @@ public class AssetManager {
 	private static LevelLoader levelLoader = new LevelLoader();
 	/** The input manager **/
 	private static InputLoader inputloader = new InputLoader();
+	/** The achievement loader **/
+	private static AchievementLoader achievementLoader = new AchievementLoader();
 
 	/**Creates a resource repository of commonly used items **/
 	private static Map<String, Image> imageResources = new HashMap<String, Image>(); //All images used for game objects
 	private static Map<String, Sound> soundResources = new HashMap<String, Sound>(); //All sounds resources
 	private static Map<String, Vec2> vectorResources = new HashMap<String, Vec2>(); //All vector locations
 	private static Map<String, Image> uiElementResources = new HashMap<String, Image>(); //All UI Resources
-	private static Map<Integer, String> 	levelXmlResources = new HashMap<Integer, String>(); //All the level xml resources
-	private static Map<Integer, String> 	inputXmlResources = new HashMap<Integer, String>(); //All the level xml resources
+	private static Map<Integer, String> levelXmlResources = new HashMap<Integer, String>(); //All the level xml resources
+	private static Map<Integer, String> inputXmlResources = new HashMap<Integer, String>(); //All the level xml resources
 	private static Map<String, Font> fontResources = new HashMap<String, Font>(); //All the level xml resources
 	private static Map<String, Animation> animationResources = new HashMap<String, Animation>();; //All the level xml resources
-
+	private static Map<String, Image> achievementResources = new HashMap<String, Image>(); //All images used for game objects
+	private static Map<String, Achievement> achievements = new HashMap<String, Achievement>(); //All images used for game objects
+	
 	private static int totalresources=0;
 
 	//General File Locations
 	private static final String loadinglist ="loadinglist.xml";
 	private static final String generalresource = "assets/xmlresources/";
+	private static final String achievementxml = "achievements.xml";
+	
 
 
 	private AssetManager(){				
@@ -72,6 +80,9 @@ public class AssetManager {
 				e.printStackTrace();
 			}
 		}
+		
+		loadAchievements();
+		
 		System.out.println(imageResources.size() +" images loaded.");
 		System.out.println(soundResources.size() +" sounds loaded.");
 		System.out.println(vectorResources.size() +" vectors loaded.");
@@ -83,6 +94,26 @@ public class AssetManager {
 		System.out.println(totalresources +" resources loaded in total");
 	}
 
+	public static void loadAchievements(){
+		final File f = new File(generalresource, achievementxml);
+		InputStream is = null;
+		try {
+			is = new FileInputStream(f);
+			achievementLoader.loadAchievements(is, false);
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (final SlickException e) {
+			e.printStackTrace();
+		} finally	{
+			try {
+				is.close();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public static Level loadLevel(final int levelid) throws SlickException{
 		String levelxml = AssetManager.requestLevelXMLPath(levelid);
 		System.out.println(levelxml + " level id is: "+ levelid);
@@ -139,7 +170,10 @@ public class AssetManager {
 	public static Image requestImage(String imgid){
 		return imageResources.get(imgid);
 	}
-
+	public static Image requestAchiemeventResource(String imgid){
+		return achievementResources.get(imgid);
+	}
+	
 	public static Vec2 requestVec(String vecid){
 		return vectorResources.get(vecid);
 	}
@@ -176,6 +210,18 @@ public class AssetManager {
 
 	public static Map<String, Image> getImageResources() {
 		return imageResources;
+	}
+	
+	public static Map<String, Image> getAchievementResources() {
+		return achievementResources;
+	}
+
+	public static Collection<Achievement> getAchievements() {
+		return achievements.values();
+	}
+	
+	public static Map<String, Achievement> getAchievementMap() {
+		return achievements;
 	}
 
 	public static Map<String, Sound> getSoundResources() {

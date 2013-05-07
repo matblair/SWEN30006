@@ -74,25 +74,23 @@ public class ResourceLoader {
 				}else if(type.equals("SOUND")){  
 					addElementAsSound(resourceElement);
 					resourcenumber++;
-
 				}else if(type.equals("UIELEMENT")){  
 					addElementAsUIElement(resourceElement);
 					resourcenumber++;
-
 				}else if(type.equals("LEVELXML")){  
 					addElementAsLevelXML(resourceElement);
 					resourcenumber++;
-
 				}else if(type.equals("ANIMATION")){
 					addElementAsAnimation(resourceElement);
 					resourcenumber++;
-
 				}else if(type.equals("FONT")){
 					addElementAsFont(resourceElement);
 					resourcenumber++;
 				}else if(type.equals("INPUTXML")){
 					addElementAsInputMap(resourceElement);
 					resourcenumber++;
+				}else if(type.equals("ACHIMAGE")){
+					addElementAsAchievementImage(resourceElement);
 				}
 			}
 		}
@@ -115,6 +113,12 @@ public class ResourceLoader {
 		Image newimg= new Image(resourceElement.getTextContent());
 		String imgid= resourceElement.getAttribute("id");
 		AssetManager.getImageResources().put(imgid, newimg);
+	}
+	
+	private void addElementAsAchievementImage(Element resourceElement) throws DOMException, SlickException {
+		Image newimg= new Image(resourceElement.getTextContent());
+		String imgid= resourceElement.getAttribute("id");
+		AssetManager.getAchievementResources().put(imgid, newimg);
 	}
 	
 	private void addElementAsSound(Element resourceElement) {

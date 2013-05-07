@@ -1,5 +1,7 @@
 package resourcemanagers;
 
+import gameengine.Achievement;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -67,6 +69,11 @@ public class AchievementLoader {
 	}
 
 	private void addAchievement(Element resourceElement) {
-		
+		String imgid = resourceElement.getAttribute("id");
+		String achid = resourceElement.getAttribute("achid");
+		String name = resourceElement.getAttribute("name");
+		String description = resourceElement.getTextContent();
+		boolean locked = Boolean.parseBoolean(resourceElement.getAttribute("locked"));
+		AssetManager.getAchievementMap().put(achid, new Achievement(name, description,locked, imgid));
 	}
 }

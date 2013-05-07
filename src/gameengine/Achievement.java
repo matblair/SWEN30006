@@ -2,6 +2,8 @@ package gameengine;
 
 import org.newdawn.slick.Image;
 
+import resourcemanagers.AssetManager;
+
 public class Achievement {
 	private Image image, imageUnfocused;
 	private String name, description;
@@ -13,8 +15,7 @@ public class Achievement {
 		this.name = name;
 		this.description = description;
 		this.unlocked = unlocked;
-		
-		image = ;// Resource loader stuff here
+		image = AssetManager.requestAchiemeventResource("RISINGSUN");
 		imageUnfocused = image.copy();
 		imageUnfocused.setImageColor(filterAmount, filterAmount, filterAmount);
 	}
