@@ -19,10 +19,8 @@
 	<resource type="IMAGE" id="DOOROPEN">assets/sprites/levelobjects/dooropen.png</resource>
 	<resource type="IMAGE" id="DOORCLOSE">assets/sprites/levelobjects/doorclosed.png</resource>
 
-
 	<!-- Achievement Images -->
 	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>
-
 
 	<!-- LevelXML -->
 	<resource type="LEVELXML" id="1">levels/testlevel.xml</resource>
@@ -30,7 +28,6 @@
 
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
-
 
 	<!-- Animations -->
 

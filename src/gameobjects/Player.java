@@ -4,6 +4,7 @@ import gameengine.PhysUtils;
 import gamestates.GameState;
 import gameworlds.Level;
 
+import org.jbox2d.collision.AABB;
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
@@ -120,6 +121,7 @@ public class Player extends GameObject{
 		} else {
 			ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
 			while (edge != null) {
+			
 				System.out.println("Found " + edge.other + " of type " + level.getBodyType(edge.other));
 				String type=level.getBodyType(edge.other);
 				if(type.equals("cube")){
