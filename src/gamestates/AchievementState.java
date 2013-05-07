@@ -43,16 +43,13 @@ public class AchievementState extends BasicGameState implements KeyListener{
 	private static Vector<String> achievementItems = new Vector<String>();
 	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	private static int menuItemSelected = 0;
-<<<<<<< HEAD
 	private static int achievementItemSelected = 1;
 
 
 
-=======
 	
 	ArrayList<String> achievements = null;
 	
->>>>>>> aa3b0a964a400c036ed4601afb7be86d9a0df01d
 	public AchievementState() throws SlickException
 	{
 		super();
