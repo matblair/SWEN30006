@@ -1,6 +1,7 @@
 package gamestates;
 
 import gameengine.Portal2D;
+import gameengine.InputManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -177,29 +178,22 @@ public class AchievementState extends BasicGameState implements KeyListener{
 	@Override
 	public void keyPressed(int key, char c) {
 		System.out.println("Key pressed in AchievementState int: " + key);
-		switch(key) {
-		case Input.KEY_LEFT:
+		if (key == InputManager.NAV_LEFT) {
 			if (achievementItemSelected == 0)
 				achievementItemSelected = achievementItems.size() - 1;
 			else
 				achievementItemSelected--;
-			break;
-		case Input.KEY_RIGHT:
+		} else if (key == InputManager.NAV_RIGHT) {
 			if (achievementItemSelected == achievementItems.size() - 1)
 				achievementItemSelected = 0;
 			else
 				achievementItemSelected++;
-			break;
-		case Input.KEY_UP:
+		} else if (key == InputManager.NAV_UP) {
 			achievementItemSelected -= 5;
-			break;
-		case Input.KEY_DOWN:
+		} else if (key == InputManager.NAV_DOWN) {
 			achievementItemSelected += 5;
-			break;	
-		case Input.KEY_ENTER:
+		} else if (key == InputManager.SELECT) {
 			selected=stringMaps.get(menuItems.get(menuItemSelected));
-
-
 		}
 	}
 
