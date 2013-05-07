@@ -73,14 +73,7 @@ public class Level {
 		RenderEngine.drawGameObject(player, cam);
 		RenderEngine.drawGameObjects(cubes, cam);
 		RenderEngine.drawGameObjects(platforms, cam);
-<<<<<<< HEAD
 		RenderEngine.drawGameObjects(lilSwitches, cam);
-=======
-<<<<<<< HEAD
-=======
-		RenderEngine.drawGameObjects(lilSwitches, cam);
->>>>>>> origin/joana
->>>>>>> champ
 		
 	}
 
@@ -88,7 +81,6 @@ public class Level {
 		float timeStep = (float)delta/1000;
 		world.step(timeStep, velocityIterations, positionIterations);
 		player.moveXDir(dir_x, delta);
-		player.checkCube();
 	}
 	
 	public Player getLevelPlayer() {

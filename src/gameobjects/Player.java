@@ -15,12 +15,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Player extends GameObject{
-	private static final float MAXCUBEDIST = 1;
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
 	private boolean facingleft=false;
-
 
 	/** Is holding cube? **/
 	private boolean holdingcube=false;
@@ -133,11 +131,6 @@ public class Player extends GameObject{
 		}
 	}
 
-	public void pickupCube(CompanionCube cube){
-		if(!holdingcube){
-			System.out.println(this.getMass());
-			System.out.println(cube.getMass());
-=======
 	public void teleport(){
 		this.getBody().setTransform(new Vec2(2,17), 0f);
 	}
@@ -156,19 +149,10 @@ public class Player extends GameObject{
 
 	public void pickupCube(CompanionCube cube){
 		while(!holdingcube){
->>>>>>> origin/joana
->>>>>>> champ
 			MassData massData=null;
 			massData = new MassData();
 			massData.mass=0.000001f;			
 			cube.getBody().setMassData(massData);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-			System.out.println(cube.getMass());
-=======
->>>>>>> origin/joana
->>>>>>> champ
 			cube.getBody().setAngularVelocity(0.0f);
 			PrismaticJointDef def = new PrismaticJointDef();
 			def.bodyA=this.getBody();
@@ -177,20 +161,6 @@ public class Player extends GameObject{
 			def.type = jtype;
 			def.enableLimit=true;
 			def.enableMotor=true;
-<<<<<<< HEAD
-			def.lowerTranslation=0.1f;
-			def.upperTranslation=0.2f;
-			def.collideConnected=true;
-			GameState.getLevel().getPhysWorld().createJoint(def);
-=======
-<<<<<<< HEAD
-			def.upperTranslation=2;
-			def.collideConnected=true;
-			GameState.getLevel().getPhysWorld().createJoint(def);
-			System.out.println(cube.getBody().m_jointList);
-			System.out.println(this.getMass());
-
-=======
 			def.upperTranslation=1;
 			def.collideConnected=true;
 			GameState.getLevel().getPhysWorld().createJoint(def);
@@ -214,18 +184,6 @@ public class Player extends GameObject{
 		Vec2 transformedVel = this.getBody().getLinearVelocity();
 		
 
-	}
-
-	public void checkCube(){
-		if(holdingcube){
-			Vec2 cubepos = cubecarrying.getLocation();
-			Vec2 playerpos = this.getLocation();	
-			float dist = cubepos.sub(playerpos).length();
-			System.out.println(dist);
-			if(dist>MAXCUBEDIST){
-				dropCube();
-			}
-		}
 	}
 
 }

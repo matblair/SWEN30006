@@ -2,7 +2,6 @@ package resourcemanagers;
 
 import gameengine.PhysUtils;
 import gameobjects.CompanionCube;
-
 import gameobjects.LittleSwitch;
 import gameobjects.MovingPlatform;
 import gameobjects.Player;

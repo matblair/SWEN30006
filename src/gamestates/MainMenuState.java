@@ -36,7 +36,6 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	boolean debug, fullscreen;
 	private static Font font;
 	private static Image menubg;
-
 	private int selected =-1;
 	private static String titleText = new String("Welcome to Portal 2D");
 	private static String subtitleText = new String("Version 0.4");
@@ -52,8 +51,6 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 		super();
 		font = AssetManager.requestFontResource("RETROFONT");
 		menubg = AssetManager.requestUIElement("MENUBG");
-		menutile = AssetManager.requestUIElement("MENUTILING");
-
 		debug = false;
 		fullscreen = false;
 
