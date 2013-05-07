@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Vector;
 
+import gameengine.InputManager;
 import gameengine.Portal2D;
 
 import org.newdawn.slick.Color;
@@ -132,10 +133,9 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	@Override
 	public void keyPressed(int key, char c) {
 		System.out.println("Key pressed in HighScoreState int: " + key);
-		switch(key) {
-		case Input.KEY_ENTER:
+		if (key == InputManager.SELECT) {
 			selected=stringMaps.get(menuItems.get(menuItemSelected));
-		case Input.KEY_RIGHT:
+		} else if (key == InputManager.NAV_RIGHT) {
 			scores = new ArrayList<Integer>();
 			
 			for (int i=0; i< 10; i++){
@@ -148,7 +148,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 				scores.set(j, value);
 			} 
 			Collections.sort(scores);
-		case Input.KEY_LEFT:
+		} else if (key == InputManager.NAV_LEFT) {
 			scores = new ArrayList<Integer>();
 			
 			for (int i=0; i< 10; i++){

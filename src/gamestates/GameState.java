@@ -1,6 +1,7 @@
 package gamestates;
 
 import gameengine.Camera;
+import gameengine.InputManager;
 import gameengine.PhysUtils;
 import gameengine.Portal2D;
 import gameworlds.Level;
@@ -45,13 +46,13 @@ public class GameState extends BasicGameState implements KeyListener {
 		int dir_x = 0;
 		Input input = gc.getInput();
 		
-		if (input.isKeyDown(Input.KEY_RIGHT))
+		if (input.isKeyDown(InputManager.MOVE_RIGHT))
 			dir_x++;
-		if (input.isKeyDown(Input.KEY_LEFT))
+		if (input.isKeyDown(InputManager.MOVE_LEFT))
 			dir_x--;
-		if (input.isKeyPressed(Input.KEY_SPACE))
+		if (input.isKeyPressed(InputManager.JUMP))
 			level.getLevelPlayer().jump();
-		if (input.isKeyPressed(Input.KEY_E)){
+		if (input.isKeyPressed(InputManager.INTERACT)){
 			level.getLevelPlayer().interact(level.getPhysWorld(), level);
 		}
 		if (input.isKeyPressed(Input.KEY_T)){

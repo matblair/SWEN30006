@@ -1,5 +1,6 @@
 package gamestates;
 
+import gameengine.InputManager;
 import gameengine.Portal2D;
 
 import java.util.HashMap;
@@ -22,11 +23,11 @@ import resourcemanagers.AssetManager;
 
 public class MainMenuState extends BasicGameState implements KeyListener {
 	/** Menu options for selection **/
-	private static int MENU_STARTGAME=1;
-	private static int MENU_ACHIEVEMENTS=2;
-	private static int MENU_HIGHSCORES=3;
-	private static int MENU_OPTIONS=4;
-	private static int MENU_TESTGAME=5;
+	private final static int MENU_STARTGAME=1;
+	private final static int MENU_ACHIEVEMENTS=2;
+	private final static int MENU_HIGHSCORES=3;
+	private final static int MENU_OPTIONS=4;
+	private final static int MENU_TESTGAME=5;
 
 	
 	
@@ -102,17 +103,17 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 		if(selected!=-1){
 			int stateid=Portal2D.MAINMENUSTATE;
 			switch (selected){
-			case 1:
+			case MENU_STARTGAME:
 				LoadingState.loadLevel(sbg,0);
 				stateid=Portal2D.LOADSTATE;
                 break;
-			case 2:
+			case MENU_ACHIEVEMENTS:
 				stateid=Portal2D.ACHIEVEMENTSTATE;
                 break;
-			case 3:
+			case MENU_HIGHSCORES:
 				stateid=Portal2D.HIGHSCORESTATE;
                 break;
-			case 4:
+			case MENU_OPTIONS:
 				stateid=Portal2D.OPTIONSTATE;
                 break;
 			case 5:
@@ -134,23 +135,18 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	@Override
 	public void keyPressed(int key, char c) {
 		System.out.println("Key pressed in MainMenuState int: " + key);
-		switch(key) {
-		case Input.KEY_UP:
+		if (key == InputManager.NAV_UP) {
 			if (menuItemSelected == 0)
 				menuItemSelected = menuItems.size() - 1;
 			else
 				menuItemSelected--;
-			break;
-		case Input.KEY_DOWN:
+		} else if (key == InputManager.NAV_DOWN) {
 			if (menuItemSelected == menuItems.size() - 1)
 				menuItemSelected = 0;
 			else
 				menuItemSelected++;
-			break;
-		case Input.KEY_ENTER:
+		} else if (key == InputManager.SELECT) {
 			selected=stringMaps.get(menuItems.get(menuItemSelected));
-
-
 		}
 	}
 

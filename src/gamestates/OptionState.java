@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import gameengine.InputManager;
 import gameengine.Portal2D;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -97,13 +97,8 @@ public class OptionState extends BasicGameState implements KeyListener{
 	@Override
 	public void keyPressed(int key, char c) {
 		System.out.println("Key pressed in AchievementState int: " + key);
-		switch(key) {
-		case Input.KEY_ENTER:
+		if (key == InputManager.SELECT) {
 			selected=stringMaps.get(menuItems.get(menuItemSelected));
-
-
 		}
 	}
-
-
 }
