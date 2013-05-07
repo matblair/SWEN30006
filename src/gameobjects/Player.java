@@ -4,6 +4,7 @@ import gameengine.PhysUtils;
 import gamestates.GameState;
 import gameworlds.Level;
 
+import org.jbox2d.collision.WorldManifold;
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
@@ -179,6 +180,13 @@ public class Player extends GameObject{
 		GameState.getLevel().getPhysWorld().destroyJoint(joint);
 		holdingcube=false;
 		cubecarrying=null;
+	}
+	
+	public void enterPortal(Portal portal){
+		Vec2 newloc = portal.getLocation();
+		Vec2 transformedVel = this.getBody().getLinearVelocity();
+		
+
 	}
 
 	public void checkCube(){
