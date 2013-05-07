@@ -20,7 +20,14 @@ public class Player extends GameObject{
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
+<<<<<<< HEAD
 	private boolean facingleft=false;
+=======
+<<<<<<< HEAD
+=======
+	private boolean facingleft=false;
+>>>>>>> origin/joana
+>>>>>>> champ
 
 	/** Is holding cube? **/
 	private boolean holdingcube=false;
@@ -133,6 +140,7 @@ public class Player extends GameObject{
 		}
 	}
 
+<<<<<<< HEAD
 	public void teleport(){
 		this.getBody().setTransform(new Vec2(2,17), 0f);
 	}
@@ -151,10 +159,44 @@ public class Player extends GameObject{
 
 	public void pickupCube(CompanionCube cube){
 		while(!holdingcube){
+=======
+<<<<<<< HEAD
+	public void pickupCube(CompanionCube cube){
+		if(!holdingcube){
+			System.out.println(this.getMass());
+			System.out.println(cube.getMass());
+=======
+	public void teleport(){
+		this.getBody().setTransform(new Vec2(2,17), 0f);
+	}
+	public void teleportHoriz(){
+		Vec2 currentvel = this.getBody().getLinearVelocity();
+		Float x = currentvel.x;
+		Float y = currentvel.y;
+		System.out.println(this.getBody().getLinearVelocity());
+		Vec2 transVec = new Vec2(-y,-x);
+		this.getBody().setTransform(new Vec2(0.5f,14), 0f);
+		this.getBody().setLinearVelocity(transVec);
+		System.out.println("After: " +this.getBody().getLinearVelocity());
+
+	}
+
+
+	public void pickupCube(CompanionCube cube){
+		while(!holdingcube){
+>>>>>>> origin/joana
+>>>>>>> champ
 			MassData massData=null;
 			massData = new MassData();
 			massData.mass=0.000001f;			
 			cube.getBody().setMassData(massData);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+			System.out.println(cube.getMass());
+=======
+>>>>>>> origin/joana
+>>>>>>> champ
 			cube.getBody().setAngularVelocity(0.0f);
 			PrismaticJointDef def = new PrismaticJointDef();
 			def.bodyA=this.getBody();
@@ -163,8 +205,21 @@ public class Player extends GameObject{
 			def.type = jtype;
 			def.enableLimit=true;
 			def.enableMotor=true;
+<<<<<<< HEAD
 			def.lowerTranslation=0.1f;
 			def.upperTranslation=0.2f;
+			def.collideConnected=true;
+			GameState.getLevel().getPhysWorld().createJoint(def);
+=======
+<<<<<<< HEAD
+			def.upperTranslation=2;
+			def.collideConnected=true;
+			GameState.getLevel().getPhysWorld().createJoint(def);
+			System.out.println(cube.getBody().m_jointList);
+			System.out.println(this.getMass());
+
+=======
+			def.upperTranslation=1;
 			def.collideConnected=true;
 			GameState.getLevel().getPhysWorld().createJoint(def);
 			holdingcube=true;

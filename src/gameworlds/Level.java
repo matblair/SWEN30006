@@ -73,7 +73,14 @@ public class Level {
 		RenderEngine.drawGameObject(player, cam);
 		RenderEngine.drawGameObjects(cubes, cam);
 		RenderEngine.drawGameObjects(platforms, cam);
+<<<<<<< HEAD
 		RenderEngine.drawGameObjects(lilSwitches, cam);
+=======
+<<<<<<< HEAD
+=======
+		RenderEngine.drawGameObjects(lilSwitches, cam);
+>>>>>>> origin/joana
+>>>>>>> champ
 		
 	}
 
