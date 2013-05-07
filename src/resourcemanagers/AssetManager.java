@@ -1,6 +1,7 @@
 package resourcemanagers;
 
 import gameengine.Achievement;
+import gameengine.HighScore;
 import gameworlds.Level;
 
 import java.io.File;
@@ -8,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +44,7 @@ public class AssetManager {
 	private static Map<String, Animation> animationResources = new HashMap<String, Animation>();; //All the level xml resources
 	private static Map<String, Image> achievementResources = new HashMap<String, Image>(); //All images used for game objects
 	private static Map<String, Achievement> achievements = new HashMap<String, Achievement>(); //All images used for game objects
+	private static Map<Integer, ArrayList<HighScore>> highscores = new HashMap<Integer, ArrayList<HighScore>>();
 	
 	private static int totalresources=0;
 
@@ -286,6 +289,18 @@ public class AssetManager {
 	public static void setAnimationResources(
 			Map<String, Animation> animationResources) {
 		AssetManager.animationResources = animationResources;
+	}
+
+	public static Map<Integer, ArrayList<HighScore>> getHighscores() {
+		return highscores;
+	}
+
+	public static void setHighscores(Map<Integer, ArrayList<HighScore>> highscores) {
+		AssetManager.highscores = highscores;
+	}
+	
+	public static ArrayList<HighScore> requestHighScores(int levelid){
+		return highscores.get(levelid);
 	}
 
 	
