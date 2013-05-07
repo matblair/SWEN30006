@@ -19,14 +19,8 @@ public class Player extends GameObject{
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
-<<<<<<< HEAD
 	private boolean facingleft=false;
-=======
-<<<<<<< HEAD
-=======
-	private boolean facingleft=false;
->>>>>>> origin/joana
->>>>>>> champ
+
 
 	/** Is holding cube? **/
 	private boolean holdingcube=false;
@@ -139,27 +133,6 @@ public class Player extends GameObject{
 		}
 	}
 
-<<<<<<< HEAD
-	public void teleport(){
-		this.getBody().setTransform(new Vec2(2,17), 0f);
-	}
-	public void teleportHoriz(){
-		Vec2 currentvel = this.getBody().getLinearVelocity();
-		Float x = currentvel.x;
-		Float y = currentvel.y;
-		System.out.println(this.getBody().getLinearVelocity());
-		Vec2 transVec = new Vec2(-y,-x);
-		this.getBody().setTransform(new Vec2(0.5f,14), 0f);
-		this.getBody().setLinearVelocity(transVec);
-		System.out.println("After: " +this.getBody().getLinearVelocity());
-
-	}
-
-
-	public void pickupCube(CompanionCube cube){
-		while(!holdingcube){
-=======
-<<<<<<< HEAD
 	public void pickupCube(CompanionCube cube){
 		if(!holdingcube){
 			System.out.println(this.getMass());
