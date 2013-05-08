@@ -68,7 +68,7 @@ public class HighScoreLoader {
 
 	private void addHighScore(Element resourceElement) {
 		int levelid = Integer.parseInt(resourceElement.getAttribute("levelid"));
-		
+
 		// Create the array list for that level if it doesn't exist.
 		if(!AssetManager.getHighscores().containsKey(levelid)){
 			ArrayList<HighScore> newarray = new ArrayList<HighScore>();

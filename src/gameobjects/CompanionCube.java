@@ -1,6 +1,7 @@
 package gameobjects;
 
 import gameengine.PhysUtils;
+import gamestates.GameState;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
@@ -16,6 +17,10 @@ public class CompanionCube extends GameObject {
 		super(imgloc, location, world, PhysUtils.DYNAMIC);		
 		getBody().setFixedRotation(false);
 		getBody().getFixtureList().setRestitution(cubeRestitution);
+	}
+
+	public CompanionCube() {
+		super();
 	}
 
 }
