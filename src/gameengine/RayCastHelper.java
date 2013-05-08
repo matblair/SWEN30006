@@ -21,6 +21,7 @@ public class RayCastHelper implements RayCastCallback {
 		if (!level.portalBulletInteracts(fixture.getBody().toString()))
 			return -1;
 		
+		System.out.println("found target");
 		this.fixture = fixture;
 		this.point = point;
 		return 0;
