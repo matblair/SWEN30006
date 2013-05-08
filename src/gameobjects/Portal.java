@@ -8,30 +8,64 @@ import org.newdawn.slick.SlickException;
 
 public class Portal extends GameObject {
 	public static final int BLUE=0, ORANGE=1;
+	
+	private float height;
 	private boolean enabled=false;
-	private Portal otherconnection;
+	private Portal otherPortal;
 	private Wall wall;
+	private Wall startSegment, endSegment;
+	private World world;
 	
 	public Portal(String imgid, Vec2 location, World world)
 			throws SlickException {
 		super(imgid, location, world, PhysUtils.PORTAL);
 		getBody().getFixtureList().setSensor(true);
+		this.world = world;
+		height = getDimensions().y;
 	}
 	
 	public void linkPortals(Portal portal){
-		otherconnection = portal;
+		otherPortal = portal;
 	}
 	
-	public void hitWall (Vec2 loc, Wall wall){
-		// Re-enable old wall
-		if (this.wall != null)
-			this.wall.enable();
+	public void disable() {
+		this.wall.enable();
+		startSegment.destroy();
+		startSegment = null;
+		endSegment.destroy();
+		endSegment = null;
+		getBody().setTransform(new Vec2(-1, 0), 0);
+		enabled = false;
+	}
+	
+	public void hitWall (Vec2 loc, Wall wall) throws SlickException{
+		if (wall.getLength() < height)
+			return;
 		
-		enabled = true;
+		System.out.println(height / 2);
+		
+		// Clean up
+		if (enabled)
+			disable();
+		
+		Vec2 unitTangent = wall.getUnitTangent();
+		// Correct for hits near ends of walls
+		if (PhysUtils.distance(loc, wall.getStart()) < height / 2)
+			loc = wall.getStart().add(unitTangent.mul(height / 2));
+		else if (PhysUtils.distance(loc, wall.getEnd()) < height / 2)
+			loc = wall.getEnd().sub(unitTangent.mul(height / 2));
+		
+		// Add replacement wall segments
+		startSegment = new Wall(wall.getStart(), loc.sub(unitTangent.mul(height/2)), world);
+		System.out.println(startSegment);
+		endSegment = new Wall(loc.add(unitTangent.mul(height/2)), wall.getEnd(), world);
+		System.out.println(endSegment);
+		
 		this.getBody().setTransform(loc, PhysUtils.getAngle(wall.getUnitNormal()));
-		System.out.println(wall.getUnitNormal() + " " + PhysUtils.getAngle(wall.getUnitNormal()));
 
 		this.wall = wall;
 		this.wall.disable();
+		
+		enabled = true;
 	}
 }

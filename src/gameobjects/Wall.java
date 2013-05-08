@@ -48,12 +48,24 @@ public class Wall {
 		body.getFixtureList().setSensor(true);
 	}
 	
+	public void destroy() {
+		body.getWorld().destroyBody(body);
+	}
+	
 	public String getBodyId() {
 		return bodyID;
 	}
 	
 	public Vec2 getStart() {
 		return start;
+	}
+	
+	public Vec2 getEnd() {
+		return end;
+	}
+	
+	public float getLength() {
+		return PhysUtils.distance(start, end);
 	}
 	
 	public Vec2 getUnitTangent() {
@@ -64,5 +76,10 @@ public class Wall {
 	public Vec2 getUnitNormal() {
 		Vec2 tangent = getUnitTangent();
 		return new Vec2(-tangent.y, tangent.x);
+	}
+	
+	@Override
+	public String toString() {
+		return "Wall from " + getStart() + " to " + getEnd() + " with unit tangent " + getUnitTangent() + " and unit normal " + getUnitNormal();
 	}
 }

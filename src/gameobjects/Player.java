@@ -213,7 +213,7 @@ public class Player extends GameObject{
 		if(holdingcube){
 			Vec2 cubepos = cubecarrying.getLocation();
 			Vec2 playerpos = this.getLocation();	
-			float dist = cubepos.sub(playerpos).length();
+			float dist = PhysUtils.distance(cubepos, playerpos);
 			if(dist>MAXCUBEDIST){
 				dropCube();
 			}
