@@ -61,8 +61,10 @@ public class HighScoreLoader {
 			if(resourceNode.getNodeType() == Node.ELEMENT_NODE){
 				final Element resourceElement = (Element)resourceNode;
 				addHighScore(resourceElement);
+				resourcenumber++;
 			}
 		}
+		System.out.println("Loaded " + resourcenumber + " high scores");
 		return resourcenumber;
 	}
 

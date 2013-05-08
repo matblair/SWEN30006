@@ -108,6 +108,8 @@ public class ResourceLoader {
 		int id=Integer.parseInt(resourceElement.getAttribute("id"));
 		AssetManager.getLevelXmlResources().put(id, xml);
 	}
+	
+
 
 	private void addElementAsImage(Element resourceElement) throws DOMException, SlickException {
 		Image newimg= new Image(resourceElement.getTextContent());

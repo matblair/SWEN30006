@@ -32,6 +32,9 @@ public class AssetManager {
 	private static InputLoader inputloader = new InputLoader();
 	/** The achievement loader **/
 	private static AchievementLoader achievementLoader = new AchievementLoader();
+	/** The highscore loader **/
+	private static HighScoreLoader highscoreLoader = new HighScoreLoader();
+
 
 	/**Creates a resource repository of commonly used items **/
 	private static Map<String, Image> imageResources = new HashMap<String, Image>(); //All images used for game objects
@@ -52,6 +55,7 @@ public class AssetManager {
 	private static final String loadinglist ="loadinglist.xml";
 	private static final String generalresource = "assets/xmlresources/";
 	private static final String achievementxml = "achievements.xml";
+	private static final String highscorexml = "highscores.xml";
 	
 
 
@@ -85,6 +89,7 @@ public class AssetManager {
 		}
 		
 		loadAchievements();
+		loadHighScores();
 		
 		System.out.println(imageResources.size() +" images loaded.");
 		System.out.println(soundResources.size() +" sounds loaded.");
@@ -103,6 +108,26 @@ public class AssetManager {
 		try {
 			is = new FileInputStream(f);
 			achievementLoader.loadAchievements(is, false);
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (final SlickException e) {
+			e.printStackTrace();
+		} finally	{
+			try {
+				is.close();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public static void loadHighScores(){
+		final File f = new File(generalresource, highscorexml);
+		InputStream is = null;
+		try {
+			is = new FileInputStream(f);
+			highscoreLoader.loadHighScores(is, false);
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (final SlickException e) {
