@@ -115,15 +115,11 @@ public class LevelLoader {
 		String imgid = resourceElement.getAttribute("id");
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
-		String doorid = resourceElement.getAttribute("doorid");
-		Vec2 startloc = new Vec2(startx,starty);
-	
+		Vec2 startloc = new Vec2(startx,starty);	
 		Float cubex = Float.parseFloat(resourceElement.getAttribute("xCube"));
 		Float cubey = Float.parseFloat(resourceElement.getAttribute("yCube"));
 		Vec2 cubespawn = new Vec2(cubex,cubey);
-		
-		String cubeid = resourceElement.getAttribute("cubeid");
-		
+		String cubeid = resourceElement.getAttribute("cubeid");	
 		LittleSwitch newswitch = new LittleSwitch(imgid, startloc, level.getPhysWorld(), cubespawn, cubeid);
 		level.addLittleSwitch(newswitch, newswitch.getBodyId());
 		
