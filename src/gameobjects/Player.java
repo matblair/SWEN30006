@@ -1,5 +1,6 @@
 package gameobjects;
 
+import gameengine.FixtureCallback;
 import gameengine.PhysUtils;
 import gamestates.GameState;
 import gameworlds.Level;
@@ -142,6 +143,7 @@ public class Player extends GameObject{
 		Vec2 upper = new Vec2(playerx+DISTCHECK,playery+DISTCHECK);
 		Vec2 lower = new Vec2(playerx-DISTCHECK,playery-DISTCHECK);
 		AABB area = new AABB(lower,upper);
+		GameState.getLevel().getPhysWorld().queryAABB(new FixtureCallback(), area);
 	}
 
 	public void teleport(){
