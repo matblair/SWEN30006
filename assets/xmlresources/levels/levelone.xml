@@ -4,8 +4,8 @@
 		
 	<!-- Walls -->
 	<resource type="WALL" id="WALL" xStart="0.5" yStart="1.0" xEnd="19.5" yEnd="1.0">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="19.5" yStart="1" xEnd="19.5" yEnd="12.5">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="19.5" yStart="12.5" xEnd="14.32" yEnd="12.56">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="19.5" yStart="1" xEnd="19.5" yEnd="12.56">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="19.5" yStart="12.56" xEnd="14.32" yEnd="12.56">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="14.32" yStart="12.56" xEnd="14.32" yEnd="13">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="14.32" yStart="13" xEnd="19.5" yEnd="13">assets/sprites/wall.png</resource>
     <resource type="WALL" id="WALL" xStart="19.5" yStart="13" xEnd="19.5" yEnd="17">assets/sprites/wall.png</resource>

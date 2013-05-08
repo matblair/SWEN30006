@@ -28,8 +28,6 @@ public class Player extends GameObject{
 	private boolean holdingcube=false;
 
 	/** Variables for interaction **/
-	@SuppressWarnings("unused")
-	private boolean carryingcube=false;
 	private CompanionCube cubecarrying;
 
 	// Constants related to player movement
@@ -157,7 +155,7 @@ public class Player extends GameObject{
 		Vec2 transVec = new Vec2(-y,-x);
 		this.getBody().setTransform(new Vec2(0.6f,14), 0f);
 		this.getBody().setLinearVelocity(transVec);
-		System.out.println("After: " +this.getBody().getLinearVelocity());
+		System.out.println("After: " + this.getBody().getLinearVelocity());
 
 	}
 

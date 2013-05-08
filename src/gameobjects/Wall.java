@@ -1,7 +1,6 @@
 package gameobjects;
 
 import org.jbox2d.collision.shapes.EdgeShape;
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -35,9 +34,20 @@ public class Wall {
 		fd.shape = edgeShape;
 		fd.friction=0.3f;
 		body.createFixture(fd);
+		
+		//System.out.println(start.x + "," + start.y + " to " + end.x + "," + end.y + " with unit tangent " + getUnitTangent().x + "," + getUnitTangent().y);
 	}
 	
 	public String getBodyId() {
 		return bodyID;
+	}
+	
+	public Vec2 getStart() {
+		return start;
+	}
+	
+	public Vec2 getUnitTangent() {
+		Vec2 wall = end.sub(start);
+		return wall.mul(1/wall.length());
 	}
 }
