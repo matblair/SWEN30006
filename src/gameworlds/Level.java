@@ -51,8 +51,8 @@ public class Level {
 	/** Our portal physics world **/
 	private World portalWorld;
 	/** Our Physics Engine Constants **/
-	private int velocityIterations = 6;
-	private int positionIterations = 2;
+	private int velocityIterations = 8;
+	private int positionIterations = 4;
 	/** Gravity **/
 	private Vec2 gravity = new Vec2(0,-18f);
 	
@@ -82,6 +82,7 @@ public class Level {
 		RenderEngine.drawBG(bg, cam);
 		RenderEngine.drawGameObjects(lilSwitches, cam);
 		RenderEngine.drawGameObject(player, cam);
+		RenderEngine.drawGameObjects(bigSwitches,cam);
 		RenderEngine.drawGameObjects(cubes, cam);
 		RenderEngine.drawGameObjects(doors, cam);
 		RenderEngine.drawGameObjects(portals, cam);

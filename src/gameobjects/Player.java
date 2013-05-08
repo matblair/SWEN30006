@@ -127,7 +127,6 @@ public class Player extends GameObject{
 				//Haven't picked up a cube so check if we can interact with small switch
 				ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
 				while (edge != null) {
-
 					System.out.println("Found " + edge.other + " of type " + level.getBodyType(edge.other));
 					String type=level.getBodyType(edge.other);
 					if(type.equals("lilswitch")){
@@ -136,7 +135,6 @@ public class Player extends GameObject{
 						level.getSwitch(bodyId).trigger();
 					}
 					edge = edge.next;
-
 				}	
 			}
 		}
