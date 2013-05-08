@@ -82,8 +82,8 @@ public class Level {
 
 	public void update(float dir_x, float dir_y, int delta, StateBasedGame sbg) throws SlickException {
 		float timeStep = (float)delta/1000;
-		world.step(timeStep, velocityIterations, positionIterations);
 		player.moveXDir(dir_x, delta);
+		world.step(timeStep, velocityIterations, positionIterations);
 		player.checkCube();
 	}
 	

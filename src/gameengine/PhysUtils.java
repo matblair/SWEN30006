@@ -42,23 +42,6 @@ public class PhysUtils {
 	public static float pixelsToMetres (float pixels) {
 		return pixels / scaleFactor;
 	}
-
-	/** Add a wall body to the game world.
-	 * 
-	 * @param world The JBox world in which the wall should be added
-	 * @param x Left coordinate of wall
-	 * @param y Bottom coordinate of wall
-	 * @param w Width of wall
-	 * @param h Height of wall
-	 */
-	public static void addWall (World world, float x, float y, float w, float h) {
-		BodyDef bd = new BodyDef();
-		bd.position.set(x + w / 2, y + h / 2);
-		Body body = world.createBody(bd);
-		PolygonShape box = new PolygonShape();
-		box.setAsBox(w/2, h/2);
-		body.createFixture(box, 0);
-	}
 	
 	public static void printAllBodyIds(World world){
 		System.out.println(world.getBodyCount()+" bodies in the physics world");	

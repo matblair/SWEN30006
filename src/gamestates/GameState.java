@@ -71,8 +71,8 @@ public class GameState extends BasicGameState implements KeyListener {
 			}
 		}
 		
-		cam.follow(gc, level.getLevelPlayer());
 		level.update(dir_x,0, delta, sbg);
+		cam.follow(gc, level.getLevelPlayer());
 	}
 
 	@Override

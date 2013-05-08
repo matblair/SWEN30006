@@ -3,13 +3,18 @@
 <resources>
 		
 	<!-- Walls -->
-	<resource type="WALL" id="WALL" xStart="0.0" yStart="0.0" width="100.0" height="1.0">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="0.0" yStart="0.0" width="0.50" height="20.0">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="0.0" yStart="17.14" width="100.0" height="0.0">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="19.5" yStart="0.0" width="0.50" height="20.0">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="14.32" yStart="12.56" width="12.56" height="0.50">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="14.32" yStart="15.11" width="0.50" height="2">assets/sprites/wall.png</resource>
-
+	<resource type="WALL" id="WALL" xStart="0.5" yStart="1.0" xEnd="19.5" yEnd="1.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="19.5" yStart="1" xEnd="19.5" yEnd="12.5">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="19.5" yStart="12.5" xEnd="14.32" yEnd="12.56">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="14.32" yStart="12.56" xEnd="14.32" yEnd="13">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="14.32" yStart="13" xEnd="19.5" yEnd="13">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="19.5" yStart="13" xEnd="19.5" yEnd="17">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="19.5" yStart="17" xEnd="14.8" yEnd="17">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="14.8" yStart="17" xEnd="14.8" yEnd="15">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="14.8" yStart="15" xEnd="14.32" yEnd="15">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="14.32" yStart="15" xEnd="14.32" yEnd="17">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="14.32" yStart="17" xEnd="0.5" yEnd="17">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="0.5" yStart="17.0" xEnd="0.5" yEnd="1.0">assets/sprites/wall.png</resource>
 
 	<!-- Platforms -->
 	<resource type="PLATFORM" id="PLATFORM" xStart="14.0" yStart="4" width="4.0" height="0.25">assets/sprites/wall.png</resource>
@@ -26,7 +31,7 @@
 	<!-- Cubes -->
 	<resource type="CUBE" id="CUBE" startx = "5" starty="5">assets/sprites/cube.png</resource>
 	<resource type="CUBE" id="CUBE" startx = "9" starty="12">assets/sprites/cube.png</resource>
-	<resource type="CUBE" id="CUBE" startx = "10" starty="17">assets/sprites/cube.png</resource>
+	<resource type="CUBE" id="CUBE" startx = "10" starty="15">assets/sprites/cube.png</resource>
 	<resource type="CUBE" id="CUBE" startx = "1" starty="9">assets/sprites/cube.png</resource>
     
     <!-- DOORS -->

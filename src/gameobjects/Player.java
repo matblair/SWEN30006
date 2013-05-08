@@ -147,7 +147,7 @@ public class Player extends GameObject{
 	}
 
 	public void teleport(){
-		this.getBody().setTransform(new Vec2(2,17), 0f);
+		this.getBody().setTransform(new Vec2(2,16.9f), 0f);
 	}
 	public void teleportHoriz(){
 		Vec2 currentvel = this.getBody().getLinearVelocity();
@@ -155,7 +155,7 @@ public class Player extends GameObject{
 		Float y = currentvel.y;
 		System.out.println(this.getBody().getLinearVelocity());
 		Vec2 transVec = new Vec2(-y,-x);
-		this.getBody().setTransform(new Vec2(0.5f,14), 0f);
+		this.getBody().setTransform(new Vec2(0.6f,14), 0f);
 		this.getBody().setLinearVelocity(transVec);
 		System.out.println("After: " +this.getBody().getLinearVelocity());
 

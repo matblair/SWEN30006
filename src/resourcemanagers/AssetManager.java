@@ -188,13 +188,6 @@ public class AssetManager {
 		}
 	}
 
-
-	public static Level loadTestLevel() throws SlickException{
-		Level level = new Level();
-		levelLoader.loadTestLevel(level);
-		return level;
-	}
-
 	public static Image requestImage(String imgid){
 		return imageResources.get(imgid);
 	}
