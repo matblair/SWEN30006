@@ -74,6 +74,8 @@ public class Level {
 		bigSwitches = new HashMap<String,BigSwitch>();	
 		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(-1,0), world);
 		portals[Portal.BLUE] = new Portal("BLUEPORTAL", new Vec2(-1,0), world);
+		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
+		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
 	}
 
 	public void render(Graphics g, boolean debug,Camera cam, GameContainer gc) {
@@ -93,9 +95,11 @@ public class Level {
 		player.checkCube();
 	}
 	
-	public void playerShootPortal(int color) throws SlickException {
-		RayCastHelper rch = new RayCastHelper();
-		world.raycast(rch, new Vec2(2,2), new Vec2(0,2));
+	public void playerShootPortal(int color, Vec2 target) throws SlickException {
+		RayCastHelper rch = new RayCastHelper(this);
+		Vec2 dir = target.sub(player.getLocation());
+		dir.mulLocal(1/dir.length());
+		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(100)));
 		if (rch.fixture == null)
 			return;
 		
@@ -105,6 +109,12 @@ public class Level {
 			System.out.println(wall.getStart() + " " + wall.getUnitTangent());
 			portals[color].hitWall(loc, wall);
 		}
+	}
+	
+	public boolean portalBulletInteracts(String bodyID) {
+		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | platforms.containsKey(bodyID))
+			return true;
+		return false;
 	}
 	
 	public Player getLevelPlayer() {

@@ -49,6 +49,16 @@ public class PhysUtils {
 		}
 	}
 	
+	/** Get the distance between two vectors
+	 * 
+	 * @param v1 First vector
+	 * @param v2 Second vector
+	 * @return Distance between the two
+	 */
+	public static float distance(Vec2 v1, Vec2 v2) {
+		return v1.sub(v2).length();
+	}
+	
 	/** Get the angle of a vector in radians
 	 * 
 	 * @param vector The vector whose angle is wanted

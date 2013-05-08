@@ -15,16 +15,18 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
+import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class GameState extends BasicGameState implements KeyListener {
+public class GameState extends BasicGameState implements KeyListener, MouseListener {
 	private static int StateId = Portal2D.GAMESTATE; // State ID
 	private static Camera cam;
 	private boolean listening=true;
 	private static Level level;
+	private static int height;
 
 	public GameState()
 	{
@@ -47,6 +49,8 @@ public class GameState extends BasicGameState implements KeyListener {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		height = gc.getHeight();
+		
 		int dir_x = 0;
 		Input input = gc.getInput();
 		
@@ -74,43 +78,20 @@ public class GameState extends BasicGameState implements KeyListener {
 		}
 		
 		if (input.isKeyPressed(InputManager.SHOOT_BLUE)) {
-			level.playerShootPortal(Portal.BLUE);
+			level.playerShootPortal(Portal.BLUE, new Vec2 (0,1.5f));
 		}
 		
 		level.update(dir_x,0, delta, sbg);
 		cam.follow(gc, level.getLevelPlayer());
 	}
-
+	
+	public static void setId(final int stateId) {
+		GameState.StateId = stateId;
+	}
+	
 	@Override
 	public int getID() {
 		return StateId;
-	}
-
-	@Override
-	public void keyPressed(int key, char c) {
-		System.out.println("Key pressed in LevelState int: " + key);
-		
-	}
-
-	@Override
-	public void keyReleased(int key, char c) {
-		//System.out.println("Key released in LevelState int: " + key);
-	}
-
-	@Override
-	public void inputEnded() {listening = false;}
-
-	@Override
-	public void inputStarted() {listening = true;}
-
-	@Override
-	public boolean isAcceptingInput() {return listening;}
-
-	@Override
-	public void setInput(Input input) {input.addKeyListener(this);}
-
-	public static void setId(final int stateId) {
-		GameState.StateId = stateId;
 	}
 
 	public void toggleFullscreen(final GameContainer gc, final boolean fullscreen)
@@ -144,6 +125,37 @@ public class GameState extends BasicGameState implements KeyListener {
 		cam.setBounds(PhysUtils.SlickToJBoxVec(new Vec2(level.getBg().getWidth(), level.getBg().getHeight())));
 	}
 	
+	// Key Listener stuff //
+	@Override
+	public void keyPressed(int key, char c) {
+		System.out.println("Key pressed in GameState int: " + key);
+	}
+
+	@Override
+	public void keyReleased(int key, char c) {
+		System.out.println("Key released in GameState int: " + key);
+	}
+
+	@Override
+	public void inputEnded() {listening = false;}
+
+	@Override
+	public void inputStarted() {listening = true;}
+
+	@Override
+	public boolean isAcceptingInput() {return listening;}
+
+	@Override
+	public void setInput(Input input) {input.addKeyListener(this);}
 	
-	
+	// Mouse listener stuff //
+	@Override
+	public void mousePressed(int button, int x, int y) {
+		Vec2 clickLoc = PhysUtils.SlickToJBoxVec(new Vec2(x, height - y));
+		try {
+			level.playerShootPortal(Portal.BLUE, clickLoc.add(cam.getLocation()));
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+	}
 }
