@@ -1,4 +1,5 @@
 package gameworlds;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,6 +53,10 @@ public class Level {
 	private int positionIterations = 2;
 	/** Gravity **/
 	private Vec2 gravity = new Vec2(0,-18f);
+	
+	public Collection<Door> getDoors() {
+		return doors.values();
+	}
 
 	public Level(){
 		// Create physics worlds
@@ -70,11 +75,11 @@ public class Level {
 
 	public void render(Graphics g, boolean debug,Camera cam, GameContainer gc) {
 		RenderEngine.drawBG(bg, cam);
+		RenderEngine.drawGameObjects(lilSwitches, cam);
 		RenderEngine.drawGameObject(player, cam);
 		RenderEngine.drawGameObjects(cubes, cam);
+		RenderEngine.drawGameObjects(doors, cam);
 		RenderEngine.drawGameObjects(platforms, cam);
-		RenderEngine.drawGameObjects(lilSwitches, cam);
-		
 	}
 
 	public void update(float dir_x, float dir_y, int delta, StateBasedGame sbg) throws SlickException {

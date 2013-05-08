@@ -33,7 +33,7 @@ public class GameObject {
 	public GameObject (String imgid, Vec2 location, World world, int bodytype)
 			throws SlickException {
 		setSprite(AssetManager.requestImage(imgid));
-		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(getImage().getWidth(), getImage().getHeight()));
+		dimensions = PhysUtils.SlickToJBoxVec(new Vec2(sprite.getWidth(), sprite.getHeight()));
 		createBody(location,world,bodytype);		
 		System.out.printf ("(x,y) = (%4.2f,%4.2f)\n", location.x, location.y);
 		System.out.printf ("(w,h) = (%4.2f,%4.2f)\n", dimensions.x/2, dimensions.y/2);

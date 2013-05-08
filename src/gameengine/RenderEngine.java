@@ -19,7 +19,7 @@ public class RenderEngine {
 	 * @param obj The GameObject to render.
 	 * @param cam The camera object that defines the field of view.
 	 */
-	public static void drawGameObject (GameObject obj, Camera cam) {		
+	public static <T extends GameObject> void drawGameObject (T obj, Camera cam) {		
 		if (!cam.inView(obj)) {
 			return;
 		}

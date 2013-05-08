@@ -1,9 +1,12 @@
 package gamestates;
 
+import java.util.Collection;
+
 import gameengine.Camera;
 import gameengine.InputManager;
 import gameengine.PhysUtils;
 import gameengine.Portal2D;
+import gameobjects.Door;
 import gameworlds.Level;
 
 import org.jbox2d.common.Vec2;
@@ -59,7 +62,15 @@ public class GameState extends BasicGameState implements KeyListener {
 			level.getLevelPlayer().teleport();
 		}if (input.isKeyPressed(Input.KEY_Y)){
 			level.getLevelPlayer().teleportHoriz();
-		}		
+		}
+		
+		if (input.isKeyPressed(Input.KEY_Q)) {
+			Collection<Door> doors = level.getDoors();
+			for (Door door : doors) {
+				door.toggle();
+			}
+		}
+		
 		cam.follow(gc, level.getLevelPlayer());
 		level.update(dir_x,0, delta, sbg);
 	}

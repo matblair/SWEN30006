@@ -2,6 +2,7 @@ package resourcemanagers;
 
 import gameengine.PhysUtils;
 import gameobjects.CompanionCube;
+import gameobjects.Door;
 import gameobjects.LittleSwitch;
 import gameobjects.MovingPlatform;
 import gameobjects.Player;
@@ -117,6 +118,8 @@ public class LevelLoader {
 					addElementAsPortal(resourceElement,level);
 				}else if(type.equals("SWITCH")){  
 					addElementAsSwitch(resourceElement,level);
+				}else if(type.equals("DOOR")){  
+					addElementAsDoor(resourceElement,level);
 				}else if(type.equals("BACKGROUNDIMG")){
 					backgroundimg++;
 					level.setBg(new Image(resourceElement.getTextContent()));
@@ -131,6 +134,18 @@ public class LevelLoader {
 		System.out.println(backgroundimg +" backgrounds added");
 		System.out.println(walls +" walls added");
 
+	}
+
+	private void addElementAsDoor(Element resourceElement, Level level) throws SlickException {
+		String openid = resourceElement.getAttribute("id");
+		String closedimage = resourceElement.getAttribute("closedid");
+		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
+		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
+		//String doorid = resourceElement.getAttribute("doorid");
+		Vec2 startloc = new Vec2(startx,starty);
+
+		Door door = new Door(closedimage, startloc, level.getPhysWorld(), openid);
+		level.addDoor(door, door.getBodyId());
 	}
 
 	private void addElementAsSwitch(Element resourceElement, Level level) throws SlickException{
