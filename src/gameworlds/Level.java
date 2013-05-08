@@ -56,9 +56,6 @@ public class Level {
 	/** Gravity **/
 	private Vec2 gravity = new Vec2(0,-18f);
 	
-	public Collection<Door> getDoors() {
-		return doors.values();
-	}
 
 	public Level() throws SlickException{
 		// Create physics worlds
@@ -94,6 +91,9 @@ public class Level {
 		player.moveXDir(dir_x, delta);
 		world.step(timeStep, velocityIterations, positionIterations);
 		player.checkCube();
+		for(BigSwitch bs: bigSwitches.values()){
+			bs.updateState();
+		}
 	}
 	
 	public void playerShootPortal(int color, Vec2 target) throws SlickException {
@@ -203,5 +203,13 @@ public class Level {
 
 	public void removeCube(CompanionCube cube) {
 		cubes.remove(cube.getBodyId());
+	}
+	
+	public Map<String, Door> getDoors() {
+		return doors;
+	}
+	
+	public Collection<Door> getDoorCollection() {
+		return doors.values();
 	}
 }

@@ -71,7 +71,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		}
 		
 		if (input.isKeyPressed(Input.KEY_Q)) {
-			Collection<Door> doors = level.getDoors();
+			Collection<Door> doors = level.getDoorCollection();
 			for (Door door : doors) {
 				door.toggle();
 			}

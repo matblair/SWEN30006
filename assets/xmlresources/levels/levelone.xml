@@ -35,11 +35,13 @@
 	<resource type="CUBE" id="CUBE" startx = "1" starty="9">assets/sprites/cube.png</resource>
     
     <!-- DOORS -->
-    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="14.57" yStart="14.1">assets/sprites/levelobjects/door.png</resource>
-	<!-- Switches -->
-	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="2" yStart="1.5" xCube="1" yCube="15" cubeid="CUBE">assets/sprites/wall.png</resource>
-	<resource type="BIGSWITCH" id="SWITCHUP" xStart="4" yStart="1.2" contactimg="SWITCHSENSOR" downid="SWITCHDOWN" doorid="MAINDOOR">assets/sprites/hitbox.png</resource>
+    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="14.57" yStart="14.1" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
+	
 	<!-- Start Location -->
 	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="2">assets/sprites/chell.png</resource>
+
+	<!-- Switches -->
+	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="2" yStart="1.5" xCube="1" yCube="15" cubeid="CUBE">assets/sprites/wall.png</resource>
+	<resource type="BIGSWITCH" id="SWITCHUP" xStart="8" yStart="1.1029" contactimg="SWITCHSENSOR" downid="SWITCHDOWN" doorid="MAINDOOR">assets/sprites/hitbox.png</resource>
 		
 </resources>

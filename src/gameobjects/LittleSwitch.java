@@ -19,7 +19,8 @@ public class LittleSwitch extends Switch {
 		super(imgloc, location, world, PhysUtils.STATIC);
 		this.spawnpoint=spawn;
 		this.cubeid=cubeimgid;
-		
+		getBody().getFixtureList().setSensor(true);
+
 	}
 	
 	public void trigger() throws SlickException{

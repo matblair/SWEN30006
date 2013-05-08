@@ -9,6 +9,5 @@ public class Switch extends GameObject {
 	public Switch(String imgloc, Vec2 location, World world, int bodytype)
 			throws SlickException {
 		super(imgloc, location, world, bodytype);
-		getBody().getFixtureList().setSensor(true);
 	}
 }

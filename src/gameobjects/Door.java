@@ -12,12 +12,14 @@ import resourcemanagers.AssetManager;
 public class Door extends GameObject {
 	private boolean isOpen=false;
 	private Image openImage, closedImage;
+	private String doorId;
 
-	public Door(String imgid, Vec2 location, World world, String openImageId)
+	public Door(String imgid, Vec2 location, World world, String openImageId, String doorId)
 			throws SlickException {
 		super(imgid, location, world, PhysUtils.STATIC);
 		closedImage = AssetManager.requestImage("DOORCLOSE");
 		openImage = AssetManager.requestImage("DOOROPEN");
+		setDoorId(doorId);
 	}
 	
 	public void update (int delta) {
@@ -26,7 +28,7 @@ public class Door extends GameObject {
 	
 	@Override
 	public Image getImage() {
-		if (isOpen) {
+		if (isOpen()) {
 			return openImage;
 		} else {
 			return closedImage;
@@ -34,20 +36,48 @@ public class Door extends GameObject {
 	}
 	
 	public void open() {
-		isOpen = true;
+		setOpen(true);
 		getBody().getFixtureList().setSensor(true);
 	}
 	
 	public void close() {
-		isOpen = false;
+		setOpen(false);
 		getBody().getFixtureList().setSensor(false);
 	}
 	
 	public void toggle() {
-		if (isOpen) {
+		if (isOpen()) {
 			close();
 		} else {
 			open();
 		}
+	}
+
+	/**
+	 * @return the doorId
+	 */
+	public String getDoorId() {
+		return doorId;
+	}
+
+	/**
+	 * @param doorId the doorId to set
+	 */
+	public void setDoorId(String doorId) {
+		this.doorId = doorId;
+	}
+
+	/**
+	 * @return the isOpen
+	 */
+	public boolean isOpen() {
+		return isOpen;
+	}
+
+	/**
+	 * @param isOpen the isOpen to set
+	 */
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
 	}
 }

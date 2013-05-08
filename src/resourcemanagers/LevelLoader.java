@@ -105,12 +105,14 @@ public class LevelLoader {
 	private void addElementAsDoor(Element resourceElement, Level level) throws SlickException {
 		String openid = resourceElement.getAttribute("id");
 		String closedimage = resourceElement.getAttribute("closedid");
+		String doorId = resourceElement.getAttribute("doorid");
+
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		//String doorid = resourceElement.getAttribute("doorid");
 		Vec2 startloc = new Vec2(startx,starty);
 
-		Door door = new Door(closedimage, startloc, level.getPhysWorld(), openid);
+		Door door = new Door(closedimage, startloc, level.getPhysWorld(), openid,doorId);
 		level.addDoor(door, door.getBodyId());
 	}
 
