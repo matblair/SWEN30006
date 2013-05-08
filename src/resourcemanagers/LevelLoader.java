@@ -1,5 +1,6 @@
 package resourcemanagers;
 
+import gameobjects.BigSwitch;
 import gameobjects.CompanionCube;
 import gameobjects.Door;
 import gameobjects.LittleSwitch;
@@ -79,8 +80,10 @@ public class LevelLoader {
 					addElementAsPlatform(resourceElement,level);
 				}else if(type.equals("PORTAL")){  
 					addElementAsPortal(resourceElement,level);
-				}else if(type.equals("SWITCH")){  
-					addElementAsSwitch(resourceElement,level);
+				}else if(type.equals("LITTLESWITCH")){  
+					addElementAsLittleSwitch(resourceElement,level);
+				}else if(type.equals("BIGSWITCH")){  
+					addElementAsBigSwitch(resourceElement,level);
 				}else if(type.equals("DOOR")){  
 					addElementAsDoor(resourceElement,level);
 				}else if(type.equals("BACKGROUNDIMG")){
@@ -111,7 +114,7 @@ public class LevelLoader {
 		level.addDoor(door, door.getBodyId());
 	}
 
-	private void addElementAsSwitch(Element resourceElement, Level level) throws SlickException{
+	private void addElementAsLittleSwitch(Element resourceElement, Level level) throws SlickException{
 		String imgid = resourceElement.getAttribute("id");
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
@@ -123,6 +126,20 @@ public class LevelLoader {
 		LittleSwitch newswitch = new LittleSwitch(imgid, startloc, level.getPhysWorld(), cubespawn, cubeid);
 		level.addLittleSwitch(newswitch, newswitch.getBodyId());
 		
+	}
+	
+	private void addElementAsBigSwitch(Element resourceElement, Level level) throws SlickException{
+		String imgid = resourceElement.getAttribute("id");
+		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
+		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
+		Vec2 startloc = new Vec2(startx,starty);
+		
+		String contactid = resourceElement.getAttribute("contactimg");
+		String downid = resourceElement.getAttribute("downid");
+		String doorid = resourceElement.getAttribute("doorid");
+		
+		BigSwitch bswitch = new BigSwitch(imgid,startloc,level.getPhysWorld(),contactid, downid, doorid);
+		level.addBigSwitch(bswitch, bswitch.getBodyId());
 	}
 
 	private void addElementAsPortal(Element resourceElement, Level level) {
