@@ -3,7 +3,7 @@ package resourcemanagers;
 import gameobjects.CompanionCube;
 import gameobjects.Door;
 import gameobjects.LittleSwitch;
-import gameobjects.MovingPlatform;
+import gameobjects.Platform;
 import gameobjects.Player;
 import gameobjects.Wall;
 import gameworlds.Level;
@@ -117,8 +117,14 @@ public class LevelLoader {
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		String doorid = resourceElement.getAttribute("doorid");
 		Vec2 startloc = new Vec2(startx,starty);
+	
+		Float cubex = Float.parseFloat(resourceElement.getAttribute("xCube"));
+		Float cubey = Float.parseFloat(resourceElement.getAttribute("yCube"));
+		Vec2 cubespawn = new Vec2(cubex,cubey);
 		
-		LittleSwitch newswitch = new LittleSwitch(imgid, startloc, level.getPhysWorld(), doorid);
+		String cubeid = resourceElement.getAttribute("cubeid");
+		
+		LittleSwitch newswitch = new LittleSwitch(imgid, startloc, level.getPhysWorld(), cubespawn, cubeid);
 		level.addLittleSwitch(newswitch, newswitch.getBodyId());
 		
 	}
@@ -134,7 +140,7 @@ public class LevelLoader {
 		Float width = Float.parseFloat(resourceElement.getAttribute("width"));
 		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
 		Vec2 startloc = new Vec2(startx,starty);
-		MovingPlatform platform = new MovingPlatform(imgid, startloc, width, height, level.getPhysWorld());
+		Platform platform = new Platform(imgid, startloc, width, height, level.getPhysWorld());
 		level.addMovingPlatform(platform, platform.getBodyId());
 	}
 

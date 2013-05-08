@@ -17,8 +17,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Player extends GameObject{
-	private static final float MAXCUBEDIST = 1.3f;
-	private static final float DISTCHECK = 0.5f;
+	private static final float MAXCUBEDIST = 1.8f;
+	private static final float DISTCHECK = 1.5f;
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
@@ -115,33 +115,51 @@ public class Player extends GameObject{
 		this.sprite_left = sprite_left;
 	}
 
-	public void interact(World world, Level level){
+	public void interact(World world, Level level) throws SlickException{
 		if(holdingcube){
 			dropCube();
 		} else {
-			//getObjectsWithinDist();
-			ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
-			while (edge != null) {
-			
-				System.out.println("Found " + edge.other + " of type " + level.getBodyType(edge.other));
-				String type=level.getBodyType(edge.other);
-				if(type.equals("cube")){
-					String bodyId=edge.other.toString();
-					pickupCube(level.getCube(bodyId));
-				}
-				edge = edge.next;
+			CompanionCube cube = getCubesWithinDist();
+			if(cube!=null){
+				pickupCube(cube);
+				return;
+			}else{
+				//Haven't picked up a cube so check if we can interact with small switch
+				ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
+				while (edge != null) {
 
-			}	
+					System.out.println("Found " + edge.other + " of type " + level.getBodyType(edge.other));
+					String type=level.getBodyType(edge.other);
+					if(type.equals("lilswitch")){
+						String bodyId=edge.other.toString();
+						System.out.println("Found little switch about to trigger");
+						level.getSwitch(bodyId).trigger();
+					}
+					edge = edge.next;
+
+				}	
+			}
 		}
 	}
-	
-	public void getObjectsWithinDist(){
+
+	public CompanionCube getCubesWithinDist(){
 		float playerx = this.getLocation().x;
 		float playery = this.getLocation().y;
-		Vec2 upper = new Vec2(playerx+DISTCHECK,playery+DISTCHECK);
-		Vec2 lower = new Vec2(playerx-DISTCHECK,playery-DISTCHECK);
+		Vec2 upper = new Vec2();
+		Vec2 lower = new Vec2();
+		if(facingleft){
+			upper.set(playerx,(playery+this.getDimensions().y/2));
+			lower.set(playerx-DISTCHECK,(playery-this.getDimensions().y/2));
+
+		}else {
+			upper.set(playerx+DISTCHECK,(playery+this.getDimensions().y/2));
+			lower.set(playerx,(playery-this.getDimensions().y/2));
+		}
 		AABB area = new AABB(lower,upper);
-		GameState.getLevel().getPhysWorld().queryAABB(new FixtureCallback(), area);
+		FixtureCallback callback = new FixtureCallback();
+		GameState.getLevel().getPhysWorld().queryAABB(callback, area);
+		CompanionCube cube = callback.getCube();
+		return cube;
 	}
 
 	public void teleport(){
@@ -192,17 +210,15 @@ public class Player extends GameObject{
 		cubecarrying=null;
 	}
 
-	
+
 	public void checkCube(){
 		if(holdingcube){
 			Vec2 cubepos = cubecarrying.getLocation();
 			Vec2 playerpos = this.getLocation();	
 			float dist = cubepos.sub(playerpos).length();
-			System.out.println(dist);
 			if(dist>MAXCUBEDIST){
 				dropCube();
 			}
 		}
 	}
-
 }

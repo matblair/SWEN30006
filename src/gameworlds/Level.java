@@ -31,13 +31,19 @@ public class Level {
 	/** A vector containing all doors **/
 	protected Map<String,Door> doors;
 	/** A vector containing all platforms **/
-	protected Map<String,MovingPlatform> platforms;
+	protected Map<String,Platform> platforms;
 	/** A vector containing all portals **/
 	protected Map<String,Portal> portals;
 	/** A vector containing all switches **/
 	protected Map<String,LittleSwitch> lilSwitches;
 	/** A vector containing all switches **/
 	protected Map<String,BigSwitch> bigSwitches;
+	
+	/** A map containing all interactable objects **/
+	protected static Map<String, GameObject> interactableObjects;
+	/** A map containing all static objects **/
+	protected static Map<String, GameObject> staticObjects;
+
 	
 	/** Our physics world **/
 	private World world;
@@ -62,7 +68,7 @@ public class Level {
 		cubes = new HashMap<String,CompanionCube>();
 		walls = new HashMap<String,Wall>();
 		doors = new HashMap<String,Door>();
-		platforms = new HashMap<String,MovingPlatform>();
+		platforms = new HashMap<String,Platform>();
 		portals = new HashMap<String,Portal>();
 		lilSwitches = new HashMap<String,LittleSwitch>();
 		bigSwitches = new HashMap<String,BigSwitch>();	
@@ -128,7 +134,7 @@ public class Level {
 		portals.put(bodyid,portal);
 	}
 	
-	public void addMovingPlatform(MovingPlatform platform, String bodyid){
+	public void addMovingPlatform(Platform platform, String bodyid){
 		platforms.put(bodyid,platform);
 	}
 	
@@ -167,6 +173,13 @@ public class Level {
 			type="wall";
 		}
 		return type;
-		
+	}
+
+	public LittleSwitch getSwitch(String bodyId) {
+		return lilSwitches.get(bodyId);
+	}
+
+	public void removeCube(CompanionCube cube) {
+		cubes.remove(cube.getBodyId());
 	}
 }
