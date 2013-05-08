@@ -18,8 +18,6 @@ import resourcemanagers.AssetManager;
 
 
 public class Level {
-	/** The resource manager for all resources **/
-	AssetManager assetManager;
 	
 	/** The level id **/
 	private int levelid;

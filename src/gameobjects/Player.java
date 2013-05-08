@@ -1,5 +1,6 @@
 package gameobjects;
 
+import gameengine.FixtureCallback;
 import gameengine.PhysUtils;
 import gamestates.GameState;
 import gameworlds.Level;
@@ -17,6 +18,7 @@ import org.newdawn.slick.SlickException;
 
 public class Player extends GameObject{
 	private static final float MAXCUBEDIST = 1.3f;
+	private static final float DISTCHECK = 0.5f;
 	/** The left and right facing images for the players **/
 	private Image sprite_right;
 	private Image sprite_left; 
@@ -119,6 +121,7 @@ public class Player extends GameObject{
 		if(holdingcube){
 			dropCube();
 		} else {
+			//getObjectsWithinDist();
 			ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
 			while (edge != null) {
 			
@@ -132,6 +135,15 @@ public class Player extends GameObject{
 
 			}	
 		}
+	}
+	
+	public void getObjectsWithinDist(){
+		float playerx = this.getLocation().x;
+		float playery = this.getLocation().y;
+		Vec2 upper = new Vec2(playerx+DISTCHECK,playery+DISTCHECK);
+		Vec2 lower = new Vec2(playerx-DISTCHECK,playery-DISTCHECK);
+		AABB area = new AABB(lower,upper);
+		GameState.getLevel().getPhysWorld().queryAABB(new FixtureCallback(), area);
 	}
 
 	public void teleport(){
