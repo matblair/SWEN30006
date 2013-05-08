@@ -66,8 +66,8 @@ public class Level {
 		platforms = new HashMap<String,MovingPlatform>();
 		lilSwitches = new HashMap<String,LittleSwitch>();
 		bigSwitches = new HashMap<String,BigSwitch>();	
-		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(0,0), world);
-		portals[Portal.BLUE] = new Portal("BLUEPORTAL", new Vec2(0,0), world);
+		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(-1,0), world);
+		portals[Portal.BLUE] = new Portal("BLUEPORTAL", new Vec2(-1,0), world);
 	}
 
 	public void render(Graphics g, boolean debug,Camera cam, GameContainer gc) {
