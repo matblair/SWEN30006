@@ -48,4 +48,13 @@ public class PhysUtils {
 			bodylist=bodylist.getNext();
 		}
 	}
+	
+	/** Get the angle of a vector in radians
+	 * 
+	 * @param vector The vector whose angle is wanted
+	 * @return Angle of vector in radians
+	 */
+	public static float getAngle(Vec2 vector) {
+		return (float) Math.atan2(vector.y, vector.x);
+	}
 }

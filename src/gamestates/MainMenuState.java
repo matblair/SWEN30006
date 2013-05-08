@@ -27,9 +27,6 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	private final static int MENU_ACHIEVEMENTS=2;
 	private final static int MENU_HIGHSCORES=3;
 	private final static int MENU_OPTIONS=4;
-	private final static int MENU_TESTGAME=5;
-
-	
 	
 	/** The state id for this part **/
 	private static int StateId = Portal2D.MAINMENUSTATE;
@@ -65,12 +62,10 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 		menuItems.add("Achievements");
 		menuItems.add("High Scores");
 		menuItems.add("Options");
-		menuItems.add("Test World");
 		stringMaps.put("Start Game", MENU_STARTGAME);
 		stringMaps.put("Achievements", MENU_ACHIEVEMENTS);
 		stringMaps.put("High Scores", MENU_HIGHSCORES);
 		stringMaps.put("Options", MENU_OPTIONS);
-		stringMaps.put("Test World",  MENU_TESTGAME);
 	}
 
 	@Override

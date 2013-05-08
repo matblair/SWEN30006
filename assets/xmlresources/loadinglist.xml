@@ -18,6 +18,8 @@
 	<resource type="IMAGE" id="SMALLSWITCH">assets/sprites/gameobjects/smallswitch.png</resource>
 	<resource type="IMAGE" id="DOOROPEN">assets/sprites/levelobjects/dooropen.png</resource>
 	<resource type="IMAGE" id="DOORCLOSE">assets/sprites/levelobjects/doorclosed.png</resource>
+    <resource type="IMAGE" id="BLUEPORTAL">assets/sprites/levelobjects/blueportal.png</resource>
+    <resource type="IMAGE" id="ORANGEPORTAL">assets/sprites/levelobjects/orangeportal.png</resource>
 
 	<!-- Achievement Images -->
 	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>

@@ -1,4 +1,5 @@
 package gameworlds;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class Level {
 	/** A vector containing all platforms **/
 	protected Map<String,MovingPlatform> platforms;
 	/** A vector containing all portals **/
-	protected Map<String,Portal> portals;
+	protected Portal[] portals = new Portal[2];
 	/** A vector containing all switches **/
 	protected Map<String,LittleSwitch> lilSwitches;
 	/** A vector containing all switches **/
@@ -53,7 +54,7 @@ public class Level {
 		return doors.values();
 	}
 
-	public Level(){
+	public Level() throws SlickException{
 		// Create physics worlds
 		world = new World(gravity);
 		portalWorld = new World(new Vec2(0,0));
@@ -63,9 +64,10 @@ public class Level {
 		walls = new HashMap<String,Wall>();
 		doors = new HashMap<String,Door>();
 		platforms = new HashMap<String,MovingPlatform>();
-		portals = new HashMap<String,Portal>();
 		lilSwitches = new HashMap<String,LittleSwitch>();
 		bigSwitches = new HashMap<String,BigSwitch>();	
+		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(0,0), world);
+		portals[Portal.BLUE] = new Portal("BLUEPORTAL", new Vec2(0,0), world);
 	}
 
 	public void render(Graphics g, boolean debug,Camera cam, GameContainer gc) {
@@ -74,6 +76,7 @@ public class Level {
 		RenderEngine.drawGameObject(player, cam);
 		RenderEngine.drawGameObjects(cubes, cam);
 		RenderEngine.drawGameObjects(doors, cam);
+		RenderEngine.drawGameObjects(portals, cam);
 		RenderEngine.drawGameObjects(platforms, cam);
 	}
 
@@ -82,6 +85,20 @@ public class Level {
 		player.moveXDir(dir_x, delta);
 		world.step(timeStep, velocityIterations, positionIterations);
 		player.checkCube();
+	}
+	
+	public void playerShootPortal(int color) throws SlickException {
+		RayCastHelper rch = new RayCastHelper();
+		world.raycast(rch, new Vec2(2,2), new Vec2(0,2));
+		if (rch.fixture == null)
+			return;
+		
+		if (this.getBodyType(rch.fixture.getBody()).equals("wall")) {
+			Wall wall = walls.get(rch.fixture.getBody().toString());
+			Vec2 loc = rch.point;
+			System.out.println(wall.getStart() + " " + wall.getUnitTangent());
+			portals[color].hitWall(loc, wall);
+		}
 	}
 	
 	public Player getLevelPlayer() {
@@ -124,10 +141,6 @@ public class Level {
 		doors.put(bodyid,door);
 	}
 	
-	public void addPortal(Portal portal, String bodyid){
-		portals.put(bodyid,portal);
-	}
-	
 	public void addMovingPlatform(MovingPlatform platform, String bodyid){
 		platforms.put(bodyid,platform);
 	}
@@ -157,8 +170,6 @@ public class Level {
 			type="bigswitch";
 		}else if(lilSwitches.containsKey(key)){
 			type="lilswitch";
-		}else if(portals.containsKey(key)){
-			type="portal";
 		}else if(doors.containsKey(key)){
 			type="door";
 		}else if(platforms.containsKey(key)){
