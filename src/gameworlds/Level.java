@@ -147,11 +147,7 @@ public class Level {
 		doors.put(bodyid,door);
 	}
 	
-	public void addPortal(Portal portal, String bodyid){
-		portals.put(bodyid,portal);
-	}
-	
-	public void addMovingPlatform(MovingPlatform platform, String bodyid){
+	public void addMovingPlatform(Platform platform, String bodyid){
 		platforms.put(bodyid,platform);
 	}
 	
