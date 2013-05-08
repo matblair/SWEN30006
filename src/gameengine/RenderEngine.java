@@ -14,6 +14,12 @@ public class RenderEngine {
 		}
 	}
 	
+	public static <T extends GameObject> void drawGameObjects(T[] array, Camera cam){
+		for (T obj : array) {
+			drawGameObject(obj,cam);
+		}
+	}
+	
 	/** Render a GameObject to the screen (if it is in view).
 	 * 
 	 * @param obj The GameObject to render.

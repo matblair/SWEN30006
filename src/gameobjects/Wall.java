@@ -1,5 +1,7 @@
 package gameobjects;
 
+import gameengine.PhysUtils;
+
 import org.jbox2d.collision.shapes.EdgeShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -35,7 +37,15 @@ public class Wall {
 		fd.friction=0.3f;
 		body.createFixture(fd);
 		
-		//System.out.println(start.x + "," + start.y + " to " + end.x + "," + end.y + " with unit tangent " + getUnitTangent().x + "," + getUnitTangent().y);
+		System.out.println(start + " to " + end + " with unit tangent " + getUnitTangent() + " at angle " + PhysUtils.getAngle(getUnitTangent()));
+	}
+	
+	public void enable() {
+		body.getFixtureList().setSensor(false);
+	}
+	
+	public void disable() {
+		body.getFixtureList().setSensor(true);
 	}
 	
 	public String getBodyId() {
@@ -49,5 +59,10 @@ public class Wall {
 	public Vec2 getUnitTangent() {
 		Vec2 wall = end.sub(start);
 		return wall.mul(1/wall.length());
+	}
+	
+	public Vec2 getUnitNormal() {
+		Vec2 tangent = getUnitTangent();
+		return new Vec2(-tangent.y, tangent.x);
 	}
 }

@@ -7,6 +7,7 @@ import gameengine.InputManager;
 import gameengine.PhysUtils;
 import gameengine.Portal2D;
 import gameobjects.Door;
+import gameobjects.Portal;
 import gameworlds.Level;
 
 import org.jbox2d.common.Vec2;
@@ -58,6 +59,7 @@ public class GameState extends BasicGameState implements KeyListener {
 		if (input.isKeyPressed(InputManager.INTERACT)){
 			level.getLevelPlayer().interact(level.getPhysWorld(), level);
 		}
+		
 		if (input.isKeyPressed(Input.KEY_T)){
 			level.getLevelPlayer().teleport();
 		}if (input.isKeyPressed(Input.KEY_Y)){
@@ -69,6 +71,10 @@ public class GameState extends BasicGameState implements KeyListener {
 			for (Door door : doors) {
 				door.toggle();
 			}
+		}
+		
+		if (input.isKeyPressed(InputManager.SHOOT_BLUE)) {
+			level.playerShootPortal(Portal.BLUE);
 		}
 		
 		level.update(dir_x,0, delta, sbg);
