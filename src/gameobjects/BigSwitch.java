@@ -16,7 +16,11 @@ import org.newdawn.slick.SlickException;
 
 import resourcemanagers.AssetManager;
 
-public class BigSwitch extends Switch {
+public class BigSwitch extends GameObject {
+
+	private static final String IMGID="SWITCHSENSOR";
+	private static final String SHAPEID="BIGSWITCHSHAPE";
+	private static final int bodytype = PhysUtils.STATIC;
 
 	private static boolean doorlinkset = false;
 	private Image contactimg;
@@ -29,16 +33,26 @@ public class BigSwitch extends Switch {
 	private boolean somethingpressing;
 
 
-	public BigSwitch(String imgloc, Vec2 location, World world, String contactid, String downid, String doorId)
+	public BigSwitch(Vec2 location, World world, String doorId)
 			throws SlickException {
-		super(imgloc, location, world, PhysUtils.STATIC);
+		super(IMGID);
 		//Create the contact sensor
-		contactimg = AssetManager.requestImage(contactid);
+		FixtureDef fixture = createFixture();
+		contactimg=this.getImage();
+		renderUp = renderDown = contactimg;
+		this.createBody(location, world, fixture, bodytype);
 		contactdim = PhysUtils.SlickToJBoxVec(new Vec2(contactimg.getWidth(), contactimg.getHeight()));
 		createSensor(location,world);
-		renderUp = AssetManager.requestImage(imgloc);
-		renderDown = AssetManager.requestAchiemeventResource(downid);
 		this.doorId=doorId;
+	}
+	
+	private FixtureDef createFixture(){
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = AssetManager.requestShape(SHAPEID);
+		fixtureDef.density=1;
+		fixtureDef.friction=0.3f;
+		return fixtureDef;
+
 	}
 
 	private void createSensor(Vec2 location, World world) {
@@ -67,11 +81,13 @@ public class BigSwitch extends Switch {
 				}
 			}
 		}
+		System.out.println(doorlink.isOpen());
+
 
 		ContactEdge edge = contact.getContactList();
 		while (edge != null) {
 			String type=GameState.getLevel().getBodyType(edge.other);
-			if(!type.equals("wall")){
+			if(!(type.equals("wall") || type.equals("bigswitch"))){
 				somethingpressing=true;
 			}
 			edge = edge.next;
@@ -79,18 +95,13 @@ public class BigSwitch extends Switch {
 		if(somethingpressing){
 			if(!doorlink.isOpen()){
 				doorlink.open();
+				setSprite(renderDown);
 			}
 		}else {
 			if(doorlink.isOpen()){
 				doorlink.close();
+				setSprite(renderUp);
 			}
 		}
-
-
 	}
-
-
-
-
-
 }

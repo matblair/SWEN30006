@@ -4,6 +4,7 @@ import gameobjects.BigSwitch;
 import gameobjects.CompanionCube;
 import gameobjects.Door;
 import gameobjects.LittleSwitch;
+import gameobjects.MovingPlatform;
 import gameobjects.Platform;
 import gameobjects.Player;
 import gameobjects.Wall;
@@ -54,30 +55,27 @@ public class LevelLoader {
 		final NodeList listResources = doc.getElementsByTagName("resource");  
 
 		final int totalResources = listResources.getLength();
-		System.out.println(totalResources + " total resources");
 		if(deferred){
 			LoadingList.setDeferredLoading(true);
 		}
 
-		int players=0;
-		int walls=0;
-		int backgroundimg=0;
+
 		
 		for(int resourceIdx = 0; resourceIdx < totalResources; resourceIdx++){
 			final Node resourceNode = listResources.item(resourceIdx);
 			if(resourceNode.getNodeType() == Node.ELEMENT_NODE){
 				final Element resourceElement = (Element)resourceNode;
 				final String type = resourceElement.getAttribute("type");  
-				System.out.println(type);
 				if(type.equals("CUBE")){  
 					addElementAsCube(resourceElement,level);
 				}else if(type.equals("WALL")){ 
-					walls++;
 					addElementAsWall(resourceElement,level);
 				}else if(type.equals("TURRET")){  
 					addElementAsTurret(resourceElement,level);
 				}else if(type.equals("PLATFORM")){  
 					addElementAsPlatform(resourceElement,level);
+				}else if(type.equals("MOVINGPLATFORM")){  
+					addElementAsMovingPlatform(resourceElement,level);
 				}else if(type.equals("PORTAL")){  
 					addElementAsPortal(resourceElement,level);
 				}else if(type.equals("LITTLESWITCH")){  
@@ -87,19 +85,12 @@ public class LevelLoader {
 				}else if(type.equals("DOOR")){  
 					addElementAsDoor(resourceElement,level);
 				}else if(type.equals("BACKGROUNDIMG")){
-					backgroundimg++;
 					level.setBg(new Image(resourceElement.getTextContent()));
 				}else if(type.equals("PLAYER")){
-					players++;
 					addElementAsPlayer(resourceElement,level);
 				}
 			}
 		}
-		
-		System.out.println(players +" players added");
-		System.out.println(backgroundimg +" backgrounds added");
-		System.out.println(walls +" walls added");
-
 	}
 
 	private void addElementAsDoor(Element resourceElement, Level level) throws SlickException {
@@ -109,10 +100,9 @@ public class LevelLoader {
 
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
-		//String doorid = resourceElement.getAttribute("doorid");
 		Vec2 startloc = new Vec2(startx,starty);
 
-		Door door = new Door(closedimage, startloc, level.getPhysWorld(), openid,doorId);
+		Door door = new Door(startloc, level.getPhysWorld(),doorId);
 		level.addDoor(door, door.getBodyId());
 	}
 
@@ -125,7 +115,7 @@ public class LevelLoader {
 		Float cubey = Float.parseFloat(resourceElement.getAttribute("yCube"));
 		Vec2 cubespawn = new Vec2(cubex,cubey);
 		String cubeid = resourceElement.getAttribute("cubeid");	
-		LittleSwitch newswitch = new LittleSwitch(imgid, startloc, level.getPhysWorld(), cubespawn, cubeid);
+		LittleSwitch newswitch = new LittleSwitch(startloc, level.getPhysWorld(), cubespawn);
 		level.addLittleSwitch(newswitch, newswitch.getBodyId());
 		
 	}
@@ -140,7 +130,7 @@ public class LevelLoader {
 		String downid = resourceElement.getAttribute("downid");
 		String doorid = resourceElement.getAttribute("doorid");
 		
-		BigSwitch bswitch = new BigSwitch(imgid,startloc,level.getPhysWorld(),contactid, downid, doorid);
+		BigSwitch bswitch = new BigSwitch(startloc,level.getPhysWorld(), doorid);
 		level.addBigSwitch(bswitch, bswitch.getBodyId());
 	}
 
@@ -149,13 +139,41 @@ public class LevelLoader {
 	}
 
 	private void addElementAsPlatform(Element resourceElement, Level level) throws SlickException{
-		String imgid = resourceElement.getAttribute("id");
+		String type = resourceElement.getAttribute("id");
+		int size;
+		if(type.equals("SMALLPLATFORM")){
+			size=Platform.SHORT;
+		}else{
+			size=Platform.LONG;
+		}
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
-		Float width = Float.parseFloat(resourceElement.getAttribute("width"));
-		Float height = Float.parseFloat(resourceElement.getAttribute("height"));
 		Vec2 startloc = new Vec2(startx,starty);
-		Platform platform = new Platform(imgid, startloc, width, height, level.getPhysWorld());
+		Platform platform = new Platform(startloc, level.getPhysWorld(),size,0);
+		level.addPlatform(platform, platform.getBodyId());
+	}
+	
+	private void addElementAsMovingPlatform(Element resourceElement, Level level) throws SlickException{
+	
+		String type = resourceElement.getAttribute("id");
+		int size;
+		if(type.equals("SMALLPLATFORM")){
+			size=Platform.SHORT;
+		}else{
+			size=Platform.LONG;
+		}
+		
+		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
+		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
+		Float xTrackStart = Float.parseFloat(resourceElement.getAttribute("trackxstart"));
+		Float yTrackStart = Float.parseFloat(resourceElement.getAttribute("trackystart"));
+		Float xTrackFin = Float.parseFloat(resourceElement.getAttribute("trackxfin"));
+		Float yTrackFin = Float.parseFloat(resourceElement.getAttribute("trackyfin"));
+
+		Vec2 trackstart = new Vec2(xTrackStart,yTrackStart);
+		Vec2 trackfin = new Vec2(xTrackFin, yTrackFin);
+		Vec2 startloc = new Vec2(startx,starty);
+		MovingPlatform platform = new MovingPlatform(startloc,level.getPhysWorld(), trackstart, trackfin,size);
 		level.addMovingPlatform(platform, platform.getBodyId());
 	}
 
@@ -180,7 +198,7 @@ public class LevelLoader {
 		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
 		Vec2 startloc = new Vec2(xstart,ystart);
-		CompanionCube cube = new CompanionCube(imgid, startloc, level.getPhysWorld());
+		CompanionCube cube = new CompanionCube(startloc, level.getPhysWorld());
 		level.addCube(cube, cube.getBodyId());
 	}
 	
@@ -191,7 +209,7 @@ public class LevelLoader {
 		System.out.println(xstart + ", " + ystart + ", " + imgid);
 		
 		Vec2 startloc = new Vec2(xstart,ystart);
-		Player newplayer = new Player(imgid,startloc, level.getPhysWorld());
+		Player newplayer = new Player(startloc, level.getPhysWorld());
 		level.setLevelPlayer(newplayer);
 		
 		//Debug Code

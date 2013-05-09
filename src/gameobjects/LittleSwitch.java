@@ -4,23 +4,40 @@ import gameengine.PhysUtils;
 import gamestates.GameState;
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.newdawn.slick.SlickException;
 
-public class LittleSwitch extends Switch {
+import resourcemanagers.AssetManager;
+
+public class LittleSwitch extends GameObject {
 
 	private Vec2 spawnpoint;
-	private String cubeid;
+	
+	private static final String IMGID="SMALLSWITCH";
+	private static final String SHAPEID="SMALLSWITCHSHAPE";
+
+	private static final int BODYTYPE = PhysUtils.STATIC;
+
 	
 	private static CompanionCube cube;
 	
-	public LittleSwitch(String imgloc, Vec2 location, World world, Vec2 spawn, String cubeimgid)
+	public LittleSwitch(Vec2 location, World world, Vec2 spawn)
 			throws SlickException {
-		super(imgloc, location, world, PhysUtils.STATIC);
+		super(IMGID);
 		this.spawnpoint=spawn;
-		this.cubeid=cubeimgid;
+		FixtureDef fixture = createFixture();
+		this.createBody(location, world, fixture, BODYTYPE);
 		getBody().getFixtureList().setSensor(true);
 
+	}
+
+	private FixtureDef createFixture(){
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = AssetManager.requestShape(SHAPEID);
+		fixtureDef.density=1;
+		fixtureDef.friction=0.3f;
+		return fixtureDef;
 	}
 	
 	public void trigger() throws SlickException{
@@ -30,7 +47,7 @@ public class LittleSwitch extends Switch {
 			GameState.getLevel().getPhysWorld().destroyBody(cube.getBody());
 			cube=null;
 		}
-		cube = new CompanionCube(cubeid, spawnpoint, GameState.getLevel().getPhysWorld());
+		cube = new CompanionCube(spawnpoint, GameState.getLevel().getPhysWorld());
 		GameState.getLevel().addCube(cube, cube.getBodyId());
 		System.out.println("success");
 	}

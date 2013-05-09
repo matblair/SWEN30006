@@ -8,6 +8,7 @@ import gameworlds.Level;
 import org.jbox2d.collision.AABB;
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.jbox2d.dynamics.joints.Joint;
@@ -16,7 +17,14 @@ import org.jbox2d.dynamics.joints.PrismaticJointDef;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import resourcemanagers.AssetManager;
+
 public class Player extends GameObject{
+	
+	private static final String IMGID="CHELLSPRITE";
+	private static final String SHAPEID="CHELLSHAPE";
+	private static final int BODYTYPE=PhysUtils.DYNAMIC;
+	
 	private static final float MAXCUBEDIST = 1.8f;
 	private static final float DISTCHECK = 1.5f;
 	/** The left and right facing images for the players **/
@@ -42,13 +50,23 @@ public class Player extends GameObject{
 	 * @param world The JBox world in which the players physical body should be added.
 	 * @throws SlickException
 	 */
-	public Player(final String imgloc, Vec2 pos, World world) throws SlickException {
-		super(imgloc, pos, world, PhysUtils.DYNAMIC);
+	public Player(Vec2 pos, World world) throws SlickException {
+		super(IMGID);
+		FixtureDef fixture = createFixture();
+		this.createBody(pos, world, fixture, BODYTYPE);
 		sprite_right=getImage();				
 		setObject_left(sprite_right.getFlippedCopy(true,false));
+		Vec2 dim = new Vec2(108f,102f);
+		setDimensions(dim);
 	}
-
-
+	
+	private FixtureDef createFixture(){
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = AssetManager.requestShape(SHAPEID);
+		fixtureDef.density=1;
+		fixtureDef.friction=0.3f;
+		return fixtureDef;
+	}
 	/** Tell the player to move in a certain direction.
 	 * 
 	 * @param dir_x The direction (and scale) of which to move. Should be [-1,1], which corresponds to [FullLeft, FullRight]
@@ -83,8 +101,6 @@ public class Player extends GameObject{
 	public void jump() {
 		if (isOnGround()){
 			float impulse = getMass() * jumpFactor;
-			System.out.println(impulse);
-			System.out.println(getLocation());
 			getBody().applyLinearImpulse(new Vec2(0,impulse), getLocation());
 		}
 	}
@@ -127,11 +143,9 @@ public class Player extends GameObject{
 				//Haven't picked up a cube so check if we can interact with small switch
 				ContactEdge edge = level.getLevelPlayer().getBody().getContactList();
 				while (edge != null) {
-					System.out.println("Found " + edge.other + " of type " + level.getBodyType(edge.other));
 					String type=level.getBodyType(edge.other);
 					if(type.equals("lilswitch")){
 						String bodyId=edge.other.toString();
-						System.out.println("Found little switch about to trigger");
 						level.getSwitch(bodyId).trigger();
 					}
 					edge = edge.next;
@@ -167,11 +181,9 @@ public class Player extends GameObject{
 		Vec2 currentvel = this.getBody().getLinearVelocity();
 		Float x = currentvel.x;
 		Float y = currentvel.y;
-		System.out.println(this.getBody().getLinearVelocity());
 		Vec2 transVec = new Vec2(-y,-x);
 		this.getBody().setTransform(new Vec2(0.6f,14), 0f);
 		this.getBody().setLinearVelocity(transVec);
-		System.out.println("After: " + this.getBody().getLinearVelocity());
 
 	}
 
@@ -199,7 +211,6 @@ public class Player extends GameObject{
 	}
 
 	public void dropCube(){
-		System.out.println("shold be dropping it");
 		cubecarrying.getBody().resetMassData();
 		cubecarrying.getBody().setFixedRotation(false);
 		Joint joint=cubecarrying.getBody().getJointList().joint;

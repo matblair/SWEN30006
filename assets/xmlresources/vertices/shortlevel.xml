@@ -1,0 +1,14 @@
+
+<resources>
+	<!-- ShortLeve Vertices -->
+	<!-- Cube Vertices -->
+		<resource xloc="-100" yloc="-8.5">cube</resource>
+		<resource xloc="-100" yloc="-4.5">cube</resource>
+		<resource xloc="-100" yloc="3.5">cube</resource>
+		<resource xloc="-100" yloc="7.5">cube</resource>
+		<resource xloc="100" yloc="7.5">cube</resource>
+		<resource xloc="100" yloc="3.5">cube</resource>
+		<resource xloc="100" yloc="-4.5">cube</resource>
+		<resource xloc="100" yloc="-8.0">cube</resource>
+
+</resources>

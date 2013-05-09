@@ -3,6 +3,7 @@ package gameobjects;
 import gameengine.PhysUtils;
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -13,13 +14,28 @@ public class Door extends GameObject {
 	private boolean isOpen=false;
 	private Image openImage, closedImage;
 	private String doorId;
+	
+	private static final String OPENIMGID="DOOROPEN";
+	private static final String CLOSEIMGID="DOORCLOSE";
+	private static final String SHAPEID="DOORSHAPE";
+	private static final int BODYTYPE = PhysUtils.STATIC;
 
-	public Door(String imgid, Vec2 location, World world, String openImageId, String doorId)
+	public Door(Vec2 location, World world, String doorId)
 			throws SlickException {
-		super(imgid, location, world, PhysUtils.STATIC);
-		closedImage = AssetManager.requestImage("DOORCLOSE");
-		openImage = AssetManager.requestImage("DOOROPEN");
+		super(OPENIMGID);
+		FixtureDef fixture = createFixture();
+		this.createBody(location, world, fixture, BODYTYPE);
+		openImage = AssetManager.requestImage(OPENIMGID);
+		closedImage = AssetManager.requestImage(CLOSEIMGID);
 		setDoorId(doorId);
+	}
+	
+	private FixtureDef createFixture(){
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = AssetManager.requestShape(SHAPEID);
+		fixtureDef.density=1;
+		fixtureDef.friction=0.3f;
+		return fixtureDef;
 	}
 	
 	public void update (int delta) {

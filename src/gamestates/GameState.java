@@ -11,6 +11,7 @@ import gameobjects.Portal;
 import gameworlds.Level;
 
 import org.jbox2d.common.Vec2;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -44,6 +45,8 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		level.render(g, false, cam, gc);
+		g.setColor(Color.white);
+		g.drawString(Integer.toString(gc.getFPS()), 10f, 10f);
 	}
 
 	@Override

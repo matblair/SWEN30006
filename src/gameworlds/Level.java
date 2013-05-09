@@ -7,6 +7,7 @@ import java.util.Map;
 import gameengine.*;
 import gameobjects.*;
 
+import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
@@ -31,8 +32,11 @@ public class Level {
 	protected Map<String,Wall> walls;
 	/** A vector containing all doors **/
 	protected Map<String,Door> doors;
-	/** A vector containing all platforms **/
+	/** A vector containing all static platforms **/
 	protected Map<String,Platform> platforms;
+	/** A vector containing all moving platforms **/
+	protected Map<String,MovingPlatform> movingplatforms;
+
 	/** A vector containing all portals **/
 	protected Portal[] portals = new Portal[2];
 	/** A vector containing all switches **/
@@ -56,6 +60,8 @@ public class Level {
 	/** Gravity **/
 	private Vec2 gravity = new Vec2(0,-18f);
 	
+	private JBoxDebugDraw dd;
+	
 
 	public Level() throws SlickException{
 		// Create physics worlds
@@ -67,6 +73,8 @@ public class Level {
 		walls = new HashMap<String,Wall>();
 		doors = new HashMap<String,Door>();
 		platforms = new HashMap<String,Platform>();
+		movingplatforms = new HashMap<String,MovingPlatform>();
+
 		lilSwitches = new HashMap<String,LittleSwitch>();
 		bigSwitches = new HashMap<String,BigSwitch>();	
 		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(-1,0), world);
@@ -84,6 +92,8 @@ public class Level {
 		RenderEngine.drawGameObjects(doors, cam);
 		RenderEngine.drawGameObjects(portals, cam);
 		RenderEngine.drawGameObjects(platforms, cam);
+		RenderEngine.drawGameObjects(movingplatforms, cam);
+
 	}
 
 	public void update(float dir_x, float dir_y, int delta, StateBasedGame sbg) throws SlickException {
@@ -93,6 +103,9 @@ public class Level {
 		player.checkCube();
 		for(BigSwitch bs: bigSwitches.values()){
 			bs.updateState();
+		}
+		for(MovingPlatform pl: movingplatforms.values()){
+			pl.updatePos(delta);
 		}
 	}
 	
@@ -158,8 +171,12 @@ public class Level {
 		doors.put(bodyid,door);
 	}
 	
-	public void addMovingPlatform(Platform platform, String bodyid){
+	public void addPlatform(Platform platform, String bodyid){
 		platforms.put(bodyid,platform);
+	}
+	
+	public void addMovingPlatform(MovingPlatform platform, String bodyid){
+		movingplatforms.put(bodyid,platform);
 	}
 	
 	public void addBigSwitch(BigSwitch s, String bodyid){
@@ -193,6 +210,8 @@ public class Level {
 			type="platform";
 		}else if(walls.containsKey(key)){
 			type="wall";
+		}else if(movingplatforms.containsKey(key)){
+			type="movingplatform";
 		}
 		return type;
 	}

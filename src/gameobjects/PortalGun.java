@@ -8,10 +8,9 @@ import org.newdawn.slick.SlickException;
 
 public class PortalGun extends GameObject {
 
-	public PortalGun(String imgloc, Vec2 location, World world)
+	public PortalGun()
 			throws SlickException {
-		super(imgloc, location, world, PhysUtils.DYNAMIC);
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 }
