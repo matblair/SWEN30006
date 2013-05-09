@@ -3,6 +3,7 @@ package resourcemanagers;
 import gameobjects.BigSwitch;
 import gameobjects.CompanionCube;
 import gameobjects.Door;
+import gameobjects.EndLevel;
 import gameobjects.LittleSwitch;
 import gameobjects.MovingPlatform;
 import gameobjects.Platform;
@@ -88,14 +89,25 @@ public class LevelLoader {
 					level.setBg(new Image(resourceElement.getTextContent()));
 				}else if(type.equals("PLAYER")){
 					addElementAsPlayer(resourceElement,level);
+				}else if(type.equals("ENDZONE")){
+					addElementAsEndLevel(resourceElement,level);
+				}else if(type.equals("FOREGROUNDIMG")){
+					level.setFg(new Image(resourceElement.getTextContent()));
 				}
 			}
 		}
 	}
+	
+	private void addElementAsEndLevel(Element resourceElement, Level level) throws SlickException {
+		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
+		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
+		Vec2 startloc = new Vec2(startx,starty);
+
+		EndLevel end = new EndLevel(startloc, level.getPhysWorld());
+		level.addEndLevel(end);
+	}
 
 	private void addElementAsDoor(Element resourceElement, Level level) throws SlickException {
-		String openid = resourceElement.getAttribute("id");
-		String closedimage = resourceElement.getAttribute("closedid");
 		String doorId = resourceElement.getAttribute("doorid");
 
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
@@ -107,27 +119,21 @@ public class LevelLoader {
 	}
 
 	private void addElementAsLittleSwitch(Element resourceElement, Level level) throws SlickException{
-		String imgid = resourceElement.getAttribute("id");
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);	
 		Float cubex = Float.parseFloat(resourceElement.getAttribute("xCube"));
 		Float cubey = Float.parseFloat(resourceElement.getAttribute("yCube"));
 		Vec2 cubespawn = new Vec2(cubex,cubey);
-		String cubeid = resourceElement.getAttribute("cubeid");	
 		LittleSwitch newswitch = new LittleSwitch(startloc, level.getPhysWorld(), cubespawn);
 		level.addLittleSwitch(newswitch, newswitch.getBodyId());
 		
 	}
 	
 	private void addElementAsBigSwitch(Element resourceElement, Level level) throws SlickException{
-		String imgid = resourceElement.getAttribute("id");
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);
-		
-		String contactid = resourceElement.getAttribute("contactimg");
-		String downid = resourceElement.getAttribute("downid");
 		String doorid = resourceElement.getAttribute("doorid");
 		
 		BigSwitch bswitch = new BigSwitch(startloc,level.getPhysWorld(), doorid);
@@ -194,7 +200,6 @@ public class LevelLoader {
 	}
 
 	private void addElementAsCube(Element resourceElement, Level level) throws SlickException {
-		String imgid = resourceElement.getAttribute("id");
 		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
 		Vec2 startloc = new Vec2(xstart,ystart);

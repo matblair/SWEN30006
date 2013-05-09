@@ -14,15 +14,13 @@ import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import resourcemanagers.AssetManager;
-
 public class BigSwitch extends GameObject {
 
 	private static final String IMGID="SWITCHSENSOR";
 	private static final String SHAPEID="BIGSWITCHSHAPE";
 	private static final int bodytype = PhysUtils.STATIC;
 
-	private static boolean doorlinkset = false;
+	private boolean doorlinkset = false;
 	private Image contactimg;
 	private String doorId;
 	private Image renderUp;
@@ -37,7 +35,7 @@ public class BigSwitch extends GameObject {
 			throws SlickException {
 		super(IMGID);
 		//Create the contact sensor
-		FixtureDef fixture = createFixture();
+		FixtureDef fixture = createFixture(SHAPEID);
 		contactimg=this.getImage();
 		renderUp = renderDown = contactimg;
 		this.createBody(location, world, fixture, bodytype);
@@ -46,14 +44,6 @@ public class BigSwitch extends GameObject {
 		this.doorId=doorId;
 	}
 	
-	private FixtureDef createFixture(){
-		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = AssetManager.requestShape(SHAPEID);
-		fixtureDef.density=1;
-		fixtureDef.friction=0.3f;
-		return fixtureDef;
-
-	}
 
 	private void createSensor(Vec2 location, World world) {
 		BodyDef bd = new BodyDef();
@@ -70,6 +60,13 @@ public class BigSwitch extends GameObject {
 		fixtureDef.isSensor=true;
 		contact.createFixture(fixtureDef);
 	}
+	
+	@Override
+	protected FixtureDef createFixture(String shapeid) {
+		FixtureDef def = super.createFixture(shapeid);
+		def.isSensor=true;
+		return def;
+	}
 
 	public void updateState(){
 		somethingpressing=false;
@@ -81,8 +78,6 @@ public class BigSwitch extends GameObject {
 				}
 			}
 		}
-		System.out.println(doorlink.isOpen());
-
 
 		ContactEdge edge = contact.getContactList();
 		while (edge != null) {

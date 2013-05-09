@@ -62,9 +62,18 @@ public class GameObject {
 		body.createFixture(definition);
 	}
 	
+	protected FixtureDef createFixture(String shapeid){
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = AssetManager.requestShape(shapeid);
+		fixtureDef.density=1;
+		fixtureDef.friction=0.3f;
+		return fixtureDef;
+	}
+	
 	public Body getBody() {
 		return body;
 	}
+	
 	
 	public Vec2 getLocation() {
 		return body.getPosition();

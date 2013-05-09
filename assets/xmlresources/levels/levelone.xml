@@ -30,10 +30,13 @@
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/levelone.png</resource>
     
+	<!-- End Zone -->
+	<resource type="ENDZONE" xStart="16" yStart="16">endzone</resource>
+
 	<!-- Cubes -->
     
     <!-- DOORS -->
-    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="14.57" yStart="14.1" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
+    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="14.57" yStart="14.095" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
 
 	<!-- Switches -->
 	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="2" yStart="1.5" xCube="1" yCube="15" cubeid="CUBE">assets/sprites/wall.png</resource>

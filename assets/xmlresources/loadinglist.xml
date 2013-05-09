@@ -31,8 +31,8 @@
 	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>
 
 	<!-- LevelXML -->
-	<resource type="LEVELXML" id="1">levels/testlevel.xml</resource>
-	<resource type="LEVELXML" id="0">levels/levelone.xml</resource>
+	<resource type="LEVELXML" id="0">levels/leveltwo.xml</resource>
+	<resource type="LEVELXML" id="1">levels/levelone.xml</resource>
 
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>

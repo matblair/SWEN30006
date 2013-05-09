@@ -23,19 +23,11 @@ public class Door extends GameObject {
 	public Door(Vec2 location, World world, String doorId)
 			throws SlickException {
 		super(OPENIMGID);
-		FixtureDef fixture = createFixture();
+		FixtureDef fixture = createFixture(SHAPEID);
 		this.createBody(location, world, fixture, BODYTYPE);
 		openImage = AssetManager.requestImage(OPENIMGID);
 		closedImage = AssetManager.requestImage(CLOSEIMGID);
 		setDoorId(doorId);
-	}
-	
-	private FixtureDef createFixture(){
-		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = AssetManager.requestShape(SHAPEID);
-		fixtureDef.density=1;
-		fixtureDef.friction=0.3f;
-		return fixtureDef;
 	}
 	
 	public void update (int delta) {

@@ -1,8 +1,6 @@
 package resourcemanagers;
 
 import gameengine.PhysUtils;
-import gameworlds.Level;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,6 +25,14 @@ import org.xml.sax.SAXException;
 public class ShapeLoader {
 	
 	private static ArrayList<Vec2> vertices;
+	
+	public static void addVertex(Element resourceElement){
+		float xloc = Float.parseFloat(resourceElement.getAttribute("xloc"));
+		float yloc = Float.parseFloat(resourceElement.getAttribute("yloc"));
+		Vec2 newvertex = PhysUtils.SlickToJBoxVec(new Vec2(xloc,yloc));
+		vertices.add(newvertex);
+
+	}
 	
 	public static PolygonShape loadShapes(String vertpath){
 		vertices = new ArrayList<Vec2>();
@@ -54,14 +60,6 @@ public class ShapeLoader {
 		newshape.set(vertices.toArray(vecarray), vertices.size());
 		return newshape;
 		
-	}
-	
-	public static void addVertex(Element resourceElement){
-		float xloc = Float.parseFloat(resourceElement.getAttribute("xloc"));
-		float yloc = Float.parseFloat(resourceElement.getAttribute("yloc"));
-		Vec2 newvertex = PhysUtils.SlickToJBoxVec(new Vec2(xloc,yloc));
-		vertices.add(newvertex);
-
 	}
 	
 	public static void loadVertices(InputStream is) throws SlickException{

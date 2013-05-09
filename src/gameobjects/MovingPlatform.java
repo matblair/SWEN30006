@@ -25,7 +25,11 @@ public class MovingPlatform extends Platform{
 			xtrans=true;
 		}if((start.y-finish.y)!=0f){
 			ytrans=true;
-		}		
+		}	
+		
+		if(this.getLocation().x==finish.x || this.getLocation().y==finish.y){
+			theta=(float)(Math.PI);
+		}
 	}
 
 	public void updatePos(float delta){

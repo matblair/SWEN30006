@@ -36,8 +36,6 @@ public class Wall {
 		fd.shape = edgeShape;
 		fd.friction=0.3f;
 		body.createFixture(fd);
-		
-		System.out.println(start + " to " + end + " with unit tangent " + getUnitTangent() + " at angle " + PhysUtils.getAngle(getUnitTangent()));
 	}
 	
 	public void enable() {

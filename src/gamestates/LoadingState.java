@@ -1,6 +1,5 @@
 package gamestates;
 
-import gameengine.PhysUtils;
 import gameengine.Portal2D;
 import gameworlds.Level;
 
@@ -14,10 +13,12 @@ import resourcemanagers.AssetManager;
 
 public class LoadingState extends BasicGameState {
 	private static int StateId = Portal2D.LOADSTATE; // State ID
-	private static boolean finishedloading=false;
-	@SuppressWarnings("unused")
-	private static int leveltoload=0;
-	//private static boolean drawnloadingscreen=false;
+	public static boolean finishedloading=false;
+	public static boolean loadnext=false;	
+	public static boolean entermenu=false;
+
+
+	public static Level level;
 
 	public LoadingState() throws SlickException
 	{
@@ -29,48 +30,57 @@ public class LoadingState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		
+
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sbg, int delta){
-		
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
+		if(loadnext){
+			loadNextLevel(sbg);
+			sbg.enterState(Portal2D.GAMESTATE);
+		}
 		if(finishedloading){
 			sbg.enterState(Portal2D.GAMESTATE);
+		}if(entermenu){
+			entermenu=false;
+			sbg.enterState(Portal2D.MAINMENUSTATE);
 		}
 	}
 
 	public static void loadLevel(StateBasedGame sbg, int levelid) throws SlickException{
 		//Level level = AssetManager.loadTestLevel(); debug code
-		Level level = AssetManager.loadLevel(levelid);
+		level = AssetManager.loadLevel(levelid);
 		GameState.setLevel(level);
 		GameState.updateCamera();
-	
-		//Debug code
-		PhysUtils.printAllBodyIds(GameState.getLevel().getPhysWorld());
-		
+		GameState.getLevel().setLevelId(levelid);		
 		sbg.enterState(Portal2D.GAMESTATE);
 		finishedloading=true;
 	}
-	
-	public void loadNextLevel(StateBasedGame sbg) throws SlickException{
+
+	public static void loadNextLevel(StateBasedGame sbg) throws SlickException{
 		finishedloading=false;
 		int levelid = GameState.getLevel().getLevelId();
 		levelid++;
-		loadLevel(sbg,levelid);
+		if(levelid>(AssetManager.getLevelXmlResources().size()-1)){
+			entermenu=true;
+		}else{
+			level = AssetManager.loadLevel(levelid);
+			GameState.setLevel(level);
+			GameState.getLevel().setLevelId(levelid);
+			finishedloading=true;
+		}
+
 	}
-	
+
 
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return StateId;
 	}
 

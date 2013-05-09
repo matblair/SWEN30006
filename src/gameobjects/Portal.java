@@ -28,7 +28,7 @@ public class Portal extends GameObject {
 	public Portal(String imgid, Vec2 location, World world)
 			throws SlickException {
 		super(imgid);
-		FixtureDef fixture=createFixture();
+		FixtureDef fixture = createFixture(SHAPEID);
 		this.createBody(location, world, fixture, BODYTYPE);
 		getBody().getFixtureList().setSensor(true);
 		this.world = world;
@@ -37,14 +37,7 @@ public class Portal extends GameObject {
 		System.out.println(getDimensions());
 		height = this.getDimensions().y;
 	}
-	
-	private FixtureDef createFixture(){
-		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = AssetManager.requestShape(SHAPEID);
-		fixtureDef.density=1;
-		fixtureDef.friction=0.3f;
-		return fixtureDef;
-	}
+
 	
 	public void linkPortals(Portal portal){
 		otherPortal = portal;

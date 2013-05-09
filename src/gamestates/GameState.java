@@ -161,4 +161,8 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			e.printStackTrace();
 		}
 	}
+
+	public static void destroyLevel() {
+		level = null;
+	}
 }
