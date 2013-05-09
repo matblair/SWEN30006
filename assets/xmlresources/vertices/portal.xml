@@ -1,0 +1,9 @@
+
+<resources>
+	<!-- Cube Vertices -->
+	<resource xloc="-4.8" yloc="-60">cube</resource>
+	<resource xloc="0" yloc="60">cube</resource>
+	<resource xloc="4.8" yloc="60">cube</resource>
+	<resource xloc="0" yloc="60">cube</resource>
+
+</resources>

@@ -1,7 +1,11 @@
 package resourcemanagers;
 
-import gameengine.HighScore;
+import gameengine.PhysUtils;
+import gameworlds.Level;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -10,6 +14,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.LoadingList;
 import org.w3c.dom.Document;
@@ -18,13 +24,47 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class HighScoreLoader {
+public class ShapeLoader {
 	
-	public HighScoreLoader(){
+	private static ArrayList<Vec2> vertices;
+	
+	public static PolygonShape loadShapes(String vertpath){
+		vertices = new ArrayList<Vec2>();
+		String generalresource = "assets/xmlresources/vertices/";
+		// Have to set resource path based on level id, hash map of level ids?
+		final File f = new File(generalresource, vertpath);
+		InputStream is = null;
+		try {
+			is = new FileInputStream(f);
+			loadVertices(is);
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (final SlickException e) {
+			e.printStackTrace();
+		} finally	{
+			try {
+				is.close();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		PolygonShape newshape = new PolygonShape();
+		Vec2[] vecarray = new Vec2[vertices.size()];
+		newshape.set(vertices.toArray(vecarray), vertices.size());
+		return newshape;
 		
 	}
 	
-	public int loadHighScores(final InputStream is, final boolean deferred) throws SlickException {
+	public static void addVertex(Element resourceElement){
+		float xloc = Float.parseFloat(resourceElement.getAttribute("xloc"));
+		float yloc = Float.parseFloat(resourceElement.getAttribute("yloc"));
+		Vec2 newvertex = PhysUtils.SlickToJBoxVec(new Vec2(xloc,yloc));
+		vertices.add(newvertex);
+
+	}
+	
+	public static void loadVertices(InputStream is) throws SlickException{
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
 		try {
@@ -48,11 +88,7 @@ public class HighScoreLoader {
 
 		final int totalResources = listResources.getLength();
 
-		if(deferred){
-			LoadingList.setDeferredLoading(true);
-		}
-
-		int resourcenumber=0;
+		LoadingList.setDeferredLoading(true);
 
 		for(int resourceIdx = 0; resourceIdx < totalResources; resourceIdx++){
 
@@ -60,27 +96,8 @@ public class HighScoreLoader {
 
 			if(resourceNode.getNodeType() == Node.ELEMENT_NODE){
 				final Element resourceElement = (Element)resourceNode;
-				addHighScore(resourceElement);
-				resourcenumber++;
+				addVertex(resourceElement);
 			}
 		}
-		return resourcenumber;
 	}
-
-	private void addHighScore(Element resourceElement) {
-		int levelid = Integer.parseInt(resourceElement.getAttribute("levelid"));
-
-		// Create the array list for that level if it doesn't exist.
-		if(!AssetManager.getHighscores().containsKey(levelid)){
-			ArrayList<HighScore> newarray = new ArrayList<HighScore>();
-			AssetManager.getHighscores().put(levelid,newarray);
-		}
-		
-		String name = resourceElement.getAttribute("name");
-		float score = Float.parseFloat(resourceElement.getAttribute("score"));
-		AssetManager.getHighscores().get(levelid).add(new HighScore(name,score,levelid));
-
-	}
-	
-
 }

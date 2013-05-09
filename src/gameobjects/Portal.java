@@ -3,10 +3,19 @@ package gameobjects;
 import gameengine.PhysUtils;
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.newdawn.slick.SlickException;
 
+import resourcemanagers.AssetManager;
+
 public class Portal extends GameObject {
+	
+	private static final String BLUEIMGID="BLUEPORTAL";
+	private static final String ORGANEIMGID="ORANGEPORTAL";
+	private static final String SHAPEID="PORTALSHAPE";
+	private static final int BODYTYPE=PhysUtils.STATIC;
+	
 	public static final int BLUE=0, ORANGE=1;
 	
 	private float height;
@@ -18,10 +27,23 @@ public class Portal extends GameObject {
 	
 	public Portal(String imgid, Vec2 location, World world)
 			throws SlickException {
-		super(imgid, location, world, PhysUtils.PORTAL);
+		super(imgid);
+		FixtureDef fixture=createFixture();
+		this.createBody(location, world, fixture, BODYTYPE);
 		getBody().getFixtureList().setSensor(true);
 		this.world = world;
-		height = getDimensions().y;
+		Vec2 dim = new Vec2(18f,120f);
+		this.setDimensions(dim);
+		System.out.println(getDimensions());
+		height = this.getDimensions().y;
+	}
+	
+	private FixtureDef createFixture(){
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = AssetManager.requestShape(SHAPEID);
+		fixtureDef.density=1;
+		fixtureDef.friction=0.3f;
+		return fixtureDef;
 	}
 	
 	public void linkPortals(Portal portal){

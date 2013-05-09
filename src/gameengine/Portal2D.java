@@ -32,7 +32,7 @@ public class Portal2D extends StateBasedGame {
     public static AppGameContainer app;
 	/** Whether the game is running fullscreen or not **/
 	public boolean fullscreen;
-    
+	    
 	public Portal2D() {
 		super("Portal 2D");
 	}
@@ -71,4 +71,6 @@ public class Portal2D extends StateBasedGame {
 	public static void setFullscreen() throws SlickException {
 		app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
 	}
+	
+	
 }

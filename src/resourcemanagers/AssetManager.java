@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Font;
@@ -48,6 +49,7 @@ public class AssetManager {
 	private static Map<String, Image> achievementResources = new HashMap<String, Image>(); //All images used for game objects
 	private static Map<String, Achievement> achievements = new HashMap<String, Achievement>(); //All images used for game objects
 	private static Map<Integer, ArrayList<HighScore>> highscores = new HashMap<Integer, ArrayList<HighScore>>();
+	private static Map<String, Shape> shapeDefinitions = new HashMap<String, Shape>();
 	
 	private static int totalresources=0;
 
@@ -99,6 +101,7 @@ public class AssetManager {
 		System.out.println(inputXmlResources.size() +" input xml loaded.");
 		System.out.println(fontResources.size() +" fonts loaded.");
 		System.out.println(animationResources.size() +" animations loaded.");
+		System.out.println(shapeDefinitions.size() + " shapes loaded");
 		System.out.println(totalresources +" resources loaded in total");
 	}
 
@@ -144,7 +147,6 @@ public class AssetManager {
 	
 	public static Level loadLevel(final int levelid) throws SlickException{
 		String levelxml = AssetManager.requestLevelXMLPath(levelid);
-		System.out.println(levelxml + " level id is: "+ levelid);
 		Level level = new Level();
 
 		// Have to set resource path based on level id, hash map of level ids?
@@ -169,6 +171,7 @@ public class AssetManager {
 	
 	public static void loadInput(int inputtype) throws SlickException{
 		String inputxml = AssetManager.requestInputXMLPath(inputtype);
+		System.out.println(inputxml);
 		// Have to set resource path based on level id, hash map of level ids?
 		final File f = new File(generalresource, inputxml);
 		InputStream is = null;
@@ -272,36 +275,8 @@ public class AssetManager {
 		return animationResources;
 	}
 
-	public void setResourceLoader(ResourceLoader resourceLoader) {
-		AssetManager.resourceLoader = resourceLoader;
-	}
-
-	public static void setImageResources(Map<String, Image> imageResources) {
-		AssetManager.imageResources = imageResources;
-	}
-
-	public static void setSoundResources(Map<String, Sound> soundResources) {
-		AssetManager.soundResources = soundResources;
-	}
-
-	public static void setVectorResources(Map<String, Vec2> vectorResources) {
-		AssetManager.vectorResources = vectorResources;
-	}
-
-	public static void setUiElementResources(Map<String, Image> uiElementResources) {
-		AssetManager.uiElementResources = uiElementResources;
-	}
-
-	public static void setLevelXmlResources(Map<Integer, String> levelXmlResources) {
-		AssetManager.levelXmlResources = levelXmlResources;
-	}
-	
-	public static void setInputXmlResources(Map<Integer, String> setInputXmlResources) {
-		AssetManager.inputXmlResources = setInputXmlResources;
-	}
-
-	public static void setFontResources(Map<String, Font> fontResources) {
-		AssetManager.fontResources = fontResources;
+	public static Map<String, Shape> getShapes(){
+		return shapeDefinitions;
 	}
 
 	public static void setAnimationResources(
@@ -321,7 +296,8 @@ public class AssetManager {
 		return highscores.get(levelid);
 	}
 
-	
-
+	public static Shape requestShape(String shapeid) {
+		return shapeDefinitions.get(shapeid);
+	}
 }
 

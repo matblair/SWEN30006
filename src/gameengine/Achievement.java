@@ -15,7 +15,7 @@ public class Achievement {
 		this.name = name;
 		this.description = description;
 		this.unlocked = unlocked;
-		image = AssetManager.requestAchiemeventResource("RISINGSUN");
+		image = AssetManager.requestAchiemeventResource(imgID);
 		imageLocked = image.copy();
 		imageLocked.setImageColor(filterAmount, filterAmount, filterAmount);
 	}
