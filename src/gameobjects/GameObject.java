@@ -21,8 +21,6 @@ public class GameObject {
 	/** The object's image **/
 	private Image sprite;
 	
-	/** The objects body id **/
-	private static String bodyId;
 	private Body body;
 	
 	private Vec2 dimensions;
@@ -62,7 +60,6 @@ public class GameObject {
 
 		bd.fixedRotation = true;
 		body = world.createBody(bd);
-		setBodyId(body.toString());
 		body.createFixture(definition);
 	}
 	
@@ -176,7 +173,4 @@ public class GameObject {
 		return body.toString();
 	}
 	
-	private void setBodyId(String bodyId) {
-		GameObject.bodyId = bodyId;
-	}
 }

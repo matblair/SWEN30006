@@ -14,9 +14,6 @@ public class Portal extends GameObject {
 	private static final int BEFORE=0, AFTER=1;
 	private int relativeLoc;
 	
-	private static final String ORANGEIMGID="ORANGEPORTAL";
-	private static final String BLUEIMGID="BLUEPORTAL";
-
 	private static final String SHAPEID="PORTALSHAPE";
 	private static final int BODYTYPE=PhysUtils.STATIC;
 
