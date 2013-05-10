@@ -165,7 +165,10 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	public void mousePressed(int button, int x, int y) {
 		Vec2 clickLoc = PhysUtils.SlickToJBoxVec(new Vec2(x, height - y));
 		try {
-			level.playerShootPortal(Portal.BLUE, clickLoc.add(cam.getLocation()));
+			if (button == Input.MOUSE_LEFT_BUTTON)
+				level.playerShootPortal(Portal.BLUE, clickLoc.add(cam.getLocation()));
+			else if (button == Input.MOUSE_RIGHT_BUTTON)
+				level.playerShootPortal(Portal.ORANGE, clickLoc.add(cam.getLocation()));
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

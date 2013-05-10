@@ -68,7 +68,7 @@ public class Wall {
 	
 	public Vec2 getUnitTangent() {
 		Vec2 wall = end.sub(start);
-		return wall.mul(1/wall.length());
+		return PhysUtils.unitVector(wall);
 	}
 	
 	public Vec2 getUnitNormal() {

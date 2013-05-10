@@ -85,18 +85,24 @@ public class Level {
 		RenderEngine.drawGameObjects(bigSwitches,cam);
 		RenderEngine.drawGameObjects(cubes, cam);
 		RenderEngine.drawGameObjects(doors, cam);
-		RenderEngine.drawGameObjects(portals, cam);
 		RenderEngine.drawGameObjects(platforms, cam);
 		RenderEngine.drawGameObjects(movingplatforms, cam);
 		if(fg!=null){
 			RenderEngine.drawBG(fg, cam);
 		}
-
+		RenderEngine.drawGameObjects(portals, cam);
 	}
 
 	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
 		final float timeStep = (float)delta/1000;
 		player.moveXDir(dir_x, delta);
+		
+		// Update dynamic objects (for portals)
+		player.update(this);
+		for (GameObject o : cubes.values()) {
+			o.update(this);
+		}
+		
 		world.step(timeStep, velocityIterations, positionIterations);
 		player.checkCube();
 		for(final BigSwitch bs: bigSwitches.values()){
@@ -116,9 +122,9 @@ public class Level {
 		}
 	}
 	
-	public void playerShootPortal(final int color, final Vec2 target) throws SlickException {
-		final RayCastHelper rch = new RayCastHelper(this);
-		final Vec2 dir = target.sub(player.getLocation());
+	public void playerShootPortal(int color, Vec2 target) throws SlickException {
+		PortalShootRCHelper rch = new PortalShootRCHelper(this);
+		Vec2 dir = target.sub(player.getLocation());
 		dir.mulLocal(1/dir.length());
 		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(100)));
 		if (rch.fixture == null)
@@ -217,14 +223,18 @@ public class Level {
 			type="platform";
 		}else if(walls.containsKey(key)){
 			type="wall";
-		}else if(movingplatforms.containsKey(key)){
-			type="movingplatform";
+		} else if (portals[0].getBody().equals(other) | portals[1].getBody().equals(other)){
+			type="portal";
 		}
 		return type;
 	}
 
 	public LittleSwitch getSwitch(final String bodyId) {
 		return lilSwitches.get(bodyId);
+	}
+	
+	public Portal[] getPortals() {
+		return portals;
 	}
 
 	public void removeCube(final CompanionCube cube) {

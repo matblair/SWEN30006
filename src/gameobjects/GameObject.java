@@ -1,7 +1,9 @@
 package gameobjects;
 
 import gameengine.PhysUtils;
+import gameengine.PortalCollisionRCHelper;
 import gamestates.GameState;
+import gameworlds.Level;
 
 import org.jbox2d.collision.WorldManifold;
 import org.jbox2d.common.Vec2;
@@ -27,6 +29,8 @@ public class GameObject {
 	
 	private final int maxAngleForGround = 45;
 	private final float maxYNormForGround = (float)Math.asin(maxAngleForGround/180*Math.PI);
+	private boolean inPortal;
+	private Vec2 last;
 
 
 	public GameObject(String imgid){
@@ -40,7 +44,7 @@ public class GameObject {
 	protected void createBody(Vec2 location, World world, FixtureDef definition, int bodytype) {
 		BodyDef bd = new BodyDef();
 		bd.position.set(location);
-		
+
 		switch (bodytype){
 			case PhysUtils.STATIC: 
 				bd.type = BodyType.STATIC;
@@ -55,11 +59,57 @@ public class GameObject {
 				bd.type = BodyType.STATIC;
 				break;
 		}
-		
+
 		bd.fixedRotation = true;
 		body = world.createBody(bd);
 		setBodyId(body.toString());
 		body.createFixture(definition);
+	}
+	
+	public void update(Level level) {
+		ContactEdge edge = body.getContactList();
+		while (edge != null) {
+			if (level.getBodyType(edge.other).equals("portal")) {
+				inPortal = true;
+				break;
+			}
+			inPortal = false;
+			edge = edge.next;
+		}
+
+		if (inPortal)
+			checkPortalTransition(level);
+
+		last = getLocation().clone();
+	}
+	
+	private void checkPortalTransition(Level level) {
+		PortalCollisionRCHelper rch = new PortalCollisionRCHelper(level);
+		body.getWorld().raycast(rch, last, getLocation());
+		if (rch.fixture != null) {
+			Portal portals[] = level.getPortals();
+			Portal portalHit;
+			String bodyID = rch.fixture.getBody().toString();
+
+			if (bodyID.equals(portals[Portal.BLUE].getBodyId())) {
+				System.out.println("entering blue");
+				portalHit = portals[Portal.BLUE];
+			} else {
+				System.out.println("entering orange");
+				portalHit = portals[Portal.ORANGE];
+			}
+
+			Portal otherPortal = portalHit.getLinkedPortal();
+			float rotateBy = PhysUtils.getAngle(otherPortal.getUnitTangent()) - PhysUtils.getAngle(portalHit.getUnitTangent()) + (float) Math.PI;
+			float portalHitOffset = rch.point.sub(portalHit.getLocation()).length();
+
+			Vec2 remainingTravel = PhysUtils.rotateVector(getLocation().sub(last).mul(rch.fraction), rotateBy);
+			System.out.println(remainingTravel + " " + (rch.fraction) + " " + getLocation().sub(last));
+			Vec2 appear = otherPortal.getLocation().sub(otherPortal.getUnitTangent().mul(portalHitOffset)).add(remainingTravel);
+			body.setTransform(appear, body.getAngle());
+			body.setLinearVelocity(PhysUtils.rotateVector(body.getLinearVelocity(), rotateBy));
+			System.out.println(PhysUtils.rotateVector(body.getLinearVelocity(), rotateBy).length() + " " + body.getLinearVelocity().length());
+		}
 	}
 	
 	protected FixtureDef createFixture(String shapeid){
@@ -119,8 +169,11 @@ public class GameObject {
 		this.sprite = sprite;
 	}
 
+	/**
+	 * @return the bodyId
+	 */
 	public String getBodyId() {
-		return bodyId;
+		return body.toString();
 	}
 	
 	private void setBodyId(String bodyId) {

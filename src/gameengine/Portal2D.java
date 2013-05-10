@@ -57,7 +57,7 @@ public class Portal2D extends StateBasedGame {
     {
     	app = new AppGameContainer(new Portal2D());
         app.setDisplayMode(screenwidth, screenheight, false);
-        app.setShowFPS(false);
+        app.setShowFPS(true);
         app.start();
      
     }    
