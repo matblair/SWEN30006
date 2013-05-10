@@ -1,8 +1,8 @@
 package gameengine;
 
-public class HighScore {
+public class HighScore implements Comparable<HighScore>{
 
-	private float score;
+	private Float score;
 	private int levelid;
 	private String name;
 	
@@ -52,5 +52,12 @@ public class HighScore {
 	 */
 	public void setScore(float score) {
 		this.score = score;
+	}
+
+	@Override
+	public int compareTo(HighScore hs) {
+		// TODO Auto-generated method stub
+		Float score2 = hs.getScore();
+		return score.compareTo(score2);
 	}
 }

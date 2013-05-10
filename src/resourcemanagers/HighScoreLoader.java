@@ -64,7 +64,6 @@ public class HighScoreLoader {
 				resourcenumber++;
 			}
 		}
-		System.out.println("Loaded " + resourcenumber + " high scores");
 		return resourcenumber;
 	}
 

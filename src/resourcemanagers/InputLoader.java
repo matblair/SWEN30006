@@ -57,30 +57,55 @@ public class InputLoader {
 				System.out.println(type);
 				if(type.equals("BACK")){  
 					InputManager.BACK = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("SELECT")){ 
 					InputManager.SELECT = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
 				}else if(type.equals("NAVLEFT")){ 
 					InputManager.NAV_LEFT = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("NAVRIGHT")){ 
 					InputManager.NAV_RIGHT = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("NAVDOWN")){ 
 					InputManager.NAV_DOWN = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("NAVUP")){ 
 					InputManager.NAV_UP = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("LEFT")){ 
 					InputManager.MOVE_LEFT = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("RIGHT")){ 
 					InputManager.MOVE_RIGHT = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("JUMP")){ 
 					InputManager.JUMP = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("PAUSE")){ 
 					InputManager.PAUSE = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("SHOOT_BLUE")){ 
 					InputManager.SHOOT_BLUE = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("SHOOT_ORANGE")){ 
 					InputManager.SHOOT_ORANGE = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}else if(type.equals("INTERACT")){
 					InputManager.INTERACT = Integer.parseInt(resourceElement.getAttribute("key"));
+					System.out.println(resourceElement.getAttribute("key"));
+
 				}
 			}
 		}

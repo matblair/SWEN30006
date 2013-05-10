@@ -1,6 +1,7 @@
 package gameobjects;
 
 import gameengine.PhysUtils;
+import gamestates.GameState;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -9,33 +10,41 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import resourcemanagers.AssetManager;
+public class BigSwitch extends GameObject {
 
-public class BigSwitch extends Switch {
-	
+	private static final String IMGID="SWITCHSENSOR";
+	private static final String SHAPEID="BIGSWITCHSHAPE";
+	private static final int bodytype = PhysUtils.STATIC;
+
+	private boolean doorlinkset = false;
 	private Image contactimg;
 	private String doorId;
 	private Image renderUp;
 	private Image renderDown;
 	private Body contact;
 	private Vec2 contactdim; // JBox dimensions
-	
-	private boolean isup;
+	private Door doorlink;
+	private boolean somethingpressing;
 
-	public BigSwitch(String imgloc, Vec2 location, World world, String contactid, String doorId, String downid)
+
+	public BigSwitch(Vec2 location, World world, String doorId)
 			throws SlickException {
-		super(imgloc, location, world, PhysUtils.STATIC);
+		super(IMGID);
 		//Create the contact sensor
-		contactimg = AssetManager.requestImage(contactid);
+		FixtureDef fixture = createFixture(SHAPEID);
+		contactimg=this.getImage();
+		renderUp = renderDown = contactimg;
+		this.createBody(location, world, fixture, bodytype);
 		contactdim = PhysUtils.SlickToJBoxVec(new Vec2(contactimg.getWidth(), contactimg.getHeight()));
-		//createSensor(location,world);
-		renderUp = AssetManager.requestImage(imgloc);
-		renderDown = AssetManager.requestAchiemeventResource(downid);
+		createSensor(location,world);
+		this.doorId=doorId;
 	}
 	
+
 	private void createSensor(Vec2 location, World world) {
 		BodyDef bd = new BodyDef();
 		bd.position.set(location);
@@ -52,8 +61,42 @@ public class BigSwitch extends Switch {
 		contact.createFixture(fixtureDef);
 	}
 	
-	
-	
+	@Override
+	protected FixtureDef createFixture(String shapeid) {
+		FixtureDef def = super.createFixture(shapeid);
+		def.isSensor=true;
+		return def;
+	}
 
+	public void updateState(){
+		somethingpressing=false;
+		if(doorlinkset==false){
+			for(Door door: GameState.getLevel().getDoorCollection()){
+				if(door.getDoorId().equals(this.doorId)){
+					doorlink=door;
+					doorlinkset=true;
+				}
+			}
+		}
 
+		ContactEdge edge = contact.getContactList();
+		while (edge != null) {
+			String type=GameState.getLevel().getBodyType(edge.other);
+			if(!(type.equals("wall") || type.equals("bigswitch"))){
+				somethingpressing=true;
+			}
+			edge = edge.next;
+		}
+		if(somethingpressing){
+			if(!doorlink.isOpen()){
+				doorlink.open();
+				setSprite(renderDown);
+			}
+		}else {
+			if(doorlink.isOpen()){
+				doorlink.close();
+				setSprite(renderUp);
+			}
+		}
+	}
 }

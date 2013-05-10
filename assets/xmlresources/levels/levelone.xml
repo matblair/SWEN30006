@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resources>
-		
+
 	<!-- Walls -->
 	<resource type="WALL" id="WALL" xStart="0.5" yStart="1.0" xEnd="19.5" yEnd="1.0">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="19.5" yStart="1" xEnd="19.5" yEnd="12.56">assets/sprites/wall.png</resource>
@@ -25,21 +25,24 @@
 	<resource type="PLATFORM" id="SMALLPLATFORM" xStart="8" yStart="10" width="4.0" height="0.25">assets/sprites/wall.png</resource>
 	<resource type="PLATFORM" id="PLATFORM" xStart="1" yStart="18" width="4.0" height="0.25">assets/sprites/wall.png</resource>
 
+	<resource type="MOVINGPLATFORM" id="SMALLPLATFORM" xStart="3" yStart="10" width="4.0" height="0.25" trackxstart="3" trackystart="10" trackxfin="5" trackyfin="15">assets/sprites/wall.png</resource>
+
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/levelone.png</resource>
     
+	<!-- End Zone -->
+	<resource type="ENDZONE" xStart="16" yStart="16">endzone</resource>
+
 	<!-- Cubes -->
-	<resource type="CUBE" id="CUBE" startx = "5" starty="5">assets/sprites/cube.png</resource>
-	<resource type="CUBE" id="CUBE" startx = "9" starty="12">assets/sprites/cube.png</resource>
-	<resource type="CUBE" id="CUBE" startx = "10" starty="15">assets/sprites/cube.png</resource>
-	<resource type="CUBE" id="CUBE" startx = "1" starty="9">assets/sprites/cube.png</resource>
     
     <!-- DOORS -->
-    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="14.57" yStart="14.1">assets/sprites/levelobjects/door.png</resource>
+    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="14.57" yStart="14.095" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
+
 	<!-- Switches -->
 	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="2" yStart="1.5" xCube="1" yCube="15" cubeid="CUBE">assets/sprites/wall.png</resource>
-	<resource type="BIGSWITCH" id="SWITCHUP" xStart="4" yStart="1.2" contactimg="SWITCHSENSOR" downid="SWITCHDOWN" doorid="MAINDOOR">assets/sprites/hitbox.png</resource>
+	<resource type="BIGSWITCH" id="SWITCHUP" xStart="8" yStart="1.1029" contactimg="SWITCHSENSOR" downid="SWITCHDOWN" doorid="MAINDOOR">assets/sprites/hitbox.png</resource>
+
 	<!-- Start Location -->
 	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="2">assets/sprites/chell.png</resource>
-		
+
 </resources>

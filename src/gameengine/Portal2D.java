@@ -5,7 +5,6 @@ import gamestates.HighScoreState;
 import gamestates.LoadingState;
 import gamestates.MainMenuState;
 import gamestates.OptionState;
-import gamestates.PauseState;
 import gamestates.GameState;
 
 import org.newdawn.slick.AppGameContainer;
@@ -21,18 +20,17 @@ public class Portal2D extends StateBasedGame {
 	public static final int HIGHSCORESTATE =3;
 	public static final int OPTIONSTATE = 4;
 	public static final int GAMESTATE = 5;
-	public static final int PAUSESTATE = 6;
 
 
     /** Screen width, in pixels. */
-    public static final int screenwidth = 1024;
+    public static final int screenwidth = 1280;
     /** Screen height, in pixels. */
-    public static final int screenheight = 768;
+    public static final int screenheight = 800;
 	/** The app game container **/
     public static AppGameContainer app;
 	/** Whether the game is running fullscreen or not **/
 	public boolean fullscreen;
-    
+	    
 	public Portal2D() {
 		super("Portal 2D");
 	}
@@ -46,7 +44,6 @@ public class Portal2D extends StateBasedGame {
 		this.addState(new LoadingState());
 		this.addState(new MainMenuState());
 		this.addState(new GameState());
-		this.addState(new PauseState());
 		this.addState(new AchievementState());
 		this.addState(new HighScoreState());
 		this.addState(new OptionState());
@@ -60,7 +57,7 @@ public class Portal2D extends StateBasedGame {
     {
     	app = new AppGameContainer(new Portal2D());
         app.setDisplayMode(screenwidth, screenheight, false);
-        app.setShowFPS(false);
+        app.setShowFPS(true);
         app.start();
      
     }    
@@ -71,4 +68,6 @@ public class Portal2D extends StateBasedGame {
 	public static void setFullscreen() throws SlickException {
 		app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
 	}
+	
+	
 }

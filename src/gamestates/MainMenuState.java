@@ -1,12 +1,14 @@
 package gamestates;
 
 import gameengine.InputManager;
+import gameengine.PhysUtils;
 import gameengine.Portal2D;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
@@ -108,10 +110,6 @@ public class MainMenuState extends BasicGameState implements KeyListener {
                 break;
 			case MENU_OPTIONS:
 				stateid=Portal2D.OPTIONSTATE;
-                break;
-			case 5:
-				LoadingState.loadLevel(sbg,1);
-				stateid=Portal2D.LOADSTATE;
                 break;
 			}
 			selected=-1;

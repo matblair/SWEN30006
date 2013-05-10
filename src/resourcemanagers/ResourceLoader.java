@@ -7,6 +7,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.jbox2d.collision.shapes.Shape;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
@@ -91,6 +92,8 @@ public class ResourceLoader {
 					resourcenumber++;
 				}else if(type.equals("ACHIMAGE")){
 					addElementAsAchievementImage(resourceElement);
+				}else if(type.equals("SHAPE")){
+					addElementAsShape(resourceElement);
 				}
 			}
 		}
@@ -146,6 +149,14 @@ public class ResourceLoader {
 		Font font= FontLoader.loadFont(resourceElement.getTextContent(), fontsize);
 		String fontid=resourceElement.getAttribute("id");
 		AssetManager.getFontResources().put(fontid, font);
+	}
+	
+	private void addElementAsShape(Element resourceElement) throws DOMException, SlickException {
+		String shapeid = resourceElement.getAttribute("id");
+		String vertpath = resourceElement.getAttribute("vertpath");
+		Shape shapecreate = ShapeLoader.loadShapes(vertpath);
+		AssetManager.getShapes().put(shapeid,shapecreate);
+		
 	}
 
 }

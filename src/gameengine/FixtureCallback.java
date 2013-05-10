@@ -15,7 +15,6 @@ public class FixtureCallback implements QueryCallback{
 	public boolean reportFixture(Fixture fixture) {
 		String idd = fixture.getBody().toString();
 		String type = GameState.getLevel().getBodyType(fixture.getBody());
-		System.out.println(type);
 		if(type.equals("cube")){
 			interactableObjects.add(idd);
 			setCube(GameState.getLevel().getCube(idd));

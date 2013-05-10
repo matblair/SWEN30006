@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.Vector;
 
+import gameengine.HighScore;
 import gameengine.InputManager;
 import gameengine.Portal2D;
 
@@ -24,13 +24,14 @@ import resourcemanagers.AssetManager;
 
 public class HighScoreState extends BasicGameState implements KeyListener{
 	private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
-	private static int MENU_MAINMENU=1;
 	
 	/** The state id for this part **/
 	
 	private boolean listening=true;
 	boolean debug, fullscreen;
 	private static Font font;
+	private static Font titleFont;
+	@SuppressWarnings("unused")
 	private int selected =-1;
 	private static String titleText = new String("High Scores");
 	private static String subtitleText = new String("Version 0.1");
@@ -39,84 +40,97 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	private static int menuItemSelected = 0;
 
-	ArrayList<Integer> scores = null;
+	
+	private final int itemsPerRow = 1;
+	private final int xSpacing = 180;
+	private final int ySpacing = 180;
+	private final int yStartHeight = 250;
+	
+	
+	
+	private ArrayList<HighScore> scores;
 	private static HighScoreState instance = null;
 	
-	
+	int currentlevel = 0;
 	
 	public HighScoreState() throws SlickException
 	{
 		super();
-		font = AssetManager.requestFontResource("RETROFONT");
-		debug = false;
-		fullscreen = false;
-		
-		scores = new ArrayList<Integer>();
-		
-		for (int i=0; i< 10; i++){
-			scores.add(new Integer(0));
-		}
-		
-		for (int j=0; j< 10; j++){
-			Random rn = new Random();
-			int value = rn.nextInt(2000);
-			scores.set(j, value);
-		} 
-		Collections.sort(scores);
 	}
 	
+	
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		super.enter(container, game);
+		scores = AssetManager.requestHighScores(currentlevel);
+	}
 	
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		menuItems.add("Main Menu");
-		stringMaps.put("Main Menu", MENU_MAINMENU);
+		font = AssetManager.requestFontResource("RETROFONT");
+		titleFont = AssetManager.requestFontResource("TITLEFONT");
+		debug = false;
+		fullscreen = false;
+		
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		g.setFont(font);
+		
+		g.setFont(titleFont);
 		g.setColor(Color.black);
 		g.drawString(titleText, 40, 40);
-		g.drawString(subtitleText, 40, 60);
 
-		for (int i = 0; i < menuItems.size(); i++) {
-			if (i ==  menuItemSelected) {
-				g.setColor(Color.orange);
-			} else {
-				g.setColor(Color.black);
-			}
-			g.drawString(menuItems.get(i), 40, 700);
-		}
-		int k = 150;
-		for (int j=scores.size()-1; j>=0; j--){
-			g.setColor(Color.cyan);
-			g.drawString(String.valueOf(scores.get(j)), 40, k);
-			k+=20;
+		g.setFont(font);
+		g.drawString(subtitleText, 40, 80);
+
+		int index = 0;
+		int x, y;
+		int width = gc.getWidth();
+		String text;
+		int levelid;
+		float score;
+		String scoreS;
+		
+		for (HighScore hs : scores) {
 			
-		}
+			
+			Collections.sort(scores);
+			
+			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
+			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
+
+							
+			levelid = hs.getLevelid();
+			levelid++;
+			g.setColor(Color.darkGray);
+			g.drawString("LEVEL "+levelid, x-10, 120);
+				
+			
+			text = hs.getName();
+			g.setColor(Color.gray);
+			g.drawString(text, x-50, y);
+				
+			score = hs.getScore();
+			scoreS = String.valueOf(score);
+			g.setColor(Color.gray);
+			g.drawString(scoreS, x+ 50, y);
 		
-		
+			index++;
+		}	
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {		
-		if(selected!=-1){
-			int stateid=Portal2D.HIGHSCORESTATE;
-			switch (selected){
-			case 1:
-				stateid=Portal2D.MAINMENUSTATE;
-                break;
-			}
-			selected=-1;
-			sbg.enterState(stateid);
+		Input input = gc.getInput();
+		if (input.isKeyDown(InputManager.BACK)) {
+			System.out.println("leaving");
+			sbg.enterState(Portal2D.MAINMENUSTATE);
 		}
-		return;
-		
-		
 		
 	}
 
@@ -132,31 +146,17 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 		if (key == InputManager.SELECT) {
 			selected=stringMaps.get(menuItems.get(menuItemSelected));
 		} else if (key == InputManager.NAV_RIGHT) {
-			scores = new ArrayList<Integer>();
 			
-			for (int i=0; i< 10; i++){
-				scores.add(new Integer(0));
+			if (currentlevel +1 < scores.size()) {
+				currentlevel++;
+				scores = AssetManager.requestHighScores(currentlevel);
 			}
-			
-			for (int j=0; j< 10; j++){
-				Random rn = new Random();
-				int value = rn.nextInt(2000);
-				scores.set(j, value);
-			} 
-			Collections.sort(scores);
 		} else if (key == InputManager.NAV_LEFT) {
-			scores = new ArrayList<Integer>();
 			
-			for (int i=0; i< 10; i++){
-				scores.add(new Integer(0));
-			}
-			
-			for (int j=0; j< 10; j++){
-				Random rn = new Random();
-				int value = rn.nextInt(2000);
-				scores.set(j, value);
-			} 
-			Collections.sort(scores);
+			if (currentlevel > 0){
+				currentlevel--;
+				scores = AssetManager.requestHighScores(currentlevel);
+			}	
 		}
 	}
 
@@ -206,7 +206,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
         return instance;
     }
   
-    public boolean addScore(int score)
+    /*public boolean addScore(int score)
     {
         for(int idx = 0; idx < scores.size(); idx++)
         {
@@ -220,10 +220,10 @@ public class HighScoreState extends BasicGameState implements KeyListener{
         }
   
         return false;
-    }
+    }*/
   
-    public ArrayList<Integer> getScores()
+    /*public ArrayList<Integer> getScores()
     {
         return scores;
-    }
+    }*/
 }
