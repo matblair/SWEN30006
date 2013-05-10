@@ -5,7 +5,6 @@ import gamestates.HighScoreState;
 import gamestates.LoadingState;
 import gamestates.MainMenuState;
 import gamestates.OptionState;
-import gamestates.PauseState;
 import gamestates.GameState;
 
 import org.newdawn.slick.AppGameContainer;
@@ -46,7 +45,6 @@ public class Portal2D extends StateBasedGame {
 		this.addState(new LoadingState());
 		this.addState(new MainMenuState());
 		this.addState(new GameState());
-		this.addState(new PauseState());
 		this.addState(new AchievementState());
 		this.addState(new HighScoreState());
 		this.addState(new OptionState());
