@@ -93,13 +93,20 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	}
 
 	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		super.enter(container, game);
+		LoadingState.startnew=true;
+		
+	}
+	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		if(selected!=-1){
 			int stateid=Portal2D.MAINMENUSTATE;
 			switch (selected){
 			case MENU_STARTGAME:
-				LoadingState.loadLevel(sbg,0);
+				LoadingState.startnew=true;
 				stateid=Portal2D.LOADSTATE;
                 break;
 			case MENU_ACHIEVEMENTS:

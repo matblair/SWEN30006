@@ -2,6 +2,7 @@ package gamestates;
 
 import gameengine.Portal2D;
 import gameworlds.Level;
+import gameworlds.Paused;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,6 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import resourcemanagers.AssetManager;
 
 public class LoadingState extends BasicGameState {
+	public static boolean startnew = true;
 	private static int StateId = Portal2D.LOADSTATE; // State ID
 	public static boolean finishedloading=false;
 	public static boolean loadnext=false;	
@@ -44,7 +46,17 @@ public class LoadingState extends BasicGameState {
 			loadNextLevel(sbg);
 			sbg.enterState(Portal2D.GAMESTATE);
 		}
+		if(startnew){
+			loadLevel(sbg,0);
+			startnew=false;
+		}
 		if(finishedloading){
+			GameState.setIspaused(false);
+			Paused.setDisplayachievements(false);
+			Paused.setDisplayoptions(false);
+			Paused.setDisplayquitoption(false);
+			Paused.setDisplayscores(false);
+	
 			sbg.enterState(Portal2D.GAMESTATE);
 		}if(entermenu){
 			entermenu=false;
