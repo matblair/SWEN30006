@@ -22,7 +22,6 @@ public class AchievementMenu extends InGameMenu {
 	public AchievementMenu(){
 		menuItems.add("Back");
 		stringMaps.put("Back", MENU_PAUSEGAME);
-		
 	}
 
 	@Override
