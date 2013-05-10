@@ -77,10 +77,6 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			}
 		}
 		
-		if (input.isKeyPressed(InputManager.SHOOT_BLUE)) {
-			level.playerShootPortal(Portal.BLUE, new Vec2 (0,1.5f));
-		}
-		
 		level.update(dir_x,0, delta, sbg);
 		cam.follow(gc, level.getLevelPlayer());
 	}
@@ -153,7 +149,10 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	public void mousePressed(int button, int x, int y) {
 		Vec2 clickLoc = PhysUtils.SlickToJBoxVec(new Vec2(x, height - y));
 		try {
-			level.playerShootPortal(Portal.BLUE, clickLoc.add(cam.getLocation()));
+			if (button == Input.MOUSE_LEFT_BUTTON)
+				level.playerShootPortal(Portal.BLUE, clickLoc.add(cam.getLocation()));
+			else if (button == Input.MOUSE_RIGHT_BUTTON)
+				level.playerShootPortal(Portal.ORANGE, clickLoc.add(cam.getLocation()));
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

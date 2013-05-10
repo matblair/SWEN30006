@@ -40,6 +40,20 @@ public class PhysUtils {
 		return pixels / scaleFactor;
 	}
 	
+	/** Rotate a vector by a certain number of radians
+	 * 
+	 * @param vector The vector to rotate
+	 * @param angle The angle to rotate by in radians
+	 * @return The rotated vector
+	 */
+	public static Vec2 rotateVector(Vec2 vector, double angle) {
+		float cost = (float) Math.cos(angle);
+		float sint = (float) Math.sin(angle);
+		float x = vector.x;
+		float y = vector.y;
+		return new Vec2(x * cost - y * sint, x * sint + y * cost);
+	}
+	
 	public static void printAllBodyIds(World world){
 		System.out.println(world.getBodyCount()+" bodies in the physics world");	
 		org.jbox2d.dynamics.Body bodylist = world.getBodyList();
@@ -66,5 +80,14 @@ public class PhysUtils {
 	 */
 	public static float getAngle(Vec2 vector) {
 		return (float) Math.atan2(vector.y, vector.x);
+	}
+	
+	/** Get the unit vector in the same direction of input vector
+	 * 
+	 * @param vector The vector whose unit tangent is wanted
+	 * @return The unit vector
+	 */
+	public static Vec2 unitVector(Vec2 vector) {
+		return vector.mul(1/vector.length());
 	}
 }

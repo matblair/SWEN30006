@@ -6,12 +6,12 @@ import org.jbox2d.callbacks.RayCastCallback;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Fixture;
 
-public class RayCastHelper implements RayCastCallback {
+public class PortalShootRCHelper implements RayCastCallback {
 	public Fixture fixture;
 	public Vec2 point;
 	public Level level;
 	
-	public RayCastHelper (Level level) {
+	public PortalShootRCHelper (Level level) {
 		super();
 		this.level = level;
 	}

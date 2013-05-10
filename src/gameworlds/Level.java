@@ -91,12 +91,19 @@ public class Level {
 	public void update(float dir_x, float dir_y, int delta, StateBasedGame sbg) throws SlickException {
 		float timeStep = (float)delta/1000;
 		player.moveXDir(dir_x, delta);
+		
+		// Update dynamic objects (for portals)
+		player.update(this);
+		for (GameObject o : cubes.values()) {
+			o.update(this);
+		}
+		
 		world.step(timeStep, velocityIterations, positionIterations);
 		player.checkCube();
 	}
 	
 	public void playerShootPortal(int color, Vec2 target) throws SlickException {
-		RayCastHelper rch = new RayCastHelper(this);
+		PortalShootRCHelper rch = new PortalShootRCHelper(this);
 		Vec2 dir = target.sub(player.getLocation());
 		dir.mulLocal(1/dir.length());
 		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(100)));
@@ -192,12 +199,18 @@ public class Level {
 			type="platform";
 		}else if(walls.containsKey(key)){
 			type="wall";
+		} else if (portals[0].getBody().equals(other) | portals[1].getBody().equals(other)){
+			type="portal";
 		}
 		return type;
 	}
 
 	public LittleSwitch getSwitch(String bodyId) {
 		return lilSwitches.get(bodyId);
+	}
+	
+	public Portal[] getPortals() {
+		return portals;
 	}
 
 	public void removeCube(CompanionCube cube) {
