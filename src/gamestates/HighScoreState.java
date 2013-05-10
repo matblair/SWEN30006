@@ -31,6 +31,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	boolean debug, fullscreen;
 	private static Font font;
 	private static Font titleFont;
+	@SuppressWarnings("unused")
 	private int selected =-1;
 	private static String titleText = new String("High Scores");
 	private static String subtitleText = new String("Version 0.1");

@@ -7,7 +7,7 @@
 	<resource type="UIELEMENT" id="MENUBG">assets/sprites/uielements/menubg.jpg</resource>
 	<resource type="UIELEMENT" id="MENUTILING">assets/sprites/uielements/menutiling.png</resource>
 	<resource type="UIELEMENT" id="SELECTED">assets/sprites/uielements/selected.png</resource>
-
+	<resource type="UIELEMENT" id="PAUSEBG">assets/sprites/uielements/pausebg.png</resource>
 
 	<!-- Sounds -->
 
@@ -56,6 +56,7 @@
 
 	<!-- Fonts -->
 	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>
+	<resource type="FONT" id="PAUSEFONT" fontsize="24">assets/fonts/RETRO.ttf</resource>
     <resource type="FONT" id="TITLEFONT" fontsize="30">assets/fonts/RETRO.ttf</resource>
 
 	

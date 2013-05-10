@@ -1,14 +1,13 @@
 package gamestates;
 
-import java.util.Collection;
 
 import gameengine.Camera;
 import gameengine.InputManager;
 import gameengine.PhysUtils;
 import gameengine.Portal2D;
-import gameobjects.Door;
 import gameobjects.Portal;
 import gameworlds.Level;
+import gameworlds.Paused;
 
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Color;
@@ -22,13 +21,16 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
+
 public class GameState extends BasicGameState implements KeyListener, MouseListener {
 	private static int StateId = Portal2D.GAMESTATE; // State ID
 	private static Camera cam;
 	private boolean listening=true;
 	private static Level level;
+	private static Paused paused;
 	private static int height;
-
+	private static boolean ispaused;
+	
 	public GameState()
 	{
 		super();
@@ -39,59 +41,54 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			throws SlickException {
 		level = new Level();
 		cam = new Camera();
+		paused = new Paused();
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+	
 		level.render(g, false, cam, gc);
 		g.setColor(Color.white);
 		g.drawString(Integer.toString(gc.getFPS()), 10f, 10f);
+		
+		if(ispaused){
+			paused.Render(g,gc);
+		}
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		height = gc.getHeight();
-		
 		int dir_x = 0;
 		Input input = gc.getInput();
-		
-		if (input.isKeyDown(InputManager.MOVE_RIGHT))
-			dir_x++;
-		if (input.isKeyDown(InputManager.MOVE_LEFT))
-			dir_x--;
-		if (input.isKeyPressed(InputManager.JUMP))
-			level.getLevelPlayer().jump();
-		if (input.isKeyPressed(InputManager.INTERACT)){
-			level.getLevelPlayer().interact(level.getPhysWorld(), level);
-		}
-		
-		if (input.isKeyPressed(Input.KEY_T)){
-			level.getLevelPlayer().teleport();
-		}if (input.isKeyPressed(Input.KEY_Y)){
-			level.getLevelPlayer().teleportHoriz();
-		}
-		
-		if (input.isKeyPressed(Input.KEY_Q)) {
-			Collection<Door> doors = level.getDoorCollection();
-			for (Door door : doors) {
-				door.toggle();
+
+		if(!ispaused){
+			if (input.isKeyDown(InputManager.MOVE_RIGHT))
+				dir_x++;
+			if (input.isKeyDown(InputManager.MOVE_LEFT))
+				dir_x--;
+			if (input.isKeyPressed(InputManager.JUMP))
+				level.getLevelPlayer().jump();
+			if (input.isKeyPressed(InputManager.INTERACT)){
+				level.getLevelPlayer().interact(level.getPhysWorld(), level);
+			}if (input.isKeyPressed(InputManager.SHOOT_BLUE)) {
+				level.playerShootPortal(Portal.BLUE, new Vec2 (0,1.5f));
+			}if( input.isKeyPressed(InputManager.PAUSE)){
+				ispaused = !ispaused;
 			}
+			level.update(dir_x,0, delta, sbg);
+			cam.follow(gc, level.getLevelPlayer());
+		}else {
+			paused.Update(gc.getGraphics(), gc, sbg);
 		}
-		
-		if (input.isKeyPressed(InputManager.SHOOT_BLUE)) {
-			level.playerShootPortal(Portal.BLUE, new Vec2 (0,1.5f));
-		}
-		
-		level.update(dir_x,0, delta, sbg);
-		cam.follow(gc, level.getLevelPlayer());
 	}
-	
+
 	public static void setId(final int stateId) {
 		GameState.StateId = stateId;
 	}
-	
+
 	@Override
 	public int getID() {
 		return StateId;
@@ -110,33 +107,45 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			level.updateGameState(gc);
 		}		
 	}
-	
+
 	public void exitLevel(GameContainer gc, StateBasedGame sbg){		
 		sbg.enterState(Portal2D.LOADSTATE);
 	}
-	
+
 	public static void setLevel(Level newLevel){
 		level=newLevel;
-		System.out.println("level successfully set");
+		updateCamera();
 	}
-	
+
 	public static Level getLevel(){
 		return level;
 	}
-	
+
 	public static void updateCamera(){
 		cam.setBounds(PhysUtils.SlickToJBoxVec(new Vec2(level.getBg().getWidth(), level.getBg().getHeight())));
 	}
-	
+
 	// Key Listener stuff //
 	@Override
 	public void keyPressed(int key, char c) {
 		System.out.println("Key pressed in GameState int: " + key);
+		if(ispaused){
+			paused.ProcessInput(key);
+		}
 	}
 
 	@Override
 	public void keyReleased(int key, char c) {
 		System.out.println("Key released in GameState int: " + key);
+	}
+
+
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		super.enter(container, game);
+		this.unpauseUpdate();
+		this.unpauseRender();
 	}
 
 	@Override
@@ -150,7 +159,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 
 	@Override
 	public void setInput(Input input) {input.addKeyListener(this);}
-	
+
 	// Mouse listener stuff //
 	@Override
 	public void mousePressed(int button, int x, int y) {
@@ -160,6 +169,10 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void switchPaused() {
+		ispaused = !ispaused;
 	}
 
 	public static void destroyLevel() {

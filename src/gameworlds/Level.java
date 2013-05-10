@@ -246,4 +246,9 @@ public class Level {
 	public void setFg(final Image image) {
 		fg=image;
 	}
+
+	public Object getCam() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -33,7 +33,7 @@
 	
 	<!-- Platforms -->
 	<resource type="MOVINGPLATFORM" id="SMALLPLATFORM" xStart="6.7" yStart="2.0" trackxstart="6.7" trackystart="2.0" trackxfin="6.7" trackyfin="15.2">assets/sprites/wall.png</resource>
-	<resource type="MOVINGPLATFORM" id="SMALLPLATFORM" xStart="13.08" yStart="15.2" trackxstart="13.08" trackystart="2.0" trackxfin="13.08" trackyfin="15.2">assets/sprites/wall.png</resource>
+	<resource type="MOVINGPLATFORM" id="SMALLPLATFORM" xStart="13.18" yStart="15.2" trackxstart="13.08" trackystart="2.0" trackxfin="13.08" trackyfin="15.2">assets/sprites/wall.png</resource>
 
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>

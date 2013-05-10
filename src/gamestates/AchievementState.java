@@ -31,6 +31,8 @@ public class AchievementState extends BasicGameState implements KeyListener {
 
 	private Collection<Achievement> achievements;
 	private int achievementSelected;
+	
+	private Image selected;
 
 	private final int itemsPerRow = 5;
 	private final int xSpacing = 180;
@@ -53,6 +55,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 		titleFont = AssetManager.requestFontResource("TITLEFONT");
 		debug = false;
 		fullscreen = false;
+		selected=AssetManager.requestUIElement("SELECTED");
 	}
 
 	@Override
@@ -85,7 +88,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
 
 			if (index == achievementSelected) {
-				g.drawRect(x, y, 100, 100); // Replace this with glow or shadow or whatever
+				selected.draw(x,y,100,100);
 				
 				text = a.getName();
 				g.setColor(Color.darkGray);

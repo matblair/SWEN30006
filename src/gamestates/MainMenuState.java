@@ -109,10 +109,6 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 			case MENU_OPTIONS:
 				stateid=Portal2D.OPTIONSTATE;
                 break;
-			case 5:
-				LoadingState.loadLevel(sbg,1);
-				stateid=Portal2D.LOADSTATE;
-                break;
 			}
 			selected=-1;
 			sbg.enterState(stateid);
