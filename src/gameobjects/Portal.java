@@ -7,8 +7,6 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.newdawn.slick.SlickException;
 
-import resourcemanagers.AssetManager;
-
 public class Portal extends GameObject {
 	public static final int BLUE=0, ORANGE=1;
 	private static final int BEFORE=0, AFTER=1;
@@ -32,7 +30,7 @@ public class Portal extends GameObject {
 		this.createBody(location, world, fixture, BODYTYPE);
 		getBody().getFixtureList().setSensor(true);
 		this.world = world;
-		Vec2 dim = new Vec2(18f,120f);
+		Vec2 dim = new Vec2(0.1f,1.7f);
 		this.setDimensions(dim);
 		System.out.println(getDimensions());
 		height = this.getDimensions().y;
