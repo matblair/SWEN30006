@@ -23,9 +23,9 @@ public class Portal2D extends StateBasedGame {
 
 
     /** Screen width, in pixels. */
-    public static final int screenwidth = 1024;
+    public static final int screenwidth = 1280;
     /** Screen height, in pixels. */
-    public static final int screenheight = 768;
+    public static final int screenheight = 800;
 	/** The app game container **/
     public static AppGameContainer app;
 	/** Whether the game is running fullscreen or not **/

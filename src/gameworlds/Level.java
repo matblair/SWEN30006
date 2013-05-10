@@ -225,6 +225,8 @@ public class Level {
 			type="wall";
 		} else if (portals[0].getBody().equals(other) | portals[1].getBody().equals(other)){
 			type="portal";
+		}else if(movingplatforms.containsKey(key)){
+			type="movingplatform";
 		}
 		return type;
 	}
