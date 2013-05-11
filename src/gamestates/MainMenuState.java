@@ -1,14 +1,11 @@
 package gamestates;
 
 import gameengine.InputManager;
-import gameengine.PhysUtils;
 import gameengine.Portal2D;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-
-import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
@@ -26,6 +23,7 @@ import resourcemanagers.AssetManager;
 public class MainMenuState extends BasicGameState implements KeyListener {
 	/** Menu options for selection **/
 	private final static int MENU_STARTGAME=1;
+	private final static int MENU_LEVELSELECT=5;
 	private final static int MENU_ACHIEVEMENTS=2;
 	private final static int MENU_HIGHSCORES=3;
 	private final static int MENU_OPTIONS=4;
@@ -117,6 +115,9 @@ public class MainMenuState extends BasicGameState implements KeyListener {
                 break;
 			case MENU_OPTIONS:
 				stateid=Portal2D.OPTIONSTATE;
+                break;
+			case MENU_LEVELSELECT:
+				stateid=Portal2D.LEVELSELECTSTATE;
                 break;
 			}
 			selected=-1;

@@ -20,6 +20,7 @@ public class Portal2D extends StateBasedGame {
 	public static final int HIGHSCORESTATE =3;
 	public static final int OPTIONSTATE = 4;
 	public static final int GAMESTATE = 5;
+	public static final int LEVELSELECTSTATE= 6;
 
 
     /** Screen width, in pixels. */
@@ -58,6 +59,8 @@ public class Portal2D extends StateBasedGame {
     	app = new AppGameContainer(new Portal2D());
         app.setDisplayMode(screenwidth, screenheight, false);
         app.setShowFPS(true);
+        app.setVSync(true);
+        app.setTargetFrameRate(60);
         app.start();
      
     }    

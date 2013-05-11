@@ -8,27 +8,56 @@ import java.util.Vector;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
+import resourcemanagers.AssetManager;
 
 public class OptionMenu extends InGameMenu {
 
 	protected static Vector<String> menuItems = new Vector<String>();
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
-	protected static int menuItemSelected = 0;
-	
-	private static final int MENU_PAUSEGAME = 0;
+	protected static int mainMenuItemSelected = 0;
+
+	private static final int MENU_SCREENSELECT=0;
+	private static final int MENU_SOUNDLEVEL=1;
+	private static final int MENU_DISPLAYINPUT=2;
+
+	private static boolean displayscreensize=false;
+	private static boolean displaysoundlevel=false;
+	private static boolean displayinputload=false;
+
+	private static int screenItemSelected=0;
+	private static int soundLevelSelected=0;
+	private static int inputItemSelected=0;
+
+	private static final int SOUNDINTERVAL = 1;
+
+	private static int MAXSOUNDLEVEL=100;
 
 	public OptionMenu(){
-		menuItems.add("Back");
-		stringMaps.put("Back", MENU_PAUSEGAME);
-		
+		menuItems.add("Screen Size");
+		menuItems.add("Audio Level");
+		menuItems.add("Controller Select");
+		stringMaps.put("Screen Size", MENU_SCREENSELECT);
+		stringMaps.put("Audio Level", MENU_SOUNDLEVEL);
+		stringMaps.put("Controller Select", MENU_DISPLAYINPUT);
+
 	}
 
 	@Override
 	public
 	void Render(Graphics g, GameContainer gc) {
+		if(displayscreensize){
+			g.drawString(String.valueOf(screenItemSelected), 800,340);
+		}else if(displaysoundlevel){
+			g.drawString(String.valueOf(soundLevelSelected), 800,370);
+		}else if (displayinputload){
+			g.drawString(String.valueOf(inputItemSelected), 800,400);
+		}
+
 		for (int i = 0; i < menuItems.size(); i++) {
-			if (i ==  menuItemSelected) {
+			if (i ==  mainMenuItemSelected) {
 				g.setColor(Color.orange);
 			} else {
 				g.setColor(Color.darkGray);
@@ -40,30 +69,84 @@ public class OptionMenu extends InGameMenu {
 	@Override
 	public
 	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
-		if(selected!=-1){
-			switch (selected){
-			case MENU_PAUSEGAME:
-				Paused. setDisplayoptions(false);
-                break;
-			}
-			selected=-1;
+		switch (mainMenuItemSelected){
+		case MENU_SCREENSELECT:
+			displayscreensize=true;
+			displaysoundlevel=false;
+			displayinputload=false;
+			break;
+		case MENU_SOUNDLEVEL:
+			displayscreensize=false;
+			displaysoundlevel=true;
+			displayinputload=false;
+			gc.setSoundVolume(soundLevelSelected);
+			break;
+		case MENU_DISPLAYINPUT:
+			displayscreensize=false;
+			displaysoundlevel=false;
+			displayinputload=true;			
+			break;
 		}
+		return;
 	}
 
 	@Override
 	public void ProcessInput(int key) {
+		System.out.println(InputManager.NAV_LEFT + " " + InputManager.NAV_RIGHT);
 		if (key == InputManager.NAV_UP) {
-			if (menuItemSelected == 0)
-				menuItemSelected=(menuItems.size() - 1);
+			if (mainMenuItemSelected == 0)
+				mainMenuItemSelected=(menuItems.size() - 1);
 			else
-				menuItemSelected--;
+				mainMenuItemSelected--;
 		} else if (key == InputManager.NAV_DOWN) {
-			if (menuItemSelected == menuItems.size() - 1)
-				menuItemSelected=0;
+			if (mainMenuItemSelected == menuItems.size() - 1)
+				mainMenuItemSelected=0;
 			else
-				menuItemSelected++;
-		} else if (key == InputManager.SELECT) {
-			selected=(stringMaps.get(menuItems.get(menuItemSelected)));
-		}	
+				mainMenuItemSelected++;
+		}else if (key == InputManager.NAV_LEFT){
+			if(displayscreensize){
+
+			}else if(displaysoundlevel){
+				if(soundLevelSelected>0){
+					soundLevelSelected = soundLevelSelected-SOUNDINTERVAL;
+				}
+			}else if (displayinputload){
+				if(inputItemSelected > 0){
+					inputItemSelected=inputItemSelected-1;
+					try {
+						AssetManager.loadInput(inputItemSelected);
+					} catch (SlickException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}else if (key == InputManager.NAV_RIGHT){ 
+			if(displayscreensize){
+
+			}else if(displaysoundlevel){
+				if(soundLevelSelected<MAXSOUNDLEVEL){
+					soundLevelSelected = soundLevelSelected+SOUNDINTERVAL;
+				}
+			}else if (displayinputload){
+				if(inputItemSelected < (AssetManager.getInputResources().size()-1)){
+					inputItemSelected=inputItemSelected+1;
+					try {
+						AssetManager.loadInput(inputItemSelected);
+					} catch (SlickException e) {
+						e.printStackTrace();
+					}
+				}
+
+			}
+		}else if (key == InputManager.SELECT) {
+			selected=(stringMaps.get(menuItems.get(mainMenuItemSelected)));
+		} else if (key == InputManager.BACK){
+			Paused.setDisplayoptions(false);
+		}
 	}	
+
+	public void updateKeys(int newkey) throws SlickException{
+		AssetManager.loadInput(newkey);
+	}
+
 }

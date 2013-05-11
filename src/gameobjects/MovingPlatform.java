@@ -53,7 +53,7 @@ public class MovingPlatform extends Platform{
 			targety=(float)(mid.y + Math.cos(theta)*dify);
 			targetx=this.getLocation().x;
 		}
-		getBody().setLinearVelocity(new Vec2(((targetx-this.getLocation().x)/delta),((targety-this.getLocation().y)/delta)));
+		getBody().setLinearVelocity(new Vec2(((targetx-this.getLocation().x)),((targety-this.getLocation().y))));
 	}
 
 }

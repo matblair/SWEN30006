@@ -8,12 +8,15 @@ import org.jbox2d.dynamics.Fixture;
 
 public class PortalShootRCHelper implements RayCastCallback {
 	public Fixture fixture;
+	public Fixture closestFixture;
 	public Vec2 point;
 	public Level level;
+	public Vec2 playerLoc;
 	
 	public PortalShootRCHelper (Level level) {
 		super();
 		this.level = level;
+		playerLoc = level.getLevelPlayer().getLocation();
 	}
 	
 	@Override
@@ -23,6 +26,12 @@ public class PortalShootRCHelper implements RayCastCallback {
 		
 		this.fixture = fixture;
 		this.point = point;
+		
+		if(PhysUtils.distance(playerLoc,point)<PhysUtils.distance(playerLoc, this.point)){
+			closestFixture = fixture;
+			System.out.println(closestFixture);
+		}
+		
 		return 0;
 	}
 }

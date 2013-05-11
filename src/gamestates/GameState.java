@@ -10,7 +10,6 @@ import gameworlds.Level;
 import gameworlds.Paused;
 
 import org.jbox2d.common.Vec2;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -41,7 +40,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			throws SlickException {
 		level = new Level();
 		cam = new Camera();
-		paused = new Paused();
+		paused = new Paused(level.getLevelId());
 	}
 
 	@Override
@@ -49,9 +48,6 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			throws SlickException {
 	
 		level.render(g, false, cam, gc);
-		g.setColor(Color.white);
-		g.drawString(Integer.toString(gc.getFPS()), 10f, 10f);
-		
 		if(isIspaused()){
 			paused.Render(g,gc);
 		}
@@ -144,8 +140,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
-		this.unpauseUpdate();
-		this.unpauseRender();
+		ispaused=false;
 	}
 
 	@Override

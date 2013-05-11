@@ -31,16 +31,16 @@ public class Paused extends InGameMenu{
 	private static boolean displayquitoption=false;
 
 	private OptionMenu opmenu = new OptionMenu();
-	private HighScoreMenu hsmenu = new HighScoreMenu();
+	private HighScoreMenu hsmenu;
 	private QuitMenu qmenu = new QuitMenu();
-	private AchievementMenu acmenu = new AchievementMenu();
+	private AchievementMenu acmenu;
 
 	protected static Vector<String> menuItems = new Vector<String>();
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	protected static int menuItemSelected = 0;
 
 
-	public Paused()  {
+	public Paused(int levelid)  {
 		font = AssetManager.requestFontResource("PAUSEFONT");
 		debug = false;
 		pausebg = AssetManager.requestUIElement("PAUSEBG");
@@ -49,6 +49,8 @@ public class Paused extends InGameMenu{
 		menuItems.add("Achievements");
 		menuItems.add("High Scores");
 		menuItems.add("Options");
+		hsmenu = new HighScoreMenu(levelid);
+		acmenu = new AchievementMenu(levelid);
 		menuItems.add("Exit To Menu");
 		stringMaps.put("Resume Game", MENU_STARTGAME);
 		stringMaps.put("Achievements", MENU_ACHIEVEMENTS);

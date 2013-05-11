@@ -174,20 +174,6 @@ public class Player extends GameObject{
 		return cube;
 	}
 
-	public void teleport(){
-		this.getBody().setTransform(new Vec2(2,16.9f), 0f);
-	}
-	public void teleportHoriz(){
-		Vec2 currentvel = this.getBody().getLinearVelocity();
-		Float x = currentvel.x;
-		Float y = currentvel.y;
-		Vec2 transVec = new Vec2(-y,-x);
-		this.getBody().setTransform(new Vec2(0.6f,14), 0f);
-		this.getBody().setLinearVelocity(transVec);
-
-	}
-
-
 	public void pickupCube(CompanionCube cube){
 		while(!holdingcube){
 			MassData massData=null;
