@@ -2,6 +2,7 @@ package gameengine;
 
 import gamestates.AchievementState;
 import gamestates.HighScoreState;
+import gamestates.LevelSelectState;
 import gamestates.LoadingState;
 import gamestates.MainMenuState;
 import gamestates.OptionState;
@@ -48,6 +49,7 @@ public class Portal2D extends StateBasedGame {
 		this.addState(new AchievementState());
 		this.addState(new HighScoreState());
 		this.addState(new OptionState());
+		this.addState(new LevelSelectState());
 	    this.enterState(MAINMENUSTATE);
 	}
 	

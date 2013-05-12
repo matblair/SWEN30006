@@ -50,6 +50,8 @@ public class AssetManager {
 	private static Map<String, Achievement> achievements = new HashMap<String, Achievement>(); //All images used for game objects
 	private static Map<Integer, ArrayList<HighScore>> highscores = new HashMap<Integer, ArrayList<HighScore>>();
 	private static Map<String, Shape> shapeDefinitions = new HashMap<String, Shape>();
+	private static Map<Integer, Boolean> levelUnlocks = new HashMap<Integer,Boolean>();
+
 	
 	private static int totalresources=0;
 
@@ -298,6 +300,10 @@ public class AssetManager {
 
 	public static Shape requestShape(String shapeid) {
 		return shapeDefinitions.get(shapeid);
+	}
+
+	public static Map<Integer, Boolean> getLevelUnlock() {
+		return levelUnlocks;
 	}
 }
 

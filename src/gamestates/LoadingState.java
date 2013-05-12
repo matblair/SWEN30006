@@ -56,7 +56,7 @@ public class LoadingState extends BasicGameState {
 			Paused.setDisplayoptions(false);
 			Paused.setDisplayquitoption(false);
 			Paused.setDisplayscores(false);
-	
+
 			sbg.enterState(Portal2D.GAMESTATE);
 		}if(entermenu){
 			entermenu=false;
@@ -94,6 +94,15 @@ public class LoadingState extends BasicGameState {
 	@Override
 	public int getID() {
 		return StateId;
+	}
+
+	public static void reloadLevel() throws SlickException {
+		int levelid = GameState.getLevel().getLevelId();
+
+		level = AssetManager.loadLevel(levelid);
+		GameState.setLevel(level);
+		GameState.getLevel().setLevelId(levelid);
+		finishedloading=true;	
 	}
 
 }
