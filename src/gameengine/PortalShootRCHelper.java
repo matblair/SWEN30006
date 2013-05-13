@@ -25,7 +25,7 @@ public class PortalShootRCHelper implements RayCastCallback {
 			return -1;
 		
 		this.fixture = fixture;
-		this.point = point;
+		this.point = point.clone();
 		
 		if(PhysUtils.distance(playerLoc,point)<PhysUtils.distance(playerLoc, this.point)){
 			closestFixture = fixture;
