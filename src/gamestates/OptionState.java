@@ -153,7 +153,6 @@ public class OptionState extends BasicGameState implements KeyListener{
 		AssetManager.loadInput(newkey);
 	}
 
-
 	@Override
 	public void keyPressed(int key, char c) {
 		System.out.println("Key pressed in AchievementState int: " + key);
