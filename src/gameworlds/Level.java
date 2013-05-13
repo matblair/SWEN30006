@@ -126,7 +126,7 @@ public class Level {
 		PortalShootRCHelper rch = new PortalShootRCHelper(this);
 		Vec2 dir = target.sub(player.getLocation());
 		dir.mulLocal(1/dir.length());
-		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(5)));
+		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(20)));
 		if (rch.fixture == null)
 			return;
 		

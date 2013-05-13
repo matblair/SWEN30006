@@ -10,10 +10,12 @@ public class PortalShootRCHelper implements RayCastCallback {
 	public Fixture fixture;
 	public Vec2 point;
 	public Level level;
+	private float fraction;
 	
 	public PortalShootRCHelper (Level level) {
 		super();
 		this.level = level;
+		this.fraction = 1f;
 	}
 	
 	@Override
@@ -21,9 +23,12 @@ public class PortalShootRCHelper implements RayCastCallback {
 		if (!level.portalBulletInteracts(fixture.getBody().toString()))
 			return -1;
 		
-		System.out.println("found target");
-		this.fixture = fixture;
-		this.point = point;
-		return 0;
+		if (fraction < this.fraction) {
+			this.fixture = fixture;
+			this.point = point.clone();
+			this.fraction = fraction;
+		}
+		
+		return 1;
 	}
 }
