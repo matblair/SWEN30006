@@ -10,7 +10,6 @@ import gameworlds.Level;
 import gameworlds.Paused;
 
 import org.jbox2d.common.Vec2;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -41,7 +40,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			throws SlickException {
 		level = new Level();
 		cam = new Camera();
-		paused = new Paused();
+		paused = new Paused(level.getLevelId());
 	}
 
 	@Override
@@ -49,10 +48,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			throws SlickException {
 	
 		level.render(g, false, cam, gc);
-		g.setColor(Color.white);
-		g.drawString(Integer.toString(gc.getFPS()), 10f, 10f);
-		
-		if(ispaused){
+		if(isIspaused()){
 			paused.Render(g,gc);
 		}
 	}
@@ -64,7 +60,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		int dir_x = 0;
 		Input input = gc.getInput();
 
-		if(!ispaused){
+		if(!isIspaused()){
 			if (input.isKeyDown(InputManager.MOVE_RIGHT))
 				dir_x++;
 			if (input.isKeyDown(InputManager.MOVE_LEFT))
@@ -76,7 +72,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			}if (input.isKeyPressed(InputManager.SHOOT_BLUE)) {
 				level.playerShootPortal(Portal.BLUE, new Vec2 (0,1.5f));
 			}if( input.isKeyPressed(InputManager.PAUSE)){
-				ispaused = !ispaused;
+				setIspaused(!isIspaused());
 			}
 			level.update(dir_x,0, delta, sbg);
 			cam.follow(gc, level.getLevelPlayer());
@@ -129,7 +125,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	@Override
 	public void keyPressed(int key, char c) {
 		System.out.println("Key pressed in GameState int: " + key);
-		if(ispaused){
+		if(isIspaused()){
 			paused.ProcessInput(key);
 		}
 	}
@@ -144,8 +140,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
-		this.unpauseUpdate();
-		this.unpauseRender();
+		ispaused=false;
 	}
 
 	@Override
@@ -175,10 +170,24 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	}
 	
 	public static void switchPaused() {
-		ispaused = !ispaused;
+		setIspaused(!isIspaused());
 	}
 
 	public static void destroyLevel() {
 		level = null;
+	}
+
+	/**
+	 * @return the ispaused
+	 */
+	public static boolean isIspaused() {
+		return ispaused;
+	}
+
+	/**
+	 * @param ispaused the ispaused to set
+	 */
+	public static void setIspaused(boolean ispaused) {
+		GameState.ispaused = ispaused;
 	}
 }

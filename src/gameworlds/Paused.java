@@ -2,6 +2,8 @@ package gameworlds;
 
 import gameengine.InputManager;
 import gamestates.GameState;
+import gamestates.LoadingState;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -10,6 +12,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AssetManager;
@@ -24,6 +27,7 @@ public class Paused extends InGameMenu{
 	private final static int MENU_HIGHSCORES=3;
 	private final static int MENU_OPTIONS=4;
 	private final static int MENU_QUIT=5;
+	private static final int MENU_RESTART = 6;
 
 	private static boolean displayachievements=false;
 	private static boolean displayscores=false;
@@ -31,26 +35,30 @@ public class Paused extends InGameMenu{
 	private static boolean displayquitoption=false;
 
 	private OptionMenu opmenu = new OptionMenu();
-	private HighScoreMenu hsmenu = new HighScoreMenu();
+	private HighScoreMenu hsmenu;
 	private QuitMenu qmenu = new QuitMenu();
-	private AchievementMenu acmenu = new AchievementMenu();
+	private AchievementMenu acmenu;
 
 	protected static Vector<String> menuItems = new Vector<String>();
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	protected static int menuItemSelected = 0;
 
 
-	public Paused()  {
+	public Paused(int levelid)  {
 		font = AssetManager.requestFontResource("PAUSEFONT");
 		debug = false;
 		pausebg = AssetManager.requestUIElement("PAUSEBG");
 		fullscreen = false;
 		menuItems.add("Resume Game");
+		menuItems.add("Restart Level");
 		menuItems.add("Achievements");
 		menuItems.add("High Scores");
 		menuItems.add("Options");
+		hsmenu = new HighScoreMenu(levelid);
+		acmenu = new AchievementMenu(levelid);
 		menuItems.add("Exit To Menu");
 		stringMaps.put("Resume Game", MENU_STARTGAME);
+		stringMaps.put("Restart Level", MENU_RESTART);
 		stringMaps.put("Achievements", MENU_ACHIEVEMENTS);
 		stringMaps.put("High Scores", MENU_HIGHSCORES);
 		stringMaps.put("Options", MENU_OPTIONS);
@@ -70,7 +78,11 @@ public class Paused extends InGameMenu{
 		}else if(displayquitoption){
 			qmenu.Update(g, gc, sbg);
 		}else{
-			firstMenu();
+			try {
+				firstMenu();
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
 		}		
 	}
 
@@ -127,7 +139,7 @@ public class Paused extends InGameMenu{
 	}
 
 
-	private void firstMenu(){
+	private void firstMenu() throws SlickException{
 		if(selected!=-1){
 			switch (selected){
 			case MENU_STARTGAME:
@@ -144,6 +156,10 @@ public class Paused extends InGameMenu{
 				break;
 			case MENU_QUIT:
 				displayquitoption=true;
+				break;
+			case MENU_RESTART:
+				LoadingState.reloadLevel();
+				GameState.switchPaused();
 				break;
 			}
 			selected=-1;

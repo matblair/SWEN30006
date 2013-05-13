@@ -8,6 +8,20 @@
 	<resource type="UIELEMENT" id="MENUTILING">assets/sprites/uielements/menutiling.png</resource>
 	<resource type="UIELEMENT" id="SELECTED">assets/sprites/uielements/selected.png</resource>
 	<resource type="UIELEMENT" id="PAUSEBG">assets/sprites/uielements/pausebg.png</resource>
+	<resource type="UIELEMENT" id="VOL">assets/sprites/uielements/volumeindicators/vol.png</resource>
+	<resource type="UIELEMENT" id="VOL0">assets/sprites/uielements/volumeindicators/vol0.png</resource>
+	<resource type="UIELEMENT" id="VOL1">assets/sprites/uielements/volumeindicators/vol1.png</resource>
+	<resource type="UIELEMENT" id="VOL2">assets/sprites/uielements/volumeindicators/vol2.png</resource>
+	<resource type="UIELEMENT" id="VOL3">assets/sprites/uielements/volumeindicators/vol3.png</resource>
+	<resource type="UIELEMENT" id="VOL4">assets/sprites/uielements/volumeindicators/vol4.png</resource>
+	<resource type="UIELEMENT" id="VOL5">assets/sprites/uielements/volumeindicators/vol5.png</resource>
+	<resource type="UIELEMENT" id="VOL6">assets/sprites/uielements/volumeindicators/vol6.png</resource>
+	<resource type="UIELEMENT" id="VOL7">assets/sprites/uielements/volumeindicators/vol7.png</resource>
+	<resource type="UIELEMENT" id="VOL8">assets/sprites/uielements/volumeindicators/vol8.png</resource>
+	<resource type="UIELEMENT" id="VOL9">assets/sprites/uielements/volumeindicators/vol9.png</resource>
+	<resource type="UIELEMENT" id="LEVELLOCKED">assets/sprites/uielements/levellocked.png</resource>
+
+
 
 	<!-- Sounds -->
 

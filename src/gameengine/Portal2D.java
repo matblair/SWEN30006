@@ -2,6 +2,7 @@ package gameengine;
 
 import gamestates.AchievementState;
 import gamestates.HighScoreState;
+import gamestates.LevelSelectState;
 import gamestates.LoadingState;
 import gamestates.MainMenuState;
 import gamestates.OptionState;
@@ -20,6 +21,7 @@ public class Portal2D extends StateBasedGame {
 	public static final int HIGHSCORESTATE =3;
 	public static final int OPTIONSTATE = 4;
 	public static final int GAMESTATE = 5;
+	public static final int LEVELSELECTSTATE= 6;
 
 
     /** Screen width, in pixels. */
@@ -47,6 +49,7 @@ public class Portal2D extends StateBasedGame {
 		this.addState(new AchievementState());
 		this.addState(new HighScoreState());
 		this.addState(new OptionState());
+		this.addState(new LevelSelectState());
 	    this.enterState(MAINMENUSTATE);
 	}
 	
@@ -58,6 +61,8 @@ public class Portal2D extends StateBasedGame {
     	app = new AppGameContainer(new Portal2D());
         app.setDisplayMode(screenwidth, screenheight, false);
         app.setShowFPS(true);
+        app.setVSync(true);
+        app.setTargetFrameRate(60);
         app.start();
      
     }    

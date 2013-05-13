@@ -30,7 +30,7 @@ public class Portal extends GameObject {
 		this.createBody(location, world, fixture, BODYTYPE);
 		getBody().getFixtureList().setSensor(true);
 		this.world = world;
-		Vec2 dim = new Vec2(0.1f,1.7f);
+		Vec2 dim = new Vec2(0.1f,2.5f);
 		this.setDimensions(dim);
 		System.out.println(getDimensions());
 		height = this.getDimensions().y;

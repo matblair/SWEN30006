@@ -11,7 +11,7 @@ public class PortalShootRCHelper implements RayCastCallback {
 	public Vec2 point;
 	public Level level;
 	private float fraction;
-	
+
 	public PortalShootRCHelper (Level level) {
 		super();
 		this.level = level;

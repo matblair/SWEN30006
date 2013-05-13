@@ -38,12 +38,11 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 
 	private static Vector<String> menuItems = new Vector<String>();
 	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
-	private static int menuItemSelected = 0;
 
 	
 	private final int itemsPerRow = 1;
 	private final int xSpacing = 180;
-	private final int ySpacing = 180;
+	private final int ySpacing = 90;
 	private final int yStartHeight = 250;
 	
 	
@@ -69,7 +68,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		font = AssetManager.requestFontResource("RETROFONT");
+		font = AssetManager.requestFontResource("PAUSEFONT");
 		titleFont = AssetManager.requestFontResource("TITLEFONT");
 		debug = false;
 		fullscreen = false;
@@ -128,7 +127,6 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 			throws SlickException {		
 		Input input = gc.getInput();
 		if (input.isKeyDown(InputManager.BACK)) {
-			System.out.println("leaving");
 			sbg.enterState(Portal2D.MAINMENUSTATE);
 		}
 		
@@ -142,10 +140,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	
 	@Override
 	public void keyPressed(int key, char c) {
-		System.out.println("Key pressed in HighScoreState int: " + key);
-		if (key == InputManager.SELECT) {
-			selected=stringMaps.get(menuItems.get(menuItemSelected));
-		} else if (key == InputManager.NAV_RIGHT) {
+		if (key == InputManager.NAV_RIGHT) {
 			
 			if (currentlevel +1 < scores.size()) {
 				currentlevel++;
@@ -160,8 +155,6 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 		}
 	}
 
-	@Override
-	public void keyReleased(int key, char c) {System.out.println("Key released in HighScoreState int: " + key);}
 
 	@Override
 	public void inputEnded() {listening = false;}
@@ -206,24 +199,4 @@ public class HighScoreState extends BasicGameState implements KeyListener{
         return instance;
     }
   
-    /*public boolean addScore(int score)
-    {
-        for(int idx = 0; idx < scores.size(); idx++)
-        {
-            if(score > scores.get(idx)) {
-                scores.add(idx, new Integer(score));
-                scores.remove(scores.size()-1);
-  
-                return true;
-            }
-  
-        }
-  
-        return false;
-    }*/
-  
-    /*public ArrayList<Integer> getScores()
-    {
-        return scores;
-    }*/
 }

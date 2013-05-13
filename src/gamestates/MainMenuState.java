@@ -1,14 +1,11 @@
 package gamestates;
 
 import gameengine.InputManager;
-import gameengine.PhysUtils;
 import gameengine.Portal2D;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-
-import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
@@ -26,9 +23,11 @@ import resourcemanagers.AssetManager;
 public class MainMenuState extends BasicGameState implements KeyListener {
 	/** Menu options for selection **/
 	private final static int MENU_STARTGAME=1;
+	private final static int MENU_LEVELSELECT=5;
 	private final static int MENU_ACHIEVEMENTS=2;
 	private final static int MENU_HIGHSCORES=3;
 	private final static int MENU_OPTIONS=4;
+
 	
 	/** The state id for this part **/
 	private static int StateId = Portal2D.MAINMENUSTATE;
@@ -61,10 +60,12 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 		// Menu items
 		
 		menuItems.add("Start Game");
+		menuItems.add("Level Select");
 		menuItems.add("Achievements");
 		menuItems.add("High Scores");
 		menuItems.add("Options");
 		stringMaps.put("Start Game", MENU_STARTGAME);
+		stringMaps.put("Level Select", MENU_LEVELSELECT);
 		stringMaps.put("Achievements", MENU_ACHIEVEMENTS);
 		stringMaps.put("High Scores", MENU_HIGHSCORES);
 		stringMaps.put("Options", MENU_OPTIONS);
@@ -93,13 +94,20 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	}
 
 	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		super.enter(container, game);
+		LoadingState.startnew=true;
+		
+	}
+	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		if(selected!=-1){
 			int stateid=Portal2D.MAINMENUSTATE;
 			switch (selected){
 			case MENU_STARTGAME:
-				LoadingState.loadLevel(sbg,0);
+				LoadingState.startnew=true;
 				stateid=Portal2D.LOADSTATE;
                 break;
 			case MENU_ACHIEVEMENTS:
@@ -110,6 +118,9 @@ public class MainMenuState extends BasicGameState implements KeyListener {
                 break;
 			case MENU_OPTIONS:
 				stateid=Portal2D.OPTIONSTATE;
+                break;
+			case MENU_LEVELSELECT:
+				stateid=Portal2D.LEVELSELECTSTATE;
                 break;
 			}
 			selected=-1;

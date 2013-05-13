@@ -4,8 +4,6 @@ package gameworlds;
 
 public class GLaDOS {
 	
-	private float leveltime;
-	private int levelid;
 	
 	public GLaDOS(){
 		
