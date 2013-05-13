@@ -17,6 +17,9 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import resourcemanagers.AchievementLoader;
+import resourcemanagers.HighScoreLoader;
+
 public class Level {
 	
 	/** The level id **/
@@ -117,6 +120,8 @@ public class Level {
 			final String playerid = player.getBody().toString();
 			if(contactbodyb.equals(playerid)){
 				LoadingState.loadNextLevel(sbg);
+				HighScoreLoader.saveHighScores();
+				AchievementLoader.saveAchievements();
 				sbg.enterState(Portal2D.LOADSTATE);
 			}
 		}
