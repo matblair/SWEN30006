@@ -65,6 +65,9 @@
 	<resource type="SHAPE" id="SMALLSWITCHSHAPE" vertpath="smallswitch.xml">smallswitchpath</resource>
 	<resource type="SHAPE" id="BIGSWITCHSHAPE" vertpath="bigswitch.xml">bigswtichpath</resource>
 	<resource type="SHAPE" id="DOORSHAPE" vertpath="door.xml">doorpath</resource>
+	<resource type="SHAPE" id="LEFTEDGEVERTICES" vertpath="switchleftedge.xml">doorpath</resource>
+	<resource type="SHAPE" id="RIGHTEDGEVERTICES" vertpath="switchedgeright.xml">doorpath</resource>
+
 
 
 	

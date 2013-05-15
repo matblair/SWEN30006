@@ -59,12 +59,12 @@ public class GameObject {
 		}
 
 		bd.fixedRotation = true;
-		body = world.createBody(bd);
-		body.createFixture(definition);
+		setBody(world.createBody(bd));
+		getBody().createFixture(definition);
 	}
 	
 	public void update(Level level) {
-		ContactEdge edge = body.getContactList();
+		ContactEdge edge = getBody().getContactList();
 		while (edge != null) {
 			if (level.getBodyType(edge.other).equals("portal")) {
 				inPortal = true;
@@ -82,7 +82,7 @@ public class GameObject {
 	
 	private void checkPortalTransition(Level level) {
 		PortalCollisionRCHelper rch = new PortalCollisionRCHelper(level);
-		body.getWorld().raycast(rch, last, getLocation());
+		getBody().getWorld().raycast(rch, last, getLocation());
 		if (rch.fixture != null) {
 			Portal portals[] = level.getPortals();
 			Portal portalHit;
@@ -103,9 +103,9 @@ public class GameObject {
 			Vec2 remainingTravel = PhysUtils.rotateVector(getLocation().sub(last).mul(rch.fraction), rotateBy);
 			System.out.println(remainingTravel + " " + (rch.fraction) + " " + getLocation().sub(last));
 			Vec2 appear = otherPortal.getLocation().sub(otherPortal.getUnitTangent().mul(portalHitOffset)).add(remainingTravel);
-			body.setTransform(appear, body.getAngle());
-			body.setLinearVelocity(PhysUtils.rotateVector(body.getLinearVelocity(), rotateBy));
-			System.out.println(PhysUtils.rotateVector(body.getLinearVelocity(), rotateBy).length() + " " + body.getLinearVelocity().length());
+			getBody().setTransform(appear, getBody().getAngle());
+			getBody().setLinearVelocity(PhysUtils.rotateVector(getBody().getLinearVelocity(), rotateBy));
+			System.out.println(PhysUtils.rotateVector(getBody().getLinearVelocity(), rotateBy).length() + " " + getBody().getLinearVelocity().length());
 		}
 	}
 	
@@ -123,15 +123,15 @@ public class GameObject {
 	
 	
 	public Vec2 getLocation() {
-		return body.getPosition();
+		return getBody().getPosition();
 	}
 	
 	public float getRotation() {
-		return body.getAngle();
+		return getBody().getAngle();
 	}
 	
 	public float getMass() {
-		return body.getMass();
+		return getBody().getMass();
 	}
 	
 	public boolean isOnGround() {
@@ -170,7 +170,14 @@ public class GameObject {
 	 * @return the bodyId
 	 */
 	public String getBodyId() {
-		return body.toString();
+		return getBody().toString();
+	}
+
+	/**
+	 * @param body the body to set
+	 */
+	public void setBody(Body body) {
+		this.body = body;
 	}
 	
 }

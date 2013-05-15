@@ -11,15 +11,28 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.ContactEdge;
+import org.jbox2d.dynamics.joints.PrismaticJointDef;
+import org.jbox2d.dynamics.joints.RevoluteJoint;
+import org.jbox2d.dynamics.joints.RevoluteJointDef;
+import org.jbox2d.dynamics.joints.RopeJoint;
+import org.jbox2d.dynamics.joints.RopeJointDef;
+import org.jbox2d.dynamics.joints.WeldJointDef;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+
+import sun.tools.tree.ThisExpression;
 
 public class BigSwitch extends GameObject {
 
 	private static final String IMGID="SWITCHSENSOR";
 	private static final String SHAPEID="BIGSWITCHSHAPE";
-	private static final int bodytype = PhysUtils.STATIC;
+	private static final int bodytype = PhysUtils.DYNAMIC;
+	private static final String LEFTEDGEID = "LEFTEDGEVERTICES";
+	private static final String RIGHTEDGEID = "RIGHTEDGEVERTICES";
 
+	private static Body leftbody;
+	private static Body rightbody;
+	
 	private boolean doorlinkset = false;
 	private Image contactimg;
 	private String doorId;
@@ -36,14 +49,72 @@ public class BigSwitch extends GameObject {
 		super(IMGID);
 		//Create the contact sensor
 		FixtureDef fixture = createFixture(SHAPEID);
+		FixtureDef leftedge = createFixture(LEFTEDGEID);
+		FixtureDef rightedge = createFixture(RIGHTEDGEID);
+
+		
 		contactimg=this.getImage();
 		renderUp = renderDown = contactimg;
-		this.createBody(location, world, fixture, bodytype);
+		this.createBody(location, world, fixture, leftedge, rightedge, bodytype);
 		contactdim = PhysUtils.SlickToJBoxVec(new Vec2(contactimg.getWidth(), contactimg.getHeight()));
 		createSensor(location,world);
 		this.doorId=doorId;
 	}
 	
+
+	private void createBody(Vec2 location, World world, FixtureDef definition,
+			FixtureDef leftedge, FixtureDef rightedge, int bodytype2) {
+		BodyDef bd = new BodyDef();
+		bd.position.set(location);
+
+		switch (bodytype){
+			case PhysUtils.STATIC: 
+				bd.type = BodyType.STATIC;
+				break;
+			case PhysUtils.DYNAMIC:
+				bd.type = BodyType.DYNAMIC;
+				break;
+			case PhysUtils.KINEMATIC:
+				bd.type = BodyType.KINEMATIC;
+				break;
+			case PhysUtils.PORTAL: 
+				bd.type = BodyType.STATIC;
+				break;
+		}
+		
+		bd.fixedRotation = true;
+		Vec2 newloc = location.clone();
+		setBody(world.createBody(bd));
+		newloc.x = location.x - (float)contactimg.getWidth()/(float)136;
+		bd.position.set(newloc);
+		leftbody = world.createBody(bd);
+		Vec2 rightloc = location.clone();
+		rightloc.x=location.x+(float)contactimg.getWidth()/(float)136;
+		rightbody = world.createBody(bd);
+		getBody().createFixture(definition);
+		leftbody.createFixture(leftedge);
+		rightbody.createFixture(rightedge);
+		
+		System.out.println(location);
+		System.out.println(rightloc);
+		System.out.println(newloc);
+		
+	
+		
+		RevoluteJointDef ljd = new RevoluteJointDef();
+		ljd.bodyA=getBody();
+		ljd.bodyB=rightbody;
+		ljd.collideConnected=false;
+		ljd.enableLimit=true;
+		ljd.enableMotor=true;
+		ljd.upperAngle=0f;
+		ljd.lowerAngle=-0.30f;
+		ljd.motorSpeed=20f;
+		world.createJoint(ljd);
+		
+		
+	}
+
 
 	private void createSensor(Vec2 location, World world) {
 		BodyDef bd = new BodyDef();
@@ -60,13 +131,7 @@ public class BigSwitch extends GameObject {
 		fixtureDef.isSensor=true;
 		contact.createFixture(fixtureDef);
 	}
-	
-	@Override
-	protected FixtureDef createFixture(String shapeid) {
-		FixtureDef def = super.createFixture(shapeid);
-		def.isSensor=true;
-		return def;
-	}
+		
 
 	public void updateState(){
 		somethingpressing=false;

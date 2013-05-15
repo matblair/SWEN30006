@@ -121,7 +121,7 @@ public class Level {
 			final String contactbodyb = levelend.getBody().m_contactList.contact.m_fixtureB.m_body.toString();
 			final String playerid = player.getBody().toString();
 			if(contactbodyb.equals(playerid)){
-				glados.updateHighScores(AssetManager.getHighscores().get(this.levelid));
+				glados.updateHighScores(levelid);
 				glados.updateAchievements(AssetManager.getAchievementMap());
 				glados.printStats();
 				LoadingState.loadNextLevel(sbg);

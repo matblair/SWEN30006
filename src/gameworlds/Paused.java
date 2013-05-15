@@ -33,6 +33,8 @@ public class Paused extends InGameMenu{
 	private static boolean displayscores=false;
 	private static boolean displayoptions=false;
 	private static boolean displayquitoption=false;
+	
+	private static int levelid;
 
 	private OptionMenu opmenu = new OptionMenu();
 	private HighScoreMenu hsmenu;
@@ -117,11 +119,21 @@ public class Paused extends InGameMenu{
 	@Override
 	public
 	void Render(Graphics g, GameContainer gc) {
+		
 		Color filter = new Color(0,0,0,0.7f);
 		g.setColor(filter);
 		g.fillRect(0, 0,  gc.getWidth(), gc.getHeight());
-
+		
+		g.setFont(titlefont);
+		g.setColor(Color.black);
+		g.drawString(TITLE, gc.getWidth()/2 - titlefont.getWidth(TITLE)/2, gc.getHeight()/2 - 150);	
+		
 		pausebg.drawCentered(gc.getWidth()/2, gc.getHeight()/2);
+		
+		g.setFont(titlefont);
+		g.setColor(Color.black);
+		g.drawString(TITLE, gc.getWidth()/2 - titlefont.getWidth(TITLE)/2, gc.getHeight()/2 - 150);
+		
 		g.setFont(font);
 		g.setColor(Color.gray);
 
@@ -230,6 +242,11 @@ public class Paused extends InGameMenu{
 
 	public static void setDisplayquitoption(boolean displayquitoption) {
 		Paused.displayquitoption = displayquitoption;
+	}
+
+	public void setLevelId(int levelId) {
+		this.levelid=levelId;
+		hsmenu.setLevelId(levelId);
 	}
 
 }

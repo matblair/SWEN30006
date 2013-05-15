@@ -33,6 +33,7 @@ public class QuitMenu extends InGameMenu{
 	@Override
 	public
 	void Render(Graphics g, GameContainer gc) {
+				
 		for (int i = 0; i < menuItems.size(); i++) {
 			if (i ==  menuItemSelected) {
 				g.setColor(Color.orange);
