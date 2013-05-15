@@ -18,6 +18,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AchievementLoader;
+import resourcemanagers.AssetManager;
 import resourcemanagers.HighScoreLoader;
 
 public class Level {
@@ -40,17 +41,16 @@ public class Level {
 	protected Map<String,Platform> platforms;
 	/** A vector containing all moving platforms **/
 	protected Map<String,MovingPlatform> movingplatforms;
-
 	/** A vector containing all portals **/
 	protected Portal[] portals = new Portal[2];
 	/** A vector containing all switches **/
 	protected Map<String,LittleSwitch> lilSwitches;
 	/** A vector containing all switches **/
 	protected Map<String,BigSwitch> bigSwitches;
-
 	/** Our end point **/
 	protected EndLevel levelend;
-	
+	/** Our level oracle **/
+	protected GLaDOS glados;
 	/** Our physics world **/
 	private final World world;
 	/** Our Physics Engine Constants **/
@@ -71,13 +71,13 @@ public class Level {
 		doors = new HashMap<String,Door>();
 		platforms = new HashMap<String,Platform>();
 		movingplatforms = new HashMap<String,MovingPlatform>();
-
 		lilSwitches = new HashMap<String,LittleSwitch>();
 		bigSwitches = new HashMap<String,BigSwitch>();	
 		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(-1,0), world);
 		portals[Portal.BLUE] = new Portal("BLUEPORTAL", new Vec2(-1,0), world);
 		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
 		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
+		glados = new GLaDOS(this.levelid);
 	}
 
 	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
@@ -115,16 +115,23 @@ public class Level {
 			pl.updatePos(delta);
 		}
 		
+		glados.updateTesting(delta);
+		
 		if(levelend.getBody().m_contactList!=null){
 			final String contactbodyb = levelend.getBody().m_contactList.contact.m_fixtureB.m_body.toString();
 			final String playerid = player.getBody().toString();
 			if(contactbodyb.equals(playerid)){
+				glados.updateHighScores(AssetManager.getHighscores().get(this.levelid));
+				glados.updateAchievements(AssetManager.getAchievementMap());
+				glados.printStats();
 				LoadingState.loadNextLevel(sbg);
 				HighScoreLoader.saveHighScores();
 				AchievementLoader.saveAchievements();
 				sbg.enterState(Portal2D.LOADSTATE);
+				
 			}
 		}
+		
 	}
 	
 	public void playerShootPortal(int color, Vec2 target) throws SlickException {
@@ -139,6 +146,7 @@ public class Level {
 			final Wall wall = walls.get(rch.fixture.getBody().toString());
 			final Vec2 loc = rch.point;
 			System.out.println(wall.getStart() + " " + wall.getUnitTangent());
+			glados.createdPortal();
 			portals[color].hitWall(loc, wall);
 		}
 	}

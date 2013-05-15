@@ -22,6 +22,9 @@ public class Portal2D extends StateBasedGame {
 	public static final int OPTIONSTATE = 4;
 	public static final int GAMESTATE = 5;
 	public static final int LEVELSELECTSTATE= 6;
+	
+	public static final String gameKey="553afb3a667f07c6d90e4561fe625ffd";
+	public static final String appUrl="http://swen30006mathighscore.appspot.com";
 
 
     /** Screen width, in pixels. */

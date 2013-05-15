@@ -2,6 +2,7 @@ package resourcemanagers;
 
 import gameengine.Achievement;
 import gameengine.HighScore;
+import gameengine.Portal2D;
 import gameworlds.Level;
 
 import java.io.File;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
@@ -21,6 +24,13 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
+
+import com.gemserk.datastore.profiles.Profile;
+import com.gemserk.datastore.profiles.Profiles;
+import com.gemserk.datastore.profiles.ProfilesHttpImpl;
+import com.gemserk.scores.Score;
+import com.gemserk.scores.Scores;
+import com.gemserk.scores.ScoresHttpImpl;
 
 public class AssetManager {
 	/** End Role will be to load all resources at start of game that are universal, call level loader to load new levels **/
@@ -36,6 +46,10 @@ public class AssetManager {
 	/** The highscore loader **/
 	private static HighScoreLoader highscoreLoader = new HighScoreLoader();
 
+	/** The online highscore leaderboard **/
+	private static Scores scores;
+	private static Profiles profiles;
+	
 
 	/**Creates a resource repository of commonly used items **/
 	private static Map<String, Image> imageResources = new HashMap<String, Image>(); //All images used for game objects
@@ -63,7 +77,19 @@ public class AssetManager {
 	
 
 
-	private AssetManager(){				
+	private AssetManager(){	
+	}
+	
+	private static void loadOnlineHighScores(){
+		scores = new ScoresHttpImpl(Portal2D.gameKey, Portal2D.appUrl);
+		profiles = new ProfilesHttpImpl(Portal2D.gameKey);
+		profiles.register("Mat", true);
+		Set<String> set = new TreeSet<String>();
+		set.add("0");
+		System.out.println("here");
+		Score score = new Score();
+		score.setPoints((long) 108.92);
+		scores.submit(score);
 	}
 
 	public static AssetManager getAssetManager()
@@ -92,6 +118,7 @@ public class AssetManager {
 			}
 		}
 		
+		loadOnlineHighScores();
 		loadAchievements();
 		loadHighScores();
 		
@@ -191,6 +218,8 @@ public class AssetManager {
 				e.printStackTrace();
 			}
 		}
+	
+
 	}
 
 	public static Image requestImage(String imgid){
