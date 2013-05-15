@@ -2,6 +2,7 @@ package gameworlds;
 
 import gameengine.Achievement;
 import gameengine.HighScore;
+import gamestates.GameState;
 
 import java.util.ArrayList;
 // Genetic Lifeform and Disk Operating System
@@ -31,12 +32,10 @@ public class GLaDOS {
 	}
 
 	public void updateHighScores(ArrayList<HighScore> arrayList) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void updateAchievements(Map<String, Achievement> achievementMap) {
-		// TODO Auto-generated method stub
 		
 	}
 
