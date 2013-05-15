@@ -11,6 +11,8 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.ContactEdge;
+import org.jbox2d.dynamics.joints.DistanceJointDef;
+import org.jbox2d.dynamics.joints.JointType;
 import org.jbox2d.dynamics.joints.PrismaticJointDef;
 import org.jbox2d.dynamics.joints.RevoluteJoint;
 import org.jbox2d.dynamics.joints.RevoluteJointDef;
@@ -87,6 +89,7 @@ public class BigSwitch extends GameObject {
 		setBody(world.createBody(bd));
 		newloc.x = location.x - (float)contactimg.getWidth()/(float)136;
 		bd.position.set(newloc);
+		bd.type=BodyType.STATIC;
 		leftbody = world.createBody(bd);
 		Vec2 rightloc = location.clone();
 		rightloc.x=location.x+(float)contactimg.getWidth()/(float)136;
@@ -99,19 +102,29 @@ public class BigSwitch extends GameObject {
 		System.out.println(rightloc);
 		System.out.println(newloc);
 		
-	
+		PrismaticJointDef def = new PrismaticJointDef();
+		def.bodyA=this.getBody();
+		def.bodyB=leftbody;
+		JointType jtype = JointType.PRISMATIC;
+		def.type = jtype;	
+		def.collideConnected=false;
+		def.enableLimit=true;
+		def.enableMotor=true;
+		def.motorSpeed=20f;
 		
-		RevoluteJointDef ljd = new RevoluteJointDef();
-		ljd.bodyA=getBody();
-		ljd.bodyB=rightbody;
-		ljd.collideConnected=false;
-		ljd.enableLimit=true;
-		ljd.enableMotor=true;
-		ljd.upperAngle=0f;
-		ljd.lowerAngle=-0.30f;
-		ljd.motorSpeed=20f;
-		world.createJoint(ljd);
+		PrismaticJointDef rightdef = new PrismaticJointDef();
+		rightdef.bodyA=this.getBody();
+		rightdef.bodyB=rightbody;
+		rightdef.type = jtype;
+		rightdef.collideConnected=false;
+		rightdef.enableLimit=true;
+		rightdef.enableMotor=true;
+		rightdef.motorSpeed=20f;
 		
+		world.createJoint(rightdef);
+		world.createJoint(def);
+		
+		System.out.println(world.getJointList().getType());
 		
 	}
 
