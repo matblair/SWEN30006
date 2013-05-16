@@ -11,15 +11,21 @@ public class FixtureCallback implements QueryCallback{
 	
 	private  ArrayList<String> interactableObjects = new ArrayList<String>();
 	private CompanionCube cube;
+	private boolean containsJumpableObject=false;
 	
 	public boolean reportFixture(Fixture fixture) {
-		String idd = fixture.getBody().toString();
+		String id = fixture.getBody().toString();
 		String type = GameState.getLevel().getBodyType(fixture.getBody());
+		interactableObjects.add(id);
+		
 		if(type.equals("cube")){
-			interactableObjects.add(idd);
-			setCube(GameState.getLevel().getCube(idd));
+			setCube(GameState.getLevel().getCube(id));
+			containsJumpableObject=true;
 			return false;
+		}else if(type.equals("wall") || type.equals("bigswitch") || type.equals("platform") || type.equals("movingplatform") || type.equals("noportalwalls")){
+			containsJumpableObject=true;
 		}
+		
 		return true;
 	}
 
@@ -42,6 +48,13 @@ public class FixtureCallback implements QueryCallback{
 	 */
 	public void setCube(CompanionCube cube) {
 		this.cube = cube;
+	}
+
+	/**
+	 * @return the containsJumpableObject
+	 */
+	public boolean isContainsJumpableObject() {
+		return containsJumpableObject;
 	}
 
 }

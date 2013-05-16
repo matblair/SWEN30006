@@ -169,8 +169,10 @@ public class Player extends GameObject{
 		}
 		AABB area = new AABB(lower,upper);
 		FixtureCallback callback = new FixtureCallback();
+		
 		GameState.getLevel().getPhysWorld().queryAABB(callback, area);
 		CompanionCube cube = callback.getCube();
+		
 		return cube;
 	}
 

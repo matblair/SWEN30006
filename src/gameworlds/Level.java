@@ -66,7 +66,6 @@ public class Level {
 	public Level() throws SlickException{
 		// Create physics worlds
 		world = new World(gravity);
-		
 		//Initialises ArrayLists
 		cubes = new HashMap<String,CompanionCube>();
 		walls = new HashMap<String,Wall>();
@@ -84,6 +83,7 @@ public class Level {
 	}
 
 	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
+		
 		RenderEngine.drawBG(bg, cam);
 		RenderEngine.drawGameObject(levelend, cam);
 		RenderEngine.drawGameObjects(lilSwitches, cam);
@@ -97,6 +97,10 @@ public class Level {
 			RenderEngine.drawBG(fg, cam);
 		}
 		RenderEngine.drawGameObjects(portals, cam);
+		
+		RenderEngine.drawWalls(noportalwalls, g, cam);
+		RenderEngine.drawWalls(walls, g, cam);
+
 	}
 
 	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
@@ -239,7 +243,9 @@ public class Level {
 			type="platform";
 		}else if(walls.containsKey(key)){
 			type="wall";
-		} else if (portals[0].getBody().equals(other) | portals[1].getBody().equals(other)){
+		}else if(noportalwalls.containsKey(key)){
+			type="noportalwall";
+		}else if (portals[0].getBody().equals(other) | portals[1].getBody().equals(other)){
 			type="portal";
 		}else if(movingplatforms.containsKey(key)){
 			type="movingplatform";

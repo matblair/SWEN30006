@@ -245,7 +245,7 @@ public class Paused extends InGameMenu{
 	}
 
 	public void setLevelId(int levelId) {
-		this.levelid=levelId;
+		Paused.levelid=levelId;
 		hsmenu.setLevelId(levelId);
 	}
 

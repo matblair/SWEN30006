@@ -39,7 +39,6 @@
 
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
-	<resource type="FOREGROUNDIMG">assets/levels/leveltwofg.png</resource>
     
 	<!-- End Zone -->
 	<resource type="ENDZONE" xStart="27" yStart="3.5">endzone</resource>
