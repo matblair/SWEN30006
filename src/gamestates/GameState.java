@@ -110,6 +110,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 
 	public static void setLevel(Level newLevel){
 		level=newLevel;
+		paused.setLevelId(level.getLevelId());
 		updateCamera();
 	}
 
@@ -140,6 +141,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
+		paused.setLevelId(level.getLevelId());
 		ispaused=false;
 	}
 

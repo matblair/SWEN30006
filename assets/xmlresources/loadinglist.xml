@@ -20,6 +20,9 @@
 	<resource type="UIELEMENT" id="VOL8">assets/sprites/uielements/volumeindicators/vol8.png</resource>
 	<resource type="UIELEMENT" id="VOL9">assets/sprites/uielements/volumeindicators/vol9.png</resource>
 	<resource type="UIELEMENT" id="LEVELLOCKED">assets/sprites/uielements/levellocked.png</resource>
+	<resource type="UIELEMENT" id="INPUTTWO">assets/sprites/uielements/inputdisplay/inputtwo.png</resource>
+	<resource type="UIELEMENT" id="INPUTONE">assets/sprites/uielements/inputdisplay/inputone.png</resource>
+
 
 
 
@@ -62,6 +65,9 @@
 	<resource type="SHAPE" id="SMALLSWITCHSHAPE" vertpath="smallswitch.xml">smallswitchpath</resource>
 	<resource type="SHAPE" id="BIGSWITCHSHAPE" vertpath="bigswitch.xml">bigswtichpath</resource>
 	<resource type="SHAPE" id="DOORSHAPE" vertpath="door.xml">doorpath</resource>
+	<resource type="SHAPE" id="LEFTEDGEVERTICES" vertpath="switchleftedge.xml">doorpath</resource>
+	<resource type="SHAPE" id="RIGHTEDGEVERTICES" vertpath="switchedgeright.xml">doorpath</resource>
+
 
 
 	

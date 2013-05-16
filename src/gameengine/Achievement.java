@@ -6,7 +6,7 @@ import resourcemanagers.AssetManager;
 
 public class Achievement {
 	private Image image, imageLocked;
-	private String name, description;
+	private String name, description, imgid;
 	private boolean unlocked;
 	
 	private final float filterAmount = 0.5f;
@@ -15,6 +15,7 @@ public class Achievement {
 		this.name = name;
 		this.description = description;
 		this.unlocked = unlocked;
+		imgid = imgID;
 		image = AssetManager.requestAchiemeventResource(imgID);
 		imageLocked = image.copy();
 		imageLocked.setImageColor(filterAmount, filterAmount, filterAmount);
@@ -39,4 +40,9 @@ public class Achievement {
 	public Image getLockedImage() {
 		return imageLocked;
 	}
+
+	public String getImgid() {
+		return imgid;
+	}
+
 }

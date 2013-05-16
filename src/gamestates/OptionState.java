@@ -1,5 +1,6 @@
 package gamestates;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -12,6 +13,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -41,8 +43,12 @@ public class OptionState extends BasicGameState implements KeyListener{
 	private static final int MENU_SCREENSELECT=0;
 	private static final int MENU_SOUNDLEVEL=1;
 	private static final int MENU_DISPLAYINPUT=2;
+	
+	private static ArrayList<Image> volimages= new ArrayList<Image>();
+	private static ArrayList<Image> inputimages= new ArrayList<Image>();
 
-	private static final int SOUNDINTERVAL = 1;
+
+	private static final int SOUNDINTERVAL = 5;
 
 	private static int MAXSOUNDLEVEL=100;
 
@@ -86,6 +92,18 @@ public class OptionState extends BasicGameState implements KeyListener{
 		stringMaps.put("Screen Size", MENU_SCREENSELECT);
 		stringMaps.put("Audio Level", MENU_SOUNDLEVEL);
 		stringMaps.put("Controller Select", MENU_DISPLAYINPUT);
+		volimages.add(AssetManager.requestUIElement("VOL0"));
+		volimages.add(AssetManager.requestUIElement("VOL1"));
+		volimages.add(AssetManager.requestUIElement("VOL2"));
+		volimages.add(AssetManager.requestUIElement("VOL3"));
+		volimages.add(AssetManager.requestUIElement("VOL4"));
+		volimages.add(AssetManager.requestUIElement("VOL5"));
+		volimages.add(AssetManager.requestUIElement("VOL6"));
+		volimages.add(AssetManager.requestUIElement("VOL7"));
+		volimages.add(AssetManager.requestUIElement("VOL8"));
+		volimages.add(AssetManager.requestUIElement("VOL9"));
+		inputimages.add(AssetManager.requestUIElement("INPUTONE"));
+		inputimages.add(AssetManager.requestUIElement("INPUTTWO"));
 	}
 
 	@Override
@@ -98,9 +116,9 @@ public class OptionState extends BasicGameState implements KeyListener{
 		if(displayscreensize){
 			g.drawString(String.valueOf(screenItemSelected), 400,150);
 		}else if(displaysoundlevel){
-			g.drawString(String.valueOf(soundLevelSelected), 400,200);
+			drawVolume();
 		}else if (displayinputload){
-			g.drawString(String.valueOf(inputItemSelected), 400,250);
+			drawInput();
 		}
 
 
@@ -143,7 +161,16 @@ public class OptionState extends BasicGameState implements KeyListener{
 		}
 		return;
 	}
-
+	
+	public void drawVolume(){
+		int imagelaod = (int)(soundLevelSelected/10);
+		Image newimage = volimages.get(imagelaod).getScaledCopy(400, 200);
+		newimage.drawCentered(750, 370);
+	}
+	
+	public void drawInput(){
+		inputimages.get(inputItemSelected).drawCentered(750, 300);
+	}
 	@Override
 	public int getID() {
 		return StateId;
@@ -152,7 +179,6 @@ public class OptionState extends BasicGameState implements KeyListener{
 	public void updateKeys(int newkey) throws SlickException{
 		AssetManager.loadInput(newkey);
 	}
-
 
 	@Override
 	public void keyPressed(int key, char c) {

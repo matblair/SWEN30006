@@ -35,7 +35,7 @@ public class AchievementMenu extends InGameMenu {
 	@Override
 	public
 	void Render(Graphics g, GameContainer gc) {
-		
+				
 		for(Achievement ac: achievements){
 			ac.isUnlocked();
 			//Code for showing relevant level??

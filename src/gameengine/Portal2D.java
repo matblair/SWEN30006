@@ -22,7 +22,10 @@ public class Portal2D extends StateBasedGame {
 	public static final int OPTIONSTATE = 4;
 	public static final int GAMESTATE = 5;
 	public static final int LEVELSELECTSTATE= 6;
-
+	
+	// Live game key (only swap if you are testing the game for real with real levels) 8b32c6268959f7bf940d3c0e61532aaa0d82434e
+	public static final String gameKey="93675768a5117314d0b09841190b9ad54dd59212";
+	public static final String name="Mat";
 
     /** Screen width, in pixels. */
     public static final int screenwidth = 1280;

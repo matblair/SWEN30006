@@ -2,6 +2,7 @@ package resourcemanagers;
 
 import gameengine.Achievement;
 import gameengine.HighScore;
+import gameengine.Portal2D;
 import gameworlds.Level;
 
 import java.io.File;
@@ -34,9 +35,8 @@ public class AssetManager {
 	/** The achievement loader **/
 	private static AchievementLoader achievementLoader = new AchievementLoader();
 	/** The highscore loader **/
-	private static HighScoreLoader highscoreLoader = new HighScoreLoader();
-
-
+	private static HighScoreLoader highscoreLoader = new HighScoreLoader();;
+	
 	/**Creates a resource repository of commonly used items **/
 	private static Map<String, Image> imageResources = new HashMap<String, Image>(); //All images used for game objects
 	private static Map<String, Sound> soundResources = new HashMap<String, Sound>(); //All sounds resources
@@ -51,7 +51,6 @@ public class AssetManager {
 	private static Map<Integer, ArrayList<HighScore>> highscores = new HashMap<Integer, ArrayList<HighScore>>();
 	private static Map<String, Shape> shapeDefinitions = new HashMap<String, Shape>();
 	private static Map<Integer, Boolean> levelUnlocks = new HashMap<Integer,Boolean>();
-
 	
 	private static int totalresources=0;
 
@@ -63,8 +62,9 @@ public class AssetManager {
 	
 
 
-	private AssetManager(){				
+	private AssetManager(){	
 	}
+	
 
 	public static AssetManager getAssetManager()
 			throws SlickException{
@@ -73,8 +73,18 @@ public class AssetManager {
 		}
 		return manager;
 	}
+	
 
 	public static void loadAllGameAssets(){
+		
+		try {
+			Image loading = new Image("assets/sprites/uielements/loading.png");
+			loading.drawCentered(Portal2D.app.getHeight()/2, Portal2D.app.getWidth()/2);
+		} catch (SlickException e1) {
+			e1.printStackTrace();
+		}
+		
+		
 		final File f = new File(generalresource, loadinglist);
 		InputStream is = null;
 		try {
@@ -94,6 +104,7 @@ public class AssetManager {
 		
 		loadAchievements();
 		loadHighScores();
+		OnlineHighScoreLoader.initiateScores();
 		
 		System.out.println(imageResources.size() +" images loaded.");
 		System.out.println(soundResources.size() +" sounds loaded.");
@@ -106,6 +117,7 @@ public class AssetManager {
 		System.out.println(shapeDefinitions.size() + " shapes loaded");
 		System.out.println(totalresources +" resources loaded in total");
 	}
+	
 
 	public static void loadAchievements(){
 		final File f = new File(generalresource, achievementxml);
@@ -191,6 +203,8 @@ public class AssetManager {
 				e.printStackTrace();
 			}
 		}
+	
+
 	}
 
 	public static Image requestImage(String imgid){

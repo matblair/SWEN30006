@@ -33,9 +33,12 @@ public class OptionMenu extends InGameMenu {
 	private static int screenItemSelected=0;
 	private static int soundLevelSelected=0;
 	private static int inputItemSelected=0;
+	
 
 	private static ArrayList<Image> volimages= new ArrayList<Image>();
-	
+	private static ArrayList<Image> inputimages= new ArrayList<Image>();
+
+
 	private static final int SOUNDINTERVAL=5;
 
 	private static int MAXSOUNDLEVEL=100;
@@ -58,28 +61,34 @@ public class OptionMenu extends InGameMenu {
 		volimages.add(AssetManager.requestUIElement("VOL7"));
 		volimages.add(AssetManager.requestUIElement("VOL8"));
 		volimages.add(AssetManager.requestUIElement("VOL9"));
+		inputimages.add(AssetManager.requestUIElement("INPUTONE"));
+		inputimages.add(AssetManager.requestUIElement("INPUTTWO"));
+
 	}
 
 	@Override
 	public
 	void Render(Graphics g, GameContainer gc) {
-		if(displayscreensize){
-			g.drawString(String.valueOf(screenItemSelected), 800,340);
-		}else if(displaysoundlevel){
-			drawVolume();
-		}else if (displayinputload){
-			g.drawString(String.valueOf(inputItemSelected), 800,400);
-		}
-
-		for (int i = 0; i < menuItems.size(); i++) {
-			if (i ==  mainMenuItemSelected) {
-				g.setColor(Color.orange);
-			} else {
-				g.setColor(Color.darkGray);
+		if (displayinputload){
+			AssetManager.requestUIElement("PAUSEBG").drawCentered(gc.getWidth()/2, gc.getHeight()/2);
+			drawInput(gc);
+		}else {
+			if(displayscreensize){
+				g.drawString(String.valueOf(screenItemSelected), 800,340);
+			}else if(displaysoundlevel){
+				drawVolume();
 			}
-			g.drawString(menuItems.get(i), 430, 340 + i * 30);
-		}	
+			for (int i = 0; i < menuItems.size(); i++) {
+				if (i ==  mainMenuItemSelected) {
+					g.setColor(Color.orange);
+				} else {
+					g.setColor(Color.darkGray);
+				}
+				g.drawString(menuItems.get(i), 430, 340 + i * 30);
+			}
+		}
 	}
+
 
 	@Override
 	public
@@ -103,6 +112,10 @@ public class OptionMenu extends InGameMenu {
 			break;
 		}
 		return;
+	}
+
+	public void drawInput(GameContainer gc){
+		inputimages.get(inputItemSelected).drawCentered(gc.getWidth()/2, gc.getHeight()/2);
 	}
 
 	@Override
@@ -163,10 +176,11 @@ public class OptionMenu extends InGameMenu {
 	public void updateKeys(int newkey) throws SlickException{
 		AssetManager.loadInput(newkey);
 	}
-	
+
 	public void drawVolume(){
 		int imagelaod = (int)(soundLevelSelected/10);
 		volimages.get(imagelaod).drawCentered(750, 370);
 	}
+
 
 }

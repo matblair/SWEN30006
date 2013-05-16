@@ -135,7 +135,7 @@ public class LevelLoader {
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);
 		String doorid = resourceElement.getAttribute("doorid");
-		
+		System.out.println(startloc);
 		BigSwitch bswitch = new BigSwitch(startloc,level.getPhysWorld(), doorid);
 		level.addBigSwitch(bswitch, bswitch.getBodyId());
 	}

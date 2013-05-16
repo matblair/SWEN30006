@@ -1,10 +1,15 @@
 package resourcemanagers;
 
 import gameengine.HighScore;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,6 +22,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 
 public class HighScoreLoader {
 	
@@ -80,6 +86,48 @@ public class HighScoreLoader {
 		float score = Float.parseFloat(resourceElement.getAttribute("score"));
 		AssetManager.getHighscores().get(levelid).add(new HighScore(name,score,levelid));
 
+	}
+	
+	public static void saveHighScores() throws SlickException{	
+		File outputfile = new File("assets/xmlresources/highscores.xml");
+		OutputStream os = null;
+		
+		try {
+			os = new FileOutputStream(outputfile);
+			writeOutput(AssetManager.getHighscores(), os);
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally	{
+			try {
+				os.close();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return;
+	}
+
+	private static void writeOutput(Map<Integer, ArrayList<HighScore>> highscores, OutputStream os) throws IOException {
+		//First write xml header 
+		String header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+		String open = "<resources>\n";
+		os.write(header.getBytes(Charset.forName("UTF-8")));
+		os.write(open.getBytes(Charset.forName("UTF-8")));		
+		
+		for(int i=0; i<highscores.size(); i++){
+			ArrayList<HighScore> hs = highscores.get(i);
+			for(HighScore score: hs){
+				String line = "<resource levelid=\"" + i + "\" name=\"" + score.getName() + "\" score=\"" + score.getScore() + "\">highscore</resource>\n";
+				os.write(line.getBytes(Charset.forName("UTF-8")));
+			}
+		}
+		String close = "</resources>\n";
+		os.write(close.getBytes(Charset.forName("UTF-8")));		
+
+		return;
 	}
 	
 

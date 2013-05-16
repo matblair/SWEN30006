@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+<resource levelid="3" id="RISINGSUN" name="Locked" unlocked="false">Description goes here</resource>
+<resource levelid="2" id="RISINGSUN" name="Woooh Achievements" unlocked="true">Description goes here</resource>
+<resource levelid="1" id="RISINGSUN" name="Test Two" unlocked="true">Description goes here</resource>
+<resource levelid="0" id="RISINGSUN" name="Rising Sun" unlocked="true">Description goes here</resource>
+<resource levelid="4" id="RISINGSUN" name="Can't Have this" unlocked="false">Description goes here</resource>
+</resources>
