@@ -113,7 +113,7 @@ public class BigSwitch extends GameObject {
 		def.collideConnected=false;
 		def.enableLimit=true;
 		def.enableMotor=true;
-		def.motorSpeed=1f;
+		def.motorSpeed=0.001f;
 		def.upperTranslation=0.3f;
 		
 		PrismaticJointDef rightdef = new PrismaticJointDef();
@@ -123,12 +123,14 @@ public class BigSwitch extends GameObject {
 		rightdef.collideConnected=false;
 		rightdef.enableLimit=true;
 		rightdef.enableMotor=true;
-		rightdef.motorSpeed=1f;
+		rightdef.motorSpeed=0.001f;
 		rightdef.upperTranslation=0.3f;
 	
 		
 		world.createJoint(rightdef);
 		world.createJoint(def);
+		
+		this.getBody().m_mass=0.001f;
 		
 		System.out.println(rightdef.bodyA.getPosition() + " " + rightdef.bodyB.getPosition());
 		System.out.println(getBody().getPosition() + " " + rightbody.getPosition());

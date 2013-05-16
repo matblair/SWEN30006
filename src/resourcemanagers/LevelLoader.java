@@ -192,11 +192,17 @@ public class LevelLoader {
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Float endx = Float.parseFloat(resourceElement.getAttribute("xEnd"));
 		Float endy = Float.parseFloat(resourceElement.getAttribute("yEnd"));
+		String type = resourceElement.getAttribute("id");
 		
 		Vec2 start = new Vec2(startx,starty);
 		Vec2 end = new Vec2(endx, endy);
 		Wall wall = new Wall(start, end, level.getPhysWorld());
-		level.addWall(wall, wall.getBodyId());
+		
+		if(type.equals("NOPORTALWALL")){
+			level.addPortallessWall(wall, wall.getBodyId());
+		}else {
+			level.addWall(wall, wall.getBodyId());
+		}
 	}
 
 	private void addElementAsCube(Element resourceElement, Level level) throws SlickException {

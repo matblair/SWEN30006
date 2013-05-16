@@ -9,7 +9,7 @@
 	<resource type="WALL" id="WALL" xStart="14.32" yStart="12.56" xEnd="14.32" yEnd="13">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="14.32" yStart="13" xEnd="19.5" yEnd="13">assets/sprites/wall.png</resource>
     <resource type="WALL" id="WALL" xStart="19.5" yStart="13" xEnd="19.5" yEnd="17">assets/sprites/wall.png</resource>
-    <resource type="WALL" id="WALL" xStart="19.5" yStart="17" xEnd="14.8" yEnd="17">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="NOPORTALWALL" xStart="19.5" yStart="17" xEnd="14.8" yEnd="17">assets/sprites/wall.png</resource>
     <resource type="WALL" id="WALL" xStart="14.8" yStart="17" xEnd="14.8" yEnd="15">assets/sprites/wall.png</resource>
     <resource type="WALL" id="WALL" xStart="14.8" yStart="15" xEnd="14.32" yEnd="15">assets/sprites/wall.png</resource>
     <resource type="WALL" id="WALL" xStart="14.32" yStart="15" xEnd="14.32" yEnd="17">assets/sprites/wall.png</resource>

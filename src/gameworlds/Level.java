@@ -47,6 +47,8 @@ public class Level {
 	protected Map<String,LittleSwitch> lilSwitches;
 	/** A vector containing all switches **/
 	protected Map<String,BigSwitch> bigSwitches;
+	/** Walls that can't be interacted with **/
+	protected Map<String, Wall> noportalwalls;
 	/** Our end point **/
 	protected EndLevel levelend;
 	/** Our level oracle **/
@@ -73,6 +75,7 @@ public class Level {
 		movingplatforms = new HashMap<String,MovingPlatform>();
 		lilSwitches = new HashMap<String,LittleSwitch>();
 		bigSwitches = new HashMap<String,BigSwitch>();	
+		noportalwalls = new HashMap<String,Wall>();
 		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(-1,0), world);
 		portals[Portal.BLUE] = new Portal("BLUEPORTAL", new Vec2(-1,0), world);
 		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
@@ -275,5 +278,9 @@ public class Level {
 	public Object getCam() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void addPortallessWall(Wall wall, String bodyId) {
+		noportalwalls.put(bodyId, wall);
 	}
 }
