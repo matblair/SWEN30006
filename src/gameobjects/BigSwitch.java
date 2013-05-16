@@ -87,15 +87,18 @@ public class BigSwitch extends GameObject {
 		bd.fixedRotation = true;
 		Vec2 newloc = location.clone();
 		setBody(world.createBody(bd));
+		getBody().createFixture(definition);
+
+		bd.type=BodyType.STATIC;
 		newloc.x = location.x - (float)contactimg.getWidth()/(float)136;
 		bd.position.set(newloc);
-		bd.type=BodyType.STATIC;
 		leftbody = world.createBody(bd);
+		leftbody.createFixture(leftedge);
+		
 		Vec2 rightloc = location.clone();
 		rightloc.x=location.x+(float)contactimg.getWidth()/(float)136;
+		bd.position.set(rightloc);
 		rightbody = world.createBody(bd);
-		getBody().createFixture(definition);
-		leftbody.createFixture(leftedge);
 		rightbody.createFixture(rightedge);
 		
 		System.out.println(location);
@@ -110,7 +113,8 @@ public class BigSwitch extends GameObject {
 		def.collideConnected=false;
 		def.enableLimit=true;
 		def.enableMotor=true;
-		def.motorSpeed=20f;
+		def.motorSpeed=1f;
+		def.upperTranslation=0.3f;
 		
 		PrismaticJointDef rightdef = new PrismaticJointDef();
 		rightdef.bodyA=this.getBody();
@@ -119,10 +123,19 @@ public class BigSwitch extends GameObject {
 		rightdef.collideConnected=false;
 		rightdef.enableLimit=true;
 		rightdef.enableMotor=true;
-		rightdef.motorSpeed=20f;
+		rightdef.motorSpeed=1f;
+		rightdef.upperTranslation=0.3f;
+	
 		
 		world.createJoint(rightdef);
 		world.createJoint(def);
+		
+		System.out.println(rightdef.bodyA.getPosition() + " " + rightdef.bodyB.getPosition());
+		System.out.println(getBody().getPosition() + " " + rightbody.getPosition());
+		
+		System.out.println(def.bodyA.getPosition() + " " + def.bodyB.getPosition());
+		System.out.println(getBody().getPosition() + " " + leftbody.getPosition());
+
 		
 		System.out.println(world.getJointList().getType());
 		
