@@ -135,10 +135,8 @@ public class BigSwitch extends GameObject {
 		
 		System.out.println(def.bodyA.getPosition() + " " + def.bodyB.getPosition());
 		System.out.println(getBody().getPosition() + " " + leftbody.getPosition());
-
 		
 		System.out.println(world.getJointList().getType());
-		
 	}
 
 
