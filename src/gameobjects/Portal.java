@@ -28,7 +28,6 @@ public class Portal extends GameObject {
 		super(imgid);
 		FixtureDef fixture = createFixture(SHAPEID);
 		this.createBody(location, world, fixture, BODYTYPE);
-		getBody().getFixtureList().setSensor(true);
 		this.world = world;
 		Vec2 dim = new Vec2(0.1f,2.5f);
 		this.setDimensions(dim);
@@ -76,7 +75,20 @@ public class Portal extends GameObject {
 		}
 		
 		getBody().setTransform(new Vec2(-1, 0), 0);
+		this.close();
 		enabled = false;
+	}
+	
+	public void open() {
+		if (this.enabled & otherPortal.enabled) {
+			this.getBody().getFixtureList().setSensor(true);
+			otherPortal.getBody().getFixtureList().setSensor(true);
+		}
+	}
+	
+	public void close() {
+		this.getBody().getFixtureList().setSensor(false);
+		otherPortal.getBody().getFixtureList().setSensor(false);
 	}
 	
 	public void hitWall (Vec2 loc, Wall wall) throws SlickException {
@@ -151,5 +163,6 @@ public class Portal extends GameObject {
 		this.wall.disable();
 		
 		enabled = true;
+		this.open();
 	}
 }

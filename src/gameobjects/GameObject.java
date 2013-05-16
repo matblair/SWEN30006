@@ -43,25 +43,26 @@ public class GameObject {
 		bd.position.set(location);
 
 		switch (bodytype){
-		case PhysUtils.STATIC: 
-			bd.type = BodyType.STATIC;
-			break;
-		case PhysUtils.DYNAMIC:
-			bd.type = BodyType.DYNAMIC;
-			break;
-		case PhysUtils.KINEMATIC:
-			bd.type = BodyType.KINEMATIC;
-			break;
-		case PhysUtils.PORTAL: 
-			bd.type = BodyType.STATIC;
-			break;
+			case PhysUtils.STATIC: 
+				bd.type = BodyType.STATIC;
+				break;
+			case PhysUtils.DYNAMIC:
+				bd.type = BodyType.DYNAMIC;
+				bd.linearDamping = 0.1f;
+				break;
+			case PhysUtils.KINEMATIC:
+				bd.type = BodyType.KINEMATIC;
+				break;
+			case PhysUtils.PORTAL: 
+				bd.type = BodyType.STATIC;
+				break;
 		}
-
+		
 		bd.fixedRotation = true;
 		setBody(world.createBody(bd));
 		getBody().createFixture(definition);
 	}
-
+	
 	public void update(Level level) {
 		ContactEdge edge = getBody().getContactList();
 		while (edge != null) {
@@ -78,7 +79,7 @@ public class GameObject {
 
 		last = getLocation().clone();
 	}
-
+	
 	private void checkPortalTransition(Level level) {
 		PortalCollisionRCHelper rch = new PortalCollisionRCHelper(level);
 		getBody().getWorld().raycast(rch, last, getLocation());
