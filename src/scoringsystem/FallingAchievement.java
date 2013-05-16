@@ -13,14 +13,24 @@ public class FallingAchievement extends Achievement{
 	}
 
 	@Override
-	public void checkUnlock(LevelStats stats) {
+	public boolean checkUnlock(LevelStats stats) {
+		boolean isUnlocked=false;
+
+		
 		if(levelId==-1){
 			if(stats.getDistFallen()>=distFallen){
 				unlockAchievement();
+				isUnlocked=true;
+
 			}
 		} else if (levelId==stats.getLevelID() && stats.getDistFallen()>=distFallen){
 			unlockAchievement();
+			isUnlocked=true;
+
 		}		
+		return isUnlocked;
+
 	}
+	
 
 }

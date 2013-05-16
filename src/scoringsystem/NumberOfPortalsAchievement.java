@@ -14,14 +14,24 @@ public class NumberOfPortalsAchievement extends Achievement{
 
 
 	@Override
-	public void checkUnlock(LevelStats stats) {
+	public boolean checkUnlock(LevelStats stats) {
+		boolean isUnlocked=false;
+
+		
 		if(levelId==-1){
 			if(stats.getNumberPortals()>=portalsCreated){
 				unlockAchievement();
+				isUnlocked=true;
+
 			}
 		} else if (levelId==stats.getLevelID() && stats.getNumberPortals()>=portalsCreated){
 			unlockAchievement();
-		}			
+			isUnlocked=true;
+
+		}
+		
+		return isUnlocked;
 	}
+	
 
 }

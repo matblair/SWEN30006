@@ -65,10 +65,6 @@ public class AssetManager {
 	
 
 
-	private AssetManager(){	
-	}
-	
-
 	public static AssetManager getAssetManager()
 			throws SlickException{
 		if(manager==null){

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import gameengine.*;
 import gameobjects.*;
-import gamestates.LoadingState;
+import gamestates.GameState;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -16,10 +16,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
-import resourcemanagers.AchievementLoader;
-import resourcemanagers.AssetManager;
-import resourcemanagers.HighScoreLoader;
 import scoringsystem.GLaDOS;
 
 public class Level {
@@ -82,6 +78,87 @@ public class Level {
 		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
 		glados = new GLaDOS(this.levelid);
 	}
+	
+	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
+		final float timeStep = (float)delta/1000;
+		player.moveXDir(dir_x, delta);
+		
+		// Update dynamic objects (for portals)
+		player.update(this);
+		for (GameObject o : cubes.values()) {
+			o.update(this);
+		}
+		
+		world.step(timeStep, velocityIterations, positionIterations);
+		player.checkCube();
+		for(final BigSwitch bs: bigSwitches.values()){
+			bs.updateState();
+		}
+		for(final MovingPlatform pl: movingplatforms.values()){
+			pl.updatePos(delta);
+		}
+		
+		glados.updateTesting(delta,player);
+		
+		if(levelend.getBody().m_contactList!=null){
+			final String contactbodyb = levelend.getBody().m_contactList.contact.m_fixtureB.m_body.toString();
+			final String playerid = player.getBody().toString();
+			if(contactbodyb.equals(playerid)){
+				EndGameMenu.giveGlados(glados);				
+				GameState.setDisplayEndGame(true);
+			}
+		}
+		
+	}
+	
+	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
+		RenderEngine.drawBG(bg, cam);
+		RenderEngine.drawGameObject(levelend, cam);
+		RenderEngine.drawGameObjects(lilSwitches, cam);
+		RenderEngine.drawGameObject(player, cam);
+		RenderEngine.drawGameObjects(bigSwitches,cam);
+		RenderEngine.drawGameObjects(cubes, cam);
+		RenderEngine.drawGameObjects(doors, cam);
+		RenderEngine.drawGameObjects(platforms, cam);
+		RenderEngine.drawGameObjects(movingplatforms, cam);
+		if(fg!=null){
+			RenderEngine.drawBG(fg, cam);
+		}
+		RenderEngine.drawGameObjects(portals, cam);
+		RenderEngine.drawWalls(noportalwalls, g, cam);
+		RenderEngine.drawWalls(walls, g, cam);
+	}
+
+	public void playerShootPortal(int color, Vec2 target) throws SlickException {
+		PortalShootRCHelper rch = new PortalShootRCHelper(this);
+		Vec2 dir = target.sub(player.getLocation());
+		dir.mulLocal(1/dir.length());
+		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(20)));
+		if (rch.fixture == null)
+			return;
+		
+		if (this.getBodyType(rch.fixture.getBody()).equals("wall")) {
+			final Wall wall = walls.get(rch.fixture.getBody().toString());
+			final Vec2 loc = rch.point;
+			System.out.println(wall.getStart() + " " + wall.getUnitTangent());
+			glados.createdPortal();
+			portals[color].hitWall(loc, wall);
+		}
+	}
+	
+	public boolean portalBulletInteracts(final String bodyID) {
+		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | noportalwalls.containsKey(bodyID) | platforms.containsKey(bodyID) | movingplatforms.containsKey(bodyID) | bigSwitches.containsKey(bodyID))
+			return true;
+		Door door = doors.get(bodyID);
+		if ((door = doors.get(bodyID)) != null && !door.isOpen())
+			return true;
+		return false;
+	}
+
+	public void removeCube(final CompanionCube cube) {
+		cubes.remove(cube.getBodyId());
+	}
+	
 
 	public void addBigSwitch(final BigSwitch s, final String bodyid){
 		bigSwitches.put(bodyid,s);
@@ -189,57 +266,6 @@ public class Level {
 		return lilSwitches.get(bodyId);
 	}
 
-	public void playerShootPortal(int color, Vec2 target) throws SlickException {
-		PortalShootRCHelper rch = new PortalShootRCHelper(this);
-		Vec2 dir = target.sub(player.getLocation());
-		dir.mulLocal(1/dir.length());
-		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(20)));
-		if (rch.fixture == null)
-			return;
-		
-		if (this.getBodyType(rch.fixture.getBody()).equals("wall")) {
-			final Wall wall = walls.get(rch.fixture.getBody().toString());
-			final Vec2 loc = rch.point;
-			System.out.println(wall.getStart() + " " + wall.getUnitTangent());
-			glados.createdPortal();
-			portals[color].hitWall(loc, wall);
-		}
-	}
-	
-	public boolean portalBulletInteracts(final String bodyID) {
-		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | noportalwalls.containsKey(bodyID) | platforms.containsKey(bodyID) | movingplatforms.containsKey(bodyID) | bigSwitches.containsKey(bodyID))
-			return true;
-		Door door = doors.get(bodyID);
-		if ((door = doors.get(bodyID)) != null && !door.isOpen())
-			return true;
-		return false;
-	}
-
-	public void removeCube(final CompanionCube cube) {
-		cubes.remove(cube.getBodyId());
-	}
-	
-	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
-		
-		RenderEngine.drawBG(bg, cam);
-		RenderEngine.drawGameObject(levelend, cam);
-		RenderEngine.drawGameObjects(lilSwitches, cam);
-		RenderEngine.drawGameObject(player, cam);
-		RenderEngine.drawGameObjects(bigSwitches,cam);
-		RenderEngine.drawGameObjects(cubes, cam);
-		RenderEngine.drawGameObjects(doors, cam);
-		RenderEngine.drawGameObjects(platforms, cam);
-		RenderEngine.drawGameObjects(movingplatforms, cam);
-		if(fg!=null){
-			RenderEngine.drawBG(fg, cam);
-		}
-		RenderEngine.drawGameObjects(portals, cam);
-		
-		RenderEngine.drawWalls(noportalwalls, g, cam);
-		RenderEngine.drawWalls(walls, g, cam);
-
-	}
-	
 	public void setBg(final Image bg) {
 		this.bg = bg;
 	}
@@ -256,45 +282,4 @@ public class Level {
 		this.player = player;
 	}
 
-	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
-		final float timeStep = (float)delta/1000;
-		player.moveXDir(dir_x, delta);
-		
-		// Update dynamic objects (for portals)
-		player.update(this);
-		for (GameObject o : cubes.values()) {
-			o.update(this);
-		}
-		
-		world.step(timeStep, velocityIterations, positionIterations);
-		player.checkCube();
-		for(final BigSwitch bs: bigSwitches.values()){
-			bs.updateState();
-		}
-		for(final MovingPlatform pl: movingplatforms.values()){
-			pl.updatePos(delta);
-		}
-		
-		glados.updateTesting(delta,player);
-		
-		if(levelend.getBody().m_contactList!=null){
-			final String contactbodyb = levelend.getBody().m_contactList.contact.m_fixtureB.m_body.toString();
-			final String playerid = player.getBody().toString();
-			if(contactbodyb.equals(playerid)){
-				glados.updateHighScores(levelid);
-				glados.updateAchievements(AssetManager.getAchievementMap());
-				glados.printStats();
-				LoadingState.loadNextLevel(sbg);
-				HighScoreLoader.saveHighScores();
-				AchievementLoader.saveAchievements();
-				sbg.enterState(Portal2D.LOADSTATE);
-				
-			}
-		}
-		
-	}
-
-	public void updateGameState(final GameContainer gc) {
-		// TODO Auto-generated method stub
-	}
 }

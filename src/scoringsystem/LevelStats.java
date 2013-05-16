@@ -9,6 +9,7 @@ public class LevelStats {
 	private float maxVelocity=0;
 	private float distWalked=0;
 	private float cubesPickedUp=0;
+	private int achievementsUnlocked=0;
 	
 	public LevelStats(int levelid) {
 		this.levelID=levelid;
@@ -68,5 +69,13 @@ public class LevelStats {
 	
 	public int getNumberPortals() {
 		return numberPortals;
+	}
+
+	public int getAchievementsUnlocked() {
+		return achievementsUnlocked;
+	}
+
+	public void setAchievementsUnlocked(int i) {
+		achievementsUnlocked=i;
 	}
 }

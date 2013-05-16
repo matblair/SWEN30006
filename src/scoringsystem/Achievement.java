@@ -49,7 +49,7 @@ public abstract class Achievement {
 		unlocked=true;
 	}
 	
-	public abstract void checkUnlock(LevelStats stats);
+	public abstract boolean checkUnlock(LevelStats stats);
 
 
 }

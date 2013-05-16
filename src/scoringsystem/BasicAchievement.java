@@ -9,8 +9,8 @@ public class BasicAchievement extends Achievement {
 
 
 	@Override
-	public void checkUnlock(LevelStats stats) {
-		
+	public boolean checkUnlock(LevelStats stats) {
+		return false;
 	}
 
 }

@@ -47,6 +47,7 @@ public class Paused extends InGameMenu{
 
 
 	public Paused(int levelid)  {
+		Paused.levelid=levelid;
 		font = AssetManager.requestFontResource("PAUSEFONT");
 		debug = false;
 		pausebg = AssetManager.requestUIElement("PAUSEBG");

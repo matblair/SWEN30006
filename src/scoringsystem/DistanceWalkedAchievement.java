@@ -13,14 +13,22 @@ public class DistanceWalkedAchievement extends Achievement{
 	}
 
 	@Override
-	public void checkUnlock(LevelStats stats) {
+	public boolean checkUnlock(LevelStats stats) {
+		boolean isUnlocked=false;
+		
 		if(levelId==-1){
 			if(stats.getDistWalked()>=distWalked){
 				unlockAchievement();
+				isUnlocked=true;
+
 			}
 		} else if (levelId==stats.getLevelID() && stats.getDistWalked()>=distWalked){
 			unlockAchievement();
+			isUnlocked=true;
+
 		}
+		
+		return isUnlocked;
 	}
 
 }

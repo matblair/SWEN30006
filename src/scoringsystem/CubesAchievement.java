@@ -15,14 +15,20 @@ public class CubesAchievement extends Achievement{
 
 
 	@Override
-	public void checkUnlock(LevelStats stats) {
+	public boolean checkUnlock(LevelStats stats) {
+		boolean isUnlocked=false;
+		
 		if(levelId==-1){
 			if(stats.getCubesPickedUp()>=cubesPickedUp){
 				unlockAchievement();
+				isUnlocked=true;
 			}
 		} else if (levelId==stats.getLevelID() && stats.getCubesPickedUp()>=cubesPickedUp){
 			unlockAchievement();
+			isUnlocked=true;
 		}	
+		
+		return isUnlocked;
 	}
 
 }

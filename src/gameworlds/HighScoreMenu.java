@@ -12,7 +12,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
-import resourcemanagers.AssetManager;
 import resourcemanagers.OnlineHighScoreLoader;
 import scoringsystem.HighScore;
 
@@ -32,9 +31,7 @@ public class HighScoreMenu extends InGameMenu{
 		menuItems.add("Back");
 		stringMaps.put("Back", MENU_PAUSEGAME);
 		scores = OnlineHighScoreLoader.getLocalFirst(levelid, NUMDISPLAY);
-		if(NUMDISPLAY>scores.size()){
-			NUMDISPLAY=scores.size()-1;
-		}
+
 	}
 
 	@Override
@@ -42,6 +39,9 @@ public class HighScoreMenu extends InGameMenu{
 	void Render(Graphics g, GameContainer gc) {
 		if(!firstupdate){
 			if(scores.size()!=0){
+				if(NUMDISPLAY>scores.size()){
+					NUMDISPLAY=(scores.size()-1);
+				}
 				for(int i=0; i < NUMDISPLAY; i++){
 					g.setColor(Color.darkGray);
 					g.drawString(scores.get(i).getName(), 430, 340 + i*30);
@@ -101,7 +101,7 @@ public class HighScoreMenu extends InGameMenu{
 	}
 
 	public void setLevelId(int levelId) {
-		this.levelid=levelId;
+		HighScoreMenu.levelid=levelId;
 		firstupdate=true;
 	}
 
