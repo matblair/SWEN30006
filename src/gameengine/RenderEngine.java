@@ -64,7 +64,6 @@ public class RenderEngine {
 			Vec2 wallend = PhysUtils.JBoxToSlickVec(new Vec2(wl.getEnd().x-camLoc.x,camDim.y - (wl.getEnd().y - camLoc.y)));
 			g.setColor(Color.magenta);
 			g.setLineWidth(3);
-
 			g.drawLine(wallstart.x, wallstart.y, wallend.x, wallend.y);
 
 		}

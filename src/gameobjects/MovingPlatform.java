@@ -14,9 +14,11 @@ public class MovingPlatform extends Platform{
 	private Vec2 finish;
 	private Vec2 mid;
 	private boolean xtrans=false, ytrans=false;
+	private boolean continuousMovement;
 
-	public MovingPlatform(Vec2 location, World world, Vec2 spos, Vec2 fpos, int type) throws SlickException {
+	public MovingPlatform(Vec2 location, World world, Vec2 spos, Vec2 fpos, int type, boolean continuousMovement) throws SlickException {
 		super(location, world, type, Platform.MOVING);
+		this.continuousMovement = continuousMovement;
 		start = spos;
 		finish = fpos;
 		mid = new Vec2((start.x+((finish.x-start.x)/2)), start.y+((finish.y-start.y)/2));
@@ -34,11 +36,16 @@ public class MovingPlatform extends Platform{
 
 	public void updatePos(float delta){
 		theta+=(DTHETA*(delta/1000));
-
-		if(theta>2*Math.PI){
-			theta=0;
+		if(continuousMovement){
+			if(theta>2*Math.PI){
+				theta=(float)(theta-2*Math.PI);
+			}
+		}else {
+			if(theta>2*Math.PI){
+				theta=(float)(2*Math.PI);
+			}
 		}
-
+		
 		double difx = (Math.abs(start.x-finish.x))*HALF;
 		double dify = (Math.abs(start.y-finish.y))*HALF;
 		float targetx=0, targety=0;
