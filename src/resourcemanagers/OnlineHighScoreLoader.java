@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import gameengine.HighScore;
 import gameengine.Portal2D;
+import scoringsystem.HighScore;
 import st.mark.highscores.HighscoreBoard;
 import st.mark.highscores.HighscoreItem;
 

@@ -1,6 +1,5 @@
 package resourcemanagers;
 
-import gameengine.HighScore;
 import gameengine.Portal2D;
 import gameworlds.Level;
 
@@ -22,7 +21,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
-import Achievements.Achievement;
+import scoringsystem.Achievement;
+import scoringsystem.HighScore;
+
+
 
 public class AssetManager {
 	/** End Role will be to load all resources at start of game that are universal, call level loader to load new levels **/

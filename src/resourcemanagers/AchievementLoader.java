@@ -22,8 +22,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import Achievements.Achievement;
-import Achievements.BasicAchievement;
+import scoringsystem.Achievement;
+import scoringsystem.BasicAchievement;
+
+
 
 public class AchievementLoader {
 

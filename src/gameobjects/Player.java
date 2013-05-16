@@ -178,6 +178,7 @@ public class Player extends GameObject{
 
 	public void pickupCube(CompanionCube cube){
 		while(!holdingcube){
+			GameState.getLevel().getGlados().pickupCube();
 			MassData massData=null;
 			massData = new MassData();
 			massData.mass=0.000001f;			

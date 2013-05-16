@@ -16,9 +16,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import Achievements.Achievement;
+
 
 import resourcemanagers.AssetManager;
+import scoringsystem.Achievement;
 
 public class AchievementState extends BasicGameState implements KeyListener {
 	/** The state id for this part **/

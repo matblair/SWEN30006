@@ -1,4 +1,4 @@
-package gameengine;
+package scoringsystem;
 
 public class HighScore implements Comparable<HighScore>{
 

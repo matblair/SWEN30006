@@ -1,6 +1,5 @@
 package gameworlds;
 
-import gameengine.HighScore;
 import gameengine.InputManager;
 
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AssetManager;
 import resourcemanagers.OnlineHighScoreLoader;
+import scoringsystem.HighScore;
 
 public class HighScoreMenu extends InGameMenu{
 	protected static Vector<String> menuItems = new Vector<String>();

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-import gameengine.HighScore;
 import gameengine.InputManager;
 import gameengine.Portal2D;
 
@@ -22,6 +21,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AssetManager;
 import resourcemanagers.OnlineHighScoreLoader;
+import scoringsystem.HighScore;
 
 public class HighScoreState extends BasicGameState implements KeyListener{
 	private static final int TODISPLAY = 5;
