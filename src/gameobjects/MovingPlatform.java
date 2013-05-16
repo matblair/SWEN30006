@@ -15,6 +15,7 @@ public class MovingPlatform extends Platform{
 	private Vec2 mid;
 	private boolean xtrans=false, ytrans=false;
 	private boolean continuousMovement;
+	private boolean shouldStop=false;
 
 	public MovingPlatform(Vec2 location, World world, Vec2 spos, Vec2 fpos, int type, boolean continuousMovement) throws SlickException {
 		super(location, world, type, Platform.MOVING);
@@ -30,7 +31,7 @@ public class MovingPlatform extends Platform{
 		}	
 		
 		if(this.getLocation().x==finish.x || this.getLocation().y==finish.y){
-			theta=(float)(Math.PI);
+			theta=(float)(2*Math.PI);
 		}
 	}
 
@@ -42,7 +43,12 @@ public class MovingPlatform extends Platform{
 			}
 		}else {
 			if(theta>2*Math.PI){
-				theta=(float)(2*Math.PI);
+				if(shouldStop){
+					theta=(float)(2*Math.PI);
+				}else {
+					theta=(float)(theta-2*Math.PI);
+					shouldStop=true;
+				}
 			}
 		}
 		

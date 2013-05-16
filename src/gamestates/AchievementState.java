@@ -88,7 +88,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
 
 			if (index == achievementSelected) {
-				selected.draw(x,y,100,100);
+				selected.drawCentered(x, y + 30);
 				
 				text = a.getName();
 				g.setColor(Color.darkGray);

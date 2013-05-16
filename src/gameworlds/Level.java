@@ -159,7 +159,10 @@ public class Level {
 	}
 	
 	public boolean portalBulletInteracts(final String bodyID) {
-		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | platforms.containsKey(bodyID))
+		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | platforms.containsKey(bodyID) | movingplatforms.containsKey(bodyID) | bigSwitches.containsKey(bodyID))
+			return true;
+		Door door = doors.get(bodyID);
+		if ((door = doors.get(bodyID)) != null && !door.isOpen())
 			return true;
 		return false;
 	}
