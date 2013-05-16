@@ -11,6 +11,8 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.ContactEdge;
+import org.jbox2d.dynamics.joints.DistanceJointDef;
+import org.jbox2d.dynamics.joints.JointType;
 import org.jbox2d.dynamics.joints.PrismaticJointDef;
 import org.jbox2d.dynamics.joints.RevoluteJoint;
 import org.jbox2d.dynamics.joints.RevoluteJointDef;
@@ -85,33 +87,57 @@ public class BigSwitch extends GameObject {
 		bd.fixedRotation = true;
 		Vec2 newloc = location.clone();
 		setBody(world.createBody(bd));
+		getBody().createFixture(definition);
+
+		bd.type=BodyType.STATIC;
 		newloc.x = location.x - (float)contactimg.getWidth()/(float)136;
 		bd.position.set(newloc);
 		leftbody = world.createBody(bd);
+		leftbody.createFixture(leftedge);
+		
 		Vec2 rightloc = location.clone();
 		rightloc.x=location.x+(float)contactimg.getWidth()/(float)136;
+		bd.position.set(rightloc);
 		rightbody = world.createBody(bd);
-		getBody().createFixture(definition);
-		leftbody.createFixture(leftedge);
 		rightbody.createFixture(rightedge);
 		
 		System.out.println(location);
 		System.out.println(rightloc);
 		System.out.println(newloc);
 		
+		PrismaticJointDef def = new PrismaticJointDef();
+		def.bodyA=this.getBody();
+		def.bodyB=leftbody;
+		JointType jtype = JointType.PRISMATIC;
+		def.type = jtype;	
+		def.collideConnected=false;
+		def.enableLimit=true;
+		def.enableMotor=true;
+		def.motorSpeed=1f;
+		def.upperTranslation=0.3f;
+		
+		PrismaticJointDef rightdef = new PrismaticJointDef();
+		rightdef.bodyA=this.getBody();
+		rightdef.bodyB=rightbody;
+		rightdef.type = jtype;
+		rightdef.collideConnected=false;
+		rightdef.enableLimit=true;
+		rightdef.enableMotor=true;
+		rightdef.motorSpeed=1f;
+		rightdef.upperTranslation=0.3f;
 	
 		
-		RevoluteJointDef ljd = new RevoluteJointDef();
-		ljd.bodyA=getBody();
-		ljd.bodyB=rightbody;
-		ljd.collideConnected=false;
-		ljd.enableLimit=true;
-		ljd.enableMotor=true;
-		ljd.upperAngle=0f;
-		ljd.lowerAngle=-0.30f;
-		ljd.motorSpeed=20f;
-		world.createJoint(ljd);
+		world.createJoint(rightdef);
+		world.createJoint(def);
 		
+		System.out.println(rightdef.bodyA.getPosition() + " " + rightdef.bodyB.getPosition());
+		System.out.println(getBody().getPosition() + " " + rightbody.getPosition());
+		
+		System.out.println(def.bodyA.getPosition() + " " + def.bodyB.getPosition());
+		System.out.println(getBody().getPosition() + " " + leftbody.getPosition());
+
+		
+		System.out.println(world.getJointList().getType());
 		
 	}
 
