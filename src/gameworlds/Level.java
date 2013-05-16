@@ -152,7 +152,7 @@ public class Level {
 	}
 	
 	public boolean portalBulletInteracts(final String bodyID) {
-		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | platforms.containsKey(bodyID))
+		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | platforms.containsKey(bodyID) | movingplatforms.containsKey(bodyID) | platforms.containsKey(bodyID))
 			return true;
 		return false;
 	}
