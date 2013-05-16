@@ -49,6 +49,7 @@ public class GameObject {
 				break;
 			case PhysUtils.DYNAMIC:
 				bd.type = BodyType.DYNAMIC;
+				bd.linearDamping = 0.1f;
 				break;
 			case PhysUtils.KINEMATIC:
 				bd.type = BodyType.KINEMATIC;
@@ -57,7 +58,7 @@ public class GameObject {
 				bd.type = BodyType.STATIC;
 				break;
 		}
-
+		
 		bd.fixedRotation = true;
 		body = world.createBody(bd);
 		body.createFixture(definition);
