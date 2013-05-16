@@ -10,7 +10,6 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -22,6 +21,7 @@ public class LevelSelectState extends BasicGameState {
 
 	private static int StateId = Portal2D.LEVELSELECTSTATE; // State ID
 
+	@SuppressWarnings("unused")
 	private boolean listening=true;
 	boolean debug, fullscreen;
 	private static Font font, titleFont;
@@ -30,12 +30,12 @@ public class LevelSelectState extends BasicGameState {
 	private static String subtitleText = new String("Use left and right arrow keys to select level:");
 	private static boolean swipeleft=false, swiperight=false, enterselected=false;
 	
+	@SuppressWarnings("unused")
 	private Map<Integer, Boolean> unlockedstate = new HashMap<Integer,Boolean>();
 	private int levelselected=1;
 	private static int maxlevel;
-	
-	private static Image locked;
-	
+		
+	@SuppressWarnings("unused")
 	private static int oldxpos, oldypos, newxpos, newypos, screenwidth;
 	private static int midx, midy;
 	

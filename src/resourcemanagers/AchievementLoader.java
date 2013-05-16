@@ -1,6 +1,5 @@
 package resourcemanagers;
 
-import gameengine.Achievement;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,6 +21,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import Achievements.Achievement;
+import Achievements.BasicAchievement;
 
 public class AchievementLoader {
 
@@ -80,7 +82,7 @@ public class AchievementLoader {
 		String name = resourceElement.getAttribute("name");
 		String description = resourceElement.getTextContent();
 		boolean unlocked = Boolean.parseBoolean(resourceElement.getAttribute("unlocked"));
-		AssetManager.getAchievementMap().put(achid, new Achievement(name, description, unlocked, imgid));
+		AssetManager.getAchievementMap().put(achid, new BasicAchievement(name, description, unlocked, imgid));
 	}
 	
 	public static void saveAchievements() throws SlickException{	

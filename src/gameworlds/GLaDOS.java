@@ -1,6 +1,5 @@
 package gameworlds;
 
-import gameengine.Achievement;
 import gameengine.HighScore;
 import gameengine.Portal2D;
 
@@ -9,12 +8,13 @@ import java.util.ArrayList;
 // i.e. stats watcher
 import java.util.Map;
 
+import Achievements.Achievement;
+
 import resourcemanagers.OnlineHighScoreLoader;
 
 public class GLaDOS {
 	
 	private int inleveltime=0;
-	@SuppressWarnings("unused")
 	private int levelid;
 		
 	private int portalno;
@@ -38,7 +38,9 @@ public class GLaDOS {
 	}
 
 	public void updateAchievements(Map<String, Achievement> achievementMap) {
-		
+		for(Achievement ac: achievementMap.values()){
+			ac.checkUnlock();
+		}
 	}
 
 	public void printStats() {
