@@ -47,6 +47,15 @@
 	<!-- LevelXML -->
 	<resource type="LEVELXML" id="0">levels/leveltwo.xml</resource>
 	<resource type="LEVELXML" id="1">levels/levelone.xml</resource>
+	<resource type="LEVELXML" id="2">levels/levelthree.xml</resource>
+	<resource type="LEVELXML" id="3">levels/levelfour.xml</resource>
+	<resource type="LEVELXML" id="4">levels/levelfive.xml</resource>
+	<resource type="LEVELXML" id="5">levels/levelsix.xml</resource>
+	<resource type="LEVELXML" id="6">levels/levelseven.xml</resource>
+	<resource type="LEVELXML" id="7">levels/leveleight.xml</resource>
+	<resource type="LEVELXML" id="8">levels/levelnine.xml</resource>
+	<resource type="LEVELXML" id="9">levels/levelten.xml</resource>
+	
 
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
