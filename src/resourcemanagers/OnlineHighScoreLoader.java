@@ -10,7 +10,6 @@ import st.mark.highscores.HighscoreBoard;
 import st.mark.highscores.HighscoreItem;
 
 public class OnlineHighScoreLoader {
-	private static final int STARTLOCAL = 0;
 	
 	public static boolean needupdate=false;
 	private static ArrayList<Integer> toupdate = new ArrayList<Integer>();

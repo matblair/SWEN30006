@@ -72,6 +72,7 @@ public class HighScoreMenu extends InGameMenu{
 		}
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public
 	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {

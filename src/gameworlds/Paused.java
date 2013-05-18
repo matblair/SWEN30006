@@ -23,7 +23,6 @@ public class Paused extends InGameMenu{
 
 	/** Menu options for selection **/
 	private final static int MENU_STARTGAME=1;
-	private final static int MENU_ACHIEVEMENTS=2;
 	private final static int MENU_HIGHSCORES=3;
 	private final static int MENU_OPTIONS=4;
 	private final static int MENU_QUIT=5;
@@ -45,7 +44,7 @@ public class Paused extends InGameMenu{
 
 
 	public Paused(int levelid)  {
-		Paused.levelid=levelid;
+		Paused.setLevelid(levelid);
 		font = AssetManager.requestFontResource("PAUSEFONT");
 		debug = false;
 		pausebg = AssetManager.requestUIElement("PAUSEBG");
@@ -228,8 +227,16 @@ public class Paused extends InGameMenu{
 	}
 
 	public void setLevelId(int levelId) {
-		Paused.levelid=levelId;
+		Paused.setLevelid(levelId);
 		hsmenu.setLevelId(levelId);
+	}
+
+	public static int getLevelid() {
+		return levelid;
+	}
+
+	public static void setLevelid(int levelid) {
+		Paused.levelid = levelid;
 	}
 
 }
