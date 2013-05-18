@@ -43,9 +43,7 @@ public class OnlineHighScoreLoader {
 		hs = new HighscoreBoard(Portal2D.gameKey);
 		localcopies = new HashMap<Integer, ArrayList<HighScore>>();
 		//Download first few high score levels for faster loading in game, load later levels as we progress.
-		for(int i=0; i<STARTLOCAL; i++){
-			localcopies.put(i, getTop(i,5));
-		}
+		
 	}
 
 	public static void addScore(String name, int time, int levelid){
@@ -66,9 +64,7 @@ public class OnlineHighScoreLoader {
 	}
 	
 	public static ArrayList<HighScore> getLocalFirst(int levelid, int number){
-		
-		
-		if(needupdate){
+			if(needupdate){
 			if(getToupdate().contains(levelid)){
 				localcopies.put(levelid, getTop(levelid,number));
 				getToupdate().remove(levelid);

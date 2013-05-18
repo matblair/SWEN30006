@@ -1,15 +1,12 @@
 package scoringsystem;
 
 public class NumberOfPortalsAchievement extends Achievement{
+	private final static String actype="portals";
 
-	private int portalsCreated;
-	private int levelId;
 	
 	public NumberOfPortalsAchievement(String name, String description,
-			boolean unlocked, String imgID, int portals, int levelid) {
-		super(name, description, unlocked, imgID);
-		this.levelId=levelid;
-		this.portalsCreated=portals;
+			boolean unlocked, String imgID, int levelId, float portals) {
+		super(name, description, unlocked, imgID,actype,levelId,portals);
 	}
 
 
@@ -19,12 +16,12 @@ public class NumberOfPortalsAchievement extends Achievement{
 
 		
 		if(levelId==-1){
-			if(stats.getNumberPortals()>=portalsCreated){
+			if(stats.getNumberPortals()>=target){
 				unlockAchievement();
 				isUnlocked=true;
 
 			}
-		} else if (levelId==stats.getLevelID() && stats.getNumberPortals()>=portalsCreated){
+		} else if (levelId==stats.getLevelID() && stats.getNumberPortals()>=target){
 			unlockAchievement();
 			isUnlocked=true;
 

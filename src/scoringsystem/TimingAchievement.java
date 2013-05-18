@@ -2,14 +2,13 @@ package scoringsystem;
 
 public class TimingAchievement extends Achievement{
 
-	private float timeTarget;
 	private int levelId;
+	private final static String actype="timelevel";
+
 	
 	public TimingAchievement(String name, String description, boolean unlocked,
-			String imgID, int levelid, float timetarget) {
-		super(name, description, unlocked, imgID);
-		this.timeTarget=timetarget;
-		this.levelId=levelid;
+			String imgID, int levelId, float timetarget) {
+		super(name, description, unlocked, imgID,actype,levelId,timetarget);
 	}
 	
 	@Override
@@ -17,12 +16,12 @@ public class TimingAchievement extends Achievement{
 		boolean isUnlocked=false;
 		
 		if(levelId==-1){
-			if(stats.getTimeInLevel()>=timeTarget){
+			if(stats.getTimeInLevel()>=target){
 				unlockAchievement();
 				isUnlocked=true;
 
 			}
-		} else if (levelId==stats.getLevelID() && stats.getTimeInLevel()>=timeTarget){
+		} else if (levelId==stats.getLevelID() && stats.getTimeInLevel()>=target){
 			unlockAchievement();
 			isUnlocked=true;
 

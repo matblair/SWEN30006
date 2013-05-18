@@ -20,9 +20,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-
-
 public class GameState extends BasicGameState implements KeyListener, MouseListener {
+	private static boolean finishedEndGame = false;
 	private static int StateId = Portal2D.GAMESTATE; // State ID
 	private static Camera cam;
 	private boolean listening=true;
@@ -33,7 +32,6 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	private static boolean ispaused = false;
 	private static boolean displayEndGame = false;
 
-	
 	public GameState()
 	{
 		super();
@@ -86,6 +84,17 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			cam.follow(gc, level.getLevelPlayer());
 		} else if (displayEndGame){
 			endgame.Update(gc.getGraphics(),gc,sbg);
+			if(finishedEndGame){
+				try {
+					LoadingState.loadNextLevel(sbg);
+				} catch (SlickException e) {
+					e.printStackTrace();
+				}
+				System.out.println("Pressed Enter!");
+				GameState.setDisplayEndGame(false);
+				finishedEndGame=false;
+				sbg.enterState(Portal2D.LOADSTATE);
+			}
 		} else {
 			paused.Update(gc.getGraphics(), gc, sbg);
 		}
@@ -126,6 +135,9 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		if(isIspaused()){
 			paused.ProcessInput(key);
 		}
+		if(key==InputManager.SELECT && EndGameMenu.isUploadedScores()){
+			finishedEndGame=true;
+		}
 	}
 
 	@Override
@@ -139,7 +151,9 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			throws SlickException {
 		super.enter(container, game);
 		paused.setLevelId(level.getLevelId());
+		EndGameMenu.setUploadedScores(false);
 		ispaused=false;
+		
 	}
 
 	@Override

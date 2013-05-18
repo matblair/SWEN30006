@@ -48,6 +48,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	private final int xSpacing = 180;
 	private final int ySpacing = 90;
 	private final int yStartHeight = 250;
+	private int width;
 
 
 
@@ -65,8 +66,14 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
-		scores = OnlineHighScoreLoader.getLocalFirst(0, 10);
+		width=container.getWidth();
+		if(!Portal2D.online){
+			scores = AssetManager.requestHighScores(currentlevel);
+		} else {
+			scores = AssetManager.requestHighScores(currentlevel);
+		}
 	}
+
 
 
 	@Override
@@ -90,16 +97,61 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 		g.setFont(font);
 		g.drawString(subtitleText, 40, 80);
 
+
+
+		if(Portal2D.online){
+			renderOnline(g);
+		} else {
+			renderOffline(g);
+		}
+	}
+
+	private void renderOffline(Graphics g) {
 		int index = 0;
 		int x, y;
-		int width = gc.getWidth();
 		String text;
 		int levelid;
 		float score;
 		String scoreS;
 
-		
-		if(scores.size()!=0){
+		for (HighScore hs : scores) {
+			Collections.sort(scores);
+			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
+			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
+
+
+			levelid = hs.getLevelid();
+			levelid++;
+			g.setColor(Color.darkGray);
+			g.drawString("LEVEL "+levelid, x-10, 120);
+
+
+			text = hs.getName();
+			g.setColor(Color.gray);
+			g.drawString(text, x-50, y);
+
+			score = hs.getScore();
+			scoreS = String.valueOf(score);
+			g.setColor(Color.gray);
+			g.drawString(scoreS, x+ 50, y);
+
+			index++;
+			if(index>5){
+				break;
+			}
+		}
+	}
+
+
+	private void renderOnline(Graphics g) {
+		int index = 0;
+		int x, y;
+		String text;
+		int levelid;
+		float score;
+		String scoreS;
+
+		if(scores!=null && scores.size()!=0){
 			for (HighScore hs : scores) {
 
 
@@ -126,7 +178,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 
 				index++;
 			}
-		} else {
+		} else if(scores!=null) {
 			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
 			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
 			g.setColor(Color.darkGray);
@@ -134,9 +186,17 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 			g.setColor(Color.orange);
 			g.drawString("No high scores yet for this level!", x-(font.getWidth("Loading High Scores from Server")/2), 160);
 			g.drawString("It's yours for the taking!", x-(font.getWidth("Loading High Scores from Server")/2), 200);
-			scores = OnlineHighScoreLoader.getLocalFirst(currentlevel-1, 10);
-		}
+		} else if(scores==null){
+			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
+			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
+			g.setColor(Color.darkGray);
+			g.drawString("LEVEL "+ (currentlevel+1), x-10, 120);	
+			g.setColor(Color.orange);
+			g.drawString("Loading High Scores from the Server!", x-(font.getWidth("Loading High Scores from the Server!")/2), 160);
+			scores = OnlineHighScoreLoader.getLocalFirst(0, 10);
+		}		
 	}
+
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
@@ -160,13 +220,21 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 
 			if (currentlevel +1 < MAXLEVEL+1) {
 				currentlevel++;
-				scores = OnlineHighScoreLoader.getLocalFirst(currentlevel, TODISPLAY);
+				if(Portal2D.online){
+					scores = OnlineHighScoreLoader.getLocalFirst(currentlevel, TODISPLAY);
+				} else {
+					scores = AssetManager.requestHighScores(currentlevel);
+				}
 			}
 		} else if (key == InputManager.NAV_LEFT) {
 
 			if (currentlevel > 0){
 				currentlevel--;
-				scores = OnlineHighScoreLoader.getLocalFirst(currentlevel, TODISPLAY);
+				if(Portal2D.online){
+					scores = OnlineHighScoreLoader.getLocalFirst(currentlevel, TODISPLAY);
+				} else {
+					scores = AssetManager.requestHighScores(currentlevel);
+				}
 			}	
 		}
 	}

@@ -9,6 +9,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -40,14 +41,19 @@ public class EndGameMenu extends InGameMenu {
 		if(glados!=null){
 			g.setColor(Color.orange);
 			g.setFont(font);
-			g.drawString("Here are your level stats" , 430, 280);
+			int ystart=310, i=0;
+			g.drawString("Here are your level stats" , 430, ystart+i*30);
 			g.setColor(Color.darkGray);
-			g.drawString("It took you " + glados.getLevelStats().getTimeInLevel()/1000 + " seconds to finish.", 430, 310);
-			g.drawString("You fell " + glados.getLevelStats().getDistFallen() + " metres.", 430, 340);
-			g.drawString("You walked " + glados.getLevelStats().getDistWalked() + " metres.", 430, 370);
-			g.drawString("You unlocked " + glados.getLevelStats().getAchievementsUnlocked() + " achievements.", 430, 400);			
-			if(!uploadedScores){
-				g.drawString("Uploading Score to Server..." ,  gc.getWidth()/2 - font.getWidth("Uploading Score to Server...")/2, gc.getHeight()/2 + endbg.getHeight()/2 - 30);
+			i++;
+			g.drawString("It took you " + glados.getLevelStats().getTimeInLevel()/1000 + " seconds to finish.", 430, ystart+i*30);
+			i++;
+			g.drawString("You fell " + glados.getLevelStats().getDistFallen() + " metres.", 430, ystart+i*30);
+			i++;
+			g.drawString("You walked " + glados.getLevelStats().getDistWalked() + " metres.", 430, ystart+i*30);
+			i++;
+			g.drawString("You unlocked " + glados.getLevelStats().getAchievementsUnlocked() + " achievements.", 430, ystart+i*30);			
+			if(!isUploadedScores()){
+				g.drawString("Saving High Score..." ,  gc.getWidth()/2 - font.getWidth("Saving High Score...")/2, gc.getHeight()/2 + endbg.getHeight()/2 - 60);
 			}else{
 				g.drawString("Hit Enter To Continue!" ,  gc.getWidth()/2 - font.getWidth("Hit Enter To Continue!")/2, gc.getHeight()/2 + endbg.getHeight()/2 - 60);
 			}
@@ -57,40 +63,37 @@ public class EndGameMenu extends InGameMenu {
 
 	@Override
 	public void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
-		if(glados!=null){
-			//glados.updateHighScores(glados.getLevelStats().getLevelID());
+		if(glados!=null && !isUploadedScores()){
+			System.out.println("Submitting scores...");
+			glados.updateHighScores(glados.getLevelStats().getLevelID());
 			glados.updateAchievements(AssetManager.getAchievementMap());
-			glados.printStats();
 			try {
 				HighScoreLoader.saveHighScores();
 				AchievementLoader.saveAchievements();
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}
-			uploadedScores=true;
-		}
-		
-		if(uploadedScores) {
-			if (gc.getInput().isKeyPressed(InputManager.SELECT)) {
-				try {
-					LoadingState.loadNextLevel(sbg);
-				} catch (SlickException e) {
-					e.printStackTrace();
-				}
-				GameState.setDisplayEndGame(false);
-				sbg.enterState(Portal2D.LOADSTATE);
-			}
+			setUploadedScores(true);
+			System.out.println("Scores submitted.");
 		}
 	}
 
+
+	
 	@Override
 	public void ProcessInput(int key) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public static void giveGlados(GLaDOS glados) {
+		glados.finaliseStats();
 		EndGameMenu.glados=glados;
 	}
 
+	public static boolean isUploadedScores() {
+		return uploadedScores;
+	}
+
+	public static void setUploadedScores(boolean uploadedScores) {
+		EndGameMenu.uploadedScores = uploadedScores;
+	}
 }

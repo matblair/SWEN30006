@@ -102,6 +102,7 @@ public class AssetManager {
 		}
 		
 		loadAchievements();
+		
 		if(Portal2D.online){
 			OnlineHighScoreLoader.initiateScores();
 		}else {
@@ -126,8 +127,7 @@ public class AssetManager {
 		InputStream is = null;
 		try {
 			is = new FileInputStream(f);
-			System.out.println(achievementLoader.loadAchievements(is, false) + " achievementes loaded");
-			System.out.println(AssetManager.achievements.size());
+			achievementLoader.loadAchievements(is, false);
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (final SlickException e) {

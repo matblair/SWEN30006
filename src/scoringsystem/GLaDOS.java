@@ -7,8 +7,12 @@ import gameobjects.Player;
 // i.e. stats watcher
 import java.util.Map;
 
+import org.newdawn.slick.SlickException;
 
 
+
+import resourcemanagers.AssetManager;
+import resourcemanagers.HighScoreLoader;
 import resourcemanagers.OnlineHighScoreLoader;
 
 public class GLaDOS {
@@ -22,16 +26,26 @@ public class GLaDOS {
 	public void updateTesting(int delta, Player player){
 		//Update timer
 		stats.setTimeInLevel(stats.getTimeInLevel()+delta);
+		
 		//Update velocity
 		if(player.getBody().getLinearVelocity().length()>stats.getMaxVelocity()){
 			stats.setMaxVelocity(player.getBody().getLinearVelocity().length());
 		}
-		//Update falling or dist travelled on ground velocity
+		
+		//Update falling or dist traveled on ground velocity
 		if(player.isOnGround()){
-			stats.setDistWalked(stats.getDistWalked() + player.getBody().getLinearVelocity().length()*(delta/1000));
+			stats.setDistWalked(stats.getDistWalked() + Math.abs(player.getBody().getLinearVelocity().x)*(delta));
 		}else {
-			stats.setDistFallen(stats.getDistFallen() + player.getBody().getLinearVelocity().length()*(delta/1000));
+			float vely = player.getBody().getLinearVelocity().y;
+			if(vely<0){
+				stats.setDistFallen(stats.getDistFallen() + Math.abs(vely)*(delta));
+				stats.setTimeFallen(stats.getTimeFallen() + delta);
+			}
 		}
+	
+		//Update Achievements
+		updateAchievements(AssetManager.getAchievementMap());
+		
 	}
 	
 	public void pickupCube(){
@@ -42,22 +56,42 @@ public class GLaDOS {
 		stats.setNumberPortals(stats.getNumberPortals()+1);
 	}
 	
+	public void jumped(){
+		stats.setJumps(stats.getJumps()+1);
+	}
+	
 	public void updateHighScores(int levelid) {
-		OnlineHighScoreLoader.addScore(Portal2D.name, stats.getTimeInLevel(), stats.getLevelID());
-		OnlineHighScoreLoader.setNeedupdate(true);
-		OnlineHighScoreLoader.getToupdate().add(levelid);
+		if(Portal2D.online){
+			OnlineHighScoreLoader.addScore(Portal2D.name, stats.getTimeInLevel(), stats.getLevelID());
+			OnlineHighScoreLoader.setNeedupdate(true);
+			OnlineHighScoreLoader.getToupdate().add(levelid);
+		} else {
+			try {
+				AssetManager.getHighscores().get(levelid).add(new HighScore(Portal2D.name, stats.getTimeInLevel()/1000, stats.getLevelID()));
+				HighScoreLoader.saveHighScores();
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public void finaliseStats(){
+		stats.setDistWalked(stats.getDistWalked()/1000);
+		stats.setDistFallen(stats.getDistFallen()/1000);
+		stats.setTimeFallen(stats.getTimeFallen()/1000);
+
 	}
 
 	public void updateAchievements(Map<String, Achievement> achievementMap) {
 		for(Achievement ac: achievementMap.values()){
-			if(ac.checkUnlock(stats)){
+			if(!ac.isUnlocked() && ac.checkUnlock(stats)){
 				stats.setAchievementsUnlocked(stats.getAchievementsUnlocked()+1);
 			}
 		}
 	}
 
 	public void printStats() {
-		System.out.println(stats.getNumberPortals() + " in level " + stats.getTimeInLevel()/1000);
 	}
 
 	public LevelStats getLevelStats() {

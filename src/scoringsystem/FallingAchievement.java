@@ -1,15 +1,12 @@
 package scoringsystem;
 
 public class FallingAchievement extends Achievement{
+	private final static String actype="distfallen";
 
-	private float distFallen;
-	private int levelId;
 	
 	public FallingAchievement(String name, String description,
-			boolean unlocked, String imgID, int levelid, float distFallen) {
-		super(name, description, unlocked, imgID);
-		this.distFallen=distFallen;
-		this.levelId=levelid;
+			boolean unlocked, String imgID, int levelId, float distFallen) {
+		super(name, description, unlocked, imgID,actype,levelId, distFallen);
 	}
 
 	@Override
@@ -18,12 +15,12 @@ public class FallingAchievement extends Achievement{
 
 		
 		if(levelId==-1){
-			if(stats.getDistFallen()>=distFallen){
+			if(stats.getDistFallen()>=target){
 				unlockAchievement();
 				isUnlocked=true;
 
 			}
-		} else if (levelId==stats.getLevelID() && stats.getDistFallen()>=distFallen){
+		} else if (levelId==stats.getLevelID() && stats.getDistFallen()>=target){
 			unlockAchievement();
 			isUnlocked=true;
 

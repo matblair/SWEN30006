@@ -23,7 +23,14 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import scoringsystem.Achievement;
-import scoringsystem.BasicAchievement;
+import scoringsystem.CubesAchievement;
+import scoringsystem.DistanceWalkedAchievement;
+import scoringsystem.FallingAchievement;
+import scoringsystem.JumpAchievement;
+import scoringsystem.NumberOfPortalsAchievement;
+import scoringsystem.TimeFallingAchievement;
+import scoringsystem.TimingAchievement;
+import scoringsystem.VelocityAchievement;
 
 
 
@@ -73,6 +80,7 @@ public class AchievementLoader {
 			if(resourceNode.getNodeType() == Node.ELEMENT_NODE){
 				final Element resourceElement = (Element)resourceNode;
 				addAchievement(resourceElement);
+				resourcenumber++;
 			}
 		}
 		return resourcenumber;
@@ -80,15 +88,36 @@ public class AchievementLoader {
 
 	private void addAchievement(Element resourceElement) {
 		String imgid = resourceElement.getAttribute("id");
+		int levelid = Integer.parseInt(resourceElement.getAttribute("levelid"));
 		String achid = resourceElement.getAttribute("achid");
 		String name = resourceElement.getAttribute("name");
+		String type = resourceElement.getAttribute("actype");
+		float target = Float.parseFloat(resourceElement.getAttribute("target"));
 		String description = resourceElement.getTextContent();
 		boolean unlocked = Boolean.parseBoolean(resourceElement.getAttribute("unlocked"));
-		AssetManager.getAchievementMap().put(achid, new BasicAchievement(name, description, unlocked, imgid));
+		if(type.equals("distfallen")){
+			
+		}else if(type.equals("timefallen")){
+			AssetManager.getAchievementMap().put(achid, new TimeFallingAchievement(name, description, unlocked, imgid, levelid, target));
+		}else if(type.equals("distwalked")){
+			AssetManager.getAchievementMap().put(achid, new DistanceWalkedAchievement(name, description, unlocked, imgid, levelid, target));
+		}else if(type.equals("jumps")){
+			AssetManager.getAchievementMap().put(achid, new JumpAchievement(name, description, unlocked, imgid, levelid, target));
+		}else if(type.equals("portals")){
+			AssetManager.getAchievementMap().put(achid, new NumberOfPortalsAchievement(name, description, unlocked, imgid, levelid, target));
+		}else if(type.equals("velocity")){
+			AssetManager.getAchievementMap().put(achid, new VelocityAchievement(name, description, unlocked, imgid, levelid, target));
+		}else if(type.equals("timelevel")){
+			AssetManager.getAchievementMap().put(achid, new TimingAchievement(name, description, unlocked, imgid, levelid, target));
+		}else if(type.equals("cubesused")){
+			AssetManager.getAchievementMap().put(achid, new CubesAchievement(name, description, unlocked, imgid, levelid, target));
+		}else if(type.equals("distfallen")){
+			AssetManager.getAchievementMap().put(achid, new FallingAchievement(name, description, unlocked, imgid, levelid, target));
+		}
 	}
 	
 	public static void saveAchievements() throws SlickException{	
-		File outputfile = new File("assets/xmlresources/achievement.xml");
+		File outputfile = new File("assets/xmlresources/achievements.xml");
 		OutputStream os = null;
 		
 		try {
@@ -118,7 +147,7 @@ public class AchievementLoader {
 		
 		for(String achid: map.keySet()){
 			Achievement towrite = map.get(achid);
-			String line = "<resource levelid=\"" + achid + "\" id=\"" + towrite.getImgid() + "\" name=\"" + towrite.getName() + "\" unlocked=\"" + towrite.isUnlocked() + "\">" +towrite.getDescription() +"</resource>\n";
+			String line = "<resource levelid=\"" + towrite.getLevelId() + "\" id=\"" + towrite.getImgid() + "\" achid=\"" + achid +  "\" target=\"" + towrite.getTarget() + "\" actype=\"" +towrite.getActype() + "\" name=\"" + towrite.getName() + "\" unlocked=\"" + towrite.isUnlocked() + "\">" +towrite.getDescription() +"</resource>\n";
 			os.write(line.getBytes(Charset.forName("UTF-8")));
 		}
 		String close = "</resources>\n";
