@@ -55,7 +55,10 @@
 	<resource type="LEVELXML" id="7">levels/leveleight.xml</resource>
 	<resource type="LEVELXML" id="8">levels/levelnine.xml</resource>
 	<resource type="LEVELXML" id="9">levels/levelten.xml</resource>
-	
+	<resource type="LEVELXML" id="10">levels/leveleleven.xml</resource>
+	<resource type="LEVELXML" id="11">levels/leveltwelve.xml</resource>
+	<resource type="LEVELXML" id="12">levels/levelthirteen.xml</resource>
+
 
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
