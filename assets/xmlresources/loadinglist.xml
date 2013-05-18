@@ -47,6 +47,8 @@
 	<!-- LevelXML -->
 	<resource type="LEVELXML" id="0">levels/leveltwo.xml</resource>
 	<resource type="LEVELXML" id="1">levels/levelone.xml</resource>
+	<resource type="LEVELXML" id="2">levels/level1x4FF.xml</resource>
+
 
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
