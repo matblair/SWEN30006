@@ -47,9 +47,6 @@
 	<!-- LevelXML -->
 	<resource type="LEVELXML" id="0">levels/leveltwo.xml</resource>
 	<resource type="LEVELXML" id="1">levels/levelone.xml</resource>
-<<<<<<< HEAD
-	<resource type="LEVELXML" id="2">levels/level1x4FF.xml</resource>
-=======
 	<resource type="LEVELXML" id="2">levels/levelthree.xml</resource>
 	<resource type="LEVELXML" id="3">levels/levelfour.xml</resource>
 	<resource type="LEVELXML" id="4">levels/levelfive.xml</resource>
@@ -62,6 +59,11 @@
 	<resource type="LEVELXML" id="11">levels/leveltwelve.xml</resource>
 	<resource type="LEVELXML" id="12">levels/levelthirteen.xml</resource>
 	<resource type="LEVELXML" id="13">levels/levelfourteen.xml</resource>
+<<<<<<< HEAD
+	<resource type="LEVELXML" id="14">levels/level1x4FF.xml</resource>
+=======
+	<resource type="LEVELXML" id="14">levels/levelfifteen.xml</resource>
+	<resource type="LEVELXML" id="15">levels/levelsixteen.xml</resource>
 >>>>>>> master
 
 
