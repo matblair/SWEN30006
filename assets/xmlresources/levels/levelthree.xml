@@ -12,17 +12,18 @@
 	<resource type="WALL" id="WALL" xStart="21" yStart="1" xEnd="27" yEnd="1">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="27" yStart="1" xEnd="27" yEnd="5">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="27" yStart="5" xEnd="37" yEnd="5">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="37" yStart="5" xEnd="37" yEnd="8">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="37" yStart="8" xEnd="27" yEnd="8">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="27" yStart="8" xEnd="27" yEnd="12">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="NOPORTALWALL" xStart="27" yStart="12" xEnd="9" yEnd="12">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="9" yStart="12" xEnd="9" yEnd="9">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="9" yStart="9" xEnd="1" yEnd="9">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="NOPORTALWALL" xStart="1" yStart="10" xEnd="1" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="37" yStart="5" xEnd="37" yEnd="10">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="37" yStart="10" xEnd="27" yEnd="10">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="27" yStart="10" xEnd="27" yEnd="15">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="27" yStart="15" xEnd="9" yEnd="15">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="9" yStart="15" xEnd="9" yEnd="11">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="9" yStart="11" xEnd="1" yEnd="11">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="1" yStart="11" xEnd="1" yEnd="1">assets/sprites/wall.png</resource>
 	
 	
 	<!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/biglevel.png</resource>
+	<resource type="FOREGROUNDIMG">assets/levels/levelthreefg.png</resource>
 	
     
 	<!-- End Zone -->
