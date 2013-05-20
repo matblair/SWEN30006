@@ -176,11 +176,11 @@ public class LevelLoader {
 		Float yTrackStart = Float.parseFloat(resourceElement.getAttribute("trackystart"));
 		Float xTrackFin = Float.parseFloat(resourceElement.getAttribute("trackxfin"));
 		Float yTrackFin = Float.parseFloat(resourceElement.getAttribute("trackyfin"));
-
+		boolean contMovement = Boolean.parseBoolean(resourceElement.getAttribute("contMovement"));
 		Vec2 trackstart = new Vec2(xTrackStart,yTrackStart);
 		Vec2 trackfin = new Vec2(xTrackFin, yTrackFin);
 		Vec2 startloc = new Vec2(startx,starty);
-		MovingPlatform platform = new MovingPlatform(startloc,level.getPhysWorld(), trackstart, trackfin,size);
+		MovingPlatform platform = new MovingPlatform(startloc,level.getPhysWorld(), trackstart, trackfin,size, contMovement);
 		level.addMovingPlatform(platform, platform.getBodyId());
 	}
 

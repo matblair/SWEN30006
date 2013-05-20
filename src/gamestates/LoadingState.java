@@ -52,7 +52,6 @@ public class LoadingState extends BasicGameState {
 		}
 		if(finishedloading){
 			GameState.setIspaused(false);
-			Paused.setDisplayachievements(false);
 			Paused.setDisplayoptions(false);
 			Paused.setDisplayquitoption(false);
 			Paused.setDisplayscores(false);

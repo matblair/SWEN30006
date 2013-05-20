@@ -59,9 +59,12 @@
 	<resource type="LEVELXML" id="11">levels/leveltwelve.xml</resource>
 	<resource type="LEVELXML" id="12">levels/levelthirteen.xml</resource>
 	<resource type="LEVELXML" id="13">levels/levelfourteen.xml</resource>
+<<<<<<< HEAD
+	<resource type="LEVELXML" id="14">levels/level1x4FF.xml</resource>
+=======
 	<resource type="LEVELXML" id="14">levels/levelfifteen.xml</resource>
 	<resource type="LEVELXML" id="15">levels/levelsixteen.xml</resource>
-	<resource type="LEVELXML" id="16">levels/level1x4FF.xml</resource>
+>>>>>>> master
 
 
 	<!-- Input XML -->

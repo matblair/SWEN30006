@@ -1,7 +1,7 @@
 package gameworlds;
 
-import gameengine.HighScore;
 import gameengine.InputManager;
+import gameengine.Portal2D;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AssetManager;
 import resourcemanagers.OnlineHighScoreLoader;
+import scoringsystem.HighScore;
 
 public class HighScoreMenu extends InGameMenu{
 	protected static Vector<String> menuItems = new Vector<String>();
@@ -31,9 +32,10 @@ public class HighScoreMenu extends InGameMenu{
 	public HighScoreMenu(int levelid){
 		menuItems.add("Back");
 		stringMaps.put("Back", MENU_PAUSEGAME);
-		scores = OnlineHighScoreLoader.getLocalFirst(levelid, NUMDISPLAY);
-		if(NUMDISPLAY>scores.size()){
-			NUMDISPLAY=scores.size()-1;
+		if(Portal2D.online){
+			scores=OnlineHighScoreLoader.getLocalFirst(levelid, 4);
+		} else {
+			scores = AssetManager.requestHighScores(levelid);
 		}
 	}
 
@@ -42,6 +44,10 @@ public class HighScoreMenu extends InGameMenu{
 	void Render(Graphics g, GameContainer gc) {
 		if(!firstupdate){
 			if(scores.size()!=0){
+				System.out.println(NUMDISPLAY + " " + scores.size());
+				if(NUMDISPLAY>scores.size()){
+					NUMDISPLAY=(scores.size());
+				}
 				for(int i=0; i < NUMDISPLAY; i++){
 					g.setColor(Color.darkGray);
 					g.drawString(scores.get(i).getName(), 430, 340 + i*30);
@@ -66,11 +72,14 @@ public class HighScoreMenu extends InGameMenu{
 		}
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public
 	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
-		if(firstupdate){
+		if(firstupdate && Portal2D.online){
 			scores = OnlineHighScoreLoader.getLocalFirst(levelid, NUMDISPLAY);
+			firstupdate=false;
+		} else {
 			firstupdate=false;
 		}
 		if(selected!=-1){
@@ -101,7 +110,7 @@ public class HighScoreMenu extends InGameMenu{
 	}
 
 	public void setLevelId(int levelId) {
-		this.levelid=levelId;
+		HighScoreMenu.levelid=levelId;
 		firstupdate=true;
 	}
 

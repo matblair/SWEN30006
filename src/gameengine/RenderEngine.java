@@ -58,13 +58,14 @@ public class RenderEngine {
 	
 	public static void drawWalls(Map<String, Wall> walls, Graphics g, Camera cam){
 		for(Wall wl: walls.values()){
+			if (!wl.isEnabled())
+				continue;
 			Vec2 camLoc = cam.getLocation();
 			Vec2 camDim = cam.getDimensions();
 			Vec2 wallstart = PhysUtils.JBoxToSlickVec(new Vec2(wl.getStart().x-camLoc.x,camDim.y - (wl.getStart().y - camLoc.y)));
 			Vec2 wallend = PhysUtils.JBoxToSlickVec(new Vec2(wl.getEnd().x-camLoc.x,camDim.y - (wl.getEnd().y - camLoc.y)));
 			g.setColor(Color.magenta);
 			g.setLineWidth(3);
-
 			g.drawLine(wallstart.x, wallstart.y, wallend.x, wallend.y);
 
 		}

@@ -11,6 +11,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.ContactEdge;
+<<<<<<< HEAD
 import org.jbox2d.dynamics.joints.DistanceJointDef;
 import org.jbox2d.dynamics.joints.JointDef;
 import org.jbox2d.dynamics.joints.JointType;
@@ -20,10 +21,12 @@ import org.jbox2d.dynamics.joints.RevoluteJointDef;
 import org.jbox2d.dynamics.joints.RopeJoint;
 import org.jbox2d.dynamics.joints.RopeJointDef;
 import org.jbox2d.dynamics.joints.WeldJointDef;
+=======
+import org.jbox2d.dynamics.joints.*;
+
+>>>>>>> master
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-
-import sun.tools.tree.ThisExpression;
 
 public class BigSwitch extends GameObject {
 	private static final String IMGID="SWITCHSENSOR";

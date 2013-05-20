@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+
+	<!-- Walls -->
+	
+    <resource type="WALL" id="WALL" xStart="1" yStart="1.0" xEnd="18" yEnd="1.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="18" yStart="1.0" xEnd="18" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="18" yStart="20" xEnd="1" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="1" yStart="20" xEnd="1" yEnd="1">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="12" yStart="1" xEnd="12" yEnd="3">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="12" yStart="3" xEnd="18" yEnd="3">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="1" yStart="6" xEnd="4" yEnd="5">assets/sprites/wall.png</resource>
+	
+	<!-- Platforms -->
+    <resource type="PLATFORM" id="SMALLPLATFORM" xStart="7.0" yStart="8" width="4.0" height="0.25">assets/sprites/wall.png</resource>
+    <resource type="PLATFORM" id="PLATFORM" xStart="15.0" yStart="11" width="4.0" height="0.25">assets/sprites/wall.png</resource>
+    
+    
+	
+    
+    <!-- Background -->
+	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	
+	
+	
+	
+	
+	<!-- End Zone -->
+	<resource type="ENDZONE" xStart="16" yStart="12">endzone</resource>
+
+	<!-- Start Location -->
+	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="2">assets/sprites/chell.png</resource>
+
+</resources>

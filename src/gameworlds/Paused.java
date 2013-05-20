@@ -23,13 +23,11 @@ public class Paused extends InGameMenu{
 
 	/** Menu options for selection **/
 	private final static int MENU_STARTGAME=1;
-	private final static int MENU_ACHIEVEMENTS=2;
 	private final static int MENU_HIGHSCORES=3;
 	private final static int MENU_OPTIONS=4;
 	private final static int MENU_QUIT=5;
 	private static final int MENU_RESTART = 6;
 
-	private static boolean displayachievements=false;
 	private static boolean displayscores=false;
 	private static boolean displayoptions=false;
 	private static boolean displayquitoption=false;
@@ -39,7 +37,6 @@ public class Paused extends InGameMenu{
 	private OptionMenu opmenu = new OptionMenu();
 	private HighScoreMenu hsmenu;
 	private QuitMenu qmenu = new QuitMenu();
-	private AchievementMenu acmenu;
 
 	protected static Vector<String> menuItems = new Vector<String>();
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
@@ -47,21 +44,19 @@ public class Paused extends InGameMenu{
 
 
 	public Paused(int levelid)  {
+		Paused.setLevelid(levelid);
 		font = AssetManager.requestFontResource("PAUSEFONT");
 		debug = false;
 		pausebg = AssetManager.requestUIElement("PAUSEBG");
 		fullscreen = false;
 		menuItems.add("Resume Game");
 		menuItems.add("Restart Level");
-		menuItems.add("Achievements");
 		menuItems.add("High Scores");
 		menuItems.add("Options");
 		hsmenu = new HighScoreMenu(levelid);
-		acmenu = new AchievementMenu(levelid);
 		menuItems.add("Exit To Menu");
 		stringMaps.put("Resume Game", MENU_STARTGAME);
 		stringMaps.put("Restart Level", MENU_RESTART);
-		stringMaps.put("Achievements", MENU_ACHIEVEMENTS);
 		stringMaps.put("High Scores", MENU_HIGHSCORES);
 		stringMaps.put("Options", MENU_OPTIONS);
 		stringMaps.put("Exit To Menu", MENU_QUIT);
@@ -71,9 +66,7 @@ public class Paused extends InGameMenu{
 	@Override		
 	public
 	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
-		if(displayachievements){
-			acmenu.Update(g, gc, sbg);
-		}else if(displayscores){
+		if(displayscores){
 			hsmenu.Update(g, gc, sbg);
 		}else if(displayoptions){
 			opmenu.Update(g, gc, sbg);
@@ -91,9 +84,7 @@ public class Paused extends InGameMenu{
 
 	@Override
 	public void ProcessInput(int key) {
-		if(displayachievements){
-			acmenu.ProcessInput(key);
-		}else if(displayscores){
+		if(displayscores){
 			hsmenu.ProcessInput(key);
 		}else if(displayoptions){
 			opmenu.ProcessInput(key);
@@ -137,9 +128,7 @@ public class Paused extends InGameMenu{
 		g.setFont(font);
 		g.setColor(Color.gray);
 
-		if(displayachievements){
-			acmenu.Render(g, gc);
-		}else if(displayscores){
+		if(displayscores){
 			hsmenu.Render(g, gc);
 		}else if(displayoptions){
 			opmenu.Render(g, gc);
@@ -156,9 +145,6 @@ public class Paused extends InGameMenu{
 			switch (selected){
 			case MENU_STARTGAME:
 				GameState.switchPaused();
-				break;
-			case MENU_ACHIEVEMENTS:
-				displayachievements=true;
 				break;
 			case MENU_HIGHSCORES:
 				displayscores=true;
@@ -228,10 +214,6 @@ public class Paused extends InGameMenu{
 		this.selected = selected;
 	}
 
-	public static void setDisplayachievements(boolean displayachievements) {
-		Paused.displayachievements = displayachievements;
-	}
-
 	public static void setDisplayscores(boolean displayscores) {
 		Paused.displayscores = displayscores;
 	}
@@ -245,8 +227,16 @@ public class Paused extends InGameMenu{
 	}
 
 	public void setLevelId(int levelId) {
-		Paused.levelid=levelId;
+		Paused.setLevelid(levelId);
 		hsmenu.setLevelId(levelId);
+	}
+
+	public static int getLevelid() {
+		return levelid;
+	}
+
+	public static void setLevelid(int levelid) {
+		Paused.levelid = levelid;
 	}
 
 }

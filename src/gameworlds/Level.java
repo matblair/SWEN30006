@@ -6,7 +6,7 @@ import java.util.Map;
 
 import gameengine.*;
 import gameobjects.*;
-import gamestates.LoadingState;
+import gamestates.GameState;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -16,10 +16,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
-import resourcemanagers.AchievementLoader;
-import resourcemanagers.AssetManager;
-import resourcemanagers.HighScoreLoader;
+import scoringsystem.GLaDOS;
 
 public class Level {
 	
@@ -81,28 +78,7 @@ public class Level {
 		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
 		glados = new GLaDOS(this.levelid);
 	}
-
-	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
-		
-		RenderEngine.drawBG(bg, cam);
-		RenderEngine.drawGameObject(levelend, cam);
-		RenderEngine.drawGameObjects(lilSwitches, cam);
-		RenderEngine.drawGameObject(player, cam);
-		RenderEngine.drawGameObjects(bigSwitches,cam);
-		RenderEngine.drawGameObjects(cubes, cam);
-		RenderEngine.drawGameObjects(doors, cam);
-		RenderEngine.drawGameObjects(platforms, cam);
-		RenderEngine.drawGameObjects(movingplatforms, cam);
-		if(fg!=null){
-			RenderEngine.drawBG(fg, cam);
-		}
-		RenderEngine.drawGameObjects(portals, cam);
-		
-		RenderEngine.drawWalls(noportalwalls, g, cam);
-		RenderEngine.drawWalls(walls, g, cam);
-
-	}
-
+	
 	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
 		final float timeStep = (float)delta/1000;
 		player.moveXDir(dir_x, delta);
@@ -122,30 +98,42 @@ public class Level {
 			pl.updatePos(delta);
 		}
 		
-		glados.updateTesting(delta);
+		glados.updateTesting(delta,player);
 		
 		if(levelend.getBody().m_contactList!=null){
 			final String contactbodyb = levelend.getBody().m_contactList.contact.m_fixtureB.m_body.toString();
 			final String playerid = player.getBody().toString();
 			if(contactbodyb.equals(playerid)){
-				glados.updateHighScores(levelid);
-				glados.updateAchievements(AssetManager.getAchievementMap());
-				glados.printStats();
-				LoadingState.loadNextLevel(sbg);
-				HighScoreLoader.saveHighScores();
-				AchievementLoader.saveAchievements();
-				sbg.enterState(Portal2D.LOADSTATE);
-				
+				EndGameMenu.giveGlados(glados);				
+				GameState.setDisplayEndGame(true);
 			}
 		}
 		
 	}
 	
+	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
+		RenderEngine.drawBG(bg, cam);
+		RenderEngine.drawGameObject(levelend, cam);
+		RenderEngine.drawGameObjects(lilSwitches, cam);
+		RenderEngine.drawGameObject(player, cam);
+		RenderEngine.drawGameObjects(bigSwitches,cam);
+		RenderEngine.drawGameObjects(cubes, cam);
+		RenderEngine.drawGameObjects(doors, cam);
+		RenderEngine.drawGameObjects(platforms, cam);
+		RenderEngine.drawGameObjects(movingplatforms, cam);
+		if(fg!=null){
+			RenderEngine.drawBG(fg, cam);
+		}
+		RenderEngine.drawGameObjects(portals, cam);
+		RenderEngine.drawWalls(noportalwalls, g, cam);
+		RenderEngine.drawWalls(walls, g, cam);
+	}
+
 	public void playerShootPortal(int color, Vec2 target) throws SlickException {
 		PortalShootRCHelper rch = new PortalShootRCHelper(this);
 		Vec2 dir = target.sub(player.getLocation());
 		dir.mulLocal(1/dir.length());
-		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(20)));
+		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(100)));
 		if (rch.fixture == null)
 			return;
 		
@@ -159,78 +147,59 @@ public class Level {
 	}
 	
 	public boolean portalBulletInteracts(final String bodyID) {
-		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | platforms.containsKey(bodyID) | movingplatforms.containsKey(bodyID) | bigSwitches.containsKey(bodyID))
+		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | noportalwalls.containsKey(bodyID) | platforms.containsKey(bodyID) | movingplatforms.containsKey(bodyID) | bigSwitches.containsKey(bodyID))
 			return true;
 		Door door = doors.get(bodyID);
 		if ((door = doors.get(bodyID)) != null && !door.isOpen())
 			return true;
 		return false;
 	}
-	
-	public Player getLevelPlayer() {
-		return player;
-	}
-	
-	public void setLevelPlayer(final Player player) {
-		this.player = player;
-	}
 
-	public Image getBg() {
-		return bg;
-	}
-
-	public void setBg(final Image bg) {
-		this.bg = bg;
-	}
-
-	public void updateGameState(final GameContainer gc) {
-		// TODO Auto-generated method stub
+	public void removeCube(final CompanionCube cube) {
+		cubes.remove(cube.getBodyId());
 	}
 	
-	public World getPhysWorld(){
-		return world;
+
+	public void addBigSwitch(final BigSwitch s, final String bodyid){
+		bigSwitches.put(bodyid,s);
 	}
 
 	public void addCube(final CompanionCube cube, final String bodyid){
 		cubes.put(bodyid, cube);
 	}
 	
-	public void addWall(final Wall wall, final String bodyid){
-		walls.put(bodyid,wall);
-	}
-	
 	public void addDoor(final Door door, final String bodyid){
 		doors.put(bodyid,door);
 	}
 	
-	public void addPlatform(final Platform platform, final String bodyid){
-		platforms.put(bodyid,platform);
-	}
-	
-	public void addMovingPlatform(final MovingPlatform platform, final String bodyid){
-		movingplatforms.put(bodyid,platform);
-	}
-	
-	public void addBigSwitch(final BigSwitch s, final String bodyid){
-		bigSwitches.put(bodyid,s);
+	public void addEndLevel(final EndLevel end) {
+		levelend = end;
 	}
 	
 	public void addLittleSwitch(final LittleSwitch s, final String bodyid){
 		lilSwitches.put(bodyid,s);
 	}
+	
+	public void addMovingPlatform(final MovingPlatform platform, final String bodyid){
+		movingplatforms.put(bodyid,platform);
+	}
 
-	public int getLevelId() {
-		return levelid;
+	public void addPlatform(final Platform platform, final String bodyid){
+		platforms.put(bodyid,platform);
+	}
+
+	public void addPortallessWall(Wall wall, String bodyId) {
+		noportalwalls.put(bodyId, wall);
+	}
+
+	public void addWall(final Wall wall, final String bodyid){
+		walls.put(bodyid,wall);
 	}
 	
-	public void setLevelId(final int id) {
-		levelid = id;
+	public Image getBg() {
+		return bg;
 	}
-	
-	public CompanionCube getCube(final String bodyId){
-		return cubes.get(bodyId);
-	}
-	
+
 	public String getBodyType(final Body other){
 		final String key = other.toString();
 		String type="";
@@ -255,41 +224,62 @@ public class Level {
 		}
 		return type;
 	}
-
-	public LittleSwitch getSwitch(final String bodyId) {
-		return lilSwitches.get(bodyId);
+	
+	public Object getCam() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	public Portal[] getPortals() {
-		return portals;
+	public CompanionCube getCube(final String bodyId){
+		return cubes.get(bodyId);
 	}
-
-	public void removeCube(final CompanionCube cube) {
-		cubes.remove(cube.getBodyId());
+	
+	public Collection<Door> getDoorCollection() {
+		return doors.values();
 	}
 	
 	public Map<String, Door> getDoors() {
 		return doors;
 	}
 	
-	public Collection<Door> getDoorCollection() {
-		return doors.values();
+	public GLaDOS getGlados() {
+		return glados;
+	}
+	
+	public int getLevelId() {
+		return levelid;
 	}
 
-	public void addEndLevel(final EndLevel end) {
-		levelend = end;
+	public Player getLevelPlayer() {
+		return player;
+	}
+	
+	public World getPhysWorld(){
+		return world;
+	}
+	
+	public Portal[] getPortals() {
+		return portals;
+	}
+	
+	public LittleSwitch getSwitch(final String bodyId) {
+		return lilSwitches.get(bodyId);
+	}
+
+	public void setBg(final Image bg) {
+		this.bg = bg;
 	}
 
 	public void setFg(final Image image) {
 		fg=image;
 	}
 
-	public Object getCam() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setLevelId(final int id) {
+		levelid = id;
 	}
 
-	public void addPortallessWall(Wall wall, String bodyId) {
-		noportalwalls.put(bodyId, wall);
+	public void setLevelPlayer(final Player player) {
+		this.player = player;
 	}
+
 }

@@ -1,6 +1,5 @@
 package gamestates;
 
-import gameengine.Achievement;
 import gameengine.Portal2D;
 import gameengine.InputManager;
 
@@ -17,7 +16,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+
+
 import resourcemanagers.AssetManager;
+import scoringsystem.Achievement;
 
 public class AchievementState extends BasicGameState implements KeyListener {
 	/** The state id for this part **/

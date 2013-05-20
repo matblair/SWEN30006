@@ -100,6 +100,7 @@ public class Player extends GameObject{
 	 */
 	public void jump() {
 		if (isOnGround()){
+			GameState.getLevel().getGlados().jumped();
 			float impulse = getMass() * jumpFactor;
 			getBody().applyLinearImpulse(new Vec2(0,impulse), getLocation());
 		}
@@ -178,6 +179,7 @@ public class Player extends GameObject{
 
 	public void pickupCube(CompanionCube cube){
 		while(!holdingcube){
+			GameState.getLevel().getGlados().pickupCube();
 			MassData massData=null;
 			massData = new MassData();
 			massData.mass=0.000001f;			

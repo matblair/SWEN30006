@@ -6,6 +6,7 @@ import gameengine.InputManager;
 import gameengine.PhysUtils;
 import gameengine.Portal2D;
 import gameobjects.Portal;
+import gameworlds.EndGameMenu;
 import gameworlds.Level;
 import gameworlds.Paused;
 
@@ -19,17 +20,18 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-
-
 public class GameState extends BasicGameState implements KeyListener, MouseListener {
+	private static boolean finishedEndGame = false;
 	private static int StateId = Portal2D.GAMESTATE; // State ID
 	private static Camera cam;
 	private boolean listening=true;
 	private static Level level;
 	private static Paused paused;
+	private static EndGameMenu endgame;
 	private static int height;
-	private static boolean ispaused;
-	
+	private static boolean ispaused = false;
+	private static boolean displayEndGame = false;
+
 	public GameState()
 	{
 		super();
@@ -41,6 +43,8 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		level = new Level();
 		cam = new Camera();
 		paused = new Paused(level.getLevelId());
+		endgame = new EndGameMenu();
+		
 	}
 
 	@Override
@@ -50,6 +54,8 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		level.render(g, false, cam, gc);
 		if(isIspaused()){
 			paused.Render(g,gc);
+		} else if(displayEndGame){
+			endgame.Render(g,gc);
 		}
 	}
 
@@ -60,7 +66,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		int dir_x = 0;
 		Input input = gc.getInput();
 
-		if(!isIspaused()){
+		if(!isIspaused() && !displayEndGame){
 			if (input.isKeyDown(InputManager.MOVE_RIGHT))
 				dir_x++;
 			if (input.isKeyDown(InputManager.MOVE_LEFT))
@@ -76,7 +82,20 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			}
 			level.update(dir_x,0, delta, sbg);
 			cam.follow(gc, level.getLevelPlayer());
-		}else {
+		} else if (displayEndGame){
+			endgame.Update(gc.getGraphics(),gc,sbg);
+			if(finishedEndGame){
+				try {
+					LoadingState.loadNextLevel(sbg);
+				} catch (SlickException e) {
+					e.printStackTrace();
+				}
+				System.out.println("Pressed Enter!");
+				GameState.setDisplayEndGame(false);
+				finishedEndGame=false;
+				sbg.enterState(Portal2D.LOADSTATE);
+			}
+		} else {
 			paused.Update(gc.getGraphics(), gc, sbg);
 		}
 	}
@@ -90,19 +109,6 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		return StateId;
 	}
 
-	public void toggleFullscreen(final GameContainer gc, final boolean fullscreen)
-			throws SlickException{    	
-		if(fullscreen){
-			Portal2D.setFullscreen();
-			gc.setFullscreen(fullscreen);
-			level.updateGameState(gc);
-		}
-		else{
-			Portal2D.setResolution(Portal2D.screenwidth, Portal2D.screenheight, false);
-			gc.setFullscreen(fullscreen);
-			level.updateGameState(gc);
-		}		
-	}
 
 	public void exitLevel(GameContainer gc, StateBasedGame sbg){		
 		sbg.enterState(Portal2D.LOADSTATE);
@@ -129,6 +135,9 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		if(isIspaused()){
 			paused.ProcessInput(key);
 		}
+		if(key==InputManager.SELECT && EndGameMenu.isUploadedScores()){
+			finishedEndGame=true;
+		}
 	}
 
 	@Override
@@ -142,7 +151,9 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			throws SlickException {
 		super.enter(container, game);
 		paused.setLevelId(level.getLevelId());
+		EndGameMenu.setUploadedScores(false);
 		ispaused=false;
+		
 	}
 
 	@Override
@@ -191,5 +202,12 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	 */
 	public static void setIspaused(boolean ispaused) {
 		GameState.ispaused = ispaused;
+	}
+
+	/**
+	 * @param displayEndGame the displayEndGame to set
+	 */
+	public static void setDisplayEndGame(boolean displayEndGame) {
+		GameState.displayEndGame = displayEndGame;
 	}
 }
