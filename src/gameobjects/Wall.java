@@ -46,6 +46,10 @@ public class Wall {
 		body.getFixtureList().setSensor(true);
 	}
 	
+	public boolean isEnabled() {
+		return !body.getFixtureList().isSensor();
+	}
+	
 	public void destroy() {
 		body.getWorld().destroyBody(body);
 	}
