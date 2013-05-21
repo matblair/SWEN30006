@@ -44,10 +44,8 @@ public class OptionMenu extends InGameMenu {
 	private static int MAXSOUNDLEVEL=100;
 
 	public OptionMenu(){
-		menuItems.add("Screen Size");
 		menuItems.add("Audio Level");
 		menuItems.add("Controller Select");
-		stringMaps.put("Screen Size", MENU_SCREENSELECT);
 		stringMaps.put("Audio Level", MENU_SOUNDLEVEL);
 		stringMaps.put("Controller Select", MENU_DISPLAYINPUT);
 		volimages.add(AssetManager.requestUIElement("VOL"));
