@@ -40,11 +40,10 @@ public class FixtureCallback implements QueryCallback{
 		for (Portal p : GameState.getLevel().getPortals()) {
 			if (!p.isOpen() && p.getBody().equals(fixture.getBody())) {
 				containsJumpableObject=true;
-			} else {
-				for (Wall wall : p.getTempWalls()) {
-					if (wall.getBodyId().equals(type)) {
-						containsJumpableObject=true;
-					}
+			}
+			for (Wall wall : p.getTempWalls()) {
+				if (wall.getBodyId().equals(fixture.getBody().toString())) {
+					containsJumpableObject=true;
 				}
 			}
 		}
