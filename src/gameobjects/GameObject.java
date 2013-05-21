@@ -28,7 +28,7 @@ public class GameObject {
 	private Vec2 dimensions;
 	private boolean inPortal;
 	private Vec2 last;
-
+	private static final float MINYEXIT = 6f;
 
 	public GameObject(String imgid){
 		setSprite(AssetManager.requestImage(imgid));
@@ -101,11 +101,15 @@ public class GameObject {
 			float portalHitOffset = rch.point.sub(portalHit.getLocation()).length();
 
 			Vec2 remainingTravel = PhysUtils.rotateVector(getLocation().sub(last).mul(rch.fraction), rotateBy);
-			System.out.println(remainingTravel + " " + (rch.fraction) + " " + getLocation().sub(last));
 			Vec2 appear = otherPortal.getLocation().sub(otherPortal.getUnitTangent().mul(portalHitOffset)).add(remainingTravel);
+			Vec2 newVelocity = PhysUtils.rotateVector(getBody().getLinearVelocity(), rotateBy);
+			
+			// Set min y velocity for exit to avoid falling out of level
+			if (otherPortal.getRotation() < Math.PI)
+				newVelocity.y = Math.max (newVelocity.y, MINYEXIT * (float) Math.cos (PhysUtils.getAngle(otherPortal.getUnitTangent())));
+			
 			getBody().setTransform(appear, getBody().getAngle());
-			getBody().setLinearVelocity(PhysUtils.rotateVector(getBody().getLinearVelocity(), rotateBy));
-			System.out.println(PhysUtils.rotateVector(getBody().getLinearVelocity(), rotateBy).length() + " " + getBody().getLinearVelocity().length());
+			getBody().setLinearVelocity(newVelocity);
 		}
 	}
 

@@ -3,6 +3,8 @@ package gameengine;
 import java.util.ArrayList;
 
 import gameobjects.CompanionCube;
+import gameobjects.Portal;
+import gameobjects.Wall;
 import gamestates.GameState;
 import org.jbox2d.callbacks.QueryCallback;
 import org.jbox2d.dynamics.Fixture;
@@ -18,15 +20,34 @@ public class FixtureCallback implements QueryCallback{
 		String type = GameState.getLevel().getBodyType(fixture.getBody());
 		interactableObjects.add(id);
 		
+		checkJump(type, fixture);
+		
 		if(type.equals("cube")){
 			setCube(GameState.getLevel().getCube(id));
-			containsJumpableObject=true;
 			return false;
-		}else if(type.equals("wall") || type.equals("bigswitch") || type.equals("platform") || type.equals("movingplatform") || type.equals("noportalwalls")){
-			containsJumpableObject=true;
 		}
 		
 		return true;
+	}
+	
+	private void checkJump(String type, Fixture fixture) {
+		if((type.equals("wall") && !fixture.isSensor()) || type.equals("bigswitch") || type.equals("cube")
+				|| type.equals("platform") || type.equals("movingplatform") || type.equals("noportalwalls")) {
+			containsJumpableObject=true;
+			return;
+		}
+		
+		for (Portal p : GameState.getLevel().getPortals()) {
+			if (!p.isOpen() && p.getBody().equals(fixture.getBody())) {
+				containsJumpableObject=true;
+			} else {
+				for (Wall wall : p.getTempWalls()) {
+					if (wall.getBodyId().equals(type)) {
+						containsJumpableObject=true;
+					}
+				}
+			}
+		}
 	}
 
 	/**

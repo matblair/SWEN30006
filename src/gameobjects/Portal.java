@@ -1,5 +1,7 @@
 package gameobjects;
 
+import java.util.ArrayList;
+
 import gameengine.PhysUtils;
 
 import org.jbox2d.common.Vec2;
@@ -89,6 +91,22 @@ public class Portal extends GameObject {
 	public void close() {
 		this.getBody().getFixtureList().setSensor(false);
 		otherPortal.getBody().getFixtureList().setSensor(false);
+	}
+	
+	public boolean isOpen() {
+		return this.getBody().getFixtureList().isSensor();
+	}
+	
+	public ArrayList<Wall> getTempWalls() {
+		ArrayList<Wall> walls = new ArrayList<Wall>();
+		if (startSegment != null && startSegment.isEnabled())
+			walls.add(startSegment);
+		if (endSegment != null && endSegment.isEnabled())
+			walls.add(endSegment);
+		if (sharedSegment != null && sharedSegment.isEnabled())
+			walls.add(sharedSegment);
+		
+		return walls;
 	}
 	
 	public void hitWall (Vec2 loc, Wall wall) throws SlickException {
