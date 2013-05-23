@@ -1,9 +1,9 @@
 
 <resources>
 	<!-- Portal Vertices -->
-	<resource xloc="-10" yloc="-102">portal</resource>
-	<resource xloc="0" yloc="-102">portal</resource>
-	<resource xloc="0" yloc="102">portal</resource>
-	<resource xloc="-10" yloc="102">portal</resource>
+	<resource xloc="-10" yloc="-85">portal</resource>
+	<resource xloc="0" yloc="-85">portal</resource>
+	<resource xloc="0" yloc="85">portal</resource>
+	<resource xloc="-10" yloc="85">portal</resource>
 	
 </resources>
