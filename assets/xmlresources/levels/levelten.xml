@@ -20,7 +20,7 @@
 	
 	
 	<!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/biglevel.png</resource>
 	
     
 	<!-- End Zone -->

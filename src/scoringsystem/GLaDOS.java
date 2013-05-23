@@ -2,6 +2,7 @@ package scoringsystem;
 
 import gameengine.Portal2D;
 import gameobjects.Player;
+import gamestates.GameState;
 
 // Genetic Lifeform and Disk Operating System
 // i.e. stats watcher
@@ -11,27 +12,29 @@ import org.newdawn.slick.SlickException;
 
 
 
+import resourcemanagers.AchievementLoader;
 import resourcemanagers.AssetManager;
 import resourcemanagers.HighScoreLoader;
 import resourcemanagers.OnlineHighScoreLoader;
 
 public class GLaDOS {
-	
+
 	private LevelStats stats;
-	
+	private static final int TIMER=5000;
+
 	public GLaDOS(int levelid){
 		stats = new LevelStats(levelid);
 	}
-	
+
 	public void updateTesting(int delta, Player player){
 		//Update timer
 		stats.setTimeInLevel(stats.getTimeInLevel()+delta);
-		
+
 		//Update velocity
 		if(player.getBody().getLinearVelocity().length()>stats.getMaxVelocity()){
 			stats.setMaxVelocity(player.getBody().getLinearVelocity().length());
 		}
-		
+
 		//Update falling or dist traveled on ground velocity
 		if(player.isOnGround()){
 			stats.setDistWalked(stats.getDistWalked() + Math.abs(player.getBody().getLinearVelocity().x)*(delta));
@@ -42,24 +45,32 @@ public class GLaDOS {
 				stats.setTimeFallen(stats.getTimeFallen() + delta);
 			}
 		}
-	
+
 		//Update Achievements
 		updateAchievements(AssetManager.getAchievementMap());
-		
+		//Decrement Achievement counters
+		if(!GameState.getLevel().getAchievementPopups().isEmpty()){
+			for(int i=0; i<GameState.getLevel().getAchievementPopups().size(); i++){
+				GameState.getLevel().getAchievementPopups().get(i).setTimer(GameState.getLevel().getAchievementPopups().get(i).getTimer()-delta);
+				if(GameState.getLevel().getAchievementPopups().get(i).getTimer()<=0){
+					GameState.getLevel().getAchievementPopups().remove(GameState.getLevel().getAchievementPopups().get(i));
+				}
+			}
+		}
 	}
-	
+
 	public void pickupCube(){
 		stats.setCubesPickedUp(stats.getCubesPickedUp()+1);
 	}
-	
+
 	public void createdPortal(){
 		stats.setNumberPortals(stats.getNumberPortals()+1);
 	}
-	
+
 	public void jumped(){
 		stats.setJumps(stats.getJumps()+1);
 	}
-	
+
 	public void updateHighScores(int levelid) {
 		if(Portal2D.online){
 			OnlineHighScoreLoader.addScore(Portal2D.name, stats.getTimeInLevel(), stats.getLevelID());
@@ -73,13 +84,19 @@ public class GLaDOS {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
-	
+
 	public void finaliseStats(){
 		stats.setDistWalked(stats.getDistWalked()/1000);
 		stats.setDistFallen(stats.getDistFallen()/1000);
 		stats.setTimeFallen(stats.getTimeFallen()/1000);
+		try {
+			AchievementLoader.saveAchievements();
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -87,6 +104,7 @@ public class GLaDOS {
 		for(Achievement ac: achievementMap.values()){
 			if(!ac.isUnlocked() && ac.checkUnlock(stats)){
 				stats.setAchievementsUnlocked(stats.getAchievementsUnlocked()+1);
+				GameState.getLevel().getAchievementPopups().add(new AchievementPopup(TIMER,ac.getImgid(), ac.getName()));
 			}
 		}
 	}
@@ -97,5 +115,5 @@ public class GLaDOS {
 	public LevelStats getLevelStats() {
 		return stats;
 	}
-	
+
 }

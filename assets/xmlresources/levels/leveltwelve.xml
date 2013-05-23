@@ -7,8 +7,10 @@
     <resource type="WALL" id="WALL" xStart="1" yStart="5.0" xEnd="5" yEnd="5.0">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="5" yStart="5" xEnd="5" yEnd="1">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="5" yStart="1" xEnd="25" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="25" yStart="1" xEnd="25" yEnd="20">assets/sprites/wall.png</resource>
-    <resource type="WALL" id="WALL" xStart="25" yStart="20" xEnd="1" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="25" yStart="1" xEnd="25" yEnd="19">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="25" yStart="19" xEnd="23" yEnd="19">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="23" yStart="19" xEnd="23" yEnd="20">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="23" yStart="20" xEnd="1" yEnd="20">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="1" yStart="20" xEnd="1" yEnd="5">assets/sprites/wall.png</resource>
 	
 	<!-- Platforms -->
@@ -17,14 +19,16 @@
     <resource type="PLATFORM" id="PLATFORM" xStart="22.0" yStart="17" width="4.0" height="0.25">assets/sprites/wall.png</resource>
     <resource type="PLATFORM" id="PLATFORM" xStart="17.0" yStart="9" width="4.0" height="0.25">assets/sprites/wall.png</resource>
     <resource type="PLATFORM" id="PLATFORM" xStart="18.0" yStart="17" width="4.0" height="0.25">assets/sprites/wall.png</resource>
+  
+
     <!-- Switches -->
-	<resource type="BIGSWITCH" id="SWITCHUP" xStart="4" yStart="13" contactimg="SWITCHSENSOR" downid="SWITCHDOWN" doorid="MAINDOOR">assets/sprites/hitbox.png</resource>
+    <resource type="BIGSWITCH" id="SWITCHUP" xStart="4" yStart="13" doorid="MAINDOOR">assets/sng</resource>
 	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="19" yStart="9" xCube="19" yCube="9" cubeid="CUBE">assets/sprites/wall.png</resource>
 	
     
     <!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
-	
+	<resource type="BACKGROUNDIMG">assets/levels/biglevel.png</resource>
+	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/twelvefg.png</resource>
 	
 	
 	<!-- DOORS -->

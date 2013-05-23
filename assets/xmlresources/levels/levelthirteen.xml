@@ -26,7 +26,8 @@
     <resource type="PLATFORM" id="PLATFORM" xStart="4" yStart="17" width="4.0" height="0.25">assets/sprites/wall.png</resource>
     
     <!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/biglevel.png</resource>
+	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/thirteenfg.png</resource>
 	
 	<!-- DOORS -->
     <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="4" yStart="18" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
