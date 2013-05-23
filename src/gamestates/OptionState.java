@@ -40,9 +40,8 @@ public class OptionState extends BasicGameState implements KeyListener{
 	private static int soundLevelSelected=0;
 	private static int inputItemSelected=0;
 
-	private static final int MENU_SCREENSELECT=0;
-	private static final int MENU_SOUNDLEVEL=1;
-	private static final int MENU_DISPLAYINPUT=2;
+	private static final int MENU_SOUNDLEVEL=0;
+	private static final int MENU_DISPLAYINPUT=1;
 	
 	private static ArrayList<Image> volimages= new ArrayList<Image>();
 	private static ArrayList<Image> inputimages= new ArrayList<Image>();
@@ -86,10 +85,8 @@ public class OptionState extends BasicGameState implements KeyListener{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		menuItems.add("Screen Size");
 		menuItems.add("Audio Level");
 		menuItems.add("Controller Select");
-		stringMaps.put("Screen Size", MENU_SCREENSELECT);
 		stringMaps.put("Audio Level", MENU_SOUNDLEVEL);
 		stringMaps.put("Controller Select", MENU_DISPLAYINPUT);
 		volimages.add(AssetManager.requestUIElement("VOL0"));
@@ -142,11 +139,6 @@ public class OptionState extends BasicGameState implements KeyListener{
 		}	
 		System.out.println(mainMenuItemSelected);
 		switch (mainMenuItemSelected){
-		case MENU_SCREENSELECT:
-			displayscreensize=true;
-			displaysoundlevel=false;
-			displayinputload=false;
-			break;
 		case MENU_SOUNDLEVEL:
 			displayscreensize=false;
 			displaysoundlevel=true;

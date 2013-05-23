@@ -55,7 +55,7 @@ public class FixtureCallback implements QueryCallback{
 	public  ArrayList<String> getInteractableObjects() {
 		return interactableObjects;
 	}
-
+	
 	/**
 	 * @return the cube
 	 */

@@ -22,6 +22,7 @@
 	<resource type="UIELEMENT" id="LEVELLOCKED">assets/sprites/uielements/levellocked.png</resource>
 	<resource type="UIELEMENT" id="INPUTTWO">assets/sprites/uielements/inputdisplay/inputtwo.png</resource>
 	<resource type="UIELEMENT" id="INPUTONE">assets/sprites/uielements/inputdisplay/inputone.png</resource>
+	<resource type="UIELEMENT" id="ACHPOPUP">assets/sprites/uielements/achievementpopup.png</resource>
 
 	<!-- Sounds -->
 

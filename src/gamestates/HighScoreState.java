@@ -223,7 +223,9 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 				if(Portal2D.online){
 					scores = OnlineHighScoreLoader.getLocalFirst(currentlevel, TODISPLAY);
 				} else {
+					System.out.println(currentlevel);
 					scores = AssetManager.requestHighScores(currentlevel);
+					System.out.println(scores);
 				}
 			}
 		} else if (key == InputManager.NAV_LEFT) {
@@ -234,6 +236,8 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 					scores = OnlineHighScoreLoader.getLocalFirst(currentlevel, TODISPLAY);
 				} else {
 					scores = AssetManager.requestHighScores(currentlevel);
+					System.out.println(scores);
+
 				}
 			}	
 		}

@@ -1,4 +1,5 @@
 package gameengine;
+import java.util.ArrayList;
 import java.util.Map;
 
 import gameobjects.GameObject;
@@ -9,8 +10,14 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
+import resourcemanagers.AssetManager;
+import scoringsystem.AchievementPopup;
+
 public class RenderEngine {
-		
+	
+	private static final float ACOFFSET = 50;
+	private static Image achpopup;
+	
 	public static <T extends GameObject> void drawGameObjects(Map<String, T> map, Camera cam){
 		for (T obj : map.values()) {
 			drawGameObject(obj,cam);
@@ -67,7 +74,24 @@ public class RenderEngine {
 			g.setColor(Color.magenta);
 			g.setLineWidth(3);
 			g.drawLine(wallstart.x, wallstart.y, wallend.x, wallend.y);
-
+		}
+	}
+	
+	public static void renderAchievementPopups(ArrayList<AchievementPopup> popups, Graphics g, Camera cam){
+		//Ensure we have loaded the achievement popup
+		if(achpopup==null){
+			achpopup = AssetManager.requestUIElement("ACHPOPUP");
+		}
+		g.setColor(Color.gray);
+		int i=1;
+		for(AchievementPopup ac: popups){
+			float x = PhysUtils.JBoxToSlickVec(cam.getDimensions()).x-achpopup.getWidth()/2-ACOFFSET/2;
+			float y = 0 + ACOFFSET*i + (achpopup.getHeight()/2)*(i-1);
+			achpopup.drawCentered(x,y);
+			//ac.getImg().drawCentered(x+ac.getImg().getWidth()/2+10, y+ac.getImg().getHeight()/2+10);
+			g.drawString(ac.getName(), x-achpopup.getWidth()/3+g.getFont().getWidth("Unlocked!")/2, 0 + ACOFFSET*i + (achpopup.getHeight()/2)*(i-1)-20);
+			g.drawString("Unlocked!", x-achpopup.getWidth()/3+g.getFont().getWidth("Unlocked!")/2, 0 + ACOFFSET*i + (achpopup.getHeight()/2)*(i-1));
+			i++;
 		}
 	}
 }

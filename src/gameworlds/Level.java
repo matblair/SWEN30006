@@ -1,5 +1,6 @@
 package gameworlds;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
+import scoringsystem.AchievementPopup;
 import scoringsystem.GLaDOS;
 
 public class Level {
@@ -48,8 +51,11 @@ public class Level {
 	protected Map<String, Wall> noportalwalls;
 	/** Our end point **/
 	protected EndLevel levelend;
-	/** Our level oracle **/
+	
+	/** Our level oracle and chievement data **/
 	protected GLaDOS glados;
+	private ArrayList<AchievementPopup> achievementPopups;
+	
 	/** Our physics world **/
 	private final World world;
 	/** Our Physics Engine Constants **/
@@ -72,6 +78,7 @@ public class Level {
 		lilSwitches = new HashMap<String,LittleSwitch>();
 		bigSwitches = new HashMap<String,BigSwitch>();	
 		noportalwalls = new HashMap<String,Wall>();
+		achievementPopups = new ArrayList<AchievementPopup>();
 		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(-1,0), world);
 		portals[Portal.BLUE] = new Portal("BLUEPORTAL", new Vec2(-1,0), world);
 		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
@@ -127,6 +134,10 @@ public class Level {
 		RenderEngine.drawGameObjects(portals, cam);
 		RenderEngine.drawWalls(noportalwalls, g, cam);
 		RenderEngine.drawWalls(walls, g, cam);
+		if(!achievementPopups.isEmpty()){
+			RenderEngine.renderAchievementPopups(achievementPopups, g,cam);
+		}
+	
 	}
 
 	public void playerShootPortal(int color, Vec2 target) throws SlickException {
@@ -280,6 +291,14 @@ public class Level {
 
 	public void setLevelPlayer(final Player player) {
 		this.player = player;
+	}
+
+	public ArrayList<AchievementPopup> getAchievementPopups() {
+		return achievementPopups;
+	}
+
+	public void setAchievementPopups(ArrayList<AchievementPopup> achievementPopups) {
+		this.achievementPopups = achievementPopups;
 	}
 
 }

@@ -38,8 +38,8 @@
 	<resource type="MOVINGPLATFORM" id="SMALLPLATFORM" contMovement="true" xStart="13.10" yStart="2.0" trackxstart="13.10" trackystart="2.0" trackxfin="13.10" trackyfin="15.2">assets/sprites/wall.png</resource>
 
 	<!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
-    <resource type="FOREGROUNDIMG">assets/levels/leveltwofg.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/backgrounds/leveltwobg.png</resource>
+    <resource type="FOREGROUNDIMG">assets/levels/foregrounds/leveltwofg.png</resource>
 
 	<!-- End Zone -->
 	<resource type="ENDZONE" xStart="27" yStart="3.5">endzone</resource>
