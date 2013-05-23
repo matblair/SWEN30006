@@ -105,7 +105,7 @@ public class GameObject {
 			Vec2 newVelocity = PhysUtils.rotateVector(getBody().getLinearVelocity(), rotateBy);
 			
 			// Set min y velocity for exit to avoid falling out of level
-			if (otherPortal.getRotation() < Math.PI)
+			if (otherPortal.getRotation() > 0)
 				newVelocity.y = Math.max (newVelocity.y, MINYEXIT * (float) Math.cos (PhysUtils.getAngle(otherPortal.getUnitTangent())));
 			
 			getBody().setTransform(appear, getBody().getAngle());
