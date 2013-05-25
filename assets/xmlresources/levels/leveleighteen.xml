@@ -8,7 +8,7 @@
 	<resource type="WALL" id="WALL" xStart="5" yStart="5" xEnd="5" yEnd="1">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="5" yStart="1" xEnd="25" yEnd="1">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="25" yStart="1" xEnd="25" yEnd="20">assets/sprites/wall.png</resource>
-    <resource type="WALL" id="NOPORTALWALL" xStart="25" yStart="20" xEnd="1" yEnd="20">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="WALL" xStart="25" yStart="20" xEnd="1" yEnd="20">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="1" yStart="20" xEnd="1" yEnd="5">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="15" yStart="1" xEnd="15" yEnd="10">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="15" yStart="10" xEnd="19" yEnd="10">assets/sprites/wall.png</resource>
@@ -37,7 +37,7 @@
 	
 	<!-- Switches -->
 	
-	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="21" yStart="1.5" xCube="21" yCube="30" cubeid="CUBE">assets/sprites/wall.png</resource>
+	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="21" yStart="1.5" xCube="21" yCube="19" cubeid="CUBE">assets/sprites/wall.png</resource>
 
 
 	<resource type="BIGSWITCH" id="SWITCHUP" xStart="12" yStart="1.2" doorid="MIRROROOR">assets/sng</resource>
