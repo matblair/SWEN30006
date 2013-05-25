@@ -22,8 +22,8 @@
   
 
     <!-- Switches -->
-    <resource type="BIGSWITCH" id="SWITCHUP" xStart="4" yStart="13" doorid="MAINDOOR">assets/sng</resource>
-	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="19" yStart="9" xCube="19" yCube="9" cubeid="CUBE">assets/sprites/wall.png</resource>
+    <resource type="BIGSWITCH" id="SWITCHUP" xStart="4" yStart="13.20" doorid="MAINDOOR">assets/sng</resource>
+	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="19" yStart="9.5" xCube="19" yCube="9" cubeid="CUBE">assets/sprites/wall.png</resource>
 	
     
     <!-- Background -->
