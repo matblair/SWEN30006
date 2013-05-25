@@ -15,6 +15,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AssetManager;
+import resourcemanagers.SoundController;
 
 public class OptionMenu extends InGameMenu {
 
@@ -63,7 +64,7 @@ public class OptionMenu extends InGameMenu {
 		volimages.add(AssetManager.requestUIElement("VOL9"));
 		inputimages.add(AssetManager.requestUIElement("INPUTONE"));
 		inputimages.add(AssetManager.requestUIElement("INPUTTWO"));
-
+		soundLevelSelected = SoundController.getVolume();
 	}
 
 	@Override
@@ -137,6 +138,7 @@ public class OptionMenu extends InGameMenu {
 			}else if(displaysoundlevel){
 				if(soundLevelSelected>0){
 					soundLevelSelected = soundLevelSelected-SOUNDINTERVAL;
+					SoundController.setVolume(soundLevelSelected);
 				}
 			}else if (displayinputload){
 				if(inputItemSelected > 0){
@@ -154,6 +156,7 @@ public class OptionMenu extends InGameMenu {
 			}else if(displaysoundlevel){
 				if(soundLevelSelected<MAXSOUNDLEVEL){
 					soundLevelSelected = soundLevelSelected+SOUNDINTERVAL;
+					SoundController.setVolume(soundLevelSelected);
 				}
 			}else if (displayinputload){
 				if(inputItemSelected < (AssetManager.getInputResources().size()-1)){

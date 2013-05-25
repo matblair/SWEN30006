@@ -48,6 +48,22 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		endgame = new EndGameMenu();
 		SoundController.initialise();
 	}
+	
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		super.enter(container, game);
+		paused.setLevelId(level.getLevelId());
+		EndGameMenu.setUploadedScores(false);
+		ispaused=false;
+		SoundController.play(Sound.TITLE);
+	}
+	
+	@Override
+	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
+		super.leave(container, game);
+		SoundController.stopMusic();
+	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -137,24 +153,29 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		if(isIspaused()){
 			paused.ProcessInput(key);
 		}
+		
 		if(key==InputManager.SELECT && EndGameMenu.isUploadedScores()){
 			finishedEndGame=true;
+		}
+		
+		switch (c){
+		case 'i':
+			SoundController.stopMusic();
+			break;
+		case 'o':
+			SoundController.play(Sound.TITLE);
+			break;
+		case 'p':
+			SoundController.play(Sound.VILLAGE);
+			break;
+		default:
+			break;
 		}
 	}
 
 	@Override
 	public void keyReleased(int key, char c) {
 		System.out.println("Key released in GameState int: " + key);
-	}
-
-	@Override
-	public void enter(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		super.enter(container, game);
-		paused.setLevelId(level.getLevelId());
-		EndGameMenu.setUploadedScores(false);
-		ispaused=false;
-		SoundController.play(Sound.TITLE);
 	}
 
 	@Override

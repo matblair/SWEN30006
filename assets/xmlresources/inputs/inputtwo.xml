@@ -13,8 +13,8 @@
 	<resource type="RIGHT" key="32" >inputresource</resource>
 	<resource type="JUMP" key="57" >inputresource</resource>
 	<resource type="PAUSE" key="1" >inputresource</resource>
-	<resource type="SHOOT_BLUE" key="30" >inputresource</resource>
-	<resource type="SHOOT_ORANGE" key="31" >inputresource</resource>
+	<resource type="SHOOT_BLUE" key="19" >inputresource</resource>
+	<resource type="SHOOT_ORANGE" key="20" >inputresource</resource>
 	<resource type="INTERACT" key="18" >inputresource</resource>
 
 		

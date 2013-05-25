@@ -1,10 +1,12 @@
 package gameengine;
 
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.openal.SoundStore;
+import java.io.IOException;
+
+import org.newdawn.slick.openal.DeferredSound;
+import org.newdawn.slick.util.ResourceLoader;
 
 public class Sound {
-	private org.newdawn.slick.Sound sound;
+	private DeferredSound sound;
 	private boolean music;
 	
 	// Sound effects
@@ -18,20 +20,18 @@ public class Sound {
 
 	public Sound (String path, String style) {
 		music = style.equalsIgnoreCase("music");
-		boolean prev = SoundStore.get().isDeferredLoading();
-		SoundStore.get().setDeferredLoading(false);
 		try {
-			sound = new org.newdawn.slick.Sound (path);
-		} catch (SlickException e) {
+			sound = new DeferredSound (path, ResourceLoader.getResourceAsStream(path), DeferredSound.OGG);
+			sound.load();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		SoundStore.get().setDeferredLoading(prev);
 	}
 
 	public void play() {
 		if (music)
-			sound.loop();
+			sound.playAsMusic(1f, 1f, true);
 		else
-			sound.play();
+			sound.playAsSoundEffect(1f, 1f, false);
 	}
 }
