@@ -24,6 +24,10 @@
 	<resource type="UIELEMENT" id="INPUTONE">assets/sprites/uielements/inputdisplay/inputone.png</resource>
 	
 	<!-- Sounds -->
+	<resource type="SOUND" id="JUMP" style="SFX">assets/audio/sfx/jump.ogg</resource>
+	<resource type="SOUND" id="PORTALTRANSITION" style="SFX">assets/audio/sfx/portal_transition.ogg</resource>
+	<resource type="SOUND" id="TITLE" style="MUSIC">assets/audio/music/title.ogg</resource>
+	<resource type="SOUND" id="VILLAGE" style="MUSIC">assets/audio/music/village.ogg</resource>
 	
 	<!-- Images -->
 	<resource type="IMAGE" id="CHELLSPRITE">assets/sprites/gameobjects/chell.png</resource>

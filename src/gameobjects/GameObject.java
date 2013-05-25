@@ -3,6 +3,7 @@ package gameobjects;
 import gameengine.FixtureCallback;
 import gameengine.PhysUtils;
 import gameengine.PortalCollisionRCHelper;
+import gameengine.Sound;
 import gamestates.GameState;
 import gameworlds.Level;
 
@@ -17,6 +18,7 @@ import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.newdawn.slick.Image;
 
 import resourcemanagers.AssetManager;
+import resourcemanagers.SoundController;
 
 public class GameObject {
 	/** The object's image **/
@@ -110,6 +112,9 @@ public class GameObject {
 			
 			getBody().setTransform(appear, getBody().getAngle());
 			getBody().setLinearVelocity(newVelocity);
+			
+			// Finally, play the sound!
+			SoundController.play(Sound.PORTALTRAVEL);
 		}
 	}
 

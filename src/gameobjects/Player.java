@@ -2,6 +2,7 @@ package gameobjects;
 
 import gameengine.FixtureCallback;
 import gameengine.PhysUtils;
+import gameengine.Sound;
 import gamestates.GameState;
 import gameworlds.Level;
 
@@ -18,6 +19,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import resourcemanagers.AssetManager;
+import resourcemanagers.SoundController;
 
 public class Player extends GameObject{
 	
@@ -103,6 +105,7 @@ public class Player extends GameObject{
 			GameState.getLevel().getGlados().jumped();
 			float impulse = getMass() * jumpFactor;
 			getBody().applyLinearImpulse(new Vec2(0,impulse), getLocation());
+			SoundController.play (Sound.JUMP);
 		}
 	}
 

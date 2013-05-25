@@ -1,5 +1,7 @@
 package resourcemanagers;
 
+import gameengine.Sound;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -12,7 +14,6 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.loading.LoadingList;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
@@ -112,8 +113,6 @@ public class ResourceLoader {
 		AssetManager.getLevelXmlResources().put(id, xml);
 	}
 	
-
-
 	private void addElementAsImage(Element resourceElement) throws DOMException, SlickException {
 		Image newimg= new Image(resourceElement.getTextContent());
 		String imgid= resourceElement.getAttribute("id");
@@ -126,10 +125,10 @@ public class ResourceLoader {
 		AssetManager.getAchievementResources().put(imgid, newimg);
 	}
 	
-	private void addElementAsSound(Element resourceElement) {
-		Sound newsound=null;
-		String soundid=resourceElement.getAttribute("id");
-		AssetManager.getSoundResources().put(soundid, newsound);
+	private void addElementAsSound(Element resourceElement) throws DOMException, SlickException {
+		Sound sound = new Sound (resourceElement.getTextContent(), resourceElement.getAttribute("style"));
+		String id = resourceElement.getAttribute("id");
+		AssetManager.getSoundResources().put(id, sound);
 	}
 
 	private void addElementAsUIElement(Element resourceElement) throws DOMException, SlickException {
@@ -155,8 +154,6 @@ public class ResourceLoader {
 		String shapeid = resourceElement.getAttribute("id");
 		String vertpath = resourceElement.getAttribute("vertpath");
 		Shape shapecreate = ShapeLoader.loadShapes(vertpath);
-		AssetManager.getShapes().put(shapeid,shapecreate);
-		
+		AssetManager.getShapes().put(shapeid,shapecreate);	
 	}
-
 }

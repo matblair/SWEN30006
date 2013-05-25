@@ -12,6 +12,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.LoadingList;
+import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Portal2D extends StateBasedGame {
@@ -47,6 +48,8 @@ public class Portal2D extends StateBasedGame {
 	@Override
 	public void initStatesList(final GameContainer gc) throws SlickException {
 		LoadingList.setDeferredLoading(true);
+		SoundStore.get().init();
+		SoundStore.get().setDeferredLoading(false);
 		this.addState(new LoadingState());
 		this.addState(new MainMenuState());
 		this.addState(new GameState());
@@ -68,7 +71,6 @@ public class Portal2D extends StateBasedGame {
         app.setVSync(true);
         app.setTargetFrameRate(60);
         app.start();
-     
     }    
     public static void setResolution(final int width, final int height, final boolean key) throws SlickException{
     	app.setDisplayMode(width, height, key);
@@ -77,6 +79,4 @@ public class Portal2D extends StateBasedGame {
 	public static void setFullscreen() throws SlickException {
 		app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
 	}
-	
-	
 }

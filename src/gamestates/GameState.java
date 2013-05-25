@@ -5,10 +5,12 @@ import gameengine.Camera;
 import gameengine.InputManager;
 import gameengine.PhysUtils;
 import gameengine.Portal2D;
+import gameengine.Sound;
 import gameobjects.Portal;
 import gameworlds.EndGameMenu;
 import gameworlds.Level;
 import gameworlds.Paused;
+import resourcemanagers.SoundController;
 
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.GameContainer;
@@ -44,7 +46,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		cam = new Camera();
 		paused = new Paused(level.getLevelId());
 		endgame = new EndGameMenu();
-		
+		SoundController.initialise();
 	}
 
 	@Override
@@ -145,7 +147,6 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		System.out.println("Key released in GameState int: " + key);
 	}
 
-
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -153,7 +154,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		paused.setLevelId(level.getLevelId());
 		EndGameMenu.setUploadedScores(false);
 		ispaused=false;
-		
+		SoundController.play(Sound.TITLE);
 	}
 
 	@Override
