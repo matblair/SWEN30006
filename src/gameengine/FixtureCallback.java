@@ -32,7 +32,7 @@ public class FixtureCallback implements QueryCallback{
 	
 	private void checkJump(String type, Fixture fixture) {
 		if((type.equals("wall") && !fixture.isSensor()) || type.equals("bigswitch") || type.equals("cube")
-				|| type.equals("platform") || type.equals("movingplatform") || type.equals("noportalwalls")) {
+				|| type.equals("platform") || type.equals("movingplatform") || type.equals("noportalwall")) {
 			containsJumpableObject=true;
 			return;
 		}

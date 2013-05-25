@@ -22,9 +22,9 @@
 	<resource type="UIELEMENT" id="LEVELLOCKED">assets/sprites/uielements/levellocked.png</resource>
 	<resource type="UIELEMENT" id="INPUTTWO">assets/sprites/uielements/inputdisplay/inputtwo.png</resource>
 	<resource type="UIELEMENT" id="INPUTONE">assets/sprites/uielements/inputdisplay/inputone.png</resource>
-
+	
 	<!-- Sounds -->
-
+	
 	<!-- Images -->
 	<resource type="IMAGE" id="CHELLSPRITE">assets/sprites/gameobjects/chell.png</resource>
 	<resource type="IMAGE" id="HITBOX">assets/sprites/gameobjects/hitbox.png</resource>
@@ -34,16 +34,16 @@
 	<resource type="IMAGE" id="SMALLSWITCH">assets/sprites/levelobjects/smallswitch.png</resource>
 	<resource type="IMAGE" id="DOOROPEN">assets/sprites/levelobjects/dooropen.png</resource>
 	<resource type="IMAGE" id="DOORCLOSE">assets/sprites/levelobjects/doorclosed.png</resource>
-    <resource type="IMAGE" id="BLUEPORTAL">assets/sprites/levelobjects/blueportal.png</resource>
-    <resource type="IMAGE" id="ORANGEPORTAL">assets/sprites/levelobjects/orangeportal.png</resource>
-    <resource type="IMAGE" id="SWITCHDOWN">assets/sprites/levelobjects/switchdown.png</resource>
-    <resource type="IMAGE" id="SWITCHSENSOR">assets/sprites/levelobjects/switchsensor.png</resource>
-    <resource type="IMAGE" id="SWITCHUP">assets/sprites/levelobjects/switchup.png</resource>
-
-
+	<resource type="IMAGE" id="BLUEPORTAL">assets/sprites/levelobjects/blueportal.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL">assets/sprites/levelobjects/orangeportal.png</resource>
+	<resource type="IMAGE" id="SWITCHDOWN">assets/sprites/levelobjects/switchdown.png</resource>
+	<resource type="IMAGE" id="SWITCHSENSOR">assets/sprites/levelobjects/switchsensor.png</resource>
+	<resource type="IMAGE" id="SWITCHUP">assets/sprites/levelobjects/switchup.png</resource>
+	
+	
 	<!-- Achievement Images -->
 	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>
-
+	
 	<!-- LevelXML -->
 	<resource type="LEVELXML" id="0">levels/leveltwo.xml</resource>
 	<resource type="LEVELXML" id="1">levels/levelone.xml</resource>
@@ -62,13 +62,14 @@
 	<resource type="LEVELXML" id="14">levels/levelfifteen.xml</resource>
 	<resource type="LEVELXML" id="15">levels/levelsixteen.xml</resource>
 	<resource type="LEVELXML" id="16">levels/level1x4FF.xml</resource>
-
-
+	<resource type="LEVELXML" id="17">levels/mario.xml</resource>
+	
+	
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
 	<resource type="INPUTXML" id="1">inputs/inputtwo.xml</resource>
-
-
+	
+	
 	<!-- Vertex XML -->
 	<resource type="SHAPE" id="CUBESHAPE" vertpath="cube.xml">cubepath</resource>
 	<resource type="SHAPE" id="CHELLSHAPE" vertpath="chell.xml">chellpath</resource>
@@ -80,17 +81,17 @@
 	<resource type="SHAPE" id="DOORSHAPE" vertpath="door.xml">doorpath</resource>
 	<resource type="SHAPE" id="LEFTEDGEVERTICES" vertpath="switchleftedge.xml">doorpath</resource>
 	<resource type="SHAPE" id="RIGHTEDGEVERTICES" vertpath="switchedgeright.xml">doorpath</resource>
-
-
-
 	
-
+	
+	
+	
+	
 	<!-- Animations -->
-
+	
 	<!-- Fonts -->
 	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>
 	<resource type="FONT" id="PAUSEFONT" fontsize="24">assets/fonts/RETRO.ttf</resource>
-    <resource type="FONT" id="TITLEFONT" fontsize="30">assets/fonts/RETRO.ttf</resource>
-
+	<resource type="FONT" id="TITLEFONT" fontsize="30">assets/fonts/RETRO.ttf</resource>
+	
 	
 </resources>
