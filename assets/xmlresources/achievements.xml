@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+<<<<<<< HEAD
 <resource levelid="-1" id="RISINGSUN" achid="1" target="10.0" actype="timefallen" name="Falling..." unlocked="false">Fall for more than 10 seconds in any level.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="2" target="60.0" actype="timefallen" name="Free Falling." unlocked="false">Fall for more than 60 seconds in any level.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="3" target="120.0" actype="timefallen" name="Slow Down Cowboy." unlocked="false">Fall for more than 120 seconds in any level.</resource>
@@ -22,4 +23,13 @@
 <resource levelid="-1" id="RISINGSUN" achid="20" target="10000000.0" actype="distwalked" name="Walking On The Sun" unlocked="false">Well this is just a bit sad...</resource>
 <resource levelid="-1" id="RISINGSUN" achid="21" target="10.0" actype="jumps" name="Can't Have this" unlocked="false">Description goes here</resource>
 <resource levelid="-1" id="RISINGSUN" achid="22" target="10.0" actype="portals" name="Can't nop this" unlocked="false">Description goes here</resource>
+=======
+<resource levelid="-1" id="RISINGSUN" achid="3" target="10.0" actype="timelevel" name="Can't woo this" unlocked="true">Description goes here</resource>
+<resource levelid="-1" id="RISINGSUN" achid="2" target="10.0" actype="timefallen" name="Woooh Achievements" unlocked="true">Description goes here</resource>
+<resource levelid="-1" id="RISINGSUN" achid="1" target="10.0" actype="cubesused" name="Test Two" unlocked="true">Description goes here</resource>
+<resource levelid="-1" id="RISINGSUN" achid="7" target="10.0" actype="velocity" name="Can't ha this" unlocked="true">Description goes here</resource>
+<resource levelid="-1" id="RISINGSUN" achid="6" target="10.0" actype="distwalked" name="Rising Sun" unlocked="true">Description goes here</resource>
+<resource levelid="-1" id="RISINGSUN" achid="5" target="10.0" actype="jumps" name="Can't Have this" unlocked="true">Description goes here</resource>
+<resource levelid="-1" id="RISINGSUN" achid="4" target="10.0" actype="portals" name="Can't nop this" unlocked="true">Description goes here</resource>
+>>>>>>> champ
 </resources>
