@@ -2,14 +2,18 @@
 
 <resources>
 
+    <!-- NOTE: NEED PREDEFINED ORANGE PORTAL AT  xStart="26" yStart="13" -->
+
 	<!-- Walls -->
 	
-	<resource type="WALL" id="WALL" xStart="1" yStart="1" xEnd="25" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="25" yStart="1" xEnd="25" yEnd="20">assets/sprites/wall.png</resource>
-    <resource type="WALL" id="NOPORTALWALL" xStart="25" yStart="20" xEnd="1" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="1" yStart="1" xEnd="26" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="26" yStart="1" xEnd="26" yEnd="20">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="NOPORTALWALL" xStart="26" yStart="20" xEnd="1" yEnd="20">assets/sprites/wall.png</resource>
     <resource type="WALL" id="NOPORTALWALL" xStart="1" yStart="20" xEnd="1" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="NOPORTALWALL" xStart="25" yStart="12" xEnd="20" yEnd="12">assets/sprites/wall.png</resource>
-    <resource type="WALL" id="NOPORTALWALL" xStart="20" yStart="12" xEnd="20" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="26" yStart="12" xEnd="20" yEnd="12">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="26" yStart="11" xEnd="20" yEnd="11">assets/sprites/wall.png</resource>
+    <resource type="WALL" id="NOPORTALWALL" xStart="21" yStart="12" xEnd="21" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="20" yStart="11" xEnd="20" yEnd="20">assets/sprites/wall.png</resource>
 	
 	<!-- Platforms -->
     <resource type="PLATFORM" id="SMALLPLATFORM" xStart="2.5" yStart="3" width="4.0" height="0.25">assets/sprites/wall.png</resource>
@@ -33,8 +37,8 @@
     <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="4" yStart="18" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
     
 	<!-- Switches -->
-	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="21.5" yStart="13" xCube="22" yCube="25" cubeid="CUBE">assets/sprites/wall.png</resource>
-	<resource type="BIGSWITCH" id="SWITCHUP" xStart="2.5" yStart="11" contactimg="SWITCHSENSOR" downid="SWITCHDOWN" doorid="MAINDOOR">assets/sprites/hitbox.png</resource>
+	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="21.5" yStart="12.5" xCube="22" yCube="23" cubeid="CUBE">assets/sprites/wall.png</resource>
+	<resource type="BIGSWITCH" id="SWITCHUP" xStart="2.5" yStart="11.20" contactimg="SWITCHSENSOR" downid="SWITCHDOWN" doorid="MAINDOOR">assets/sprites/hitbox.png</resource>
 	
 	<!-- End Zone -->
 	<resource type="ENDZONE" xStart="3" yStart="18">endzone</resource>
