@@ -6,8 +6,8 @@ public class DistanceWalkedAchievement extends Achievement{
 
 
 	public DistanceWalkedAchievement(String name, String description,
-			boolean unlocked, String imgID, int levelId, float distWalked) {
-		super(name, description, unlocked, imgID, actype,levelId,distWalked);
+			boolean unlocked, String imgID, int levelId, float distWalked,boolean persistant) {
+		super(name, description, unlocked, imgID, actype,levelId,distWalked,persistant);
 	}
 
 	@Override
@@ -15,12 +15,12 @@ public class DistanceWalkedAchievement extends Achievement{
 		boolean isUnlocked=false;
 		
 		if(levelId==-1){
-			if(stats.getDistWalked()>=target){
+			if(stats.getDistWalked()/1000>=target){
 				unlockAchievement();
 				isUnlocked=true;
 
 			}
-		} else if (levelId==stats.getLevelID() && stats.getDistWalked()>=target){
+		} else if (levelId==stats.getLevelID() && stats.getDistWalked()/1000>=target){
 			unlockAchievement();
 			isUnlocked=true;
 
@@ -29,4 +29,10 @@ public class DistanceWalkedAchievement extends Achievement{
 		return isUnlocked;
 	}
 
+	@Override
+	public void decrementStats(LevelStats stats) {
+		setDiff(stats.getDistWalked()-getDiff());
+		this.target=this.target-getDiff();
+		setDiff(stats.getDistWalked()+getDiff());
+	}
 }

@@ -1,6 +1,5 @@
 package gamestates;
 
-
 import gameengine.Camera;
 import gameengine.InputManager;
 import gameengine.PhysUtils;
@@ -19,6 +18,8 @@ import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import scoringsystem.HighScoreBackgroundThread;
 
 public class GameState extends BasicGameState implements KeyListener, MouseListener {
 	private static boolean finishedEndGame = false;
@@ -43,8 +44,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		level = new Level();
 		cam = new Camera();
 		paused = new Paused(level.getLevelId());
-		endgame = new EndGameMenu();
-		
+		endgame = new EndGameMenu();		
 	}
 
 	@Override

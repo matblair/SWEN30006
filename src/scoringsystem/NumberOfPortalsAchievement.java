@@ -5,8 +5,8 @@ public class NumberOfPortalsAchievement extends Achievement{
 
 	
 	public NumberOfPortalsAchievement(String name, String description,
-			boolean unlocked, String imgID, int levelId, float portals) {
-		super(name, description, unlocked, imgID,actype,levelId,portals);
+			boolean unlocked, String imgID, int levelId, float portals,boolean persistant) {
+		super(name, description, unlocked, imgID,actype,levelId,portals,persistant);
 	}
 
 
@@ -30,5 +30,11 @@ public class NumberOfPortalsAchievement extends Achievement{
 		return isUnlocked;
 	}
 	
+	@Override
+	public void decrementStats(LevelStats stats) {
+		setDiff(stats.getNumberPortals()-getDiff());
+		this.target=this.target-getDiff();
+		setDiff(stats.getNumberPortals()+getDiff());
+	}
 
 }

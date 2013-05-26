@@ -11,11 +11,13 @@ public abstract class Achievement {
 	private String actype;
 	protected float target;
 	protected int levelId;
+	private float diff=0;
+	private boolean persistant;
 
 	
 	private final float filterAmount = 0.5f;
 	
-	public Achievement (String name, String description, boolean unlocked, String imgID, String actype, int levelid, float target) {
+	public Achievement (String name, String description, boolean unlocked, String imgID, String actype, int levelid, float target, boolean persistant) {
 		this.name = name;
 		this.setLevelId(levelid);
 		this.actype=actype;
@@ -26,6 +28,7 @@ public abstract class Achievement {
 		image = AssetManager.requestAchiemeventResource(imgID);
 		imageLocked = image.copy();
 		imageLocked.setImageColor(filterAmount, filterAmount, filterAmount);
+		this.persistant=persistant;
 	}
 	
 	public String getName() {
@@ -57,6 +60,8 @@ public abstract class Achievement {
 	}
 	
 	public abstract boolean checkUnlock(LevelStats stats);
+	
+	public abstract void decrementStats(LevelStats stats);
 
 	public String getActype() {
 		return actype;
@@ -73,6 +78,23 @@ public abstract class Achievement {
 	public void setLevelId(int levelId) {
 		this.levelId = levelId;
 	}
+
+	public boolean isPersistant() {
+		return persistant;
+	}
+
+	public void setPersistant(boolean persistant) {
+		this.persistant = persistant;
+	}
+
+	public float getDiff() {
+		return diff;
+	}
+
+	public void setDiff(float diff) {
+		this.diff = diff;
+	}
+
 
 
 }

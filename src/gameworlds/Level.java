@@ -67,8 +67,10 @@ public class Level {
 
 
 	public Level() throws SlickException{
+	
 		// Create physics worlds
 		world = new World(gravity);
+		
 		//Initialises ArrayLists
 		cubes = new HashMap<String,CompanionCube>();
 		walls = new HashMap<String,Wall>();
@@ -84,6 +86,7 @@ public class Level {
 		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
 		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
 		glados = new GLaDOS(this.levelid);
+
 	}
 	
 	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
@@ -287,6 +290,8 @@ public class Level {
 
 	public void setLevelId(final int id) {
 		levelid = id;
+		glados.getLevelStats().setLevelID(id);
+		Paused.setLevelid(id);
 	}
 
 	public void setLevelPlayer(final Player player) {

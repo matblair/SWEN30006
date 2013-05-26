@@ -36,7 +36,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 	
 	private Image selected;
 
-	private final int itemsPerRow = 5;
+	private final int itemsPerRow = 6;
 	private final int xSpacing = 180;
 	private final int ySpacing = 180;
 	private final int yStartHeight = 250;

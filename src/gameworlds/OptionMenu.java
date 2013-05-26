@@ -22,9 +22,8 @@ public class OptionMenu extends InGameMenu {
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	protected static int mainMenuItemSelected = 0;
 
-	private static final int MENU_SCREENSELECT=0;
-	private static final int MENU_SOUNDLEVEL=1;
-	private static final int MENU_DISPLAYINPUT=2;
+	private static final int MENU_SOUNDLEVEL=0;
+	private static final int MENU_DISPLAYINPUT=1;
 
 	private static boolean displayscreensize=false;
 	private static boolean displaysoundlevel=false;
@@ -92,11 +91,6 @@ public class OptionMenu extends InGameMenu {
 	public
 	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
 		switch (mainMenuItemSelected){
-		case MENU_SCREENSELECT:
-			displayscreensize=true;
-			displaysoundlevel=false;
-			displayinputload=false;
-			break;
 		case MENU_SOUNDLEVEL:
 			displayscreensize=false;
 			displaysoundlevel=true;

@@ -4,8 +4,8 @@ public class CubesAchievement extends Achievement{
 	
 	private final static String actype="cubesused";
 	public CubesAchievement(String name, String description, boolean unlocked,
-			String imgID, int levelid, float cubeTarget) {
-		super(name, description, unlocked, imgID,actype,levelid, cubeTarget);
+			String imgID, int levelid, float cubeTarget, boolean persistant) {
+		super(name, description, unlocked, imgID,actype,levelid, cubeTarget,persistant);
 		setLevelId(levelid);
 	}
 
@@ -25,6 +25,14 @@ public class CubesAchievement extends Achievement{
 		}	
 		
 		return isUnlocked;
+	}
+
+
+	@Override
+	public void decrementStats(LevelStats stats) {
+		setDiff(stats.getCubesPickedUp()-getDiff());
+		this.target=this.target-getDiff();
+		setDiff(stats.getCubesPickedUp()+getDiff());
 	}
 
 }

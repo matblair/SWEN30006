@@ -7,8 +7,8 @@ public class TimingAchievement extends Achievement{
 
 	
 	public TimingAchievement(String name, String description, boolean unlocked,
-			String imgID, int levelId, float timetarget) {
-		super(name, description, unlocked, imgID,actype,levelId,timetarget);
+			String imgID, int levelId, float timetarget,boolean persistant) {
+		super(name, description, unlocked, imgID,actype,levelId,timetarget,persistant);
 	}
 	
 	@Override
@@ -31,4 +31,10 @@ public class TimingAchievement extends Achievement{
 		
 	}
 
+	@Override
+	public void decrementStats(LevelStats stats) {
+		setDiff(stats.getTimeInLevel()-getDiff());
+		this.target=this.target-getDiff();
+		setDiff(stats.getTimeInLevel()+getDiff());
+	}
 }

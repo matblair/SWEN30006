@@ -4,18 +4,15 @@ import gameengine.Portal2D;
 import gameobjects.Player;
 import gamestates.GameState;
 
+import java.util.ArrayList;
 // Genetic Lifeform and Disk Operating System
 // i.e. stats watcher
 import java.util.Map;
-
 import org.newdawn.slick.SlickException;
-
-
 
 import resourcemanagers.AchievementLoader;
 import resourcemanagers.AssetManager;
 import resourcemanagers.HighScoreLoader;
-import resourcemanagers.OnlineHighScoreLoader;
 
 public class GLaDOS {
 
@@ -56,7 +53,7 @@ public class GLaDOS {
 					GameState.getLevel().getAchievementPopups().remove(GameState.getLevel().getAchievementPopups().get(i));
 				}
 			}
-		}
+		}	
 	}
 
 	public void pickupCube(){
@@ -72,19 +69,18 @@ public class GLaDOS {
 	}
 
 	public void updateHighScores(int levelid) {
-		if(Portal2D.online){
-			OnlineHighScoreLoader.addScore(Portal2D.name, stats.getTimeInLevel(), stats.getLevelID());
-			OnlineHighScoreLoader.setNeedupdate(true);
-			OnlineHighScoreLoader.getToupdate().add(levelid);
-		} else {
-			try {
-				AssetManager.getHighscores().get(levelid).add(new HighScore(Portal2D.name, stats.getTimeInLevel()/1000, stats.getLevelID()));
+		try {
+				if(!AssetManager.getHighscores().containsKey(levelid)){
+					ArrayList<HighScore> newarray = new ArrayList<HighScore>();
+					AssetManager.getHighscores().put(levelid,newarray);
+				}
+				HighScore toAdd = new HighScore(Portal2D.name, stats.getTimeInLevel()/1000, stats.getLevelID());
+				AssetManager.getHighscores().get(levelid).add(toAdd);
+				HighScoreBackgroundThread.addScore(toAdd);
 				HighScoreLoader.saveHighScores();
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}
-		}
-
 	}
 
 	public void finaliseStats(){
@@ -105,6 +101,9 @@ public class GLaDOS {
 			if(!ac.isUnlocked() && ac.checkUnlock(stats)){
 				stats.setAchievementsUnlocked(stats.getAchievementsUnlocked()+1);
 				GameState.getLevel().getAchievementPopups().add(new AchievementPopup(TIMER,ac.getImgid(), ac.getName()));
+			}
+			if(ac.isPersistant()){
+				ac.decrementStats(stats);
 			}
 		}
 	}

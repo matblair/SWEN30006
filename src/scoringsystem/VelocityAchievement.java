@@ -7,8 +7,8 @@ public class VelocityAchievement extends Achievement{
 
 	
 	public VelocityAchievement(String name, String description,
-			boolean unlocked, String imgID, int levelId, float targetvel) {
-		super(name, description, unlocked, imgID,actype,levelId,targetvel);
+			boolean unlocked, String imgID, int levelId, float targetvel,boolean persistant) {
+		super(name, description, unlocked, imgID,actype,levelId,targetvel,persistant);
 	}
 
 	@Override
@@ -29,4 +29,10 @@ public class VelocityAchievement extends Achievement{
 		return isUnlocked;
 	}
 
+	@Override
+	public void decrementStats(LevelStats stats) {
+		setDiff(stats.getMaxVelocity()-getDiff());
+		this.target=this.target-getDiff();
+		setDiff(stats.getMaxVelocity()+getDiff());
+	}
 }

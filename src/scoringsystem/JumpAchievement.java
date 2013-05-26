@@ -5,8 +5,8 @@ public class JumpAchievement extends Achievement {
 
 
 	public JumpAchievement(String name, String description, boolean unlocked,
-			String imgID, int levelId, float target) {
-		super(name, description, unlocked, imgID,actype,levelId, target);
+			String imgID, int levelId, float target,boolean persistant) {
+		super(name, description, unlocked, imgID,actype,levelId, target,persistant);
 	}
 
 
@@ -26,5 +26,13 @@ public class JumpAchievement extends Achievement {
 		
 		return isUnlocked;
 	}
+	
+	@Override
+	public void decrementStats(LevelStats stats) {
+		setDiff(stats.getJumps()-getDiff());
+		this.target=this.target-getDiff();
+		setDiff(stats.getJumps()+getDiff());
+	}
+	
 
 }

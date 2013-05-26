@@ -95,24 +95,24 @@ public class AchievementLoader {
 		float target = Float.parseFloat(resourceElement.getAttribute("target"));
 		String description = resourceElement.getTextContent();
 		boolean unlocked = Boolean.parseBoolean(resourceElement.getAttribute("unlocked"));
-		if(type.equals("distfallen")){
-			
-		}else if(type.equals("timefallen")){
-			AssetManager.getAchievementMap().put(achid, new TimeFallingAchievement(name, description, unlocked, imgid, levelid, target));
+		boolean persistance = Boolean.parseBoolean(resourceElement.getAttribute("persistant"));
+		
+		if(type.equals("timefallen")){
+			AssetManager.getAchievementMap().put(achid, new TimeFallingAchievement(name, description, unlocked, imgid, levelid, target,persistance));
 		}else if(type.equals("distwalked")){
-			AssetManager.getAchievementMap().put(achid, new DistanceWalkedAchievement(name, description, unlocked, imgid, levelid, target));
+			AssetManager.getAchievementMap().put(achid, new DistanceWalkedAchievement(name, description, unlocked, imgid, levelid, target,persistance));
 		}else if(type.equals("jumps")){
-			AssetManager.getAchievementMap().put(achid, new JumpAchievement(name, description, unlocked, imgid, levelid, target));
+			AssetManager.getAchievementMap().put(achid, new JumpAchievement(name, description, unlocked, imgid, levelid, target,persistance));
 		}else if(type.equals("portals")){
-			AssetManager.getAchievementMap().put(achid, new NumberOfPortalsAchievement(name, description, unlocked, imgid, levelid, target));
+			AssetManager.getAchievementMap().put(achid, new NumberOfPortalsAchievement(name, description, unlocked, imgid, levelid, target,persistance));
 		}else if(type.equals("velocity")){
-			AssetManager.getAchievementMap().put(achid, new VelocityAchievement(name, description, unlocked, imgid, levelid, target));
+			AssetManager.getAchievementMap().put(achid, new VelocityAchievement(name, description, unlocked, imgid, levelid, target,persistance));
 		}else if(type.equals("timelevel")){
-			AssetManager.getAchievementMap().put(achid, new TimingAchievement(name, description, unlocked, imgid, levelid, target));
+			AssetManager.getAchievementMap().put(achid, new TimingAchievement(name, description, unlocked, imgid, levelid, target,persistance));
 		}else if(type.equals("cubesused")){
-			AssetManager.getAchievementMap().put(achid, new CubesAchievement(name, description, unlocked, imgid, levelid, target));
+			AssetManager.getAchievementMap().put(achid, new CubesAchievement(name, description, unlocked, imgid, levelid, target,persistance));
 		}else if(type.equals("distfallen")){
-			AssetManager.getAchievementMap().put(achid, new FallingAchievement(name, description, unlocked, imgid, levelid, target));
+			AssetManager.getAchievementMap().put(achid, new FallingAchievement(name, description, unlocked, imgid, levelid, target,persistance));
 		}
 	}
 	
@@ -147,12 +147,11 @@ public class AchievementLoader {
 		
 		for(String achid: map.keySet()){
 			Achievement towrite = map.get(achid);
-			String line = "<resource levelid=\"" + towrite.getLevelId() + "\" id=\"" + towrite.getImgid() + "\" achid=\"" + achid +  "\" target=\"" + towrite.getTarget() + "\" actype=\"" +towrite.getActype() + "\" name=\"" + towrite.getName() + "\" unlocked=\"" + towrite.isUnlocked() + "\">" +towrite.getDescription() +"</resource>\n";
+			String line = "<resource levelid=\"" + towrite.getLevelId() + "\" id=\"" + towrite.getImgid() + "\" achid=\"" + achid +  "\" target=\"" + towrite.getTarget() + "\" actype=\"" +towrite.getActype() + "\" name=\"" + towrite.getName() + "\" persistant=\"" + towrite.isPersistant() + "\" unlocked=\"" + towrite.isUnlocked() + "\">" +towrite.getDescription() +"</resource>\n";
 			os.write(line.getBytes(Charset.forName("UTF-8")));
 		}
 		String close = "</resources>\n";
 		os.write(close.getBytes(Charset.forName("UTF-8")));		
-
 		return;
 	}
 	

@@ -7,8 +7,8 @@ public class TimeFallingAchievement extends Achievement{
 
 
 	public TimeFallingAchievement(String name, String description, boolean unlocked,
-			String imgID, int levelId, float fallTarget) {
-		super(name, description, unlocked, imgID,actype,levelId,fallTarget);
+			String imgID, int levelId, float fallTarget,boolean persistant) {
+		super(name, description, unlocked, imgID,actype,levelId,fallTarget,persistant);
 	}
 
 
@@ -28,5 +28,13 @@ public class TimeFallingAchievement extends Achievement{
 		
 		return isUnlocked;
 	}
+	
+	@Override
+	public void decrementStats(LevelStats stats) {
+		setDiff(stats.getTimeFallen()-getDiff());
+		this.target=this.target-getDiff();
+		setDiff(stats.getTimeFallen()+getDiff());
+	}
+
 
 }

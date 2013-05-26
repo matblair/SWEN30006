@@ -10,12 +10,12 @@ import st.mark.highscores.HighscoreBoard;
 import st.mark.highscores.HighscoreItem;
 
 public class OnlineHighScoreLoader {
-	
+
 	public static boolean needupdate=false;
 	private static ArrayList<Integer> toupdate = new ArrayList<Integer>();
 
 	private static HighscoreBoard hs;
-	
+
 	private static Map<Integer, ArrayList<HighScore>> localcopies;
 
 	public static ArrayList<HighScore> getScores(int levelid){
@@ -37,12 +37,10 @@ public class OnlineHighScoreLoader {
 		System.out.println(levelscores.size());
 		return levelscores;
 	}
-	
+
 	public static void initiateScores(){
 		hs = new HighscoreBoard(Portal2D.gameKey);
 		localcopies = new HashMap<Integer, ArrayList<HighScore>>();
-		//Download first few high score levels for faster loading in game, load later levels as we progress.
-		
 	}
 
 	public static void addScore(String name, int time, int levelid){
@@ -58,12 +56,12 @@ public class OnlineHighScoreLoader {
 		for(int i=0; i<number; i++){
 			fin.add(temp.get(i));
 		}
-		
+
 		return fin;
 	}
-	
+
 	public static ArrayList<HighScore> getLocalFirst(int levelid, int number){
-			if(needupdate){
+		if(needupdate){
 			if(getToupdate().contains(levelid)){
 				localcopies.put(levelid, getTop(levelid,number));
 				getToupdate().remove(levelid);
@@ -72,11 +70,11 @@ public class OnlineHighScoreLoader {
 				}
 			}
 		}
-		
+
 		if(!localcopies.containsKey(levelid)){
 			localcopies.put(levelid, getTop(levelid,number));
 		}
-		
+
 		return localcopies.get(levelid);		
 	}
 
@@ -100,6 +98,12 @@ public class OnlineHighScoreLoader {
 	public static void setToupdate(ArrayList<Integer> toupdate) {
 		OnlineHighScoreLoader.toupdate = toupdate;
 	}
-	
+
+	public static void addScoreList(ArrayList<HighScore> toAdd){
+		for(HighScore hs: toAdd){
+			addScore(hs.getName(),(int) hs.getScore(),hs.getLevelid());
+		}
+	}
+
 
 }

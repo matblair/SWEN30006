@@ -38,7 +38,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	private int selected =-1;
 	private static String titleText = new String("High Scores");
 	private static String subtitleText = new String("Version 0.1");
-	private static int MAXLEVEL=2;
+	private static int MAXLEVEL=17;
 
 	private static Vector<String> menuItems = new Vector<String>();
 	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
@@ -67,11 +67,7 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
 		width=container.getWidth();
-		if(!Portal2D.online){
-			scores = AssetManager.requestHighScores(currentlevel);
-		} else {
-			scores = AssetManager.requestHighScores(currentlevel);
-		}
+		scores = AssetManager.requestHighScores(currentlevel);
 	}
 
 
@@ -97,66 +93,19 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 		g.setFont(font);
 		g.drawString(subtitleText, 40, 80);
 
-
-
-		if(Portal2D.online){
-			renderOnline(g);
-		} else {
-			renderOffline(g);
-		}
+		renderScores(g);
 	}
 
-	private void renderOffline(Graphics g) {
+	private void renderScores(Graphics g) {
 		int index = 0;
 		int x, y;
 		String text;
 		int levelid;
 		float score;
 		String scoreS;
-
-		for (HighScore hs : scores) {
-			Collections.sort(scores);
-			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
-			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
-
-
-			levelid = hs.getLevelid();
-			levelid++;
-			g.setColor(Color.darkGray);
-			g.drawString("LEVEL "+levelid, x-10, 120);
-
-
-			text = hs.getName();
-			g.setColor(Color.gray);
-			g.drawString(text, x-50, y);
-
-			score = hs.getScore();
-			scoreS = String.valueOf(score);
-			g.setColor(Color.gray);
-			g.drawString(scoreS, x+ 50, y);
-
-			index++;
-			if(index>5){
-				break;
-			}
-		}
-	}
-
-
-	private void renderOnline(Graphics g) {
-		int index = 0;
-		int x, y;
-		String text;
-		int levelid;
-		float score;
-		String scoreS;
-
-		if(scores!=null && scores.size()!=0){
+		if(scores!=null && !scores.isEmpty()){
 			for (HighScore hs : scores) {
-
-
 				Collections.sort(scores);
-
 				x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
 				y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
 
@@ -177,26 +126,19 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 				g.drawString(scoreS, x+ 50, y);
 
 				index++;
+				if(index>5){
+					break;
+				}
 			}
-		} else if(scores!=null) {
-			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
-			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
-			g.setColor(Color.darkGray);
-			g.drawString("LEVEL "+ 1, x-10, 120);	
-			g.setColor(Color.orange);
-			g.drawString("No high scores yet for this level!", x-(font.getWidth("Loading High Scores from Server")/2), 160);
-			g.drawString("It's yours for the taking!", x-(font.getWidth("Loading High Scores from Server")/2), 200);
-		} else if(scores==null){
+		} else {
 			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
 			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
 			g.setColor(Color.darkGray);
 			g.drawString("LEVEL "+ (currentlevel+1), x-10, 120);	
 			g.setColor(Color.orange);
-			g.drawString("Loading High Scores from the Server!", x-(font.getWidth("Loading High Scores from the Server!")/2), 160);
-			scores = OnlineHighScoreLoader.getLocalFirst(0, 10);
-		}		
+			g.drawString("No High Scores For This Level Yet!", x-(font.getWidth("No High Scores For This Level Yet!")/2), y);
+		}
 	}
-
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
@@ -217,28 +159,17 @@ public class HighScoreState extends BasicGameState implements KeyListener{
 	@Override
 	public void keyPressed(int key, char c) {
 		if (key == InputManager.NAV_RIGHT) {
-
 			if (currentlevel +1 < MAXLEVEL+1) {
 				currentlevel++;
-				if(Portal2D.online){
-					scores = OnlineHighScoreLoader.getLocalFirst(currentlevel, TODISPLAY);
-				} else {
-					System.out.println(currentlevel);
-					scores = AssetManager.requestHighScores(currentlevel);
-					System.out.println(scores);
-				}
+				System.out.println(currentlevel);
+				scores = AssetManager.requestHighScores(currentlevel);
+				System.out.println(scores);
 			}
 		} else if (key == InputManager.NAV_LEFT) {
-
 			if (currentlevel > 0){
 				currentlevel--;
-				if(Portal2D.online){
-					scores = OnlineHighScoreLoader.getLocalFirst(currentlevel, TODISPLAY);
-				} else {
-					scores = AssetManager.requestHighScores(currentlevel);
-					System.out.println(scores);
-
-				}
+				scores = AssetManager.requestHighScores(currentlevel);
+				System.out.println(scores);
 			}	
 		}
 	}

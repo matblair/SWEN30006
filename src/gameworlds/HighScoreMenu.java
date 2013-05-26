@@ -1,20 +1,16 @@
 package gameworlds;
 
 import gameengine.InputManager;
-import gameengine.Portal2D;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
-
 import resourcemanagers.AssetManager;
-import resourcemanagers.OnlineHighScoreLoader;
 import scoringsystem.HighScore;
 
 public class HighScoreMenu extends InGameMenu{
@@ -32,11 +28,7 @@ public class HighScoreMenu extends InGameMenu{
 	public HighScoreMenu(int levelid){
 		menuItems.add("Back");
 		stringMaps.put("Back", MENU_PAUSEGAME);
-		if(Portal2D.online){
-			scores=OnlineHighScoreLoader.getLocalFirst(levelid, 4);
-		} else {
-			scores = AssetManager.requestHighScores(levelid);
-		}
+		scores = AssetManager.requestHighScores(levelid);
 	}
 
 	@Override
@@ -72,16 +64,18 @@ public class HighScoreMenu extends InGameMenu{
 		}
 	}
 
-	@SuppressWarnings("unused")
 	@Override
 	public
 	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
-		if(firstupdate && Portal2D.online){
-			scores = OnlineHighScoreLoader.getLocalFirst(levelid, NUMDISPLAY);
-			firstupdate=false;
-		} else {
-			firstupdate=false;
+
+		if(!AssetManager.getHighscores().containsKey(levelid)){
+			ArrayList<HighScore> newarray = new ArrayList<HighScore>();
+			AssetManager.getHighscores().put(levelid,newarray);
 		}
+
+		scores = AssetManager.getHighscores().get(levelid);	
+		firstupdate=false;
+
 		if(selected!=-1){
 			switch (selected){
 			case MENU_PAUSEGAME:

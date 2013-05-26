@@ -236,7 +236,7 @@ public class Paused extends InGameMenu{
 	}
 
 	public static void setLevelid(int levelid) {
-		Paused.levelid = levelid;
+		Paused.levelid = levelid;	
 	}
 
 }

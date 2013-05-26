@@ -26,11 +26,11 @@ import scoringsystem.HighScore;
 
 
 public class HighScoreLoader {
-	
+
 	public HighScoreLoader(){
-		
+
 	}
-	
+
 	public int loadHighScores(final InputStream is, final boolean deferred) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
@@ -82,17 +82,17 @@ public class HighScoreLoader {
 			ArrayList<HighScore> newarray = new ArrayList<HighScore>();
 			AssetManager.getHighscores().put(levelid,newarray);
 		}
-		
+
 		String name = resourceElement.getAttribute("name");
 		float score = Float.parseFloat(resourceElement.getAttribute("score"));
 		AssetManager.getHighscores().get(levelid).add(new HighScore(name,score,levelid));
 
 	}
-	
+
 	public static void saveHighScores() throws SlickException{	
 		File outputfile = new File("assets/xmlresources/highscores.xml");
 		OutputStream os = null;
-		
+
 		try {
 			os = new FileOutputStream(outputfile);
 			writeOutput(AssetManager.getHighscores(), os);
@@ -107,7 +107,7 @@ public class HighScoreLoader {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return;
 	}
 
@@ -117,12 +117,14 @@ public class HighScoreLoader {
 		String open = "<resources>\n";
 		os.write(header.getBytes(Charset.forName("UTF-8")));
 		os.write(open.getBytes(Charset.forName("UTF-8")));		
-		
+
 		for(int i=0; i<highscores.size(); i++){
 			ArrayList<HighScore> hs = highscores.get(i);
-			for(HighScore score: hs){
-				String line = "<resource levelid=\"" + i + "\" name=\"" + score.getName() + "\" score=\"" + score.getScore() + "\">highscore</resource>\n";
-				os.write(line.getBytes(Charset.forName("UTF-8")));
+			if(hs!=null){
+				for(HighScore score: hs){
+					String line = "<resource levelid=\"" + i + "\" name=\"" + score.getName() + "\" score=\"" + score.getScore() + "\">highscore</resource>\n";
+					os.write(line.getBytes(Charset.forName("UTF-8")));
+				}
 			}
 		}
 		String close = "</resources>\n";
@@ -130,6 +132,6 @@ public class HighScoreLoader {
 
 		return;
 	}
-	
+
 
 }
