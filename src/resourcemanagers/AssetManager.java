@@ -60,7 +60,7 @@ public class AssetManager {
 	private static final String generalresource = "assets/xmlresources/";
 	private static final String achievementxml = "achievements.xml";
 	private static final String highscorexml = "highscores.xml";
-	
+
 	public static AssetManager getAssetManager()
 			throws SlickException{
 		if(manager==null){
@@ -68,7 +68,7 @@ public class AssetManager {
 		}
 		return manager;
 	}
-	
+
 	public static void loadAllGameAssets(){
 
 		try {
@@ -77,8 +77,8 @@ public class AssetManager {
 		} catch (SlickException e1) {
 			e1.printStackTrace();
 		}
-		
-		
+
+
 		final File f = new File(generalresource, loadinglist);
 		InputStream is = null;
 		try {
@@ -98,8 +98,6 @@ public class AssetManager {
 
 		loadAchievements();
 
-		//Initiate online high scores.
-		OnlineHighScoreLoader.initiateScores();
 		//Load local highscores
 		loadHighScores();
 
@@ -303,11 +301,15 @@ public class AssetManager {
 	}
 
 	public static void setHighscores(Map<Integer, ArrayList<HighScore>> highscores) {
-		AssetManager.highscores = highscores;
+		synchronized (AssetManager.highscores){
+			AssetManager.highscores = highscores;
+		}
 	}
 
 	public static ArrayList<HighScore> requestHighScores(int levelid){
-		return highscores.get(levelid);
+		synchronized (AssetManager.highscores){
+			return highscores.get(levelid);
+		}
 	}
 
 	public static Shape requestShape(String shapeid) {

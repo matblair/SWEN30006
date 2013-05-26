@@ -156,7 +156,7 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	@Override
 	public void keyPressed(int key, char c) {
 		if (key == InputManager.NAV_RIGHT) {
-			if (currentlevel +1 < MAXLEVEL+1) {
+			if (currentlevel + 1 < (MAXLEVEL+1)) {
 				currentlevel++;
 				System.out.println(currentlevel);
 				scores = AssetManager.requestHighScores(currentlevel);

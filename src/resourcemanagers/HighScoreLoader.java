@@ -27,8 +27,10 @@ import scoringsystem.HighScore;
 
 public class HighScoreLoader {
 
-	public HighScoreLoader(){
+	private static Object synlock;
 
+	public HighScoreLoader(){
+		synlock = new Object();
 	}
 
 	public int loadHighScores(final InputStream is, final boolean deferred) throws SlickException {
@@ -90,21 +92,23 @@ public class HighScoreLoader {
 	}
 
 	public static void saveHighScores() throws SlickException{	
-		File outputfile = new File("assets/xmlresources/highscores.xml");
-		OutputStream os = null;
+		synchronized (synlock){
+			File outputfile = new File("assets/xmlresources/highscores.xml");
+			OutputStream os = null;
 
-		try {
-			os = new FileOutputStream(outputfile);
-			writeOutput(AssetManager.getHighscores(), os);
-		} catch (final FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally	{
 			try {
-				os.close();
-			} catch (final IOException e) {
+				os = new FileOutputStream(outputfile);
+				writeOutput(AssetManager.getHighscores(), os);
+			} catch (final FileNotFoundException e) {
 				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally	{
+				try {
+					os.close();
+				} catch (final IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -112,6 +116,7 @@ public class HighScoreLoader {
 	}
 
 	private static void writeOutput(Map<Integer, ArrayList<HighScore>> highscores, OutputStream os) throws IOException {
+
 		//First write xml header 
 		String header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 		String open = "<resources>\n";
