@@ -5,62 +5,56 @@ import gameengine.PhysUtils;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import resourcemanagers.AssetManager;
 
 public class Door extends GameObject {
-	private boolean isOpen=false;
-	private Image openImage, closedImage;
-	private String doorId;
-	
-	private static final String OPENIMGID="DOOROPEN";
-	private static final String CLOSEIMGID="DOORCLOSE";
+	private static final String ANIMID="DOOR";
 	private static final String SHAPEID="DOORSHAPE";
 	private static final int BODYTYPE = PhysUtils.STATIC;
+	
+	private Animation animation;
+	private boolean isOpen=false;
+	private String doorId;
 
 	public Door(Vec2 location, World world, String doorId)
 			throws SlickException {
-		super(OPENIMGID);
+		super();
 		FixtureDef fixture = createFixture(SHAPEID);
 		this.createBody(location, world, fixture, BODYTYPE);
-		openImage = AssetManager.requestImage(OPENIMGID);
-		closedImage = AssetManager.requestImage(CLOSEIMGID);
+		animation = AssetManager.requestAnimationResources(ANIMID);
+		animation.setPingPong(true);
 		setDoorId(doorId);
 	}
 	
 	public void update (int delta) {
-		
+		animation.update(delta);
+		animation.stopAt(isOpen ? animation.getFrameCount()-1 : 0);
+		animation.start();
 	}
 	
 	@Override
 	public Image getImage() {
-		if (isOpen()) {
-			return openImage;
-		} else {
-			return closedImage;
-		}
+		return animation.getCurrentFrame();
 	}
 	
 	public void open() {
-		setOpen(true);
-		getBody().getFixtureList().setSensor(true);
+		if (!isOpen) {
+			isOpen = true;
+			getBody().getFixtureList().setSensor(true);
+		}
 	}
 	
 	public void close() {
-		setOpen(false);
-		getBody().getFixtureList().setSensor(false);
-	}
-	
-	public void toggle() {
-		if (isOpen()) {
-			close();
-		} else {
-			open();
+		if (isOpen) {
+			isOpen = false;
+			getBody().getFixtureList().setSensor(false);
 		}
 	}
-
+	
 	/**
 	 * @return the doorId
 	 */
@@ -80,12 +74,5 @@ public class Door extends GameObject {
 	 */
 	public boolean isOpen() {
 		return isOpen;
-	}
-
-	/**
-	 * @param isOpen the isOpen to set
-	 */
-	public void setOpen(boolean isOpen) {
-		this.isOpen = isOpen;
 	}
 }

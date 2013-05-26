@@ -235,7 +235,7 @@ public class AssetManager {
 	}
 
 	public static Animation requestAnimationResources(String animid){
-		return animationResources.get(animid);
+		return animationResources.get(animid).copy();
 	}
 
 	public ResourceLoader getResourceLoader() {
