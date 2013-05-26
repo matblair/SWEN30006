@@ -17,6 +17,7 @@ import scoringsystem.AchievementPopup;
 public class RenderEngine {
 	
 	private static final float ACOFFSET = 50;
+	private static final float wallwidth = 16;
 	private static Image achpopup;
 	
 	public static <T extends GameObject> void drawGameObjects(Map<String, T> map, Camera cam){
