@@ -1,8 +1,8 @@
 
 <resources>
 	<!-- Switch Sensor Vertices -->
-	<resource xloc="-52" yloc="-7">cube</resource>
+	<resource xloc="-52" yloc="0">cube</resource>
 	<resource xloc="-52" yloc="7">cube</resource>
 	<resource xloc="52" yloc="7">cube</resource>
-	<resource xloc="52" yloc="-7">cube</resource>
+	<resource xloc="52" yloc="0">cube</resource>
 </resources>
