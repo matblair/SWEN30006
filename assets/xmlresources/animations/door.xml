@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+	<resource id="DOOR1">1</resource>
+	<resource id="DOOR2">1</resource>
+	<resource id="DOOR3">1</resource>
+	<resource id="DOOR4">1</resource>
+	<resource id="DOOR5">1</resource>
+	<resource id="DOOR6">1</resource>
+	<resource id="DOOR7">1</resource>
+	<resource id="DOOR8">1</resource>
+	<resource id="DOOR9">1</resource>
+	<resource id="DOOR10">1</resource>
+	<resource id="DOOR11">1</resource>
+</resources>
