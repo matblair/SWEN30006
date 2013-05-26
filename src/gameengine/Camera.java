@@ -32,7 +32,6 @@ public class Camera {
 	public void follow(GameContainer gc, GameObject obj) {
 		dimensions.x = PhysUtils.pixelsToMetres(gc.getWidth());
 		dimensions.y = PhysUtils.pixelsToMetres(gc.getHeight());
-		
 		this.location = obj.getBody().getPosition().add(dimensions.mul(0.5f).negate());
 		bound(gc);
 	}
