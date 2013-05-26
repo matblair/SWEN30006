@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-<resource levelid="0" name="Mat" score="69.0">highscore</resource>
-<resource levelid="0" name="Mat" score="46.0">highscore</resource>
-<resource levelid="1" name="Mat" score="88.0">highscore</resource>
-<resource levelid="1" name="Mat" score="50.0">highscore</resource>
-<resource levelid="1" name="Mat" score="12.0">highscore</resource>
-<resource levelid="1" name="Mat" score="11.0">highscore</resource>
-<resource levelid="1" name="Mat" score="26.0">highscore</resource>
-<resource levelid="2" name="Mat" score="50.0">highscore</resource>
-<resource levelid="2" name="Mat" score="14.0">highscore</resource>
+<resource levelid="16" name="Mat" score="98.0">highscore</resource>
 </resources>

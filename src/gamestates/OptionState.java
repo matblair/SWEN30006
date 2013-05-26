@@ -154,6 +154,7 @@ public class OptionState extends BasicGameState implements KeyListener{
 
 	public void drawVolume(){
 		int imagelaod = (int)(soundLevelSelected/10);
+		System.out.println(soundLevelSelected);
 		Image newimage = volimages.get(imagelaod).getScaledCopy(400, 200);
 		newimage.drawCentered(750, 370);
 	}
