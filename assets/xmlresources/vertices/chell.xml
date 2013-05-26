@@ -3,11 +3,11 @@
 	<!-- Chell Vertices -->
 	<resource xloc="-52.0" yloc="33">cube</resource>
 	<resource xloc="-52" yloc="33">cube</resource>
-	<resource xloc="-29" yloc="-52">cube</resource>
-	<resource xloc="29.0" yloc="-52">cube</resource>
+	<resource xloc="-29" yloc="-51">cube</resource>
+	<resource xloc="29.0" yloc="-51">cube</resource>
 	<resource xloc="52.0" yloc="-33">cube</resource>
 	<resource xloc="52" yloc="33">cube</resource>
-	<resource xloc="29" yloc="52">cube</resource>
-	<resource xloc="-29" yloc="52">cube</resource>
+	<resource xloc="29" yloc="51">cube</resource>
+	<resource xloc="-29" yloc="51">cube</resource>
 
 </resources>

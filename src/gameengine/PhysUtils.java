@@ -9,7 +9,7 @@ public class PhysUtils {
 	public static final int DYNAMIC=2; 
 	public static final int PORTAL=3;
 
-	private static int scaleFactor = 64;
+	private static int scaleFactor = 68;
 	
 	/** Convert vector from metres to pixels.
 	 * 

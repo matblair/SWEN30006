@@ -52,6 +52,24 @@ public class BigSwitch {
 		base.createBody(location, world, basefd, PhysUtils.STATIC);
 		button.createBody(buttonloc, world, sensorfd, PhysUtils.DYNAMIC);
 		sensor.createBody(buttonloc, world, sensorfd, PhysUtils.STATIC);
+		sensor.getBody().getFixtureList().setSensor(true);
+		
+		// Join the bodies
+		joinBodies (world, button, base);
+	}
+	
+	private void joinBodies(World world, GameObject button, GameObject base) {
+		Vec2 axis = new Vec2(0, 1);
+		PrismaticJointDef jd = new PrismaticJointDef();
+		jd.initialize(button.getBody(), base.getBody(), button.getLocation(), axis);
+		jd.enableLimit = true;
+		jd.lowerTranslation = -3f;
+		jd.upperTranslation = 4f;
+		jd.motorSpeed = 10000;
+		jd.maxMotorForce = 0.1f;
+		jd.enableMotor = true;
+		jd.collideConnected=false;
+		world.createJoint(jd);
 	}
 	
 	public ArrayList<GameObject> getRenderableComponents() {
