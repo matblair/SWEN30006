@@ -33,7 +33,8 @@ public class RenderEngine {
 	
 	public static void drawBigSwitches (Map<String, BigSwitch> switches, Camera cam) {
 		for (BigSwitch s : switches.values()) {
-			drawGameObjects(s.getRenderableComponents().toArray(new GameObject[0]), cam);
+			drawGameObject(s.getButton(), cam);
+			drawGameObject(s.getBase(), cam);
 		}
 	}
 	
