@@ -5,14 +5,11 @@ import gameobjects.Player;
 import gamestates.GameState;
 
 import java.util.ArrayList;
-// Genetic Lifeform and Disk Operating System
-// i.e. stats watcher
 import java.util.Map;
 import org.newdawn.slick.SlickException;
 
 import resourcemanagers.AchievementLoader;
 import resourcemanagers.AssetManager;
-import resourcemanagers.HighScoreLoader;
 
 public class GLaDOS {
 
@@ -86,7 +83,6 @@ public class GLaDOS {
 		try {
 			AchievementLoader.saveAchievements();
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

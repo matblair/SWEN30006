@@ -138,8 +138,10 @@ public class ResourceLoader {
 	}
 	
 	private void addElementAsAnimation(Element resourceElement) {
-		Animation newanim=null;
+		String animpath=resourceElement.getTextContent();
 		String animid=resourceElement.getAttribute("id");
+		int duration=Integer.parseInt(resourceElement.getAttribute("duration"));
+		Animation newanim=AnimationLoader.loadAnimation(animpath, duration);
 		AssetManager.getAnimationResources().put(animid, newanim);
 	}
 	

@@ -15,6 +15,7 @@ import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.jbox2d.dynamics.joints.Joint;
 import org.jbox2d.dynamics.joints.JointType;
 import org.jbox2d.dynamics.joints.PrismaticJointDef;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -22,17 +23,20 @@ import resourcemanagers.AssetManager;
 import resourcemanagers.SoundController;
 
 public class Player extends GameObject{
-	
-	private static final String IMGID="CHELLSPRITE";
 	private static final String SHAPEID="CHELLSHAPE";
+	private final String RUNANIM = "CHELLRUN";
+	private final String FALLIMG = "CHELLFALL";
+	private final String IDLEIMG = "CHELLIDLE";
+
+	// Constants related to player movement
 	private static final int BODYTYPE=PhysUtils.DYNAMIC;
-	
+	private final float maxRunVelocity = 5;
+	private final float accelFactor = 0.02f;
+	private final float accelInAir = 0.01f;
+	private final float jumpFactor = 10;
+
 	private static final float MAXCUBEDIST = 1.8f;
 	private static final float DISTCHECK = 1.5f;
-	/** The left and right facing images for the players **/
-	private Image sprite_right;
-	private Image sprite_left; 
-	private boolean facingleft=false;
 
 	/** Is holding cube? **/
 	private boolean holdingcube=false;
@@ -40,11 +44,11 @@ public class Player extends GameObject{
 	/** Variables for interaction **/
 	private CompanionCube cubecarrying;
 
-	// Constants related to player movement
-	private final float maxRunVelocity = 5;
-	private final float accelFactor = 0.02f;
-	private final float accelInAir = 0.01f;
-	private final float jumpFactor = 10;
+	// Player image stuff
+	private boolean facingleft=false;
+	private Animation run;
+	private Image fall;
+	private Image idle;
 
 	/** Constructor
 	 * @param imgid The Sprites Image Id to get resource
@@ -53,22 +57,18 @@ public class Player extends GameObject{
 	 * @throws SlickException
 	 */
 	public Player(Vec2 pos, World world) throws SlickException {
-		super(IMGID);
-		FixtureDef fixture = createFixture();
+		FixtureDef fixture = this.createFixture(SHAPEID);
 		this.createBody(pos, world, fixture, BODYTYPE);
-		sprite_right=getImage();				
-		setObject_left(sprite_right.getFlippedCopy(true,false));
 		Vec2 dim = new Vec2(108f,102f);
 		setDimensions(dim);
+
+		run = AssetManager.requestAnimationResources(RUNANIM);
+		run.setAutoUpdate(false);
+		System.out.println(run.getFrameCount() + " frames");
+		fall = AssetManager.requestImage(FALLIMG);
+		idle = AssetManager.requestImage(IDLEIMG);
 	}
-	
-	private FixtureDef createFixture(){
-		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = AssetManager.requestShape(SHAPEID);
-		fixtureDef.density=1;
-		fixtureDef.friction=0.3f;
-		return fixtureDef;
-	}
+
 	/** Tell the player to move in a certain direction.
 	 * 
 	 * @param dir_x The direction (and scale) of which to move. Should be [-1,1], which corresponds to [FullLeft, FullRight]
@@ -116,7 +116,6 @@ public class Player extends GameObject{
 		if(holdingcube){
 			cubecarrying.getBody().setTransform(this.getLocation().add(new Vec2(-1,0)), 0);
 		}
-		this.setSprite(sprite_left);
 		facingleft=true;
 	}
 
@@ -127,12 +126,27 @@ public class Player extends GameObject{
 		if(holdingcube){
 			cubecarrying.getBody().setTransform(this.getLocation().add(new Vec2(1,0)), 0);
 		}
-		this.setSprite(sprite_right);
 		facingleft=false;
 	}
 
-	private void setObject_left(Image sprite_left) {
-		this.sprite_left = sprite_left;
+	public void update(Level level, int delta) {
+		// Update the sprite
+		if (!isOnGround()) {
+			run.restart();
+			this.setSprite(fall);
+		} else if (Math.abs (this.getBody().getLinearVelocity().x) < 0.1) {
+			run.restart();
+			this.setSprite(idle);
+		} else {
+			run.update(delta);
+			this.setSprite(run.getCurrentFrame());
+		}
+		
+		if (facingleft)
+			this.setSprite(this.getImage().getFlippedCopy(true, false));
+
+		// Do other updating stuff
+		super.update(level);
 	}
 
 	public void interact(World world, Level level) throws SlickException{
@@ -173,10 +187,10 @@ public class Player extends GameObject{
 		}
 		AABB area = new AABB(lower,upper);
 		FixtureCallback callback = new FixtureCallback();
-		
+
 		GameState.getLevel().getPhysWorld().queryAABB(callback, area);
 		CompanionCube cube = callback.getCube();
-		
+
 		return cube;
 	}
 

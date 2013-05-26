@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resources>
-
+	
 	<!-- Walls -->
 	<resource type="WALL" id="WALL" xStart="1" yStart="1.0" xEnd="14.32" yEnd="1.0">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="15.83" yStart="1.0" xEnd="16" yEnd="1">assets/sprites/wall.png</resource>
@@ -36,33 +36,32 @@
 	<!-- Platforms -->
 	<resource type="MOVINGPLATFORM" id="SMALLPLATFORM" contMovement="true" xStart="6.7" yStart="2.0" trackxstart="6.7" trackystart="2.0" trackxfin="6.7" trackyfin="15.2">assets/sprites/wall.png</resource>
 	<resource type="MOVINGPLATFORM" id="SMALLPLATFORM" contMovement="true" xStart="13.10" yStart="2.0" trackxstart="13.10" trackystart="2.0" trackxfin="13.10" trackyfin="15.2">assets/sprites/wall.png</resource>
-
+	
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/backgrounds/leveltwobg.png</resource>
-    <resource type="FOREGROUNDIMG">assets/levels/foregrounds/leveltwofg.png</resource>
-
+	
 	<!-- End Zone -->
 	<resource type="ENDZONE" xStart="27" yStart="3.5">endzone</resource>
-
+	
 	<!-- Cubes -->
-    
-    <!-- DOORS -->
-    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="16.52" yStart="16.05" doorid="MIRROROOR">assets/sprites/levelobjects/door.png</resource>
-    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="9.5" yStart="2" doorid="MINORDOOR">assets/sprites/levelobjects/door.png</resource>
-    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="22.5" yStart="2" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
-
+	
+	<!-- DOORS -->
+	<resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="16.52" yStart="16.05" doorid="MIRROROOR">assets/sprites/levelobjects/door.png</resource>
+	<resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="9.5" yStart="2" doorid="MINORDOOR">assets/sprites/levelobjects/door.png</resource>
+	<resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="22.5" yStart="2" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
+	
 	<!-- Switches -->
 	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="2.23" yStart="1.5" xCube="2.5" yCube="13.23" cubeid="CUBE">assets/sprites/wall.png</resource>
 	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="6.5" yStart="1.5" xCube="13" yCube="18" cubeid="CUBE">assets/sprites/wall.png</resource>
 	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="12.0" yStart="1.5" xCube="14" yCube="18" cubeid="CUBE">assets/sprites/wall.png</resource>
-
-
+	
+	
 	<resource type="BIGSWITCH" id="SWITCHUP" xStart="15.1" yStart="1.2" doorid="MIRROROOR">assets/sng</resource>
 	<resource type="BIGSWITCH" id="SWITCHUP" xStart="2.5" yStart="15.09" doorid="MINORDOOR">assets/sng</resource>
 	<resource type="BIGSWITCH" id="SWITCHUP" xStart="26.22" yStart="13.18" doorid="MAINDOOR">assets/spr</resource>
-
-
+	
+	
 	<!-- Start Location -->
 	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="2">assets/sprites/chell.png</resource>
-
+	
 </resources>
