@@ -1,6 +1,0 @@
-<resources>
-	<!-- Switch Edge Vertices -->
-	<resource xloc="-54.4" yloc="4.2">cube</resource>
-	<resource xloc="-58.8" yloc="-3.8">cube</resource>
-	<resource xloc="-53.1" yloc="4.3">cube</resource>
-</resources>

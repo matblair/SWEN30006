@@ -71,7 +71,8 @@ public class Portal2D extends StateBasedGame {
         app.setVSync(true);
         app.setTargetFrameRate(60);
         app.start();
-    }    
+    }   
+    
     public static void setResolution(final int width, final int height, final boolean key) throws SlickException{
     	app.setDisplayMode(width, height, key);
     }

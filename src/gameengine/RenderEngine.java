@@ -1,6 +1,7 @@
 package gameengine;
 import java.util.Map;
 
+import gameobjects.BigSwitch;
 import gameobjects.GameObject;
 import gameobjects.Wall;
 
@@ -10,7 +11,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public class RenderEngine {
-		
 	public static <T extends GameObject> void drawGameObjects(Map<String, T> map, Camera cam){
 		for (T obj : map.values()) {
 			drawGameObject(obj,cam);
@@ -20,6 +20,12 @@ public class RenderEngine {
 	public static <T extends GameObject> void drawGameObjects(T[] array, Camera cam){
 		for (T obj : array) {
 			drawGameObject(obj,cam);
+		}
+	}
+	
+	public static void drawBigSwitches (Map<String, BigSwitch> switches, Camera cam) {
+		for (BigSwitch s : switches.values()) {
+			drawGameObjects(s.getRenderableComponents().toArray(new GameObject[0]), cam);
 		}
 	}
 	

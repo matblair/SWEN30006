@@ -20,6 +20,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AssetManager;
+import resourcemanagers.SoundController;
 
 public class OptionState extends BasicGameState implements KeyListener{
 	private static int StateId = Portal2D.OPTIONSTATE; // State ID
@@ -27,7 +28,7 @@ public class OptionState extends BasicGameState implements KeyListener{
 	protected static Vector<String> menuItems = new Vector<String>();
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	protected static int mainMenuItemSelected = 0;
-	
+
 	protected static Vector<Vec2> screenSizes = new Vector<Vec2>();
 
 
@@ -43,14 +44,11 @@ public class OptionState extends BasicGameState implements KeyListener{
 	private static final int MENU_SCREENSELECT=0;
 	private static final int MENU_SOUNDLEVEL=1;
 	private static final int MENU_DISPLAYINPUT=2;
-	
+
 	private static ArrayList<Image> volimages= new ArrayList<Image>();
 	private static ArrayList<Image> inputimages= new ArrayList<Image>();
 
-
 	private static final int SOUNDINTERVAL = 5;
-
-	private static int MAXSOUNDLEVEL=100;
 
 	////////////////////////////////////
 
@@ -71,7 +69,7 @@ public class OptionState extends BasicGameState implements KeyListener{
 		debug = false;
 		fullscreen = false;
 	}
-	
+
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
@@ -79,7 +77,7 @@ public class OptionState extends BasicGameState implements KeyListener{
 		super.enter(container, game);
 		backtomenu=false;
 		mainMenuItemSelected=0;
-		soundLevelSelected = (int) (container.getSoundVolume());
+		soundLevelSelected = SoundController.getVolume();
 	}
 
 
@@ -161,13 +159,13 @@ public class OptionState extends BasicGameState implements KeyListener{
 		}
 		return;
 	}
-	
+
 	public void drawVolume(){
 		int imagelaod = (int)(soundLevelSelected/10);
 		Image newimage = volimages.get(imagelaod).getScaledCopy(400, 200);
 		newimage.drawCentered(750, 370);
 	}
-	
+
 	public void drawInput(){
 		inputimages.get(inputItemSelected).drawCentered(750, 300);
 	}
@@ -199,7 +197,8 @@ public class OptionState extends BasicGameState implements KeyListener{
 
 			}else if(displaysoundlevel){
 				if(soundLevelSelected>0){
-				soundLevelSelected = soundLevelSelected-SOUNDINTERVAL;
+					soundLevelSelected = soundLevelSelected-SOUNDINTERVAL;
+					SoundController.setVolume(soundLevelSelected);
 				}
 			}else if (displayinputload){
 				if(inputItemSelected > 0){
@@ -215,8 +214,9 @@ public class OptionState extends BasicGameState implements KeyListener{
 			if(displayscreensize){
 
 			}else if(displaysoundlevel){
-				if(soundLevelSelected<MAXSOUNDLEVEL){
-				soundLevelSelected = soundLevelSelected+SOUNDINTERVAL;
+				if(soundLevelSelected<SoundController.MAXLEVEL){
+					soundLevelSelected = soundLevelSelected+SOUNDINTERVAL;
+					SoundController.setVolume(soundLevelSelected);
 				}
 			}else if (displayinputload){
 				if(inputItemSelected < (AssetManager.getInputResources().size()-1)){
@@ -235,5 +235,5 @@ public class OptionState extends BasicGameState implements KeyListener{
 			backtomenu=true;
 		}
 	}
-	
+
 }

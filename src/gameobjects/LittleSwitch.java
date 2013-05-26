@@ -40,7 +40,7 @@ public class LittleSwitch extends GameObject {
 			cube=null;
 		}
 		cube = new CompanionCube(spawnpoint, GameState.getLevel().getPhysWorld());
-		GameState.getLevel().addCube(cube, cube.getBodyId());
+		GameState.getLevel().addCube(cube, cube.getBodyID());
 		System.out.println("success");
 	}
 

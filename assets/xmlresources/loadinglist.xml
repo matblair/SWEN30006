@@ -40,10 +40,8 @@
 	<resource type="IMAGE" id="DOORCLOSE">assets/sprites/levelobjects/doorclosed.png</resource>
 	<resource type="IMAGE" id="BLUEPORTAL">assets/sprites/levelobjects/blueportal.png</resource>
 	<resource type="IMAGE" id="ORANGEPORTAL">assets/sprites/levelobjects/orangeportal.png</resource>
-	<resource type="IMAGE" id="SWITCHDOWN">assets/sprites/levelobjects/switchdown.png</resource>
-	<resource type="IMAGE" id="SWITCHSENSOR">assets/sprites/levelobjects/switchsensor.png</resource>
-	<resource type="IMAGE" id="SWITCHUP">assets/sprites/levelobjects/switchup.png</resource>
-	
+	<resource type="IMAGE" id="BIGSWITCHBASE">assets/sprites/levelobjects/switchbase.png</resource>
+	<resource type="IMAGE" id="BIGSWITCHSENSOR">assets/sprites/levelobjects/switchsensor.png</resource>	
 	
 	<!-- Achievement Images -->
 	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>
@@ -67,6 +65,7 @@
 	<resource type="LEVELXML" id="15">levels/levelsixteen.xml</resource>
 	<resource type="LEVELXML" id="16">levels/level1x4FF.xml</resource>
 	<resource type="LEVELXML" id="17">levels/mario.xml</resource>
+	<resource type="LEVELXML" id="18">levels/switches.xml</resource>
 	
 	
 	<!-- Input XML -->
@@ -81,14 +80,9 @@
 	<resource type="SHAPE" id="SHORTPLATFORMSHAPE" vertpath="shortlevel.xml">levelshortpath</resource>
 	<resource type="SHAPE" id="LONGPLATFORMSHAPE" vertpath="longlevel.xml">levellongpath</resource>
 	<resource type="SHAPE" id="SMALLSWITCHSHAPE" vertpath="smallswitch.xml">smallswitchpath</resource>
-	<resource type="SHAPE" id="BIGSWITCHSHAPE" vertpath="bigswitch.xml">bigswtichpath</resource>
+	<resource type="SHAPE" id="BIGSWITCHSENSOR" vertpath="bigswitch.xml">bigswitchpath</resource>
+	<resource type="SHAPE" id="BIGSWITCHBASE" vertpath="bigswitchbase.xml">bigswitchbasepath</resource>
 	<resource type="SHAPE" id="DOORSHAPE" vertpath="door.xml">doorpath</resource>
-	<resource type="SHAPE" id="LEFTEDGEVERTICES" vertpath="switchleftedge.xml">doorpath</resource>
-	<resource type="SHAPE" id="RIGHTEDGEVERTICES" vertpath="switchedgeright.xml">doorpath</resource>
-	
-	
-	
-	
 	
 	<!-- Animations -->
 	

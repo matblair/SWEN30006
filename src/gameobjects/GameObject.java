@@ -45,19 +45,19 @@ public class GameObject {
 		bd.position.set(location);
 
 		switch (bodytype){
-			case PhysUtils.STATIC: 
-				bd.type = BodyType.STATIC;
-				break;
-			case PhysUtils.DYNAMIC:
-				bd.type = BodyType.DYNAMIC;
-				bd.linearDamping = 0.1f;
-				break;
-			case PhysUtils.KINEMATIC:
-				bd.type = BodyType.KINEMATIC;
-				break;
-			case PhysUtils.PORTAL: 
-				bd.type = BodyType.STATIC;
-				break;
+		case PhysUtils.STATIC: 
+			bd.type = BodyType.STATIC;
+			break;
+		case PhysUtils.DYNAMIC:
+			bd.type = BodyType.DYNAMIC;
+			bd.linearDamping = 0.1f;
+			break;
+		case PhysUtils.KINEMATIC:
+			bd.type = BodyType.KINEMATIC;
+			break;
+		case PhysUtils.PORTAL: 
+			bd.type = BodyType.STATIC;
+			break;
 		}
 		
 		bd.fixedRotation = true;
@@ -90,7 +90,7 @@ public class GameObject {
 			Portal portalHit;
 			String bodyID = rch.fixture.getBody().toString();
 
-			if (bodyID.equals(portals[Portal.BLUE].getBodyId())) {
+			if (bodyID.equals(portals[Portal.BLUE].getBodyID())) {
 				System.out.println("entering blue");
 				portalHit = portals[Portal.BLUE];
 			} else {
@@ -174,7 +174,7 @@ public class GameObject {
 	/**
 	 * @return the bodyId
 	 */
-	public String getBodyId() {
+	public String getBodyID() {
 		return getBody().toString();
 	}
 

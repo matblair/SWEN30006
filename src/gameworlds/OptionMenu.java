@@ -42,8 +42,6 @@ public class OptionMenu extends InGameMenu {
 
 	private static final int SOUNDINTERVAL=5;
 
-	private static int MAXSOUNDLEVEL=100;
-
 	public OptionMenu(){
 		menuItems.add("Screen Size");
 		menuItems.add("Audio Level");
@@ -154,7 +152,7 @@ public class OptionMenu extends InGameMenu {
 			if(displayscreensize){
 
 			}else if(displaysoundlevel){
-				if(soundLevelSelected<MAXSOUNDLEVEL){
+				if(soundLevelSelected<SoundController.MAXLEVEL){
 					soundLevelSelected = soundLevelSelected+SOUNDINTERVAL;
 					SoundController.setVolume(soundLevelSelected);
 				}

@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.newdawn.slick.openal.DeferredSound;
 import org.newdawn.slick.util.ResourceLoader;
 
+import resourcemanagers.SoundController;
+
 public class Sound {
 	private DeferredSound sound;
 	private boolean music;
@@ -32,6 +34,7 @@ public class Sound {
 		if (music)
 			sound.playAsMusic(1f, 1f, true);
 		else
-			sound.playAsSoundEffect(1f, 1f, false);
+			sound.playAsSoundEffect(1f, (float)SoundController.getVolume()/100, false);
+		System.out.println((float)SoundController.getVolume()/100);
 	}
 }

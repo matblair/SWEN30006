@@ -58,8 +58,6 @@ public class Level {
 	/** Gravity **/
 	private final Vec2 gravity = new Vec2(0,-18f);
 	
-
-
 	public Level() throws SlickException{
 		// Create physics worlds
 		world = new World(gravity);
@@ -116,7 +114,7 @@ public class Level {
 		RenderEngine.drawGameObject(levelend, cam);
 		RenderEngine.drawGameObjects(lilSwitches, cam);
 		RenderEngine.drawGameObject(player, cam);
-		RenderEngine.drawGameObjects(bigSwitches,cam);
+		RenderEngine.drawBigSwitches(bigSwitches,cam);
 		RenderEngine.drawGameObjects(cubes, cam);
 		RenderEngine.drawGameObjects(doors, cam);
 		RenderEngine.drawGameObjects(platforms, cam);
@@ -156,7 +154,7 @@ public class Level {
 	}
 
 	public void removeCube(final CompanionCube cube) {
-		cubes.remove(cube.getBodyId());
+		cubes.remove(cube.getBodyID());
 	}
 	
 
@@ -203,7 +201,9 @@ public class Level {
 	public String getBodyType(final Body other){
 		final String key = other.toString();
 		String type="";
-		if(cubes.containsKey(key)){
+		if(player.getBodyID().equals(key)){
+			type="player";
+		}else if(cubes.containsKey(key)){
 			type="cube";
 		}else if(bigSwitches.containsKey(key)){
 			type="bigswitch";
@@ -223,11 +223,6 @@ public class Level {
 			type="movingplatform";
 		}
 		return type;
-	}
-	
-	public Object getCam() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	public CompanionCube getCube(final String bodyId){
