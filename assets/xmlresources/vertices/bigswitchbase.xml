@@ -1,0 +1,7 @@
+<resources>
+	<!-- Big Switch Base Vertices -->
+	<resource xloc="-60" yloc="0">cube</resource>
+	<resource xloc="-55" yloc="10">cube</resource>
+	<resource xloc="55" yloc="10">cube</resource>
+	<resource xloc="60" yloc="0">cube</resource>
+</resources>
