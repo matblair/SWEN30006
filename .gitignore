@@ -10,6 +10,9 @@ bin
 .project
 .settings/
 .Rhistory
+.DS_Store
+assets/.DS_Store
+lib/native/.DS_Store
 src/gameworlds/.DS_Store
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`

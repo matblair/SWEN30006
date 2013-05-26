@@ -1,6 +1,7 @@
 package resourcemanagers;
 
 import gameengine.Portal2D;
+import gameengine.Sound;
 import gameworlds.Level;
 
 import java.io.File;
@@ -19,12 +20,9 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 
 import scoringsystem.Achievement;
 import scoringsystem.HighScore;
-
-
 
 public class AssetManager {
 	/** End Role will be to load all resources at start of game that are universal, call level loader to load new levels **/
@@ -62,9 +60,7 @@ public class AssetManager {
 	private static final String generalresource = "assets/xmlresources/";
 	private static final String achievementxml = "achievements.xml";
 	private static final String highscorexml = "highscores.xml";
-
-
-
+	
 	public static AssetManager getAssetManager()
 			throws SlickException{
 		if(manager==null){
@@ -72,8 +68,7 @@ public class AssetManager {
 		}
 		return manager;
 	}
-
-
+	
 	public static void loadAllGameAssets(){
 
 		try {
@@ -82,8 +77,8 @@ public class AssetManager {
 		} catch (SlickException e1) {
 			e1.printStackTrace();
 		}
-
-
+		
+		
 		final File f = new File(generalresource, loadinglist);
 		InputStream is = null;
 		try {
@@ -208,8 +203,6 @@ public class AssetManager {
 				e.printStackTrace();
 			}
 		}
-
-
 	}
 
 	public static Image requestImage(String imgid){

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+	
+	<!-- Walls -->
+	<resource type="WALL" id="WALL" xStart="0.0" yStart="2.0" xEnd="28.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="28.0" yStart="2.0" xEnd="28.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="28.0" yStart="4.0" xEnd="30.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="30.0" yStart="4.0" xEnd="30.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="30.0" yStart="2.0" xEnd="38.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="38.0" yStart="2.0" xEnd="38.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="38.0" yStart="5.0" xEnd="40.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="40.0" yStart="5.0" xEnd="40.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="40.0" yStart="2.0" xEnd="46.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="46.0" yStart="2.0" xEnd="46.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="46.0" yStart="6.0" xEnd="48.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="48.0" yStart="6.0" xEnd="48.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="48.0" yStart="2.0" xEnd="57.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="57.0" yStart="2.0" xEnd="57.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="57.0" yStart="6.0" xEnd="59.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="59.0" yStart="6.0" xEnd="59.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="59.0" yStart="2.0" xEnd="69.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="69.0" yStart="2.0" xEnd="69.0" yEnd="0.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="69.0" yStart="0.0" xEnd="71.0" yEnd="0.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="71.0" yStart="0.0" xEnd="71.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="71.0" yStart="2.0" xEnd="86.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="86.0" yStart="2.0" xEnd="86.0" yEnd="0.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="86.0" yStart="0.0" xEnd="89.0" yEnd="0.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="89.0" yStart="0.0" xEnd="89.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="89.0" yStart="2.0" xEnd="134.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="134.0" yStart="2.0" xEnd="134.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="134.0" yStart="3.0" xEnd="135.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="135.0" yStart="3.0" xEnd="135.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="135.0" yStart="4.0" xEnd="136.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="136.0" yStart="4.0" xEnd="136.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="136.0" yStart="5.0" xEnd="137.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="137.0" yStart="5.0" xEnd="137.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="137.0" yStart="6.0" xEnd="138.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="138.0" yStart="6.0" xEnd="138.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="138.0" yStart="2.0" xEnd="140.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="140.0" yStart="2.0" xEnd="140.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="140.0" yStart="6.0" xEnd="141.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="141.0" yStart="6.0" xEnd="141.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="141.0" yStart="5.0" xEnd="142.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="142.0" yStart="5.0" xEnd="142.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="142.0" yStart="4.0" xEnd="143.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="143.0" yStart="4.0" xEnd="143.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="143.0" yStart="3.0" xEnd="144.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="144.0" yStart="3.0" xEnd="144.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="144.0" yStart="2.0" xEnd="148.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="148.0" yStart="2.0" xEnd="148.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="148.0" yStart="3.0" xEnd="149.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="149.0" yStart="3.0" xEnd="149.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="149.0" yStart="4.0" xEnd="150.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="150.0" yStart="4.0" xEnd="150.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="150.0" yStart="5.0" xEnd="151.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="151.0" yStart="5.0" xEnd="151.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="151.0" yStart="6.0" xEnd="153.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="153.0" yStart="6.0" xEnd="153.0" yEnd="0.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="153.0" yStart="0.0" xEnd="155.0" yEnd="0.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="155.0" yStart="0.0" xEnd="155.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="155.0" yStart="6.0" xEnd="156.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="156.0" yStart="6.0" xEnd="156.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="156.0" yStart="5.0" xEnd="157.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="157.0" yStart="5.0" xEnd="157.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="157.0" yStart="4.0" xEnd="158.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="158.0" yStart="4.0" xEnd="158.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="158.0" yStart="3.0" xEnd="159.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="159.0" yStart="3.0" xEnd="159.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="159.0" yStart="2.0" xEnd="163.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="163.0" yStart="2.0" xEnd="163.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="163.0" yStart="4.0" xEnd="165.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="165.0" yStart="4.0" xEnd="165.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="165.0" yStart="2.0" xEnd="179.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="179.0" yStart="2.0" xEnd="179.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="179.0" yStart="4.0" xEnd="181.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="181.0" yStart="4.0" xEnd="181.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="181.0" yStart="3.0" xEnd="182.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="182.0" yStart="3.0" xEnd="182.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="182.0" yStart="4.0" xEnd="183.0" yEnd="4.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="183.0" yStart="4.0" xEnd="183.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="183.0" yStart="5.0" xEnd="184.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="184.0" yStart="5.0" xEnd="184.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="184.0" yStart="6.0" xEnd="185.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="185.0" yStart="6.0" xEnd="185.0" yEnd="7.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="185.0" yStart="7.0" xEnd="186.0" yEnd="7.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="186.0" yStart="7.0" xEnd="186.0" yEnd="8.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="186.0" yStart="8.0" xEnd="187.0" yEnd="8.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="187.0" yStart="8.0" xEnd="187.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="187.0" yStart="9.0" xEnd="188.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="188.0" yStart="9.0" xEnd="188.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="188.0" yStart="10.0" xEnd="190.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="190.0" yStart="10.0" xEnd="190.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="190.0" yStart="2.0" xEnd="198.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="198.0" yStart="2.0" xEnd="198.0" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="198.0" yStart="3.0" xEnd="198.5" yEnd="3.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="198.5" yStart="3.0" xEnd="198.5" yEnd="200.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="198.5" yStart="200.0" xEnd="0.0" yEnd="200.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="0.0" yStart="200.0" xEnd="0.0" yEnd="2.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="17.0" yStart="5.0" xEnd="17.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="17.0" yStart="6.0" xEnd="16.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="16.0" yStart="6.0" xEnd="16.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="16.0" yStart="5.0" xEnd="17.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="20.0" yStart="6.0" xEnd="25.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="25.0" yStart="6.0" xEnd="25.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="25.0" yStart="5.0" xEnd="20.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="20.0" yStart="5.0" xEnd="20.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="22.0" yStart="10.0" xEnd="23.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="23.0" yStart="10.0" xEnd="23.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="23.0" yStart="9.0" xEnd="22.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="22.0" yStart="9.0" xEnd="22.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="64.0" yStart="7.0" xEnd="65.0" yEnd="7.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="65.0" yStart="7.0" xEnd="65.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="65.0" yStart="6.0" xEnd="64.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="64.0" yStart="6.0" xEnd="64.0" yEnd="7.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="77.0" yStart="5.0" xEnd="77.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="77.0" yStart="6.0" xEnd="80.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="80.0" yStart="6.0" xEnd="80.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="80.0" yStart="5.0" xEnd="77.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="80.0" yStart="9.0" xEnd="80.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="80.0" yStart="10.0" xEnd="88.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="88.0" yStart="10.0" xEnd="88.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="88.0" yStart="9.0" xEnd="80.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="91.0" yStart="9.0" xEnd="91.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="91.0" yStart="10.0" xEnd="95.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="95.0" yStart="10.0" xEnd="95.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="95.0" yStart="9.0" xEnd="91.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="94.0" yStart="5.0" xEnd="94.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="94.0" yStart="6.0" xEnd="95.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="95.0" yStart="6.0" xEnd="95.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="95.0" yStart="5.0" xEnd="94.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="100.0" yStart="5.0" xEnd="100.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="100.0" yStart="6.0" xEnd="102.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="102.0" yStart="6.0" xEnd="102.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="102.0" yStart="5.0" xEnd="100.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="106.0" yStart="5.0" xEnd="106.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="106.0" yStart="6.0" xEnd="107.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="107.0" yStart="6.0" xEnd="107.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="107.0" yStart="5.0" xEnd="106.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="109.0" yStart="5.0" xEnd="109.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="109.0" yStart="6.0" xEnd="110.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="110.0" yStart="6.0" xEnd="110.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="110.0" yStart="5.0" xEnd="109.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="109.0" yStart="9.0" xEnd="109.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="109.0" yStart="10.0" xEnd="110.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="110.0" yStart="10.0" xEnd="110.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="110.0" yStart="9.0" xEnd="109.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="112.0" yStart="5.0" xEnd="112.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="112.0" yStart="6.0" xEnd="113.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="113.0" yStart="6.0" xEnd="113.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="113.0" yStart="5.0" xEnd="112.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="118.0" yStart="5.0" xEnd="118.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="118.0" yStart="6.0" xEnd="119.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="119.0" yStart="6.0" xEnd="119.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="119.0" yStart="5.0" xEnd="118.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="121.0" yStart="9.0" xEnd="121.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="121.0" yStart="10.0" xEnd="124.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="124.0" yStart="10.0" xEnd="124.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="124.0" yStart="9.0" xEnd="121.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="128.0" yStart="9.0" xEnd="128.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="128.0" yStart="10.0" xEnd="132.0" yEnd="10.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="132.0" yStart="10.0" xEnd="132.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="132.0" yStart="9.0" xEnd="128.0" yEnd="9.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="129.0" yStart="5.0" xEnd="129.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="129.0" yStart="6.0" xEnd="131.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="131.0" yStart="6.0" xEnd="131.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="131.0" yStart="5.0" xEnd="129.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<!-- New section -->
+	<resource type="WALL" id="WALL" xStart="168.0" yStart="5.0" xEnd="168.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="168.0" yStart="6.0" xEnd="172.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="172.0" yStart="6.0" xEnd="172.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="172.0" yStart="5.0" xEnd="168.0" yEnd="5.0">assets/sprites/wall.png</resource>
+	
+	<!-- Background -->
+	<resource type="BACKGROUNDIMG">assets/levels/mariobg.png</resource>
+	<resource type="FOREGROUNDIMG">assets/levels/mariofg.png</resource>
+	
+	<!-- End Zone -->
+	<resource type="ENDZONE" xStart="198" yStart="11.5">endzone</resource>
+	
+	<!-- Start Location -->
+	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="3">assets/sprites/chell.png</resource>
+	
+</resources>

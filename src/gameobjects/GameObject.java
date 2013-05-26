@@ -3,6 +3,7 @@ package gameobjects;
 import gameengine.FixtureCallback;
 import gameengine.PhysUtils;
 import gameengine.PortalCollisionRCHelper;
+import gameengine.Sound;
 import gamestates.GameState;
 import gameworlds.Level;
 
@@ -17,6 +18,7 @@ import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.newdawn.slick.Image;
 
 import resourcemanagers.AssetManager;
+import resourcemanagers.SoundController;
 
 public class GameObject {
 	/** The object's image **/
@@ -43,19 +45,19 @@ public class GameObject {
 		bd.position.set(location);
 
 		switch (bodytype){
-			case PhysUtils.STATIC: 
-				bd.type = BodyType.STATIC;
-				break;
-			case PhysUtils.DYNAMIC:
-				bd.type = BodyType.DYNAMIC;
-				bd.linearDamping = 0.1f;
-				break;
-			case PhysUtils.KINEMATIC:
-				bd.type = BodyType.KINEMATIC;
-				break;
-			case PhysUtils.PORTAL: 
-				bd.type = BodyType.STATIC;
-				break;
+		case PhysUtils.STATIC: 
+			bd.type = BodyType.STATIC;
+			break;
+		case PhysUtils.DYNAMIC:
+			bd.type = BodyType.DYNAMIC;
+			bd.linearDamping = 0.1f;
+			break;
+		case PhysUtils.KINEMATIC:
+			bd.type = BodyType.KINEMATIC;
+			break;
+		case PhysUtils.PORTAL: 
+			bd.type = BodyType.STATIC;
+			break;
 		}
 		
 		bd.fixedRotation = true;
@@ -88,7 +90,7 @@ public class GameObject {
 			Portal portalHit;
 			String bodyID = rch.fixture.getBody().toString();
 
-			if (bodyID.equals(portals[Portal.BLUE].getBodyId())) {
+			if (bodyID.equals(portals[Portal.BLUE].getBodyID())) {
 				System.out.println("entering blue");
 				portalHit = portals[Portal.BLUE];
 			} else {
@@ -110,6 +112,9 @@ public class GameObject {
 			
 			getBody().setTransform(appear, getBody().getAngle());
 			getBody().setLinearVelocity(newVelocity);
+			
+			// Finally, play the sound!
+			SoundController.play(Sound.PORTALTRAVEL);
 		}
 	}
 
@@ -169,7 +174,7 @@ public class GameObject {
 	/**
 	 * @return the bodyId
 	 */
-	public String getBodyId() {
+	public String getBodyID() {
 		return getBody().toString();
 	}
 

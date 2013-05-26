@@ -115,7 +115,7 @@ public class LevelLoader {
 		Vec2 startloc = new Vec2(startx,starty);
 
 		Door door = new Door(startloc, level.getPhysWorld(),doorId);
-		level.addDoor(door, door.getBodyId());
+		level.addDoor(door, door.getBodyID());
 	}
 
 	private void addElementAsLittleSwitch(Element resourceElement, Level level) throws SlickException{
@@ -126,7 +126,7 @@ public class LevelLoader {
 		Float cubey = Float.parseFloat(resourceElement.getAttribute("yCube"));
 		Vec2 cubespawn = new Vec2(cubex,cubey);
 		LittleSwitch newswitch = new LittleSwitch(startloc, level.getPhysWorld(), cubespawn);
-		level.addLittleSwitch(newswitch, newswitch.getBodyId());
+		level.addLittleSwitch(newswitch, newswitch.getBodyID());
 		
 	}
 	
@@ -137,7 +137,7 @@ public class LevelLoader {
 		String doorid = resourceElement.getAttribute("doorid");
 		System.out.println(startloc);
 		BigSwitch bswitch = new BigSwitch(startloc,level.getPhysWorld(), doorid);
-		level.addBigSwitch(bswitch, bswitch.getBodyId());
+		level.addBigSwitch(bswitch, bswitch.getBodyID());
 	}
 
 	private void addElementAsPortal(Element resourceElement, Level level) {
@@ -156,7 +156,7 @@ public class LevelLoader {
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);
 		Platform platform = new Platform(startloc, level.getPhysWorld(),size,0);
-		level.addPlatform(platform, platform.getBodyId());
+		level.addPlatform(platform, platform.getBodyID());
 	}
 	
 	private void addElementAsMovingPlatform(Element resourceElement, Level level) throws SlickException{
@@ -180,7 +180,7 @@ public class LevelLoader {
 		Vec2 trackfin = new Vec2(xTrackFin, yTrackFin);
 		Vec2 startloc = new Vec2(startx,starty);
 		MovingPlatform platform = new MovingPlatform(startloc,level.getPhysWorld(), trackstart, trackfin,size, contMovement);
-		level.addMovingPlatform(platform, platform.getBodyId());
+		level.addMovingPlatform(platform, platform.getBodyID());
 	}
 
 	private void addElementAsTurret(Element resourceElement, Level level) {
@@ -210,7 +210,7 @@ public class LevelLoader {
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
 		Vec2 startloc = new Vec2(xstart,ystart);
 		CompanionCube cube = new CompanionCube(startloc, level.getPhysWorld());
-		level.addCube(cube, cube.getBodyId());
+		level.addCube(cube, cube.getBodyID());
 	}
 	
 	private void addElementAsPlayer(Element resourceElement, Level level) throws SlickException{

@@ -4,10 +4,12 @@ import gameengine.Camera;
 import gameengine.InputManager;
 import gameengine.PhysUtils;
 import gameengine.Portal2D;
+import gameengine.Sound;
 import gameobjects.Portal;
 import gameworlds.EndGameMenu;
 import gameworlds.Level;
 import gameworlds.Paused;
+import resourcemanagers.SoundController;
 
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.GameContainer;
@@ -18,8 +20,6 @@ import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
-import scoringsystem.HighScoreBackgroundThread;
 
 public class GameState extends BasicGameState implements KeyListener, MouseListener {
 	private static boolean finishedEndGame = false;
@@ -44,7 +44,24 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		level = new Level();
 		cam = new Camera();
 		paused = new Paused(level.getLevelId());
-		endgame = new EndGameMenu();		
+		endgame = new EndGameMenu();
+		SoundController.initialise();
+	}
+	
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		super.enter(container, game);
+		paused.setLevelId(level.getLevelId());
+		EndGameMenu.setUploadedScores(false);
+		ispaused=false;
+		SoundController.play(Sound.TITLE);
+	}
+	
+	@Override
+	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
+		super.leave(container, game);
+		SoundController.stopMusic();
 	}
 
 	@Override
@@ -135,25 +152,29 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		if(isIspaused()){
 			paused.ProcessInput(key);
 		}
+		
 		if(key==InputManager.SELECT && EndGameMenu.isUploadedScores()){
 			finishedEndGame=true;
+		}
+		
+		switch (c){
+		case 'i':
+			SoundController.stopMusic();
+			break;
+		case 'o':
+			SoundController.play(Sound.TITLE);
+			break;
+		case 'p':
+			SoundController.play(Sound.VILLAGE);
+			break;
+		default:
+			break;
 		}
 	}
 
 	@Override
 	public void keyReleased(int key, char c) {
 		System.out.println("Key released in GameState int: " + key);
-	}
-
-
-	@Override
-	public void enter(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		super.enter(container, game);
-		paused.setLevelId(level.getLevelId());
-		EndGameMenu.setUploadedScores(false);
-		ispaused=false;
-		
 	}
 
 	@Override

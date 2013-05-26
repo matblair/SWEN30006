@@ -20,13 +20,10 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AssetManager;
-import resourcemanagers.OnlineHighScoreLoader;
 import scoringsystem.HighScore;
 
 public class HighScoreState extends BasicGameState implements KeyListener{
-	private static final int TODISPLAY = 5;
-
-	private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
+private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 
 	/** The state id for this part **/
 

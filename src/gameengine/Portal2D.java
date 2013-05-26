@@ -12,6 +12,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.LoadingList;
+import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.StateBasedGame;
 
 import scoringsystem.HighScoreBackgroundThread;
@@ -24,7 +25,7 @@ public class Portal2D extends StateBasedGame {
 	public static final int OPTIONSTATE = 4;
 	public static final int GAMESTATE = 5;
 	public static final int LEVELSELECTSTATE= 6;
-
+	
 	// Live game key (only swap if you are testing the game for real with real levels) 8b32c6268959f7bf940d3c0e61532aaa0d82434e
 	public static final String gameKey="7635c631d57e049f231f683195bf9366ebc65576";
 	public static final String name="Mat";
@@ -49,6 +50,8 @@ public class Portal2D extends StateBasedGame {
 	@Override
 	public void initStatesList(final GameContainer gc) throws SlickException {
 		LoadingList.setDeferredLoading(true);
+		SoundStore.get().init();
+		SoundStore.get().setDeferredLoading(false);
 		this.addState(new LoadingState());
 		this.addState(new MainMenuState());
 		this.addState(new GameState());
@@ -56,8 +59,7 @@ public class Portal2D extends StateBasedGame {
 		this.addState(new HighScoreState());
 		this.addState(new OptionState());
 		this.addState(new LevelSelectState());
-		this.enterState(MAINMENUSTATE);
-
+	    this.enterState(MAINMENUSTATE);
 	}
 
 	/** Start-up method. Creates the game and runs it.
@@ -80,6 +82,4 @@ public class Portal2D extends StateBasedGame {
 	public static void setFullscreen() throws SlickException {
 		app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
 	}
-
-
 }
