@@ -52,7 +52,7 @@ public class Level {
 	/** Our end point **/
 	protected EndLevel levelend;
 	
-	/** Our level oracle and chievement data **/
+	/** Our level oracle and achievement data **/
 	protected GLaDOS glados;
 	private ArrayList<AchievementPopup> achievementPopups;
 	
@@ -69,7 +69,7 @@ public class Level {
 		// Create physics worlds
 		world = new World(gravity);
 		
-		//Initialises ArrayLists
+		// Initialises ArrayLists
 		cubes = new HashMap<String,CompanionCube>();
 		walls = new HashMap<String,Wall>();
 		doors = new HashMap<String,Door>();
@@ -104,6 +104,9 @@ public class Level {
 		}
 		for(final MovingPlatform pl: movingplatforms.values()){
 			pl.updatePos(delta);
+		}
+		for (Door d : doors.values()) {
+			d.update(delta);
 		}
 		
 		glados.updateTesting(delta,player);
