@@ -92,7 +92,7 @@ public class Level {
 		player.moveXDir(dir_x, delta);
 		
 		// Update dynamic objects (for portals)
-		player.update(this);
+		player.update(this, delta);
 		for (GameObject o : cubes.values()) {
 			o.update(this);
 		}

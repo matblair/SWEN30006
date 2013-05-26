@@ -221,9 +221,11 @@ public class AssetManager {
 	public static Image requestUIElement(String uiid){
 		return uiElementResources.get(uiid);
 	}
+	
 	public static String requestLevelXMLPath(int levelid){
 		return levelXmlResources.get(levelid);
 	}
+	
 	public static String requestInputXMLPath(int inputid){
 		return inputXmlResources.get(inputid);
 	}

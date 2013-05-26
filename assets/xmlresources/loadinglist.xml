@@ -31,7 +31,8 @@
 	<resource type="SOUND" id="VILLAGE" style="MUSIC">assets/audio/music/village.ogg</resource>
 	
 	<!-- Images -->
-	<resource type="IMAGE" id="CHELLSPRITE">assets/sprites/gameobjects/chell.png</resource>
+	<resource type="IMAGE" id="CHELLIDLE">assets/sprites/gameobjects/chell.png</resource>
+	<resource type="IMAGE" id="CHELLFALL">assets/sprites/gameobjects/chell.png</resource>
 	<resource type="IMAGE" id="HITBOX">assets/sprites/gameobjects/hitbox.png</resource>
 	<resource type="IMAGE" id="CUBE">assets/sprites/gameobjects/cube.png</resource>
 	<resource type="IMAGE" id="PLATFORM">assets/sprites/levelobjects/longlevel.png</resource>
@@ -42,7 +43,13 @@
 	<resource type="IMAGE" id="BLUEPORTAL">assets/sprites/levelobjects/blueportal.png</resource>
 	<resource type="IMAGE" id="ORANGEPORTAL">assets/sprites/levelobjects/orangeportal.png</resource>
 	<resource type="IMAGE" id="BIGSWITCHBASE">assets/sprites/levelobjects/switchbase.png</resource>
-	<resource type="IMAGE" id="BIGSWITCHSENSOR">assets/sprites/levelobjects/switchsensor.png</resource>	
+	<resource type="IMAGE" id="BIGSWITCHSENSOR">assets/sprites/levelobjects/switchsensor.png</resource>
+	
+	<!-- Images for animations -->
+	<resource type="IMAGE" id="CHELLRUN1">assets/sprites/animations/chellrun/1.png</resource>
+	<resource type="IMAGE" id="CHELLRUN2">assets/sprites/animations/chellrun/2.png</resource>
+	<resource type="IMAGE" id="CHELLRUN3">assets/sprites/animations/chellrun/3.png</resource>
+	<resource type="IMAGE" id="CHELLRUN4">assets/sprites/animations/chellrun/4.png</resource>
 	
 	<!-- Achievement Images -->
 	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>
@@ -85,6 +92,7 @@
 	<resource type="SHAPE" id="DOORSHAPE" vertpath="door.xml">doorpath</resource>
 	
 	<!-- Animations -->
+	<resource type="ANIMATION" id="CHELLRUN" duration="200">assets/xmlresources/animations/chellrun.xml</resource>
 	
 	<!-- Fonts -->
 	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>

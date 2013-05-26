@@ -25,12 +25,11 @@ public class AnimationLoader {
 	
 	private static ArrayList<Image> images;
 	
-	public static Animation loadAnimation(String vertpath){
+	public static Animation loadAnimation(String path, int duration){
 		images = new ArrayList<Image>();
-		String generalresource = "assets/xmlresources/animations/";
-		// Have to set resource path based on level id, hash map of level ids?
-		final File f = new File(generalresource, vertpath);
+		final File f = new File(path);
 		InputStream is = null;
+		
 		try {
 			is = new FileInputStream(f);
 			loadImages(is);
@@ -46,8 +45,8 @@ public class AnimationLoader {
 			}
 		}
 		
-		Image[] imgarray = new Image[images.size()];
-		Animation anim = new Animation(imgarray, 300, true);
+		Image[] imgarray = images.toArray(new Image[0]);
+		Animation anim = new Animation(imgarray, duration, true);
 		return anim;
 		
 	}
@@ -75,7 +74,7 @@ public class AnimationLoader {
 		}
 
 		// normalize text representation
-		doc.getDocumentElement ().normalize ();
+		doc.getDocumentElement().normalize();
 
 		final NodeList listResources = doc.getElementsByTagName("resource");  
 
