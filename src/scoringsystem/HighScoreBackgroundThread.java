@@ -14,14 +14,15 @@ public class HighScoreBackgroundThread implements Runnable {
 	
 	private static ArrayList<HighScore> toUpdate;
 	private static Map<Integer, ArrayList<HighScore>> onlineHighScores = new HashMap<Integer, ArrayList<HighScore>>();
-	
+
 	long startTime = System.currentTimeMillis();
 	long elapsedTime =0;
 
-
 	public HighScoreBackgroundThread(){
+		//Initiate online high scores.
+		OnlineHighScoreLoader.initiateScores();
+		//Initiate the local array list
 		toUpdate = new ArrayList<HighScore>();
-		elapsedTime = 2*60*1000;
 	}
 	
 	@Override
@@ -37,7 +38,6 @@ public class HighScoreBackgroundThread implements Runnable {
 			//We do this every 5 minutes.
 			if (elapsedTime < 60*1000) {
 			    elapsedTime = (new Date()).getTime() - startTime;
-
 			} else {
 				//Five minutes has passed, download online server for all levels.
 				startTime = System.currentTimeMillis();

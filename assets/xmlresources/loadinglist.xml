@@ -68,7 +68,6 @@
 	<resource type="LEVELXML" id="17">levels/mario.xml</resource>
 	<resource type="LEVELXML" id="18">levels/switches.xml</resource>
 	
-	
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
 	<resource type="INPUTXML" id="1">inputs/inputtwo.xml</resource>

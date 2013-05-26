@@ -69,18 +69,14 @@ public class GLaDOS {
 	}
 
 	public void updateHighScores(int levelid) {
-		try {
-				if(!AssetManager.getHighscores().containsKey(levelid)){
-					ArrayList<HighScore> newarray = new ArrayList<HighScore>();
-					AssetManager.getHighscores().put(levelid,newarray);
-				}
-				HighScore toAdd = new HighScore(Portal2D.name, stats.getTimeInLevel()/1000, stats.getLevelID());
-				AssetManager.getHighscores().get(levelid).add(toAdd);
-				HighScoreBackgroundThread.addScore(toAdd);
-				HighScoreLoader.saveHighScores();
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
+
+		if(!AssetManager.getHighscores().containsKey(levelid)){
+			ArrayList<HighScore> newarray = new ArrayList<HighScore>();
+			AssetManager.getHighscores().put(levelid,newarray);
+		}
+		HighScore toAdd = new HighScore(Portal2D.name, stats.getTimeInLevel()/1000, stats.getLevelID());
+		AssetManager.getHighscores().get(levelid).add(toAdd);
+		HighScoreBackgroundThread.addScore(toAdd);
 	}
 
 	public void finaliseStats(){
