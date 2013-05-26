@@ -24,9 +24,9 @@ import resourcemanagers.SoundController;
 
 public class Player extends GameObject{
 	private static final String SHAPEID="CHELLSHAPE";
-	private final String RUNANIM = "CHELLRUN";
-	private final String FALLIMG = "CHELLFALL";
-	private final String IDLEIMG = "CHELLIDLE";
+	private final static String RUNANIM = "CHELLRUN";
+	private final static String FALLIMG = "CHELLFALL";
+	private final static String IDLEIMG = "CHELLIDLE";
 
 	// Constants related to player movement
 	private static final int BODYTYPE=PhysUtils.DYNAMIC;
@@ -57,6 +57,7 @@ public class Player extends GameObject{
 	 * @throws SlickException
 	 */
 	public Player(Vec2 pos, World world) throws SlickException {
+		super(IDLEIMG);
 		FixtureDef fixture = this.createFixture(SHAPEID);
 		this.createBody(pos, world, fixture, BODYTYPE);
 		Vec2 dim = new Vec2(108f,102f);

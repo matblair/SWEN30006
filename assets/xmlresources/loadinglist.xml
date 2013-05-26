@@ -32,7 +32,7 @@
 	
 	<!-- Images -->
 	<resource type="IMAGE" id="CHELLIDLE">assets/sprites/gameobjects/chell.png</resource>
-	<resource type="IMAGE" id="CHELLFALL">assets/sprites/gameobjects/chell.png</resource>
+	<resource type="IMAGE" id="CHELLFALL">assets/sprites/gameobjects/chellfall.png</resource>
 	<resource type="IMAGE" id="HITBOX">assets/sprites/gameobjects/hitbox.png</resource>
 	<resource type="IMAGE" id="CUBE">assets/sprites/gameobjects/cube.png</resource>
 	<resource type="IMAGE" id="PLATFORM">assets/sprites/levelobjects/longlevel.png</resource>
@@ -50,6 +50,10 @@
 	<resource type="IMAGE" id="CHELLRUN2">assets/sprites/animations/chellrun/2.png</resource>
 	<resource type="IMAGE" id="CHELLRUN3">assets/sprites/animations/chellrun/3.png</resource>
 	<resource type="IMAGE" id="CHELLRUN4">assets/sprites/animations/chellrun/4.png</resource>
+	<resource type="IMAGE" id="CHELLRUN5">assets/sprites/animations/chellrun/5.png</resource>
+	<resource type="IMAGE" id="CHELLRUN6">assets/sprites/animations/chellrun/6.png</resource>
+	<resource type="IMAGE" id="CHELLRUN7">assets/sprites/animations/chellrun/7.png</resource>
+	<resource type="IMAGE" id="CHELLRUN8">assets/sprites/animations/chellrun/8.png</resource>
 	
 	<!-- Achievement Images -->
 	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>
