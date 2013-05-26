@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+<<<<<<< HEAD
+<resource levelid="16" name="Mat" score="98.0">highscore</resource>
+=======
+<resource levelid="0" name="Mat" score="69.0">highscore</resource>
+<resource levelid="0" name="Mat" score="46.0">highscore</resource>
+<resource levelid="1" name="Mat" score="88.0">highscore</resource>
+<resource levelid="1" name="Mat" score="50.0">highscore</resource>
+<resource levelid="1" name="Mat" score="27.0">highscore</resource>
+<resource levelid="1" name="Mat" score="12.0">highscore</resource>
+<resource levelid="1" name="Mat" score="11.0">highscore</resource>
+<resource levelid="2" name="Mat" score="50.0">highscore</resource>
+<resource levelid="2" name="Mat" score="24.0">highscore</resource>
+<resource levelid="2" name="Mat" score="14.0">highscore</resource>
+<resource levelid="3" name="Mat" score="35.0">highscore</resource>
+<resource levelid="3" name="Mat" score="28.0">highscore</resource>
+<resource levelid="3" name="Mat" score="22.0">highscore</resource>
+<resource levelid="4" name="Mat" score="16.0">highscore</resource>
+<resource levelid="4" name="Mat" score="10.0">highscore</resource>
+<resource levelid="4" name="Mat" score="10.0">highscore</resource>
+<resource levelid="5" name="Mat" score="69.0">highscore</resource>
+<resource levelid="6" name="Mat" score="6.0">highscore</resource>
+<resource levelid="7" name="Mat" score="19.0">highscore</resource>
+<resource levelid="8" name="Mat" score="17.0">highscore</resource>
+<resource levelid="9" name="Mat" score="45.0">highscore</resource>
+<resource levelid="11" name="Mat" score="61.0">highscore</resource>
+<resource levelid="17" name="Mat" score="103.0">highscore</resource>
+<resource levelid="18" name="Mat" score="13.0">highscore</resource>
+<resource levelid="18" name="Mat" score="13.0">highscore</resource>
+<resource levelid="18" name="Mat" score="9.0">highscore</resource>
+<resource levelid="18" name="Mat" score="3.0">highscore</resource>
+<resource levelid="18" name="Mat" score="3.0">highscore</resource>
+>>>>>>> master
+</resources>
