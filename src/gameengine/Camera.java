@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 
 public class Camera {
 	private Vec2 location, bounds, dimensions; // JBox coords
+	private final float RENDERBUFFER=2; // Metres outside edge of camera to render
 	
 	public Camera(){
 		location = new Vec2();
@@ -60,8 +61,17 @@ public class Camera {
 	 * @return true if the object is (at least partially) in view.
 	 */
 	public boolean inView(GameObject obj) {
-		// TODO: correct this
-		return true;
+		Vec2 objloc = obj.getLocation();
+		
+		// Check if within camera view + view buffer on either side
+		if (objloc.x > location.x - RENDERBUFFER && objloc.x < location.x + dimensions.x + RENDERBUFFER) {
+			if (objloc.y > location.y - RENDERBUFFER && objloc.y < location.y + dimensions.y + RENDERBUFFER) {
+				return true;
+			}
+		}
+		
+		// Outside view
+		return false;
 	}
 	
 	/** Get the dimensions of the camera field of view.
