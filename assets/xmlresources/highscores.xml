@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 <resource levelid="0" name="Mat" score="69.0">highscore</resource>
+<<<<<<< HEAD
 <resource levelid="0" name="Mat" score="46.0">highscore</resource>
 <resource levelid="0" name="Mat" score="41.0">highscore</resource>
 <resource levelid="1" name="Mat" score="88.0">highscore</resource>
@@ -30,4 +31,55 @@
 <resource levelid="8" name="Mat" score="17.0">highscore</resource>
 <resource levelid="9" name="Mat" score="45.0">highscore</resource>
 <resource levelid="11" name="Mat" score="61.0">highscore</resource>
+=======
+<resource levelid="0" name="Mat" score="119.0">highscore</resource>
+<resource levelid="0" name="Mat" score="10.0">highscore</resource>
+<resource levelid="0" name="Mat" score="53.0">highscore</resource>
+<resource levelid="0" name="Mat" score="33.0">highscore</resource>
+<resource levelid="0" name="Mat" score="21.0">highscore</resource>
+<resource levelid="0" name="Mat" score="34.0">highscore</resource>
+<resource levelid="0" name="Mat" score="12.0">highscore</resource>
+<resource levelid="0" name="Mat" score="29.0">highscore</resource>
+<resource levelid="0" name="Mat" score="11.0">highscore</resource>
+<resource levelid="0" name="Mat" score="24.0">highscore</resource>
+<resource levelid="0" name="Mat" score="11.0">highscore</resource>
+<resource levelid="0" name="Mat" score="43.0">highscore</resource>
+<resource levelid="0" name="Mat" score="27.0">highscore</resource>
+<resource levelid="0" name="Mat" score="63.0">highscore</resource>
+<resource levelid="0" name="Mat" score="30.0">highscore</resource>
+<resource levelid="0" name="Mat" score="12.0">highscore</resource>
+<resource levelid="0" name="Mat" score="57.0">highscore</resource>
+<resource levelid="0" name="Mat" score="64.0">highscore</resource>
+<resource levelid="0" name="Mat" score="80.0">highscore</resource>
+<resource levelid="0" name="Mat" score="277.0">highscore</resource>
+<resource levelid="0" name="Mat" score="58.0">highscore</resource>
+<resource levelid="0" name="Mat" score="119.0">highscore</resource>
+<resource levelid="0" name="Mat" score="64.0">highscore</resource>
+<resource levelid="0" name="Mat" score="105.0">highscore</resource>
+<resource levelid="0" name="Mat" score="130.0">highscore</resource>
+<resource levelid="0" name="Mat" score="16.0">highscore</resource>
+<resource levelid="0" name="Mat" score="79.0">highscore</resource>
+<resource levelid="0" name="Mat" score="38.0">highscore</resource>
+<resource levelid="0" name="Mat" score="71.0">highscore</resource>
+<resource levelid="0" name="Mat" score="84.0">highscore</resource>
+<resource levelid="0" name="Mat" score="68.0">highscore</resource>
+<resource levelid="0" name="Mat" score="105.0">highscore</resource>
+<resource levelid="0" name="Mat" score="60.0">highscore</resource>
+<resource levelid="0" name="Mat" score="69.0">highscore</resource>
+<resource levelid="0" name="Mat" score="179.0">highscore</resource>
+<resource levelid="0" name="Mat" score="118.0">highscore</resource>
+<resource levelid="0" name="Mat" score="45.0">highscore</resource>
+<resource levelid="0" name="Mat" score="102.0">highscore</resource>
+<resource levelid="0" name="Mat" score="27.0">highscore</resource>
+<resource levelid="0" name="Mat" score="30.0">highscore</resource>
+<resource levelid="0" name="Mat" score="60.0">highscore</resource>
+<resource levelid="0" name="Mat" score="30.0">highscore</resource>
+<resource levelid="0" name="Mat" score="32.0">highscore</resource>
+<resource levelid="0" name="Mat" score="91.0">highscore</resource>
+<resource levelid="0" name="Mat" score="45.0">highscore</resource>
+<resource levelid="0" name="Mat" score="62.0">highscore</resource>
+<resource levelid="0" name="Mat" score="15.0">highscore</resource>
+<resource levelid="0" name="Mat" score="68.0">highscore</resource>
+<resource levelid="0" name="Mat" score="67.0">highscore</resource>
+>>>>>>> joana
 </resources>
