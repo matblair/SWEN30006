@@ -29,6 +29,7 @@ public class GameObject {
 	private final float CLIPDIST = 0.2f;
 	private Vec2 dimensions;
 	private boolean inPortal;
+	private Portal portalIn;
 	private Vec2 last;
 	private static final float MINYEXIT = 6f;
 
@@ -70,6 +71,8 @@ public class GameObject {
 		while (edge != null) {
 			if (level.getBodyType(edge.other).equals("portal")) {
 				inPortal = true;
+				Portal[] ps = level.getPortals();
+				portalIn = edge.other.toString().equals(ps[Portal.BLUE].getBodyID()) ? ps[Portal.BLUE] : ps[Portal.ORANGE];
 				break;
 			}
 			inPortal = false;
@@ -87,9 +90,9 @@ public class GameObject {
 		getBody().getWorld().raycast(rch, last, getLocation());
 		if (rch.fixture != null) {
 			Portal portals[] = level.getPortals();
-			Portal portalHit;
 			String bodyID = rch.fixture.getBody().toString();
-
+			Portal portalHit;
+			
 			if (bodyID.equals(portals[Portal.BLUE].getBodyID())) {
 				System.out.println("entering blue");
 				portalHit = portals[Portal.BLUE];
@@ -99,11 +102,9 @@ public class GameObject {
 			}
 
 			Portal otherPortal = portalHit.getLinkedPortal();
-			float rotateBy = PhysUtils.getAngle(otherPortal.getUnitTangent()) - PhysUtils.getAngle(portalHit.getUnitTangent()) + (float) Math.PI;
-			float portalHitOffset = rch.point.sub(portalHit.getLocation()).length();
-
-			Vec2 remainingTravel = PhysUtils.rotateVector(getLocation().sub(last).mul(rch.fraction), rotateBy);
-			Vec2 appear = otherPortal.getLocation().sub(otherPortal.getUnitTangent().mul(portalHitOffset)).add(remainingTravel);
+			portalIn = otherPortal;
+			float rotateBy = portalHit.getRotationDifference();
+			Vec2 appear = portalHit.translateLocation(this.getLocation());
 			Vec2 newVelocity = PhysUtils.rotateVector(getBody().getLinearVelocity(), rotateBy);
 			
 			// Set min y velocity for exit to avoid falling out of level
@@ -184,5 +185,18 @@ public class GameObject {
 	public void setBody(Body body) {
 		this.body = body;
 	}
-
+	
+	/** Get whether the GameObject is in a portal
+	 * @return True if in contact with a portal
+	 */
+	public boolean isInPortal() {
+		return inPortal;
+	}
+	
+	/** Get the portal the GameObject is in
+	 * @return The Portal object
+	 */
+	public Portal getPortalIn() {
+		return portalIn;
+	}
 }

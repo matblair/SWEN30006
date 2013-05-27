@@ -183,4 +183,19 @@ public class Portal extends GameObject {
 		enabled = true;
 		this.open();
 	}
+	
+	/** Get the translated location (eg: for traveling through portals)
+	 * 
+	 * @param from The location to go from
+	 * @return The translated location
+	 */
+	public Vec2 translateLocation(Vec2 from) {
+		Vec2 vecToFrom = from.sub(getLocation());
+		Vec2 newLoc = otherPortal.getLocation().add(PhysUtils.rotateVector(vecToFrom, getRotationDifference()));
+		return newLoc;
+	}
+	
+	public float getRotationDifference() {
+		return PhysUtils.getAngle(otherPortal.getUnitTangent()) - PhysUtils.getAngle(this.getUnitTangent()) + (float) Math.PI;
+	}
 }

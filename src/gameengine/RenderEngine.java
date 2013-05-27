@@ -43,16 +43,24 @@ public class RenderEngine {
 	 * @param obj The GameObject to render.
 	 * @param cam The camera object that defines the field of view.
 	 */
-	public static <T extends GameObject> void drawGameObject (T obj, Camera cam) {		
-		if (!cam.inView(obj)) {
-			return;
+	public static <T extends GameObject> void drawGameObject (T obj, Camera cam) {	
+		if (cam.inView(obj)) {
+			drawGameObject (obj, obj.getLocation(), cam);
 		}
-		
+		if (obj.isInPortal()) {
+			drawGameObject (obj, obj.getPortalIn().translateLocation(obj.getLocation()), cam);
+		}
+	}
+	
+	/** Draw a game object at a different location in the world. That is,
+	 * override its actual location
+	 * 
+	 */
+	public static <T extends GameObject> void drawGameObject (T obj, Vec2 location, Camera cam) {
 		float rotation = (float) (-obj.getRotation() * 180 / Math.PI);
 		Vec2 camLoc = cam.getLocation();
 		Vec2 camDim = cam.getDimensions();
-		Vec2 objLoc = obj.getLocation();
-		Vec2 slickRenderPoint = PhysUtils.JBoxToSlickVec(new Vec2(objLoc.x - camLoc.x, camDim.y - (objLoc.y - camLoc.y)));
+		Vec2 slickRenderPoint = PhysUtils.JBoxToSlickVec(new Vec2(location.x - camLoc.x, camDim.y - (location.y - camLoc.y)));
 		Image image = obj.getImage();
 		image.setRotation(rotation);
 		image.drawCentered((int) slickRenderPoint.x, (int) slickRenderPoint.y);
