@@ -42,6 +42,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 	private int achievementSelected;
 	
 	private Image selected;
+	private Image lock;
 	private int viewOffset=0, targetRowOffset;
 
 	public AchievementState() throws SlickException {
@@ -59,6 +60,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 		font = AssetManager.requestFontResource("RETROFONT");
 		titleFont = AssetManager.requestFontResource("TITLEFONT");
 		selected=AssetManager.requestUIElement("SELECTED");
+		lock = AssetManager.requestUIElement("ACHLOCK");
 		targetRowOffset = 0;
 	}
 
@@ -125,14 +127,14 @@ public class AchievementState extends BasicGameState implements KeyListener {
 				g.drawString(text, 300, 120);
 			}
 
-			if (a.isUnlocked()) {
-				image = a.getUnlockedImage();
-			} else {
-				image = a.getLockedImage();
-			}
-			
+			image = a.getUnlockedImage();
 			image.setAlpha(alpha);
 			image.drawCentered(x, y);
+			
+			if (!a.isUnlocked()) {
+				lock.setAlpha(alpha);
+				lock.drawCentered(x, y);
+			}
 
 			index++;
 		}

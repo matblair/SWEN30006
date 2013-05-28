@@ -23,7 +23,8 @@
 	<resource type="UIELEMENT" id="INPUTTWO">assets/sprites/uielements/inputdisplay/inputtwo.png</resource>
 	<resource type="UIELEMENT" id="INPUTONE">assets/sprites/uielements/inputdisplay/inputone.png</resource>
 	<resource type="UIELEMENT" id="ACHPOPUP">assets/sprites/uielements/achievementpopup.png</resource>
-
+	<resource type="UIELEMENT" id="ACHLOCK">assets/sprites/uielements/lock.png</resource>
+	
 	<!-- Sounds -->
 	<resource type="SOUND" id="JUMP" style="SFX">assets/audio/sfx/jump.ogg</resource>
 	<resource type="SOUND" id="PORTALTRANSITION" style="SFX">assets/audio/sfx/portal_transition.ogg</resource>
