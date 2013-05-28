@@ -30,7 +30,7 @@
 	<resource type="MOVINGPLATFORM" id="SMALLPLATFORM" contMovement="true" xStart="23" yStart="2.0" trackxstart="23" trackystart="2.0" trackxfin="23" trackyfin="11">assets/sprites/wall.png</resource>
     
     <!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/biglevel.png</resource>
 	
 	<!-- DOORS -->
 	<resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="18" yStart="2" doorid="MIRROROOR">assets/sprites/levelobjects/door.png</resource>
