@@ -59,6 +59,22 @@
 	<resource type="IMAGE" id="DOOR9">assets/sprites/animations/door/9.png</resource>
 	<resource type="IMAGE" id="DOOR10">assets/sprites/animations/door/10.png</resource>
 	<resource type="IMAGE" id="DOOR11">assets/sprites/animations/door/11.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL1">assets/sprites/animations/orangeportal/1.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL2">assets/sprites/animations/orangeportal/2.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL3">assets/sprites/animations/orangeportal/3.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL4">assets/sprites/animations/orangeportal/4.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL5">assets/sprites/animations/orangeportal/5.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL6">assets/sprites/animations/orangeportal/6.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL7">assets/sprites/animations/orangeportal/7.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL8">assets/sprites/animations/orangeportal/8.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL1">assets/sprites/animations/blueportal/1.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL2">assets/sprites/animations/blueportal/2.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL3">assets/sprites/animations/blueportal/3.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL4">assets/sprites/animations/blueportal/4.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL5">assets/sprites/animations/blueportal/5.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL6">assets/sprites/animations/blueportal/6.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL7">assets/sprites/animations/blueportal/7.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL8">assets/sprites/animations/blueportal/8.png</resource>
 	
 	<!-- Achievement Images -->
 	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>
@@ -103,6 +119,8 @@
 	<!-- Animations -->
 	<resource type="ANIMATION" id="CHELLRUN" duration="200">assets/xmlresources/animations/chellrun.xml</resource>
 	<resource type="ANIMATION" id="DOOR" duration="20">assets/xmlresources/animations/door.xml</resource>
+	<resource type="ANIMATION" id="ORANGEPORTAL" duration="20">assets/xmlresources/animations/orangeportal.xml</resource>
+	<resource type="ANIMATION" id="BLUEPORTAL" duration="20">assets/xmlresources/animations/blueportal.xml</resource>
 	
 	<!-- Fonts -->
 	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>

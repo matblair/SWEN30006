@@ -79,8 +79,8 @@ public class Level {
 		bigSwitches = new HashMap<String,BigSwitch>();	
 		noportalwalls = new HashMap<String,Wall>();
 		achievementPopups = new ArrayList<AchievementPopup>();
-		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(-1,0), world);
-		portals[Portal.BLUE] = new Portal("BLUEPORTAL", new Vec2(-1,0), world);
+		portals[Portal.ORANGE] = new Portal(Portal.ORANGE, new Vec2(-1,0), world);
+		portals[Portal.BLUE] = new Portal(Portal.BLUE, new Vec2(-1,0), world);
 		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
 		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
 		glados = new GLaDOS(this.levelid);
@@ -99,14 +99,17 @@ public class Level {
 		
 		world.step(timeStep, velocityIterations, positionIterations);
 		player.checkCube();
-		for(final BigSwitch bs: bigSwitches.values()){
+		for (BigSwitch bs: bigSwitches.values()){
 			bs.updateState();
 		}
-		for(final MovingPlatform pl: movingplatforms.values()){
+		for (MovingPlatform pl: movingplatforms.values()){
 			pl.updatePos(delta);
 		}
 		for (Door d : doors.values()) {
 			d.update(delta);
+		}
+		for (Portal p : portals) {
+			p.update(delta);
 		}
 		
 		glados.updateTesting(delta,player);

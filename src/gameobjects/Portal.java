@@ -7,16 +7,19 @@ import gameengine.PhysUtils;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
+
+import resourcemanagers.AssetManager;
 
 public class Portal extends GameObject {
 	public static final int BLUE=0, ORANGE=1;
+	private final String BLUEANIMID="BLUEPORTAL", ORANGEANIMID="ORANGEPORTAL";
 	private static final int BEFORE=0, AFTER=1;
 	private int relativeLoc;
 	
 	private static final String SHAPEID="PORTALSHAPE";
 	private static final int BODYTYPE=PhysUtils.STATIC;
-
 	
 	private float height;
 	private boolean enabled=false, sameWall=false;
@@ -24,19 +27,26 @@ public class Portal extends GameObject {
 	private Wall wall;
 	public Wall startSegment, sharedSegment, endSegment;
 	private World world;
+	private Animation animation;
 	
-	public Portal(String imgid, Vec2 location, World world)
+	public Portal(int colour, Vec2 location, World world)
 			throws SlickException {
-		super(imgid);
+		super();
 		FixtureDef fixture = createFixture(SHAPEID);
 		this.createBody(location, world, fixture, BODYTYPE);
 		this.world = world;
-		Vec2 dim = new Vec2(0.2f, 2.65625f);
-		this.setDimensions(dim);
-		System.out.println(getDimensions());
+		this.setDimensions(new Vec2(0.2f, 2.5f));
 		height = this.getDimensions().y;
+		
+		String animID = (colour==BLUE) ? BLUEANIMID : ORANGEANIMID;
+		animation = AssetManager.requestAnimationResources(animID);
+		animation.setLooping(false);
 	}
-
+	
+	public void update (int delta) {
+		animation.update (delta);
+		this.setSprite(animation.getCurrentFrame());
+	}
 	
 	public void linkPortals(Portal portal){
 		otherPortal = portal;
@@ -180,6 +190,7 @@ public class Portal extends GameObject {
 		this.wall = wall;
 		this.wall.disable();
 		
+		animation.restart();
 		enabled = true;
 		this.open();
 	}
