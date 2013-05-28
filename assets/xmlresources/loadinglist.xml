@@ -38,6 +38,7 @@
 	<resource type="IMAGE" id="PLATFORM">assets/sprites/levelobjects/longlevel.png</resource>
 	<resource type="IMAGE" id="SMALLPLATFORM">assets/sprites/levelobjects/shortlevel.png</resource>
 	<resource type="IMAGE" id="SMALLSWITCH">assets/sprites/levelobjects/smallswitch.png</resource>
+	<resource type="IMAGE" id="SMALLSWITCHDOWN">assets/sprites/levelobjects/smallswitchpressed.png</resource>
 	<resource type="IMAGE" id="BLUEPORTAL">assets/sprites/levelobjects/blueportal.png</resource>
 	<resource type="IMAGE" id="ORANGEPORTAL">assets/sprites/levelobjects/orangeportal.png</resource>
 	<resource type="IMAGE" id="BIGSWITCHBASE">assets/sprites/levelobjects/switchbase.png</resource>
@@ -52,6 +53,11 @@
 	<resource type="IMAGE" id="CHELLRUN6">assets/sprites/animations/chellrun/6.png</resource>
 	<resource type="IMAGE" id="CHELLRUN7">assets/sprites/animations/chellrun/7.png</resource>
 	<resource type="IMAGE" id="CHELLRUN8">assets/sprites/animations/chellrun/8.png</resource>
+	<resource type="IMAGE" id="CHELLRUN9">assets/sprites/animations/chellrun/9.png</resource>
+	<resource type="IMAGE" id="CHELLRUN10">assets/sprites/animations/chellrun/10.png</resource>
+	<resource type="IMAGE" id="CHELLRUN11">assets/sprites/animations/chellrun/11.png</resource>
+	<resource type="IMAGE" id="CHELLRUN12">assets/sprites/animations/chellrun/12.png</resource>
+
 	<resource type="IMAGE" id="DOOR1">assets/sprites/animations/door/1.png</resource>
 	<resource type="IMAGE" id="DOOR2">assets/sprites/animations/door/2.png</resource>
 	<resource type="IMAGE" id="DOOR3">assets/sprites/animations/door/3.png</resource>
@@ -105,7 +111,7 @@
 	<resource type="SHAPE" id="DOORSHAPE" vertpath="door.xml">doorpath</resource>
 	
 	<!-- Animations -->
-	<resource type="ANIMATION" id="CHELLRUN" duration="200">assets/xmlresources/animations/chellrun.xml</resource>
+	<resource type="ANIMATION" id="CHELLRUN" duration="75">assets/xmlresources/animations/chellrun.xml</resource>
 	<resource type="ANIMATION" id="DOOR" duration="20">assets/xmlresources/animations/door.xml</resource>
 	
 	<!-- Fonts -->

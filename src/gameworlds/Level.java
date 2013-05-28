@@ -102,6 +102,9 @@ public class Level {
 		for(final BigSwitch bs: bigSwitches.values()){
 			bs.updateState();
 		}
+		for(final LittleSwitch ls: lilSwitches.values()){
+			ls.updateState(delta);
+		}
 		for(final MovingPlatform pl: movingplatforms.values()){
 			pl.updatePos(delta);
 		}
