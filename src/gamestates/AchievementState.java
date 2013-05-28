@@ -30,10 +30,10 @@ public class AchievementState extends BasicGameState implements KeyListener {
 	private final int NUMROWS = 3;
 	private final int XSPACING = 180;
 	private final int YSPACING = 180;
-	private final int YSTARTHEIGHT = 250;
+	private final int YSTARTHEIGHT = 280;
+	private final int FADEOUTDIST = 100;
 
 	private boolean listening=true;
-	private boolean debug, fullscreen;
 	private static Font font, titleFont;
 	private static String titleText = new String("Achievements");
 	private static String subtitleText = new String("Version 0.4");
@@ -58,8 +58,6 @@ public class AchievementState extends BasicGameState implements KeyListener {
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		font = AssetManager.requestFontResource("RETROFONT");
 		titleFont = AssetManager.requestFontResource("TITLEFONT");
-		debug = false;
-		fullscreen = false;
 		selected=AssetManager.requestUIElement("SELECTED");
 		targetRowOffset = 0;
 	}
@@ -101,12 +99,20 @@ public class AchievementState extends BasicGameState implements KeyListener {
 		int index = 0;
 		int x, y;
 		int width = gc.getWidth();
+		float alpha;
 		String text;
 
 		for (Achievement a : achievements) {
 			x = (int) ((float) width / 2 + (index % ITEMSPERROW - (float) (ITEMSPERROW - 1) / 2) * XSPACING);
 			y = YSTARTHEIGHT + YSPACING * (int) Math.floor(index / ITEMSPERROW) - viewOffset;
-
+			if (y > YSPACING * (NUMROWS - 1) + YSTARTHEIGHT) {
+				alpha = 1 - ((float) y - (YSPACING * (NUMROWS - 1) + YSTARTHEIGHT)) / FADEOUTDIST;
+			} else if (y < YSTARTHEIGHT) {
+				alpha = 1 - (float) (YSTARTHEIGHT - y) / FADEOUTDIST;
+			} else {
+				alpha = 1;
+			}
+			
 			if (index == achievementSelected) {
 				selected.drawCentered(x, y + 15);
 				
@@ -124,7 +130,8 @@ public class AchievementState extends BasicGameState implements KeyListener {
 			} else {
 				image = a.getLockedImage();
 			}
-
+			
+			image.setAlpha(alpha);
 			image.drawCentered(x, y);
 
 			index++;
