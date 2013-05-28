@@ -37,8 +37,8 @@ public class AchievementState extends BasicGameState implements KeyListener {
 	private Image selected;
 
 	private final int itemsPerRow = 6;
-	private final int xSpacing = 180;
-	private final int ySpacing = 180;
+	private final int xSpacing = 140;
+	private final int ySpacing = 140;
 	private final int yStartHeight = 250;
 
 	public AchievementState() throws SlickException {
@@ -90,7 +90,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
 
 			if (index == achievementSelected) {
-				selected.drawCentered(x, y + 15);
+				selected.drawCentered(x, y + 5);
 				
 				text = a.getName();
 				g.setColor(Color.darkGray);

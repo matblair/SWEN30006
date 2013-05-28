@@ -71,7 +71,38 @@
 	<resource type="IMAGE" id="DOOR11">assets/sprites/animations/door/11.png</resource>
 	
 	<!-- Achievement Images -->
-	<resource type="ACHIMAGE" id="RISINGSUN">assets/sprites/achievementlogos/ach.png</resource>
+	<resource type="ACHIMAGE" id="JUMP1">assets/sprites/achievementlogos/jump1.png</resource>
+	<resource type="ACHIMAGE" id="JUMP2">assets/sprites/achievementlogos/jump2.png</resource>
+	<resource type="ACHIMAGE" id="JUMP3">assets/sprites/achievementlogos/jump3.png</resource>
+	<resource type="ACHIMAGE" id="JUMP4">assets/sprites/achievementlogos/jump4.png</resource>
+	<resource type="ACHIMAGE" id="JUMP5">assets/sprites/achievementlogos/jump5.png</resource>
+	<resource type="ACHIMAGE" id="CUBE1">assets/sprites/achievementlogos/cube1.png</resource>
+	<resource type="ACHIMAGE" id="CUBE2">assets/sprites/achievementlogos/cube2.png</resource>
+	<resource type="ACHIMAGE" id="CUBE3">assets/sprites/achievementlogos/cube3.png</resource>
+	<resource type="ACHIMAGE" id="DIST1">assets/sprites/achievementlogos/dist1.png</resource>
+	<resource type="ACHIMAGE" id="DIST2">assets/sprites/achievementlogos/dist2.png</resource>
+	<resource type="ACHIMAGE" id="DIST3">assets/sprites/achievementlogos/dist3.png</resource>
+	<resource type="ACHIMAGE" id="DIST4">assets/sprites/achievementlogos/dist4.png</resource>
+	<resource type="ACHIMAGE" id="DIST5">assets/sprites/achievementlogos/dist5.png</resource>
+	<resource type="ACHIMAGE" id="VEL1">assets/sprites/achievementlogos/vel1.png</resource>
+	<resource type="ACHIMAGE" id="VEL2">assets/sprites/achievementlogos/vel2.png</resource>
+	<resource type="ACHIMAGE" id="VEL3">assets/sprites/achievementlogos/vel3.png</resource>
+	<resource type="ACHIMAGE" id="VEL4">assets/sprites/achievementlogos/vel4.png</resource>
+	<resource type="ACHIMAGE" id="VEL5">assets/sprites/achievementlogos/vel5.png</resource>
+	<resource type="ACHIMAGE" id="VEL6">assets/sprites/achievementlogos/vel6.png</resource>
+	<resource type="ACHIMAGE" id="PORTALS1">assets/sprites/achievementlogos/portals1.png</resource>
+	<resource type="ACHIMAGE" id="PORTALS2">assets/sprites/achievementlogos/portals2.png</resource>
+	<resource type="ACHIMAGE" id="PORTALS3">assets/sprites/achievementlogos/portals3.png</resource>
+	<resource type="ACHIMAGE" id="PORTALS4">assets/sprites/achievementlogos/portals4.png</resource>
+	<resource type="ACHIMAGE" id="PORTALS5">assets/sprites/achievementlogos/portals5.png</resource>
+	<resource type="ACHIMAGE" id="TIME1">assets/sprites/achievementlogos/time1.png</resource>
+	<resource type="ACHIMAGE" id="TIME2">assets/sprites/achievementlogos/time2.png</resource>
+	<resource type="ACHIMAGE" id="TIME3">assets/sprites/achievementlogos/time3.png</resource>
+	<resource type="ACHIMAGE" id="TIME4">assets/sprites/achievementlogos/time4.png</resource>
+	<resource type="ACHIMAGE" id="TIME5">assets/sprites/achievementlogos/time5.png</resource>
+	<resource type="ACHIMAGE" id="TIME6">assets/sprites/achievementlogos/time6.png</resource>
+	<resource type="ACHIMAGE" id="TIME7">assets/sprites/achievementlogos/time7.png</resource>
+
 	
 	<!-- LevelXML -->
 	<resource type="LEVELXML" id="0">levels/leveltwo.xml</resource>

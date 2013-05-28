@@ -2,6 +2,7 @@ package gameworlds;
 
 import gameengine.InputManager;
 import gameengine.Portal2D;
+import gamestates.GameState;
 import gamestates.LoadingState;
 
 import java.util.HashMap;
@@ -50,6 +51,7 @@ public class QuitMenu extends InGameMenu{
 		if(selected!=-1){
 			switch (selected){
 			case MENU_MAINMENU:
+				GameState.getLevel().getGlados().finaliseStats();
 				LoadingState.startnew=true;
 				sbg.enterState(Portal2D.MAINMENUSTATE);
                 break;

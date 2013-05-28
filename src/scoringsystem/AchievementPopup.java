@@ -24,7 +24,8 @@ public class AchievementPopup {
 	}
 
 	public Image getImg() {
-		return img;
+		Image newimg = img.getScaledCopy(32, 32);
+		return newimg;
 	}
 
 	public void setImg(Image img) {

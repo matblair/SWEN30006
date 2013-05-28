@@ -15,7 +15,7 @@ public abstract class Achievement {
 	private boolean persistant;
 
 	
-	private final float filterAmount = 0.5f;
+	private final float filterAmount = 0.1f;
 	
 	public Achievement (String name, String description, boolean unlocked, String imgID, String actype, int levelid, float target, boolean persistant) {
 		this.name = name;

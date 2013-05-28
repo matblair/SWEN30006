@@ -17,7 +17,6 @@ import scoringsystem.AchievementPopup;
 public class RenderEngine {
 	
 	private static final float ACOFFSET = 50;
-	private static final float wallwidth = 16;
 	private static Image achpopup;
 	
 	public static <T extends GameObject> void drawGameObjects(Map<String, T> map, Camera cam){
@@ -106,12 +105,13 @@ public class RenderEngine {
 			achpopup = AssetManager.requestUIElement("ACHPOPUP");
 		}
 		g.setColor(Color.gray);
+
 		int i=1;
 		for(AchievementPopup ac: popups){
 			float x = PhysUtils.JBoxToSlickVec(cam.getDimensions()).x-achpopup.getWidth()/2-ACOFFSET/2;
 			float y = 0 + ACOFFSET*i + (achpopup.getHeight()/2)*(i-1);
 			achpopup.drawCentered(x,y);
-			//ac.getImg().drawCentered(x+ac.getImg().getWidth()/2+10, y+ac.getImg().getHeight()/2+10);
+			ac.getImg().drawCentered(x-achpopup.getWidth()/2+ac.getImg().getWidth()/2+30, y);
 			g.drawString(ac.getName(), x-achpopup.getWidth()/3+g.getFont().getWidth("Unlocked!")/2, 0 + ACOFFSET*i + (achpopup.getHeight()/2)*(i-1)-20);
 			g.drawString("Unlocked!", x-achpopup.getWidth()/3+g.getFont().getWidth("Unlocked!")/2, 0 + ACOFFSET*i + (achpopup.getHeight()/2)*(i-1));
 			i++;
