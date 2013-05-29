@@ -87,6 +87,7 @@ public class Portal extends GameObject {
 			
 		} else {
 			this.wall.enable();
+			this.wall = null;
 			startSegment.destroy();
 			startSegment = null;
 			endSegment.destroy();
