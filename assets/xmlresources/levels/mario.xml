@@ -190,7 +190,7 @@
 	
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/mariobg.png</resource>
-	<resource type="FOREGROUNDIMG">assets/levels/mariofg.png</resource>
+	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/mariofg.png</resource>
 	
 	<!-- End Zone -->
 	<resource type="ENDZONE" xStart="198" yStart="11.5">endzone</resource>
