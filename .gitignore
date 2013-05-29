@@ -15,6 +15,10 @@ assets/.DS_Store
 lib/native/.DS_Store
 src/gameworlds/.DS_Store
 
+# Stuff that's local
+assets/xmlresources/achievements.xml
+assets/xmlresources/highscores.xml
+
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
