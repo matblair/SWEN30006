@@ -165,7 +165,9 @@ public class Player extends GameObject{
 					String type=level.getBodyType(edge.other);
 					if(type.equals("lilswitch")){
 						String bodyId=edge.other.toString();
-						level.getSwitch(bodyId).trigger();
+						if(PhysUtils.distance(this.getLocation(),level.getSwitch(bodyId).getLocation())<=DISTCHECK){
+							level.getSwitch(bodyId).trigger();
+						}
 					}
 					edge = edge.next;
 				}	
@@ -191,8 +193,10 @@ public class Player extends GameObject{
 
 		GameState.getLevel().getPhysWorld().queryAABB(callback, area);
 		CompanionCube cube = callback.getCube();
-
-		return cube;
+		if(cube!=null && PhysUtils.distance(this.getLocation(),cube.getLocation())<=DISTCHECK){
+			return cube;
+		} 
+		return null;
 	}
 
 	public void pickupCube(CompanionCube cube){
