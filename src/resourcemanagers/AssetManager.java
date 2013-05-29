@@ -35,7 +35,9 @@ public class AssetManager {
 	/** The achievement loader **/
 	private static AchievementLoader achievementLoader = new AchievementLoader();
 	/** The highscore loader **/
-	private static HighScoreLoader highscoreLoader = new HighScoreLoader();;
+	private static HighScoreLoader highscoreLoader = new HighScoreLoader();
+	/** The level unlock loader **/
+	private static LevelLockLoader lockLoader = new LevelLockLoader();
 
 	/**Creates a resource repository of commonly used items **/
 	private static Map<String, Image> imageResources = new HashMap<String, Image>(); //All images used for game objects
@@ -60,6 +62,7 @@ public class AssetManager {
 	private static final String generalresource = "assets/xmlresources/";
 	private static final String achievementxml = "achievements.xml";
 	private static final String highscorexml = "highscores.xml";
+	private static final String levelunlocks = "levelunlocks.xml";
 
 	/** The contstructor using the singleton pattern 
 	 * to ensure that only one instance can be called 
@@ -105,7 +108,7 @@ public class AssetManager {
 		}
 
 		loadAchievements();
-
+		loadLevelUnlocks();
 		//Load local highscores
 		loadHighScores();
 
@@ -131,8 +134,30 @@ public class AssetManager {
 		InputStream is = null;
 		try {
 			is = new FileInputStream(f);
-			System.out.println(achievementLoader.loadAchievements(is, false) + " achievementes loaded");
-			System.out.println(AssetManager.achievements.size());
+			achievementLoader.loadAchievements(is, false);
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (final SlickException e) {
+			e.printStackTrace();
+		} finally	{
+			try {
+				is.close();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
+	/** Load the level unlocks using the level unlock loader
+	 *  @return void
+	 */
+	public static void loadLevelUnlocks(){
+		final File f = new File(generalresource, levelunlocks);
+		InputStream is = null;
+		try {
+			is = new FileInputStream(f);
+			lockLoader.loadLevelLocks(is, false);
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (final SlickException e) {
@@ -207,7 +232,6 @@ public class AssetManager {
 	 */
 	public static void loadInput(int inputtype) throws SlickException{
 		String inputxml = AssetManager.requestInputXMLPath(inputtype);
-		System.out.println(inputxml);
 		// Have to set resource path based on level id, hash map of level ids?
 		final File f = new File(generalresource, inputxml);
 		InputStream is = null;

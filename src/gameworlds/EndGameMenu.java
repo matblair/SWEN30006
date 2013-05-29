@@ -89,6 +89,7 @@ public class EndGameMenu extends InGameMenu {
 			System.out.println("Submitting scores...");
 			glados.updateHighScores(glados.getLevelStats().getLevelID());
 			glados.updateAchievements(AssetManager.getAchievementMap());
+			AssetManager.getLevelUnlocks().put(glados.getLevelStats().getLevelID(), false);
 			try {
 				HighScoreLoader.saveHighScores();
 				AchievementLoader.saveAchievements();

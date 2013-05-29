@@ -35,8 +35,8 @@ public class Player extends GameObject{
 	private final float accelInAir = 0.01f;
 	private final float jumpFactor = 10;
 
-	private static final float MAXCUBEDIST = 1.8f;
-	private static final float DISTCHECK = 1.5f;
+	private static final float MAXCUBEDIST = 2.0f;
+	private static final float DISTCHECK = 2.0f;
 
 	/** Is holding cube? **/
 	private boolean holdingcube=false;
