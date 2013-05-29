@@ -9,13 +9,14 @@
 	<resource type="WALL" id="WALL" xStart="16" yStart="15.0" xEnd="18" yEnd="15">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="18" yStart="15.0" xEnd="18" yEnd="1">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="18" yStart="1" xEnd="30" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="30" yStart="19" xEnd="30" yEnd="12">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="30" yStart="12" xEnd="24" yEnd="12">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="24" yStart="12" xEnd="24" yEnd="3">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="30" yStart="1" xEnd="30" yEnd="19">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="30" yStart="1" xEnd="30" yEnd="13">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="30" yStart="13" xEnd="24" yEnd="13">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="24" yStart="13" xEnd="24" yEnd="3">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="24" yStart="3" xEnd="22" yEnd="3">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="22" yStart="3" xEnd="22" yEnd="13">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="22" yStart="13" xEnd="30" yEnd="13">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="30" yStart="13" xEnd="30" yEnd="19">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="22" yStart="3" xEnd="22" yEnd="15">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="22" yStart="15" xEnd="30" yEnd="15">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="30" yStart="15" xEnd="30" yEnd="19">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="30" yStart="19" xEnd="18" yEnd="19">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="18" yStart="19" xEnd="18" yEnd="17">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="18" yStart="17" xEnd="16" yEnd="17">assets/sprites/wall.png</resource>
@@ -38,7 +39,8 @@
 	
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/backgrounds/bg1.png</resource>
-	
+	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg1.png</resource>
+
 	<!-- End Zone -->
 	<resource type="ENDZONE" xStart="27" yStart="3.5">endzone</resource>
 	

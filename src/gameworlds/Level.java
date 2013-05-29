@@ -166,11 +166,12 @@ public class Level {
 		RenderEngine.drawGameObjects(movingplatforms, cam);
 		if(fg!=null){
 			RenderEngine.drawBG(fg, cam);
+		}else {
+			RenderEngine.drawWalls(walls, g, cam);
 		}
 		RenderEngine.drawPortals(portals, cam);
 		RenderEngine.drawGameObject(levelend, cam);
 		RenderEngine.drawNoPortalWalls(noportalwalls, g, cam);
-		RenderEngine.drawWalls(walls, g, cam);
 		if(!achievementPopups.isEmpty()){
 			RenderEngine.renderAchievementPopups(achievementPopups, g,cam);
 		}
@@ -338,5 +339,9 @@ public class Level {
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}
+	}
+
+	public Image getFg() {
+		return fg;
 	}
 }

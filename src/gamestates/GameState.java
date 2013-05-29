@@ -141,7 +141,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	}
 
 	public static void updateCamera(){
-		cam.setBounds(PhysUtils.SlickToJBoxVec(new Vec2(level.getBg().getWidth(), level.getBg().getHeight())));
+		cam.setBounds(PhysUtils.SlickToJBoxVec(new Vec2(level.getFg().getWidth(), level.getFg().getHeight())));
 	}
 
 	// Key Listener stuff //
