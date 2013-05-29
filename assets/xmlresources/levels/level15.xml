@@ -35,7 +35,7 @@
 	<resource type="MOVINGPLATFORM" id="SMALLPLATFORM" contMovement="true" xStart="15" yStart="12" trackxstart="15" trackystart="12" trackxfin="15" trackyfin="4">assets/sprites/wall.png</resource>
 	
 	<!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/backgrounds/bg1.png</resource>
 	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg15.png</resource>
 	
 	<!-- End Zone -->
