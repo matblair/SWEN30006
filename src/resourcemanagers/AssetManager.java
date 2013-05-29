@@ -51,6 +51,7 @@ public class AssetManager {
 	private static Map<String, Shape> shapeDefinitions = new HashMap<String, Shape>();
 	private static Map<Integer, Boolean> levelUnlocks = new HashMap<Integer,Boolean>();
 
+
 	/** The total number of resources loaded **/
 	private static int totalresources=0;
 
@@ -436,7 +437,7 @@ public class AssetManager {
 	 * 
 	 * @return
 	 */
-	public static Map<Integer, Boolean> getLevelUnlock() {
+	public static Map<Integer, Boolean> getLevelUnlocks() {
 		return levelUnlocks;
 	}
 }

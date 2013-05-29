@@ -123,7 +123,9 @@ public class ResourceLoader {
 	 */
 	private void addElementAsLevelXML(Element resourceElement) {	
 		String xml=resourceElement.getTextContent();
+		boolean locked = Boolean.parseBoolean(resourceElement.getAttribute("locked"));
 		int id=Integer.parseInt(resourceElement.getAttribute("id"));
+		AssetManager.getLevelUnlocks().put(id,locked);
 		AssetManager.getLevelXmlResources().put(id, xml);
 	}
 	

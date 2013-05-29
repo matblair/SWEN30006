@@ -10,6 +10,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -28,27 +29,28 @@ public class LevelSelectState extends BasicGameState {
 	private static String titleText = new String("Level Select");
 	private static String levelSelect = new String("Level ");
 	private static String subtitleText = new String("Use left and right arrow keys to select level:");
-	private static boolean swipeleft=false, swiperight=false, enterselected=false;
-	
-	@SuppressWarnings("unused")
+	private static boolean enterselected=false;
+
 	private Map<Integer, Boolean> unlockedstate = new HashMap<Integer,Boolean>();
 	private int levelselected=1;
 	private static int maxlevel;
-		
-	@SuppressWarnings("unused")
-	private static int oldxpos, oldypos, newxpos, newypos, screenwidth;
+
+	private static int screenwidth;
 	private static int midx, midy;
 	
+	private Image unknown;
+
 	public LevelSelectState(){
-		unlockedstate = AssetManager.getLevelUnlock();
+		unlockedstate = AssetManager.getLevelUnlocks();
 		font = AssetManager.requestFontResource("RETROFONT");
 		titleFont = AssetManager.requestFontResource("TITLEFONT");
 		debug = false;
 		fullscreen = false;
 		maxlevel = AssetManager.getLevelXmlResources().size();
-		
+		unknown = AssetManager.requestUIElement("LEVELLOCKED");
+
 	}
-	
+
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
@@ -60,48 +62,36 @@ public class LevelSelectState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-	
+
 		g.setFont(titleFont);
 		g.setColor(Color.black);
 		g.drawString(titleText, 40, 40);
 
 		g.setFont(font);
 		g.drawString(subtitleText, 40, 80);
-		
-		
-		if(swipeleft){
+
+		g.setFont(titleFont);
+		if(!unlockedstate.get(levelselected)){
 			
-		}else if (swiperight){
-			
-		}else {
-			
-			g.setFont(titleFont);
-			String towrite = levelSelect + levelselected;
-			g.drawString(towrite, midx-(titleFont.getWidth(towrite)/2), (6*midy)/4);
+		} else {
+			unknown.drawCentered(gc.getWidth()/2, gc.getHeight()/2);
 		}
+		String towrite = levelSelect + levelselected;
+		g.drawString(towrite, midx-(titleFont.getWidth(towrite)/2), (6*midy)/4);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		if(enterselected){
+		if(enterselected && !unlockedstate.get(levelselected)){
 			enterselected=false;
 			LoadingState.startnew=false;
 			LoadingState.loadLevel(sbg, levelselected-1);
-			System.out.println("Should be loading from " + (levelselected-1));
-			System.out.println(AssetManager.requestLevelXMLPath(levelselected-1));
 			sbg.enterState(Portal2D.LOADSTATE);
 		}
-		
-		if(swipeleft){
-			swipeLeft(delta);
-		}else if (swiperight){
-			swipeRight(delta);
-		}
-		
+
 		Input input = gc.getInput();
 		if (input.isKeyDown(InputManager.BACK)) {
-			System.out.println("leaving");
 			sbg.enterState(Portal2D.MAINMENUSTATE);
 		}
 	}
@@ -109,20 +99,6 @@ public class LevelSelectState extends BasicGameState {
 	@Override
 	public int getID() {
 		return LevelSelectState.StateId;
-	}
-	
-	public void swipeLeft(int delta){
-
-		if(oldxpos<0){
-			swipeleft=true;
-		}
-	}
-	
-	public void swipeRight(int delta){
-		
-		if(oldxpos>screenwidth){
-			
-		}
 	}
 
 
@@ -133,16 +109,16 @@ public class LevelSelectState extends BasicGameState {
 		if (key == InputManager.NAV_LEFT){
 			levelselected--;
 			if(levelselected<1){
-				levelselected=maxlevel;
+				levelselected=maxlevel-1;
 			}
 		}else if (key == InputManager.NAV_RIGHT){ 
 			levelselected++;
-			if(levelselected>maxlevel){
+			if(levelselected>maxlevel-1){
 				levelselected=1;
 			} 
 		}else if (key == InputManager.SELECT) {
 			enterselected=true;
 		}
 	}
-	
+
 }
