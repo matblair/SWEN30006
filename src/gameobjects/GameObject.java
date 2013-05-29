@@ -32,6 +32,7 @@ public class GameObject {
 	private Portal portalIn;
 	private Vec2 last;
 	private static final float MINYEXIT = 6f;
+	private boolean transitioned;
 
 	/** Create a GameObject
 	 * 
@@ -99,7 +100,10 @@ public class GameObject {
 		}
 
 		if (inPortal)
-			checkPortalTransition(level);
+			if (checkPortalTransition(level))
+				transitioned = true;
+			else
+				transitioned = false;
 
 		last = getLocation().clone();
 	}
@@ -107,8 +111,9 @@ public class GameObject {
 	/** Check for transition between portals. Only really need to call if contact with portal is registered)
 	 * 
 	 * @param level The level in which the GameObject (and everything else) resides.
+	 * @return true if a transition occurred
 	 */
-	private void checkPortalTransition(Level level) {
+	private boolean checkPortalTransition(Level level) {
 		PortalCollisionRCHelper rch = new PortalCollisionRCHelper(level);
 		getBody().getWorld().raycast(rch, last, getLocation());
 		if (rch.fixture != null) {
@@ -141,7 +146,9 @@ public class GameObject {
 			
 			// Finally, play the sound!
 			SoundController.play(Sound.PORTALTRAVEL);
+			return true;
 		}
+		return false;
 	}
 
 	/** Create the fixture to be used by the body
@@ -187,6 +194,14 @@ public class GameObject {
 	 */
 	public float getMass() {
 		return getBody().getMass();
+	}
+	
+	/** Check if the GameObject went through a portal
+	 * 
+	 * @return true if transition through portal occurred
+	 */
+	public boolean didTransition() {
+		return transitioned;
 	}
 
 	/** Check if the GameObject is on the ground

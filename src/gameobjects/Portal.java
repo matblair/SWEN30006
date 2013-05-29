@@ -275,6 +275,10 @@ public class Portal extends GameObject {
 	 * @return The rotation in radians
 	 */
 	public float getRotationDifference() {
-		return PhysUtils.getAngle(otherPortal.getUnitTangent()) - PhysUtils.getAngle(this.getUnitTangent()) + (float) Math.PI;
+		float rot = PhysUtils.getAngle(otherPortal.getUnitTangent()) - PhysUtils.getAngle(this.getUnitTangent()) + (float) Math.PI;
+		if (rot > Math.PI) {
+			rot -= (float) 2*Math.PI;
+		}
+		return rot;
 	}
 }

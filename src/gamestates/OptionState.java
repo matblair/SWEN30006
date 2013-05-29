@@ -49,8 +49,6 @@ public class OptionState extends BasicGameState implements KeyListener{
 
 	private static final int SOUNDINTERVAL = 5;
 
-	////////////////////////////////////
-
 	/** The state id for this part **/
 	boolean debug, fullscreen;
 	@SuppressWarnings("unused")
@@ -125,9 +123,7 @@ public class OptionState extends BasicGameState implements KeyListener{
 				g.setColor(Color.darkGray);
 			}
 			g.drawString(menuItems.get(i), 40, 150 + i * 50);
-		}	
-
-
+		}
 	}
 
 	@Override

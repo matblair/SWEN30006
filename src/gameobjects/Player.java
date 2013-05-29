@@ -34,6 +34,7 @@ public class Player extends GameObject{
 	private final float accelFactor = 0.02f;
 	private final float accelInAir = 0.01f;
 	private final float jumpFactor = 10;
+	private final float ROTATIONFACTOR = 100;
 
 	private static final float MAXCUBEDIST = 2.0f;
 	private static final float DISTCHECK = 2.0f;
@@ -49,6 +50,7 @@ public class Player extends GameObject{
 	private Animation run;
 	private Image fall;
 	private Image idle;
+	private float rotation;
 
 	/** Constructor
 =	 * @param pos Coordinates in metres specifying where the player spawns.
@@ -129,12 +131,14 @@ public class Player extends GameObject{
 		facingleft=false;
 	}
 
-	/** Update the player. Set the current sprite, face the correct way, check portals, etc.
+	/** Update the player
 	 * 
 	 * @param level The level in which the player resides
 	 * @param delta Milliseconds since last update
 	 */
 	public void update(Level level, int delta) {
+		super.update(level);
+
 		// Update the sprite
 		if (!isOnGround()) {
 			run.restart();
@@ -149,9 +153,15 @@ public class Player extends GameObject{
 		
 		if (facingleft)
 			this.setSprite(this.getImage().getFlippedCopy(true, false));
-
-		// Do other updating stuff
-		super.update(level);
+		
+		// Update rotation
+		if (this.didTransition()) {
+			rotation = this.getPortalIn().getLinkedPortal().getRotationDifference();
+		} else if (rotation > 0) {
+			rotation -= Math.min(delta/ROTATIONFACTOR, rotation);
+		} else if (rotation < 0) {
+			rotation += Math.min(delta/ROTATIONFACTOR, -rotation);
+		}
 	}
 
 	/** Tell the player to try and interact with the world.
@@ -262,6 +272,14 @@ public class Player extends GameObject{
 				dropCube();
 			}
 		}
+	}
+	
+	/** Get the rotation at which to draw the player
+	 * 
+	 * @return Rotation in radians
+	 */
+	public float getRotation() {
+		return rotation;
 	}
 	
 	/** Get the cube the player is carrying
