@@ -133,7 +133,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 			
 			if (!a.isUnlocked()) {
 				lock.setAlpha(alpha);
-				lock.drawCentered(x, y);
+				lock.drawCentered(x+30, y+30);
 			}
 
 			index++;
