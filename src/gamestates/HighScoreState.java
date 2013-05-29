@@ -2,9 +2,6 @@ package gamestates;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
 
 import gameengine.InputManager;
 import gameengine.Portal2D;
@@ -31,15 +28,8 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	boolean debug, fullscreen;
 	private static Font font;
 	private static Font titleFont;
-	@SuppressWarnings("unused")
-	private int selected =-1;
 	private static String titleText = new String("High Scores");
-	private static String subtitleText = new String("Version 1.0");
 	private static int MAXLEVEL=18;
-
-	private static Vector<String> menuItems = new Vector<String>();
-	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
-
 
 	private final int itemsPerRow = 1;
 	private final int xSpacing = 180;
@@ -47,28 +37,20 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	private final int yStartHeight = 250;
 	private int width;
 
-
-
 	private ArrayList<HighScore> scores;
-	private static HighScoreState instance = null;
 
 	int currentlevel = 0;
 
+	/** Constructor
+	 * @throws SlickException
+	 */
 	public HighScoreState() throws SlickException
 	{
 		super();
 	}
 
-
-	@Override
-	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-		super.enter(container, game);
-		width=container.getWidth();
-		scores = AssetManager.requestHighScores(currentlevel);
-	}
-
-
-
+	/** Method called by Slick to initialise the state
+	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
@@ -76,9 +58,30 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 		titleFont = AssetManager.requestFontResource("TITLEFONT");
 		debug = false;
 		fullscreen = false;
-
+	}
+	
+	/** Method called by Slick when entering the state. Pre-loads high scores.
+	 */
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		super.enter(container, game);
+		width=container.getWidth();
+		scores = AssetManager.requestHighScores(currentlevel);
 	}
 
+	/** Method called by Slick to update the state. Handles exiting the state.
+	 */
+	@Override
+	public void update(GameContainer gc, StateBasedGame sbg, int delta)
+			throws SlickException {		
+		Input input = gc.getInput();
+		if (input.isKeyDown(InputManager.BACK)) {
+			sbg.enterState(Portal2D.MAINMENUSTATE);
+		}
+	}
+
+	/** Method called by Slick to render the view.
+	 */
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
@@ -88,11 +91,13 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 		g.drawString(titleText, 40, 40);
 
 		g.setFont(font);
-		g.drawString(subtitleText, 40, 80);
-
 		renderScores(g);
 	}
 
+	/** Render the high scores using a Graphics context
+	 * 
+	 * @param g The Graphics context to use.
+	 */
 	private void renderScores(Graphics g) {
 		int index = 0;
 		int x, y;
@@ -100,6 +105,8 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 		int levelid;
 		float score;
 		String scoreS;
+		
+		// Show high scores
 		if(scores!=null && !scores.isEmpty()){
 			for (HighScore hs : scores) {
 				Collections.sort(scores);
@@ -127,6 +134,8 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 					break;
 				}
 			}
+			
+		// No scores. Show error.
 		} else {
 			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
 			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
@@ -137,22 +146,20 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 		}
 	}
 
-	@Override
-	public void update(GameContainer gc, StateBasedGame sbg, int delta)
-			throws SlickException {		
-		Input input = gc.getInput();
-		if (input.isKeyDown(InputManager.BACK)) {
-			sbg.enterState(Portal2D.MAINMENUSTATE);
-		}
-
-	}
-
+	/** Get the ID of the state
+	 * 
+	 * @return The ID of the state
+	 */
 	@Override
 	public int getID() {
 		return HighScoreState.StateId;
 	}
 
-
+	/** Method for handling key presses. Controls navigation in the state.
+	 * 
+	 * @param key Key pressed as integer
+	 * @param c Key pressed as character
+	 */
 	@Override
 	public void keyPressed(int key, char c) {
 		if (key == InputManager.NAV_RIGHT) {
@@ -170,7 +177,9 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 			}	
 		}
 	}
-
+	
+	@Override
+	public void keyReleased(int key, char c) {return;}
 
 	@Override
 	public void inputEnded() {listening = false;}
@@ -183,36 +192,4 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 
 	@Override
 	public void setInput(Input input) {input.addKeyListener(this);}
-
-	public static Font getFont() {
-		return font;
-	}
-	public static void setFont(Font newfont) {
-		font = newfont;
-	}
-	public static Vector<String> getMenuItems() {
-		return menuItems;
-	}
-	public static void setMenuItems(Vector<String> menu) {
-		menuItems = menu;
-	}
-	public static Map<String, Integer> getStringMaps() {
-		return stringMaps;
-	}
-	public static void setStringMaps(Map<String, Integer> strings) {
-		stringMaps = strings;
-	}
-
-	public static HighScoreState getInstance()
-	{
-		if(instance == null)
-			try {
-				instance = new HighScoreState();
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
-
-		return instance;
-	}
-
 }

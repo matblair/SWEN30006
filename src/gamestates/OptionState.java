@@ -31,7 +31,6 @@ public class OptionState extends BasicGameState implements KeyListener{
 
 	protected static Vector<Vec2> screenSizes = new Vector<Vec2>();
 
-
 	private static boolean displayscreensize=false;
 	private static boolean displaysoundlevel=false;
 	private static boolean displayinputload=false;
@@ -49,38 +48,29 @@ public class OptionState extends BasicGameState implements KeyListener{
 
 	private static final int SOUNDINTERVAL = 5;
 
-	/** The state id for this part **/
-	boolean debug, fullscreen;
-	@SuppressWarnings("unused")
-	private static Font font;
 	private static Font title;
 	private static Font mediumfont;
-	@SuppressWarnings("unused")
-	private int selected =-1;
-	private static String titleText = new String("Options!");
-
+	private static String titleText = new String("Options");
+	
+	/** Constructor
+	 * @throws SlickException
+	 */
 	public OptionState(){
-		font = AssetManager.requestFontResource("RETROFONT");
-		mediumfont = AssetManager.requestFontResource("PAUSEFONT");
-		title = AssetManager.requestFontResource("TITLEFONT");
-		debug = false;
-		fullscreen = false;
+		super();
 	}
 
 
-	@Override
-	public void enter(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		super.enter(container, game);
-		backtomenu=false;
-		mainMenuItemSelected=0;
-		soundLevelSelected = SoundController.getVolume();
-	}
-
-
+	/** Method called by Slick to initialise the state. Loads fonts, and menu items
+	 * and associated assets
+	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
+		// Load the fonts
+		mediumfont = AssetManager.requestFontResource("PAUSEFONT");
+		title = AssetManager.requestFontResource("TITLEFONT");
+		
+		// Add menu items
 		menuItems.add("Audio Level");
 		menuItems.add("Controller Select");
 		stringMaps.put("Audio Level", MENU_SOUNDLEVEL);
@@ -100,39 +90,27 @@ public class OptionState extends BasicGameState implements KeyListener{
 		inputimages.add(AssetManager.requestUIElement("INPUTTWO"));
 	}
 
+	/** Method called by Slick when entering the state. Partially resets state.
+	 */
 	@Override
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
+	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		g.setFont(title);
-		g.setColor(Color.black);
-		g.drawString(titleText, 40, 40);
-		g.setFont(mediumfont);
-		if(displayscreensize){
-			g.drawString(String.valueOf(screenItemSelected), 400,150);
-		}else if(displaysoundlevel){
-			drawVolume();
-		}else if (displayinputload){
-			drawInput();
-		}
-
-
-		for (int i = 0; i < menuItems.size(); i++) {
-			if (i ==  mainMenuItemSelected) {
-				g.setColor(Color.orange);
-			} else {
-				g.setColor(Color.darkGray);
-			}
-			g.drawString(menuItems.get(i), 40, 150 + i * 50);
-		}
+		super.enter(container, game);
+		
+		backtomenu=false;
+		mainMenuItemSelected=0;
+		soundLevelSelected = SoundController.getVolume();
 	}
-
+	
+	/** Method called by Slick to update the state. Handles exiting the state and 
+	 * which option needs to be shown.
+	 */
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		if(backtomenu){
 			sbg.enterState(Portal2D.MAINMENUSTATE);
 		}	
-		System.out.println(mainMenuItemSelected);
 		switch (mainMenuItemSelected){
 		case MENU_SOUNDLEVEL:
 			displayscreensize=false;
@@ -149,29 +127,73 @@ public class OptionState extends BasicGameState implements KeyListener{
 		return;
 	}
 
+	/** Method called by Slick to render the view
+	 */
+	@Override
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
+			throws SlickException {
+		g.setFont(title);
+		g.setColor(Color.black);
+		g.drawString(titleText, 40, 40);
+		g.setFont(mediumfont);
+		if(displayscreensize){
+			g.drawString(String.valueOf(screenItemSelected), 400,150);
+		}else if(displaysoundlevel){
+			drawVolume();
+		}else if (displayinputload){
+			drawInput();
+		}
+
+		for (int i = 0; i < menuItems.size(); i++) {
+			if (i ==  mainMenuItemSelected) {
+				g.setColor(Color.orange);
+			} else {
+				g.setColor(Color.darkGray);
+			}
+			g.drawString(menuItems.get(i), 40, 150 + i * 50);
+		}
+	}
+
+	/** Method to draw representation of current volume.
+	 */
 	public void drawVolume(){
 		int imagelaod = (int)(soundLevelSelected/10);
-		System.out.println(soundLevelSelected);
 		Image newimage = volimages.get(imagelaod).getScaledCopy(400, 200);
 		newimage.drawCentered(750, 370);
 	}
 
+	/** Method to draw input information.
+	 */
 	public void drawInput(){
 		inputimages.get(inputItemSelected).drawCentered(750, 300);
 	}
+	
+	/** Get the ID of the state
+	 * 
+	 * @return The ID of the state
+	 */
 	@Override
 	public int getID() {
 		return StateId;
 	}
 
+	/** Get AssetManager to modify the input.
+	 * 
+	 * @param newkey The key associated with the input to be loaded.
+	 * @throws SlickException
+	 */
 	public void updateKeys(int newkey) throws SlickException{
 		AssetManager.loadInput(newkey);
 	}
 
+	/** Method for handling key presses. Controls navigation and changing of selected
+	 * menu item in the state.
+	 * 
+	 * @param key Key pressed as integer
+	 * @param c Key pressed as character
+	 */
 	@Override
 	public void keyPressed(int key, char c) {
-		System.out.println("Key pressed in AchievementState int: " + key);
-		System.out.println(InputManager.NAV_LEFT + " " + InputManager.NAV_RIGHT);
 		if (key == InputManager.NAV_UP) {
 			if (mainMenuItemSelected == 0)
 				mainMenuItemSelected=(menuItems.size() - 1);
@@ -219,8 +241,6 @@ public class OptionState extends BasicGameState implements KeyListener{
 				}
 
 			}
-		}else if (key == InputManager.SELECT) {
-			selected=(stringMaps.get(menuItems.get(mainMenuItemSelected)));
 		} else if (key == InputManager.BACK){
 			backtomenu=true;
 		}
