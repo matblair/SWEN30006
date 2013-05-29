@@ -1,0 +1,8 @@
+
+<resources>
+	<!-- Field Vertices -->
+	<resource xloc="-1.0" yloc="-96.0">cube</resource>
+	<resource xloc="-1.0" yloc="96.0">cube</resource>
+	<resource xloc="1.0" yloc="96.0">cube</resource>
+	<resource xloc="1.0" yloc="-96.0">cube</resource>
+</resources>
