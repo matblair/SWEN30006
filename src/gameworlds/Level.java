@@ -138,7 +138,7 @@ public class Level {
 		if(fg!=null){
 			RenderEngine.drawBG(fg, cam);
 		}
-		RenderEngine.drawGameObjects(portals, cam);
+		RenderEngine.drawPortals(portals, cam);
 		RenderEngine.drawNoPortalWalls(noportalwalls, g, cam);
 		RenderEngine.drawWalls(walls, g, cam);
 		if(!achievementPopups.isEmpty()){

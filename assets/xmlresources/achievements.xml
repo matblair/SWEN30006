@@ -2,20 +2,20 @@
 <resources>
 <resource levelid="-1" id="RISINGSUN" achid="19" target="1024720.7" actype="distwalked" name="I would walk 500 miles..." persistant="false" unlocked="false">And I would walk 500 more, to be the robot who walked 500 miles to... Wait no I wouldn't, because I hate you.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="22" target="10.0" actype="portals" name="Blue Man" persistant="false" unlocked="true">Congratulations you managed to make ten portals, I bet you still didn't finish the level...</resource>
-<resource levelid="-1" id="RISINGSUN" achid="17" target="272540.03" actype="distwalked" name="Half Marathon" persistant="true" unlocked="false">21000m down, I'd pretend I was impressed but I don't think I could manage it without laughing</resource>
-<resource levelid="-1" id="RISINGSUN" achid="18" target="293539.62" actype="distwalked" name="Marathon Man" persistant="true" unlocked="false">You've walked 42km in this game... Don't you think that's a little sad?</resource>
+<resource levelid="-1" id="RISINGSUN" achid="17" target="266325.94" actype="distwalked" name="Half Marathon" persistant="true" unlocked="false">21000m down, I'd pretend I was impressed but I don't think I could manage it without laughing</resource>
+<resource levelid="-1" id="RISINGSUN" achid="18" target="287325.5" actype="distwalked" name="Marathon Man" persistant="true" unlocked="false">You've walked 42km in this game... Don't you think that's a little sad?</resource>
 <resource levelid="-1" id="RISINGSUN" achid="15" target="100.0" actype="distwalked" name="Baby Steps" persistant="false" unlocked="false">You have to start somewhere, walk more than 200m</resource>
-<resource levelid="-1" id="RISINGSUN" achid="16" target="255540.0" actype="distwalked" name="Out For A Stroll" persistant="true" unlocked="false">I'd say a good stroll would be somewhere around 4000m wouldn't you?</resource>
+<resource levelid="-1" id="RISINGSUN" achid="16" target="249326.14" actype="distwalked" name="Out For A Stroll" persistant="true" unlocked="false">I'd say a good stroll would be somewhere around 4000m wouldn't you?</resource>
 <resource levelid="-1" id="RISINGSUN" achid="13" target="60.0" actype="velocity" name="We'll have to fine you soon.." persistant="false" unlocked="true">Get a taste for speed, go more than 10 m/s.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="14" target="100.0" actype="velocity" name="Speed Freak" persistant="false" unlocked="false">Get a taste for speed, go more than 10 m/s.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="11" target="20.0" actype="velocity" name="Speeding Up" persistant="false" unlocked="true">Faster! go more than 20 m/s.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="12" target="40.0" actype="velocity" name="Need For Speed" persistant="false" unlocked="true">If this were a school zone, you'd be in trouble now. go more than 40 m/s.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="21" target="10.0" actype="jumps" name="Boing Boing" persistant="false" unlocked="true">Oh look, you've managed to jump ten times. I suppose you'd like a medal or something?</resource>
 <resource levelid="-1" id="RISINGSUN" achid="3" target="120.0" actype="timefallen" name="Slow Down Cowboy." persistant="false" unlocked="true">Fall for more than 120 seconds in any level.</resource>
-<resource levelid="-1" id="RISINGSUN" achid="20" target="1.0251485E7" actype="distwalked" name="Walking On The Sun" persistant="true" unlocked="false">Well this is just a bit sad...</resource>
 <resource levelid="-1" id="RISINGSUN" achid="2" target="60.0" actype="timefallen" name="Free Falling." persistant="false" unlocked="true">Fall for more than 60 seconds in any level.</resource>
-<resource levelid="-1" id="RISINGSUN" achid="1" target="10.0" actype="timefallen" name="Falling..." persistant="false" unlocked="true">Fall for more than 10 seconds in any level.</resource>
+<resource levelid="-1" id="RISINGSUN" achid="20" target="1.0245275E7" actype="distwalked" name="Walking On The Sun" persistant="true" unlocked="false">Well this is just a bit sad...</resource>
 <resource levelid="-1" id="RISINGSUN" achid="10" target="10.0" actype="velocity" name="Starting Small" persistant="false" unlocked="true">Get a taste for speed, go more than 10 m/s.</resource>
+<resource levelid="-1" id="RISINGSUN" achid="1" target="10.0" actype="timefallen" name="Falling..." persistant="false" unlocked="true">Fall for more than 10 seconds in any level.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="7" target="12.0" actype="cubesused" name="Making Friends, For Science!" persistant="true" unlocked="true">Get well acquainted with 10 companion cubes.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="6" target="3.0" actype="cubesused" name="A Friendly Companion" persistant="true" unlocked="true">Get well acquainted with a companion cube.</resource>
 <resource levelid="-1" id="RISINGSUN" achid="5" target="1000.0" actype="timefallen" name="Now We're Getting Somewhere..." persistant="false" unlocked="true">Fall for more than 1000 seconds in any level.</resource>

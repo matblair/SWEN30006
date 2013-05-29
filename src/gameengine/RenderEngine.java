@@ -4,7 +4,10 @@ import java.util.Map;
 
 import gameobjects.BigSwitch;
 import gameobjects.GameObject;
+import gameobjects.Player;
+import gameobjects.Portal;
 import gameobjects.Wall;
+import gamestates.GameState;
 
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Color;
@@ -15,9 +18,8 @@ import resourcemanagers.AssetManager;
 import scoringsystem.AchievementPopup;
 
 public class RenderEngine {
-	
 	private static final float ACOFFSET = 50;
-	private static Image achpopup;
+	private static Image achpopup, bluearrow, orangearrow;
 	
 	public static <T extends GameObject> void drawGameObjects(Map<String, T> map, Camera cam){
 		for (T obj : map.values()) {
@@ -38,6 +40,56 @@ public class RenderEngine {
 		}
 	}
 	
+	/** Draw a portal on the screen, and if it is out of view, draw a marker that points to the portal
+	 * on the edge of the screen.
+	 * 
+	 * @param p The portal to draw.
+	 * @param cam The camera object that defines the field of view.
+	 */
+	public static void drawPortals (Portal[] ps, Camera cam) {
+		for (Portal p : ps) {
+			if (!p.isEnabled())
+				continue;
+			
+			// If portal is in view, draw it
+			if (cam.inView(p)) {
+				drawGameObject (p, cam);
+
+			// Draw something that points to the portal
+			} else {
+				Player player = GameState.getLevel().getLevelPlayer();
+				Vec2 dir = PhysUtils.unitVector(p.getLocation().sub(player.getLocation()));
+				Vec2 drawLoc = player.getLocation().add(dir.mul(1.3f));
+				float angle = (float) (-PhysUtils.getAngle(dir) * 180 / Math.PI);
+
+				if (p.getColour() == Portal.BLUE) {
+					if (bluearrow == null)
+						bluearrow = AssetManager.requestUIElement("BLUEARROW");
+					bluearrow.setRotation(angle);
+					drawImage(bluearrow, drawLoc, cam);
+				} else {
+					if (orangearrow == null)
+						orangearrow = AssetManager.requestUIElement("ORANGEARROW");
+					orangearrow.setRotation(angle);
+					drawImage(orangearrow, drawLoc, cam);
+				}
+			}
+		}
+	}
+	
+	/** Draw an image on the screen, relative to camera location
+	 * 
+	 * @param image The image to draw.
+	 * @param location The location in JBox coordinates that defines where to draw.
+	 * @param cam The camera object that defines the field of view.
+	 */
+	public static void drawImage (Image image, Vec2 location, Camera cam) {
+		Vec2 camLoc = cam.getLocation();
+		Vec2 camDim = cam.getDimensions();
+		Vec2 slickRenderPoint = PhysUtils.JBoxToSlickVec(new Vec2(location.x - camLoc.x, camDim.y - (location.y - camLoc.y)));
+		image.drawCentered((int) slickRenderPoint.x, (int) slickRenderPoint.y);
+	}
+	
 	/** Render a GameObject to the screen (if it is in view).
 	 * 
 	 * @param obj The GameObject to render.
@@ -47,7 +99,7 @@ public class RenderEngine {
 		if (cam.inView(obj)) {
 			drawGameObject (obj, obj.getLocation(), cam);
 		}
-		if (obj.isInPortal()) {
+		if (obj.isInPortal() && obj.getPortalIn().isOpen()) {
 			drawGameObject (obj, obj.getPortalIn().translateLocation(obj.getLocation()), cam);
 		}
 	}

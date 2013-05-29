@@ -34,7 +34,7 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	@SuppressWarnings("unused")
 	private int selected =-1;
 	private static String titleText = new String("High Scores");
-	private static String subtitleText = new String("Version 0.4");
+	private static String subtitleText = new String("Version 1.0");
 	private static int MAXLEVEL=18;
 
 	private static Vector<String> menuItems = new Vector<String>();

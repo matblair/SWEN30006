@@ -26,7 +26,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 	private static int StateId = Portal2D.ACHIEVEMENTSTATE; // State ID
 	
 	// Constants
-	private final int ITEMSPERROW = 6;
+	private final int ITEMSPERROW = 5;
 	private final int NUMROWS = 3;
 	private final int XSPACING = 180;
 	private final int YSPACING = 180;
@@ -36,7 +36,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 	private boolean listening=true;
 	private static Font font, titleFont;
 	private static String titleText = new String("Achievements");
-	private static String subtitleText = new String("Version 0.4");
+	private static String subtitleText = new String("Version 1.0");
 
 	private Collection<Achievement> achievements;
 	private int achievementSelected;

@@ -25,9 +25,11 @@ public class Portal extends GameObject {
 	private boolean enabled=false, sameWall=false;
 	private Portal otherPortal;
 	private Wall wall;
-	public Wall startSegment, sharedSegment, endSegment;
+	private Wall startSegment, sharedSegment, endSegment;
 	private World world;
 	private Animation animation;
+	private int colour;
+	
 	
 	public Portal(int colour, Vec2 location, World world)
 			throws SlickException {
@@ -39,8 +41,13 @@ public class Portal extends GameObject {
 		height = this.getDimensions().y;
 		
 		String animID = (colour==BLUE) ? BLUEANIMID : ORANGEANIMID;
+		this.colour = colour;
 		animation = AssetManager.requestAnimationResources(animID);
 		animation.setLooping(false);
+	}
+	
+	public int getColour() {
+		return colour;
 	}
 	
 	public void update (int delta) {
@@ -105,6 +112,10 @@ public class Portal extends GameObject {
 	
 	public boolean isOpen() {
 		return this.getBody().getFixtureList().isSensor();
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
 	}
 	
 	public ArrayList<Wall> getTempWalls() {
