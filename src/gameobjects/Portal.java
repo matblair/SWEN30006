@@ -95,7 +95,7 @@ public class Portal extends GameObject {
 		
 		getBody().setTransform(new Vec2(-1, 0), 0);
 		this.close();
-		enabled = true;
+		enabled = false;
 	}
 	
 	public void open() {
