@@ -13,13 +13,25 @@ import resourcemanagers.AssetManager;
 
 public class GLaDOS {
 
+	/** The level stats as a level stats object **/
 	private LevelStats stats;
+	/** The timer for the duration of achievement popups **/
 	private static final int TIMER=5000;
 
+	/** Instantiate glados and create a new level stats for each level 
+	 * 
+	 * @param levelid
+	 */
 	public GLaDOS(int levelid){
 		stats = new LevelStats(levelid);
 	}
-
+	
+	/** Update the testing procedures, calculate the various different 
+	 * stats achieved by the player and set them in stats. Then pass those stats
+	 * to check if we have unlocked any achievements
+	 * @param delta
+	 * @param player
+	 */
 	public void updateTesting(int delta, Player player){
 		//Update timer
 		stats.setTimeInLevel(stats.getTimeInLevel()+delta);
@@ -52,19 +64,28 @@ public class GLaDOS {
 			}
 		}	
 	}
-
+	
+	/** Updates the stats counter for cubes picked up
+	 */
 	public void pickupCube(){
 		stats.setCubesPickedUp(stats.getCubesPickedUp()+1);
 	}
 
+	/** Updates the stats counter for portals created
+	 */
 	public void createdPortal(){
 		stats.setNumberPortals(stats.getNumberPortals()+1);
 	}
-
+	
+	/** Update the stats counter for jumps **/
 	public void jumped(){
 		stats.setJumps(stats.getJumps()+1);
 	}
 
+	/** Add a copy of the high score locally so it can be displayed immediately 
+	 * and queue for upload to the high score server 
+	 * @param levelid
+	 */
 	public void updateHighScores(int levelid) {
 
 		if(!AssetManager.getHighscores().containsKey(levelid)){
@@ -75,7 +96,10 @@ public class GLaDOS {
 		AssetManager.getHighscores().get(levelid).add(toAdd);
 		HighScoreBackgroundThread.addScore(toAdd);
 	}
-
+	
+	/** Finalise the stats in seconds rather than milliseconds and
+	 * save all achievements achieved for that level
+	 */
 	public void finaliseStats(){
 		stats.setDistWalked(stats.getDistWalked()/1000);
 		stats.setDistFallen(stats.getDistFallen()/1000);
@@ -88,6 +112,11 @@ public class GLaDOS {
 
 	}
 
+	/** Update all achievements by checking if each that hasn;t unlocked has unlocked by passing it 
+	 * stats. If an achievement does unlock, create an achievement popup for it and add it to the 
+	 * level popup collection
+	 * @param achievementMap
+	 */
 	public void updateAchievements(Map<String, Achievement> achievementMap) {
 		for(Achievement ac: achievementMap.values()){
 			if(!ac.isUnlocked() && ac.checkUnlock(stats)){
@@ -99,10 +128,11 @@ public class GLaDOS {
 			}
 		}
 	}
-
-	public void printStats() {
-	}
-
+	
+	/** Return the level stats 
+	 * 
+	 * @return stats
+	 */
 	public LevelStats getLevelStats() {
 		return stats;
 	}
