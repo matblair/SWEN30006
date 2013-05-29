@@ -19,10 +19,10 @@ If this were a school zone, you'd be in trouble now. go more than 40 m/s.</resou
 <resource levelid="-1" id="JUMP1" achid="21" target="10.0" actype="jumps" name="Boing Boing" persistant="false" unlocked="true">
 Oh look, you've managed to jump ten times. I suppose you'd like a medal or something?</resource>
 <resource levelid="-1" id="TIME3" achid="3" target="120.0" actype="timefallen" name="Slow Down Cowboy." persistant="false" unlocked="true">Fall for more than 120 seconds in any level.</resource>
-<resource levelid="-1" id="DIST1" achid="20" target="1.036863E7" actype="distwalked" name="Walking On The Sun" persistant="true" unlocked="false">Well this is just a bit sad...</resource>
 <resource levelid="-1" id="TIME2" achid="2" target="60.0" actype="timefallen" name="Free Falling." persistant="false" unlocked="true">Fall for more than 60 seconds in any level.</resource>
-<resource levelid="-1" id="TIME1" achid="1" target="40.0" actype="timefallen" name="Falling..." persistant="false" unlocked="true">Fall for more than 10 seconds in any level.</resource>
+<resource levelid="-1" id="DIST1" achid="20" target="1.036863E7" actype="distwalked" name="Walking On The Sun" persistant="true" unlocked="false">Well this is just a bit sad...</resource>
 <resource levelid="-1" id="VEL1" achid="10" target="15.0" actype="velocity" name="Starting Small" persistant="false" unlocked="true">Get a taste for speed, go more than 10 m/s.</resource>
+<resource levelid="-1" id="TIME1" achid="1" target="40.0" actype="timefallen" name="Falling..." persistant="false" unlocked="true">Fall for more than 10 seconds in any level.</resource>
 <resource levelid="-1" id="CUBE2" achid="7" target="-12.0" actype="cubesused" name="Making Friends, For Science!" persistant="true" unlocked="true">Get well acquainted with 10 companion cubes.</resource>
 <resource levelid="-1" id="CUBE1" achid="6" target="-21.0" actype="cubesused" name="A Friendly Companion" persistant="true" unlocked="true">Get well acquainted with a companion cube.</resource>
 <resource levelid="-1" id="TIME5" achid="5" target="1000.0" actype="timefallen" name="Now We're Getting Somewhere..." persistant="false" unlocked="true">Fall for more than 1000 seconds in any level.</resource>

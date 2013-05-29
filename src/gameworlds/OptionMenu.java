@@ -1,6 +1,7 @@
 package gameworlds;
 
 import gameengine.InputManager;
+import gameengine.Portal2D;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,9 +82,9 @@ public class OptionMenu extends InGameMenu {
 			drawInput(gc);
 		}else {
 			if(displayscreensize){
-				g.drawString(String.valueOf(screenItemSelected), 800,340);
+				//g.drawString(String.valueOf(screenItemSelected), 800,340);
 			}else if(displaysoundlevel){
-				drawVolume();
+				drawVolume(gc);
 			}
 			for (int i = 0; i < menuItems.size(); i++) {
 				if (i ==  mainMenuItemSelected) {
@@ -91,7 +92,7 @@ public class OptionMenu extends InGameMenu {
 				} else {
 					g.setColor(Color.darkGray);
 				}
-				g.drawString(menuItems.get(i), 430, 340 + i * 30);
+				g.drawString(menuItems.get(i),  gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
 			}
 		}
 	}
@@ -207,9 +208,9 @@ public class OptionMenu extends InGameMenu {
 	/** Draw the volume images based on the sound level selected
 	 * @return void
 	 */
-	public void drawVolume(){
+	public void drawVolume(GameContainer gc){
 		int imagelaod = (int)(soundLevelSelected/10);
-		volimages.get(imagelaod).drawCentered(750, 370);
+		volimages.get(imagelaod).drawCentered(gc.getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (4) * SPACING);
 	}
 
 

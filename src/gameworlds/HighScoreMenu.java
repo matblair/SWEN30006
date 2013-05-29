@@ -53,9 +53,10 @@ public class HighScoreMenu extends InGameMenu{
 				}
 				for(int i=0; i < NUMDISPLAY; i++){
 					g.setColor(Color.darkGray);
-					g.drawString(scores.get(i).getName(), 430, 340 + i*30);
+					g.drawString(scores.get(i).getName(), gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
 					g.setColor(Color.orange);
-					g.drawString(String.valueOf(scores.get(i).getScore()), 770, 340 + i*30);
+					g.drawString(String.valueOf(scores.get(i).getScore()),  gc.getWidth()/2 + AssetManager.requestUIElement("PAUSEBG").getWidth()/2 - INSET -
+								g.getFont().getWidth(String.valueOf(scores.get(i).getScore())), gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
 				}
 			}else {
 				g.drawString("No High Scores Yet", 430, 320);
@@ -68,10 +69,10 @@ public class HighScoreMenu extends InGameMenu{
 				} else {
 					g.setColor(Color.darkGray);
 				}
-				g.drawString(menuItems.get(i), 430, 520 + i * 30);
+				g.drawString(menuItems.get(i), - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 + TITLEHEIGHT + (i+2) * SPACING);
 			}	
 		} else {
-			g.drawString("Updating High Scores", 430, 320);
+			g.drawString("Updating High Scores",  gc.getWidth()/2 - 3*INSET, gc.getHeight()/2 - TITLEHEIGHT + (2) * SPACING);
 		}
 	}
 

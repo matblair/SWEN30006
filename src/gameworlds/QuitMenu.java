@@ -14,6 +14,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
+import resourcemanagers.AssetManager;
+
 public class QuitMenu extends InGameMenu{
 
 	/** The items to display for the menu **/
@@ -52,7 +54,7 @@ public class QuitMenu extends InGameMenu{
 			} else {
 				g.setColor(Color.darkGray);
 			}
-			g.drawString(menuItems.get(i), 430, 340 + i * 30);
+			g.drawString(menuItems.get(i),  gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
 		}	
 	}
 

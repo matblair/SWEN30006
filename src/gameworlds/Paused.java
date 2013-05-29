@@ -11,15 +11,12 @@ import java.util.Vector;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import resourcemanagers.AssetManager;
 
 public class Paused extends InGameMenu{
-
-	private Image pausebg;
 
 	/** Menu options for selection **/
 	private final static int MENU_STARTGAME=1;
@@ -143,13 +140,13 @@ public class Paused extends InGameMenu{
 		
 		g.setFont(titlefont);
 		g.setColor(Color.black);
-		g.drawString(TITLE, gc.getWidth()/2 - titlefont.getWidth(TITLE)/2, gc.getHeight()/2 - 150);	
+		g.drawString(TITLE, gc.getWidth()/2 - titlefont.getWidth(TITLE)/2, gc.getHeight()/2 - TITLEHEIGHT);	
 		
 		pausebg.drawCentered(gc.getWidth()/2, gc.getHeight()/2);
 		
 		g.setFont(titlefont);
 		g.setColor(Color.black);
-		g.drawString(TITLE, gc.getWidth()/2 - titlefont.getWidth(TITLE)/2, gc.getHeight()/2 - 150);
+		g.drawString(TITLE, gc.getWidth()/2 - titlefont.getWidth(TITLE)/2, gc.getHeight()/2 - TITLEHEIGHT);
 		
 		g.setFont(font);
 		g.setColor(Color.gray);
@@ -161,7 +158,7 @@ public class Paused extends InGameMenu{
 		}else if(displayquitoption){
 			qmenu.Render(g, gc);
 		}else{
-			drawFirstMenu(g);
+			drawFirstMenu(g, gc);
 		}		
 	}
 
@@ -198,14 +195,14 @@ public class Paused extends InGameMenu{
 	 * 
 	 * @return void
 	 */
-	public void drawFirstMenu(Graphics g){
+	public void drawFirstMenu(Graphics g, GameContainer gc){
 		for (int i = 0; i < menuItems.size(); i++) {
 			if (i ==  menuItemSelected) {
 				g.setColor(Color.orange);
 			} else {
 				g.setColor(Color.darkGray);
 			}
-			g.drawString(menuItems.get(i), 430, 340 + i * 30);
+			g.drawString(menuItems.get(i), gc.getWidth()/2 - pausebg.getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
 		}	
 	}
 
