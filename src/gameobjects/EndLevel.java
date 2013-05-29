@@ -7,8 +7,8 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 public class EndLevel extends GameObject{
-	private static final String IMGID="CUBE";
-	private static final String SHAPEID="CUBESHAPE";
+	private static final String IMGID="ENDGAME";
+	private static final String SHAPEID="ENDGAMESHAPE";
 	private static final int bodytype = PhysUtils.STATIC;
 
 	
@@ -18,13 +18,10 @@ public class EndLevel extends GameObject{
 		this.createBody(location, world, fixture, bodytype);
 	}
 
-
 	@Override
 	protected FixtureDef createFixture(String shapeid) {
 		FixtureDef def = super.createFixture(shapeid);
 		def.isSensor=true;
 		return def;
-	}
-	
-	
+	}		
 }

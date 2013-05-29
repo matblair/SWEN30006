@@ -9,7 +9,7 @@
 	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
 	
 	<!-- End Zone -->
-	<resource type="ENDZONE" xStart="15" yStart="3.5">endzone</resource>
+	<resource type="ENDZONE" xStart="15" yStart="2.5">endzone</resource>
 	
 	<!-- DOORS -->
 	<resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="10" yStart="2" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>

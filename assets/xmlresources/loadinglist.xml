@@ -36,7 +36,6 @@
 	<!-- Images -->
 	<resource type="IMAGE" id="CHELLIDLE">assets/sprites/gameobjects/chell.png</resource>
 	<resource type="IMAGE" id="CHELLFALL">assets/sprites/gameobjects/chellfall.png</resource>
-	<resource type="IMAGE" id="HITBOX">assets/sprites/gameobjects/hitbox.png</resource>
 	<resource type="IMAGE" id="CUBE">assets/sprites/gameobjects/cube.png</resource>
 	<resource type="IMAGE" id="PLATFORM">assets/sprites/levelobjects/longlevel.png</resource>
 	<resource type="IMAGE" id="SMALLPLATFORM">assets/sprites/levelobjects/shortlevel.png</resource>
@@ -46,7 +45,8 @@
 	<resource type="IMAGE" id="ORANGEPORTAL">assets/sprites/levelobjects/orangeportal.png</resource>
 	<resource type="IMAGE" id="BIGSWITCHBASE">assets/sprites/levelobjects/switchbase.png</resource>
 	<resource type="IMAGE" id="BIGSWITCHSENSOR">assets/sprites/levelobjects/switchsensor.png</resource>
-	
+	<resource type="IMAGE" id="ENDGAME">assets/sprites/levelobjects/endgame.png</resource>
+
 	<!-- Images for animations -->
 	
 	<!-- Chell animations -->
@@ -183,6 +183,7 @@
 	<resource type="SHAPE" id="BIGSWITCHSENSOR" vertpath="bigswitch.xml">bigswitchpath</resource>
 	<resource type="SHAPE" id="BIGSWITCHBASE" vertpath="bigswitchbase.xml">bigswitchbasepath</resource>
 	<resource type="SHAPE" id="DOORSHAPE" vertpath="door.xml">doorpath</resource>
+	<resource type="SHAPE" id="ENDGAMESHAPE" vertpath="endgame.xml">endgamepath</resource>
 	<resource type="SHAPE" id="FIELDSHAPE" vertpath="field.xml">fieldpaths</resource>
 
 	

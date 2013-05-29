@@ -132,7 +132,7 @@ public class Level {
 		if(levelend.getBody().m_contactList!=null){
 			final String contactbodyb = levelend.getBody().m_contactList.contact.m_fixtureB.m_body.toString();
 			final String playerid = player.getBody().toString();
-			if(contactbodyb.equals(playerid)){
+			if(contactbodyb.equals(playerid) && PhysUtils.distance(player.getLocation(), levelend.getLocation())<=0.7f){
 				EndGameMenu.giveGlados(glados);				
 				GameState.setDisplayEndGame(true);
 			}
@@ -143,7 +143,6 @@ public class Level {
 	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
 		RenderEngine.drawBG(bg, cam);
 		RenderEngine.drawGameObjects(dissipationFields, cam);
-		RenderEngine.drawGameObject(levelend, cam);
 		RenderEngine.drawGameObjects(lilSwitches, cam);
 		RenderEngine.drawGameObject(player, cam);
 		RenderEngine.drawBigSwitches(bigSwitches,cam);
@@ -155,11 +154,13 @@ public class Level {
 			RenderEngine.drawBG(fg, cam);
 		}
 		RenderEngine.drawPortals(portals, cam);
+		RenderEngine.drawGameObject(levelend, cam);
 		RenderEngine.drawNoPortalWalls(noportalwalls, g, cam);
 		RenderEngine.drawWalls(walls, g, cam);
 		if(!achievementPopups.isEmpty()){
 			RenderEngine.renderAchievementPopups(achievementPopups, g,cam);
 		}
+
 
 	}
 
