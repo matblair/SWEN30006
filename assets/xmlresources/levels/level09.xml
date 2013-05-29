@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+
+	<!-- Walls -->
+	<resource type="WALL" id="WALL" xStart="1" yStart="1.0" xEnd="10.0" yEnd="1.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="10.0" yStart="1.0" xEnd="11.0" yEnd="1.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="11.0" yStart="1.0" xEnd="11.0" yEnd="6.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="11.0" yStart="6.0" xEnd="20" yEnd="6">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="20" yStart="6" xEnd="20" yEnd="9">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="20" yStart="9" xEnd="18" yEnd="9">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="18" yStart="9" xEnd="18" yEnd="12">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="18" yStart="12" xEnd="9" yEnd="12">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="9" yStart="12" xEnd="1" yEnd="12">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="1" yStart="12" xEnd="1" yEnd="1">assets/sprites/wall.png</resource>
+	
+	
+	<!-- Background -->
+	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg09.png</resource>
+	
+    
+	<!-- End Zone -->
+	<resource type="ENDZONE" xStart="19" yStart="7.5">endzone</resource>
+
+	<!-- Cubes -->
+    
+    <!-- DOORS -->
+    
+
+	<!-- Switches -->
+
+
+	<!-- Start Location -->
+	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="2">assets/sprites/chell.png</resource>
+
+</resources>

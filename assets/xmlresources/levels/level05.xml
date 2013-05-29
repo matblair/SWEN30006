@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+
+	<!-- Walls -->
+	<resource type="WALL" id="WALL" xStart="1" yStart="12" xEnd="9.0" yEnd="12">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="9.0" yStart="12" xEnd="9.0" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="9.0" yStart="1" xEnd="12" yEnd="1.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="12" yStart="1" xEnd="17" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="17" yStart="1" xEnd="17" yEnd="12">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="17" yStart="12" xEnd="22" yEnd="12">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="22" yStart="12" xEnd="22" yEnd="15">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="22" yStart="15" xEnd="20" yEnd="15">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="20" yStart="15" xEnd="20" yEnd="19">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="20" yStart="19" xEnd="8" yEnd="19">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="8" yStart="19" xEnd="8" yEnd="16">assets/sprites/wall.png</resource>	
+	<resource type="WALL" id="WALL" xStart="8" yStart="16" xEnd="1" yEnd="16">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="1" yStart="16" xEnd="1" yEnd="12">assets/sprites/wall.png</resource>	
+	
+	<!-- Background -->
+	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg05.png</resource>
+    
+	<!-- End Zone -->
+	<resource type="ENDZONE" xStart="21" yStart="13.5">endzone</resource>
+
+	<!-- Cubes -->
+    
+    <!-- DOORS -->
+    
+
+	<!-- Switches -->
+
+
+	<!-- Start Location -->
+	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="13">assets/sprites/chell.png</resource>
+
+</resources>
