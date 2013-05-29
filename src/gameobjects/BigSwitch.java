@@ -23,6 +23,13 @@ public class BigSwitch {
 	private String doorId;
 	private Door doorlink=null;
 
+	/** Create a new BigSwitch
+	 * 
+	 * @param location Where the switch will be (middle of bottom)
+	 * @param world World in which the body will go
+	 * @param doorId ID of the Door this switch opens
+	 * @throws SlickException
+	 */
 	public BigSwitch(Vec2 location, World world, String doorId)
 			throws SlickException {
 		// Store doorID
@@ -48,6 +55,12 @@ public class BigSwitch {
 		joinBodies (world, button, base);
 	}
 	
+	/** Create the joint for the button
+	 * 
+	 * @param world World to create the joint in
+	 * @param button GameObject that is the button
+	 * @param base GameObject that is the base
+	 */
 	private void joinBodies(World world, GameObject button, GameObject base) {
 		Vec2 axis = new Vec2(0, 1);
 		PrismaticJointDef jd = new PrismaticJointDef();
@@ -62,19 +75,34 @@ public class BigSwitch {
 		world.createJoint(jd);
 	}
 	
+	/** Get the base (for drawing or something)
+	 * 
+	 * @return The base
+	 */
 	public GameObject getBase() {
 		return base;
 	}
 	
+	/** Get the button (for drawing or something)
+	 * 
+	 * @return The button
+	 */
 	public GameObject getButton() {
 		return button;
 	}
 	
+	/** Get the bodyID to be associated with this object. Uses the bodyID of the base.
+	 * 
+	 * @return The bodyID of the base
+	 */
 	public String getBodyID() {
 		return base.getBodyID();
 	}
 
-	public void updateState(){
+	/** Update the switch. That is, check if the door should be opened or not.
+	 * 
+	 */
+	public void update(){
 		// Set the door connection if not already set
 		if(doorlink==null)
 			for(Door door: GameState.getLevel().getDoorCollection())

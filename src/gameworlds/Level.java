@@ -146,13 +146,13 @@ public class Level {
 		
 		// Update other game objects
 		for (BigSwitch bs: bigSwitches.values()){
-			bs.updateState();
+			bs.update();
 		}
 		for(final LittleSwitch ls: lilSwitches.values()){
-			ls.updateState(delta);
+			ls.update(delta);
 		}
 		for(final MovingPlatform pl: movingplatforms.values()){
-			pl.updatePos(delta);
+			pl.update(delta);
 		}
 		for (Door d : doors.values()) {
 			d.update(delta);

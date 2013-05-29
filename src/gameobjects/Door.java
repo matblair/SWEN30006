@@ -22,6 +22,13 @@ public class Door extends GameObject {
 	private boolean isOpen=false;
 	private String doorId;
 
+	/** Create a Door object
+	 * 
+	 * @param location Location of the field to start in the world (centre)
+	 * @param world The physics world
+	 * @param doorId The ID to associate with the door (for linking with switches)
+	 * @throws SlickException
+	 */
 	public Door(Vec2 location, World world, String doorId)
 			throws SlickException {
 		super();
@@ -29,20 +36,28 @@ public class Door extends GameObject {
 		this.createBody(location, world, fixture, BODYTYPE);
 		animation = AssetManager.requestAnimationResources(ANIMID);
 		animation.setPingPong(true);
-		setDoorId(doorId);
+		this.doorId = doorId;
 	}
 	
+	/** Update the door
+	 * 
+	 * @param delta Milliseconds since last update.
+	 */
 	public void update (int delta) {
 		animation.update(delta);
 		animation.stopAt(isOpen ? animation.getFrameCount()-1 : 0);
 		animation.start();
 	}
 	
+	/** Get the current image representing the door.
+	 */
 	@Override
 	public Image getImage() {
 		return animation.getCurrentFrame();
 	}
 	
+	/** Open the door
+	 */
 	public void open() {
 		if (!isOpen) {
 			isOpen = true;
@@ -51,6 +66,8 @@ public class Door extends GameObject {
 		}
 	}
 	
+	/** Close the door
+	 */
 	public void close() {
 		if (isOpen) {
 			isOpen = false;
@@ -59,22 +76,15 @@ public class Door extends GameObject {
 		}
 	}
 	
-	/**
-	 * @return the doorId
+	/** Get the door's ID
+	 * @return the door's ID
 	 */
 	public String getDoorId() {
 		return doorId;
 	}
-
-	/**
-	 * @param doorId the doorId to set
-	 */
-	public void setDoorId(String doorId) {
-		this.doorId = doorId;
-	}
-
-	/**
-	 * @return the isOpen
+	
+	/** Check if the door is open.
+	 * @return true if the door is open
 	 */
 	public boolean isOpen() {
 		return isOpen;

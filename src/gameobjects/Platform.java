@@ -19,6 +19,14 @@ public class Platform extends GameObject {
 	private static final String[] IMGS = {"SMALLPLATFORM", "PLATFORM"};
 	private static final String[] SHAPES = {"SHORTPLATFORMSHAPE","LONGPLATFORMSHAPE"};
 	
+	/** Create a Platform object
+	 * 
+	 * @param location The location of the object
+	 * @param world The world in which to create the body
+	 * @param type The type of platform (small/large)
+	 * @param moving Whether the platform moves
+	 * @throws SlickException
+	 */
 	public Platform(Vec2 location, World world, int type, int moving)
 			throws SlickException {
 		super(IMGS[type]);
@@ -27,6 +35,11 @@ public class Platform extends GameObject {
 		this.createBody(location, world, fixture, BODYTYPES[moving]);
 	}
 	
+	/** Create the fixture to be used by the body
+	 * 
+	 * @param shapeid The ID of the shape to request from AssetManager
+	 * @return The FixtureDef created
+	 */
 	private FixtureDef createFixture(int type){
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = AssetManager.requestShape(SHAPES[type]);

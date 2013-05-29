@@ -5,7 +5,7 @@
 	<resource xloc="-8.5" yloc="23">cube</resource>
 	<resource xloc="-6.5" yloc="25">cube</resource>
 	<resource xloc="-3.5" yloc="26">cube</resource>
-	<resource xloc="2.5" yloc="326">cube</resource>
+	<resource xloc="2.5" yloc="26">cube</resource>
 	<resource xloc="5.5" yloc="25">cube</resource>
 	<resource xloc="7.5" yloc="23">cube</resource>
 	<resource xloc="7.5" yloc="-34.0">cube</resource>
