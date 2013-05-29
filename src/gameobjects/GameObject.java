@@ -70,10 +70,12 @@ public class GameObject {
 		ContactEdge edge = getBody().getContactList();
 		while (edge != null) {
 			if (level.getBodyType(edge.other).equals("portal")) {
-				inPortal = true;
 				Portal[] ps = level.getPortals();
 				portalIn = edge.other.toString().equals(ps[Portal.BLUE].getBodyID()) ? ps[Portal.BLUE] : ps[Portal.ORANGE];
-				break;
+				if (PhysUtils.distance(this.getLocation(), portalIn.getBody().getPosition()) < 1.0f) { 
+					inPortal = true;
+					break;
+				}
 			}
 			inPortal = false;
 			edge = edge.next;
@@ -152,7 +154,7 @@ public class GameObject {
 		Vec2 lower = new Vec2(xmid-dim.x/2+CLIPDIST, ymid-dim.y/2-DISTDOWN);
 		AABB area = new AABB(lower,upper);
 		FixtureCallback callback = new FixtureCallback();
-		GameState.getLevel().getPhysWorld().queryAABB(callback, area);
+		GameState.getLevel().getWorld().queryAABB(callback, area);
 		return callback.isContainsJumpableObject();
 	}
 
