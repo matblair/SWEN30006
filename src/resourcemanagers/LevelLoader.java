@@ -2,6 +2,7 @@ package resourcemanagers;
 
 import gameobjects.BigSwitch;
 import gameobjects.CompanionCube;
+import gameobjects.DissipationField;
 import gameobjects.Door;
 import gameobjects.EndLevel;
 import gameobjects.LittleSwitch;
@@ -93,11 +94,22 @@ public class LevelLoader {
 					addElementAsEndLevel(resourceElement,level);
 				}else if(type.equals("FOREGROUNDIMG")){
 					level.setFg(new Image(resourceElement.getTextContent()));
+				}else if(type.equals("FIELD")){
+					addElementAsField(resourceElement, level);
 				}
 			}
 		}
 	}
 	
+	private void addElementAsField(Element resourceElement, Level level) throws SlickException {
+		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
+		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
+		Vec2 startloc = new Vec2(startx,starty);
+		
+		DissipationField field = new DissipationField(startloc,level.getPhysWorld());
+		level.addDissipationField(field, field.getBodyID());
+	}
+
 	private void addElementAsEndLevel(Element resourceElement, Level level) throws SlickException {
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));

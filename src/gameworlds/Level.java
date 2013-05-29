@@ -22,13 +22,13 @@ import scoringsystem.AchievementPopup;
 import scoringsystem.GLaDOS;
 
 public class Level {
-	
+
 	/** The level id **/
 	private int levelid;
 	/** Our background image for the level **/
 	private Image bg;
 	private Image fg;
-	
+
 	/** Our Player **/
 	private Player player;
 	/** A vector containing all cubes **/
@@ -51,11 +51,13 @@ public class Level {
 	protected Map<String, Wall> noportalwalls;
 	/** Our end point **/
 	protected EndLevel levelend;
-	
+	/** Dissipation Fields **/
+	protected Map<String, DissipationField> dissipationFields;
+
 	/** Our level oracle and achievement data **/
 	protected GLaDOS glados;
 	private ArrayList<AchievementPopup> achievementPopups;
-	
+
 	/** Our physics world **/
 	private final World world;
 	/** Our Physics Engine Constants **/
@@ -63,12 +65,12 @@ public class Level {
 	private final int positionIterations = 4;
 	/** Gravity **/
 	private final Vec2 gravity = new Vec2(0,-18f);
-	
+
 	public Level() throws SlickException{
-	
+
 		// Create physics worlds
 		world = new World(gravity);
-		
+
 		// Initialises ArrayLists
 		cubes = new HashMap<String,CompanionCube>();
 		walls = new HashMap<String,Wall>();
@@ -84,19 +86,20 @@ public class Level {
 		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
 		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
 		glados = new GLaDOS(this.levelid);
+		dissipationFields = new HashMap<String, DissipationField>();
 
 	}
-	
+
 	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
 		final float timeStep = (float)delta/1000;
 		player.moveXDir(dir_x, delta);
-		
+
 		// Update dynamic objects (for portals)
 		player.update(this, delta);
 		for (GameObject o : cubes.values()) {
 			o.update(this);
 		}
-		
+
 		world.step(timeStep, velocityIterations, positionIterations);
 		player.checkCube();
 		for(final BigSwitch bs: bigSwitches.values()){
@@ -111,9 +114,12 @@ public class Level {
 		for (Door d : doors.values()) {
 			d.update(delta);
 		}
-		
+		for (DissipationField field: dissipationFields.values()){
+			field.update(delta);
+		}
+
 		glados.updateTesting(delta,player);
-		
+
 		if(levelend.getBody().m_contactList!=null){
 			final String contactbodyb = levelend.getBody().m_contactList.contact.m_fixtureB.m_body.toString();
 			final String playerid = player.getBody().toString();
@@ -122,11 +128,12 @@ public class Level {
 				GameState.setDisplayEndGame(true);
 			}
 		}
-		
+
 	}
-	
+
 	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
 		RenderEngine.drawBG(bg, cam);
+		RenderEngine.drawGameObjects(dissipationFields, cam);
 		RenderEngine.drawGameObject(levelend, cam);
 		RenderEngine.drawGameObjects(lilSwitches, cam);
 		RenderEngine.drawGameObject(player, cam);
@@ -144,7 +151,7 @@ public class Level {
 		if(!achievementPopups.isEmpty()){
 			RenderEngine.renderAchievementPopups(achievementPopups, g,cam);
 		}
-	
+
 	}
 
 	public void playerShootPortal(int color, Vec2 target) throws SlickException {
@@ -154,7 +161,7 @@ public class Level {
 		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(100)));
 		if (rch.fixture == null)
 			return;
-		
+
 		if (this.getBodyType(rch.fixture.getBody()).equals("wall")) {
 			final Wall wall = walls.get(rch.fixture.getBody().toString());
 			final Vec2 loc = rch.point;
@@ -163,7 +170,7 @@ public class Level {
 			portals[color].hitWall(loc, wall);
 		}
 	}
-	
+
 	public boolean portalBulletInteracts(final String bodyID) {
 		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | noportalwalls.containsKey(bodyID) | platforms.containsKey(bodyID) | movingplatforms.containsKey(bodyID) | bigSwitches.containsKey(bodyID))
 			return true;
@@ -173,10 +180,14 @@ public class Level {
 		return false;
 	}
 
-	public void removeCube(final CompanionCube cube) {
-		cubes.remove(cube.getBodyID());
+	public void removeCube(final String string) {
+		if(cubes.get(string)!=null){
+			world.destroyBody(cubes.get(string).getBody());
+			cubes.remove(string);
+		}
+
 	}
-	
+
 
 	public void addBigSwitch(final BigSwitch s, final String bodyid){
 		bigSwitches.put(bodyid,s);
@@ -185,19 +196,19 @@ public class Level {
 	public void addCube(final CompanionCube cube, final String bodyid){
 		cubes.put(bodyid, cube);
 	}
-	
+
 	public void addDoor(final Door door, final String bodyid){
 		doors.put(bodyid,door);
 	}
-	
+
 	public void addEndLevel(final EndLevel end) {
 		levelend = end;
 	}
-	
+
 	public void addLittleSwitch(final LittleSwitch s, final String bodyid){
 		lilSwitches.put(bodyid,s);
 	}
-	
+
 	public void addMovingPlatform(final MovingPlatform platform, final String bodyid){
 		movingplatforms.put(bodyid,platform);
 	}
@@ -213,7 +224,7 @@ public class Level {
 	public void addWall(final Wall wall, final String bodyid){
 		walls.put(bodyid,wall);
 	}
-	
+
 	public Image getBg() {
 		return bg;
 	}
@@ -244,23 +255,23 @@ public class Level {
 		}
 		return type;
 	}
-	
+
 	public CompanionCube getCube(final String bodyId){
 		return cubes.get(bodyId);
 	}
-	
+
 	public Collection<Door> getDoorCollection() {
 		return doors.values();
 	}
-	
+
 	public Map<String, Door> getDoors() {
 		return doors;
 	}
-	
+
 	public GLaDOS getGlados() {
 		return glados;
 	}
-	
+
 	public int getLevelId() {
 		return levelid;
 	}
@@ -268,15 +279,15 @@ public class Level {
 	public Player getLevelPlayer() {
 		return player;
 	}
-	
+
 	public World getPhysWorld(){
 		return world;
 	}
-	
+
 	public Portal[] getPortals() {
 		return portals;
 	}
-	
+
 	public LittleSwitch getSwitch(final String bodyId) {
 		return lilSwitches.get(bodyId);
 	}
@@ -305,6 +316,21 @@ public class Level {
 
 	public void setAchievementPopups(ArrayList<AchievementPopup> achievementPopups) {
 		this.achievementPopups = achievementPopups;
+	}
+
+	public void clearPortals() {
+		for (Portal p : portals)
+			try {
+				if(p.isEnabled()){
+					p.disable();
+				}
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+	}
+
+	public void addDissipationField(DissipationField field, String bodyID) {
+		dissipationFields.put(bodyID,field);
 	}
 
 }

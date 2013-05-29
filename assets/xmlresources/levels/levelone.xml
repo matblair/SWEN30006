@@ -42,6 +42,10 @@
 	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="2" yStart="1.5" xCube="1" yCube="15" cubeid="CUBE">assets/sprites/wall.png</resource>
 	<resource type="BIGSWITCH" id="SWITCHUP" xStart="8" yStart="1.1029" contactimg="SWITCHSENSOR" downid="SWITCHDOWN" doorid="MAINDOOR">assets/sprites/hitbox.png</resource>
 	
+	<!-- Dissipation Fields -->
+	<resource type="FIELD" id="FIELD" xStart="14.57" yStart="18" width="4.0" height="0.25">assets/sprites/wall.png</resource>
+
+
 	<!-- Start Location -->
 	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="2">assets/sprites/chell.png</resource>
 	

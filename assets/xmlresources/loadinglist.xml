@@ -45,6 +45,8 @@
 	<resource type="IMAGE" id="BIGSWITCHSENSOR">assets/sprites/levelobjects/switchsensor.png</resource>
 	
 	<!-- Images for animations -->
+	
+	<!-- Chell animations -->
 	<resource type="IMAGE" id="CHELLRUN1">assets/sprites/animations/chellrun/1.png</resource>
 	<resource type="IMAGE" id="CHELLRUN2">assets/sprites/animations/chellrun/2.png</resource>
 	<resource type="IMAGE" id="CHELLRUN3">assets/sprites/animations/chellrun/3.png</resource>
@@ -57,7 +59,8 @@
 	<resource type="IMAGE" id="CHELLRUN10">assets/sprites/animations/chellrun/10.png</resource>
 	<resource type="IMAGE" id="CHELLRUN11">assets/sprites/animations/chellrun/11.png</resource>
 	<resource type="IMAGE" id="CHELLRUN12">assets/sprites/animations/chellrun/12.png</resource>
-
+	
+	<!-- Door animations -->
 	<resource type="IMAGE" id="DOOR1">assets/sprites/animations/door/1.png</resource>
 	<resource type="IMAGE" id="DOOR2">assets/sprites/animations/door/2.png</resource>
 	<resource type="IMAGE" id="DOOR3">assets/sprites/animations/door/3.png</resource>
@@ -69,6 +72,16 @@
 	<resource type="IMAGE" id="DOOR9">assets/sprites/animations/door/9.png</resource>
 	<resource type="IMAGE" id="DOOR10">assets/sprites/animations/door/10.png</resource>
 	<resource type="IMAGE" id="DOOR11">assets/sprites/animations/door/11.png</resource>
+	
+	<!-- Field animatons -->
+	<resource type="IMAGE" id="FIELD1">assets/sprites/animations/field/1.png</resource>
+	<resource type="IMAGE" id="FIELD2">assets/sprites/animations/field/2.png</resource>
+	<resource type="IMAGE" id="FIELD3">assets/sprites/animations/field/3.png</resource>
+	<resource type="IMAGE" id="FIELD4">assets/sprites/animations/field/4.png</resource>
+	<resource type="IMAGE" id="FIELD5">assets/sprites/animations/field/5.png</resource>
+	<resource type="IMAGE" id="FIELD6">assets/sprites/animations/field/6.png</resource>
+	<resource type="IMAGE" id="FIELD7">assets/sprites/animations/field/7.png</resource>
+
 	
 	<!-- Achievement Images -->
 	<resource type="ACHIMAGE" id="JUMP1">assets/sprites/achievementlogos/jump1.png</resource>
@@ -140,10 +153,14 @@
 	<resource type="SHAPE" id="BIGSWITCHSENSOR" vertpath="bigswitch.xml">bigswitchpath</resource>
 	<resource type="SHAPE" id="BIGSWITCHBASE" vertpath="bigswitchbase.xml">bigswitchbasepath</resource>
 	<resource type="SHAPE" id="DOORSHAPE" vertpath="door.xml">doorpath</resource>
+	<resource type="SHAPE" id="FIELDSHAPE" vertpath="field.xml">fieldpaths</resource>
+
 	
 	<!-- Animations -->
 	<resource type="ANIMATION" id="CHELLRUN" duration="75">assets/xmlresources/animations/chellrun.xml</resource>
 	<resource type="ANIMATION" id="DOOR" duration="20">assets/xmlresources/animations/door.xml</resource>
+	<resource type="ANIMATION" id="FIELD" duration="20">assets/xmlresources/animations/field.xml</resource>
+
 	
 	<!-- Fonts -->
 	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>

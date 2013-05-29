@@ -78,11 +78,11 @@ public class Portal extends GameObject {
 		
 		getBody().setTransform(new Vec2(-1, 0), 0);
 		this.close();
-		enabled = false;
+		setEnabled(false);
 	}
 	
 	public void open() {
-		if (this.enabled & otherPortal.enabled) {
+		if (this.isEnabled() & otherPortal.isEnabled()) {
 			this.getBody().getFixtureList().setSensor(true);
 			otherPortal.getBody().getFixtureList().setSensor(true);
 		}
@@ -135,7 +135,7 @@ public class Portal extends GameObject {
 			return;
 		
 		// Clean up
-		if (enabled)
+		if (isEnabled())
 			disable();
 		
 		Vec2 unitTangent = targetWall.getUnitTangent();
@@ -180,7 +180,17 @@ public class Portal extends GameObject {
 		this.wall = wall;
 		this.wall.disable();
 		
-		enabled = true;
+		setEnabled(true);
 		this.open();
+	}
+
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }
