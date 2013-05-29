@@ -14,6 +14,20 @@ public abstract class Achievement {
 	private float diff=0;
 	private boolean persistant;
 	
+	/** Abstract methods that have to be implemented by other classes **/
+	public abstract boolean checkUnlock(LevelStats stats);
+	public abstract void decrementStats(LevelStats stats);
+	
+	/** The constructor for the achievements
+	 * @param name The name of the achievememt
+	 * @param description The achievement's description
+	 * @param unlocked Whether the achievement is unlocked or not
+	 * @param imgID The image id to load
+	 * @param actype the achievement type
+	 * @param levelid the level it pertains to 
+	 * @param target The target of the achievement
+	 * @param persistant Whether or not this achievement is persistant
+	 */
 	public Achievement (String name, String description, boolean unlocked, String imgID, String actype, int levelid, float target, boolean persistant) {
 		this.name = name;
 		this.setLevelId(levelid);
@@ -50,10 +64,6 @@ public abstract class Achievement {
 		unlocked=true;
 	}
 	
-	public abstract boolean checkUnlock(LevelStats stats);
-	
-	public abstract void decrementStats(LevelStats stats);
-
 	public String getActype() {
 		return actype;
 	}

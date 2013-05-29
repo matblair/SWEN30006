@@ -16,13 +16,18 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class QuitMenu extends InGameMenu{
 
+	/** The items to display for the menu **/
 	protected static Vector<String> menuItems = new Vector<String>();
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	protected static int menuItemSelected = 0;
 	
+	/** Contsants for menu selection **/
 	private static final int MENU_MAINMENU = 0;
 	private static final int MENU_PAUSEGAME = 1;
 
+	/**	Process input from the game state 
+	 * @return void
+	 */
 	public QuitMenu(){
 		menuItems.add("No");
 		menuItems.add("Yes");
@@ -32,8 +37,14 @@ public class QuitMenu extends InGameMenu{
 	}
 
 	@Override
-	public
-	void Render(Graphics g, GameContainer gc) {
+	/** Our render method for the quit menu
+	 * 
+	 * @param g The graphics context to render to.
+	 * @param gc The Game Container
+	 * 
+	 * @return void
+	 */	
+	public void Render(Graphics g, GameContainer gc) {
 				
 		for (int i = 0; i < menuItems.size(); i++) {
 			if (i ==  menuItemSelected) {
@@ -46,8 +57,15 @@ public class QuitMenu extends InGameMenu{
 	}
 
 	@Override
-	public
-	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
+	/** Update the state of the quit menu and exit if neccessary
+	 * 
+	 * @param g The graphics context to render to.
+	 * @param gc The Game 
+	 * @param sbg The StateBasedGame object to switch states
+	 * 
+	 * @return void
+	 */
+	public void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
 		if(selected!=-1){
 			switch (selected){
 			case MENU_MAINMENU:
@@ -64,6 +82,12 @@ public class QuitMenu extends InGameMenu{
 	}
 
 	@Override
+	/**	Process input from the game state
+	 * 
+	 * @param key The integer key code representing the pressed key
+	 * 
+	 * @return void
+	 */
 	public void ProcessInput(int key) {
 		if (key == InputManager.NAV_UP) {
 			if (menuItemSelected == 0)

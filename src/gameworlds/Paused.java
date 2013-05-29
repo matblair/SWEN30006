@@ -28,27 +28,34 @@ public class Paused extends InGameMenu{
 	private final static int MENU_QUIT=5;
 	private static final int MENU_RESTART = 6;
 
+	/** Options to control state flow **/
 	private static boolean displayscores=false;
 	private static boolean displayoptions=false;
 	private static boolean displayquitoption=false;
 	
+	/** The level id **/
+	@SuppressWarnings("unused")
 	private static int levelid;
 
+	/** The sub componenets of the menu as objects **/
 	private OptionMenu opmenu = new OptionMenu();
 	private HighScoreMenu hsmenu;
 	private QuitMenu qmenu = new QuitMenu();
 
+	/** The information to display as well as the item that is selected **/
 	protected static Vector<String> menuItems = new Vector<String>();
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	protected static int menuItemSelected = 0;
 
 
+	/**	The constructor for the paused state
+	 * @param levelid The level id to set
+	 * @return void
+	 */
 	public Paused(int levelid)  {
 		Paused.setLevelid(levelid);
 		font = AssetManager.requestFontResource("PAUSEFONT");
-		debug = false;
 		pausebg = AssetManager.requestUIElement("PAUSEBG");
-		fullscreen = false;
 		menuItems.add("Resume Game");
 		menuItems.add("Restart Level");
 		menuItems.add("High Scores");
@@ -64,6 +71,14 @@ public class Paused extends InGameMenu{
 	}
 
 	@Override		
+	/** Update the state of the paused menu, delegating update to the correct function
+	 * 
+	 * @param g The graphics context to render to.
+	 * @param gc The Game 
+	 * @param sbg The StateBasedGame object to switch states
+	 * 
+	 * @return void
+	 */
 	public
 	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
 		if(displayscores){
@@ -83,6 +98,10 @@ public class Paused extends InGameMenu{
 
 
 	@Override
+	/**	Process input from the game state
+	 * @param key The integer key code representing the pressed key
+	 * @return void
+	 */
 	public void ProcessInput(int key) {
 		if(displayscores){
 			hsmenu.ProcessInput(key);
@@ -108,6 +127,13 @@ public class Paused extends InGameMenu{
 	}
 
 	@Override
+	/** Our render method for the option menu
+	 * 
+	 * @param g The graphics context to render to.
+	 * @param gc The Game Container
+	 * 
+	 * @return void
+	 */	
 	public
 	void Render(Graphics g, GameContainer gc) {
 		
@@ -139,7 +165,9 @@ public class Paused extends InGameMenu{
 		}		
 	}
 
-
+	/**	Process the switching of the first paused menu
+	 * @return void
+	 */
 	private void firstMenu() throws SlickException{
 		if(selected!=-1){
 			switch (selected){
@@ -164,7 +192,12 @@ public class Paused extends InGameMenu{
 		}
 	}
 
-
+	/**	Draw the first menu strings 
+	 * 
+	 * @param g The graphics context to render to.
+	 * 
+	 * @return void
+	 */
 	public void drawFirstMenu(Graphics g){
 		for (int i = 0; i < menuItems.size(); i++) {
 			if (i ==  menuItemSelected) {
@@ -176,65 +209,42 @@ public class Paused extends InGameMenu{
 		}	
 	}
 
-	public static Vector<String> getMenuItems() {
-		return menuItems;
-	}
-
-	public static void setMenuItems(Vector<String> menuItems) {
-		Paused.menuItems = menuItems;
-	}
-
-	public static Map<String, Integer> getStringMaps() {
-		return stringMaps;
-	}
-
-	public static void setStringMaps(Map<String, Integer> stringMaps) {
-		Paused.stringMaps = stringMaps;
-	}
-
-	public static int getMenuItemSelected() {
-		return menuItemSelected;
-	}
-
-	public static void setMenuItemSelected(int menuItemSelected) {
-		Paused.menuItemSelected = menuItemSelected;
-	}
-
-	/**
-	 * @return the selected
+	
+	/** Set the display quit option menu.
+	 * @param displayscores Whether we display or not.
+	 * @return void
 	 */
-	public int getSelected() {
-		return selected;
-	}
-
-	/**
-	 * @param selected the selected to set
-	 */
-	public void setSelected(int selected) {
-		this.selected = selected;
-	}
-
 	public static void setDisplayscores(boolean displayscores) {
 		Paused.displayscores = displayscores;
 	}
 
+	/** Set the display option menu
+	 * @param displayscores Whether we display or not.
+	 * @return void
+	 */
 	public static void setDisplayoptions(boolean displayoptions) {
 		Paused.displayoptions = displayoptions;
 	}
 
+	/** Set the display quit option menu.
+	 * @param displayscores Whether we display or not.
+	 * @return void
+	 */
 	public static void setDisplayquitoption(boolean displayquitoption) {
 		Paused.displayquitoption = displayquitoption;
 	}
 
+	/** Intro to level id setting
+	 * @param levelid The level id of the current level
+	 */
 	public void setLevelId(int levelId) {
 		Paused.setLevelid(levelId);
 		hsmenu.setLevelId(levelId);
 	}
 
-	public static int getLevelid() {
-		return levelid;
-	}
-
+	/** Static level id setting.
+	 * @param levelid The level id to set
+	 */
 	public static void setLevelid(int levelid) {
 		Paused.levelid = levelid;	
 	}

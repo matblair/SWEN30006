@@ -13,17 +13,36 @@ import resourcemanagers.HighScoreLoader;
 import scoringsystem.GLaDOS;
 
 public class EndGameMenu extends InGameMenu {
-
+	
+	/** Boolean value to check if scores have been successfully uploaded **/
 	private static boolean uploadedScores = false;
+	/** Our background image for the end menu **/
 	private Image endbg;
+	/** Our level oracles **/
 	private static GLaDOS glados;
+	/** Strings for display. **/
 	private static String FINISHED="Congratulations!";
+	private static String SAVING="Saving High Score...";
+	private static String CONTINUE="Hit Enter To Continue!";
+	private static String TAKE="It took you ";
+	private static String LEVELSTATS="Here are your level stats";
+	private static String SECONDS=" seconds to finish.";
+	
 
+	/** Constructor for end game menu
+	 */
 	public EndGameMenu(){
 		endbg = AssetManager.requestUIElement("PAUSEBG");
 	}
 
 	@Override
+	/** Our render method for the end game menu
+	 * 
+	 * @param g The graphics context to render to.
+	 * @param gc The Game Container
+	 * 
+	 * @return void
+	 */	
 	public void Render(Graphics g, GameContainer gc) {
 		Color filter = new Color(0,0,0,0.7f);
 		g.setColor(filter);
@@ -36,26 +55,35 @@ public class EndGameMenu extends InGameMenu {
 			g.setColor(Color.orange);
 			g.setFont(font);
 			int ystart=310, i=0;
-			g.drawString("Here are your level stats" , 430, ystart+i*30);
+			g.drawString(LEVELSTATS , 430, ystart+i*30);
 			g.setColor(Color.darkGray);
 			i++;
-			g.drawString("It took you " + glados.getLevelStats().getTimeInLevel()/1000 + " seconds to finish.", 430, ystart+i*30);
+			g.drawString(TAKE + glados.getLevelStats().getTimeInLevel()/1000 + SECONDS, 430, ystart+i*30);
 			i++;
 			g.drawString("You fell " + glados.getLevelStats().getDistFallen() + " metres.", 430, ystart+i*30);
 			i++;
 			g.drawString("You walked " + glados.getLevelStats().getDistWalked() + " metres.", 430, ystart+i*30);
 			i++;
 			g.drawString("You unlocked " + glados.getLevelStats().getAchievementsUnlocked() + " achievements.", 430, ystart+i*30);			
+			
 			if(!isUploadedScores()){
-				g.drawString("Saving High Score..." ,  gc.getWidth()/2 - font.getWidth("Saving High Score...")/2, gc.getHeight()/2 + endbg.getHeight()/2 - 60);
+				g.drawString(SAVING,  gc.getWidth()/2 - font.getWidth(SAVING)/2, gc.getHeight()/2 + endbg.getHeight()/2 - 60);
 			}else{
-				g.drawString("Hit Enter To Continue!" ,  gc.getWidth()/2 - font.getWidth("Hit Enter To Continue!")/2, gc.getHeight()/2 + endbg.getHeight()/2 - 60);
+				g.drawString(CONTINUE,  gc.getWidth()/2 - font.getWidth(CONTINUE)/2, gc.getHeight()/2 + endbg.getHeight()/2 - 60);
 			}
 		}
 
 	}
 
 	@Override
+	/** Update the state of the end game menu, handle the score submission
+	 *
+	 * @param g The graphics context to render to.
+	 * @param gc The Game 
+	 * @param sbg The StateBasedGame object to switch states
+	 * 
+	 * @return void
+	 */	
 	public void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
 		if(glados!=null && !isUploadedScores()){
 			System.out.println("Submitting scores...");
@@ -72,22 +100,36 @@ public class EndGameMenu extends InGameMenu {
 		}
 	}
 
-
 	
-	@Override
-	public void ProcessInput(int key) {
-	}
-
+	/** Receive GLaDOS for the level for use in stats.
+	 * 
+	 * @param GLaDOS The level oracle passed from the level.
+	 * @return void
+	 */	
 	public static void giveGlados(GLaDOS glados) {
 		glados.finaliseStats();
 		EndGameMenu.glados=glados;
 	}
 
+	/** Check if scores are uploaded
+	 * @return uploadedScores
+	 */
 	public static boolean isUploadedScores() {
 		return uploadedScores;
 	}
 
+	/** Set the score uploaded status
+	 * @return uploadedScores
+	 */
 	public static void setUploadedScores(boolean uploadedScores) {
 		EndGameMenu.uploadedScores = uploadedScores;
+	}
+
+	@Override
+	/** Input handler if required for the game menu.
+	 * @return void
+	 */
+	public void ProcessInput(int key) {
+		return;
 	}
 }

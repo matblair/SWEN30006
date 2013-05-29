@@ -14,17 +14,22 @@ import resourcemanagers.AssetManager;
 import scoringsystem.HighScore;
 
 public class HighScoreMenu extends InGameMenu{
+	/** Array lists and vectors of things to display **/
 	protected static Vector<String> menuItems = new Vector<String>();
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	protected static ArrayList<HighScore> scores;
-	protected static int menuItemSelected = 0;
+	
+	/** Static variables for controlling display options and control flow **/
 	private static int levelid;
+	protected static int menuItemSelected = 0;
 	private static boolean firstupdate=false;
-
-
 	private static final int MENU_PAUSEGAME = 0;
 	private static int NUMDISPLAY = 5;
 
+	/** Constructor the High Score menu
+	 * 
+	 * @param levelid The levelid (as an integer)
+	 */
 	public HighScoreMenu(int levelid){
 		menuItems.add("Back");
 		stringMaps.put("Back", MENU_PAUSEGAME);
@@ -32,8 +37,14 @@ public class HighScoreMenu extends InGameMenu{
 	}
 
 	@Override
-	public
-	void Render(Graphics g, GameContainer gc) {
+	/** Our render method for the high score menu system
+	 * 
+	 * @param g The graphics context to render to.
+	 * @param gc The Game Container
+	 * 
+	 * @return void
+	 */	
+	public void Render(Graphics g, GameContainer gc) {
 		if(!firstupdate){
 			if(scores.size()!=0){
 				System.out.println(NUMDISPLAY + " " + scores.size());
@@ -65,9 +76,15 @@ public class HighScoreMenu extends InGameMenu{
 	}
 
 	@Override
-	public
-	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
-
+	/** Update the state of the end game menu, handle loading scores for the menu and switching back
+	 * 
+	 * @param g The graphics context to render to.
+	 * @param gc The Game 
+	 * @param sbg The StateBasedGame object to switch states
+	 * 
+	 * @return void
+	 */
+	public	void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
 		if(!AssetManager.getHighscores().containsKey(levelid)){
 			ArrayList<HighScore> newarray = new ArrayList<HighScore>();
 			AssetManager.getHighscores().put(levelid,newarray);
@@ -87,6 +104,9 @@ public class HighScoreMenu extends InGameMenu{
 	}
 
 	@Override
+	/** Input handler if required for the game menu.
+	 * @return void
+	 */
 	public void ProcessInput(int key) {
 		if (key == InputManager.NAV_UP) {
 			if (menuItemSelected == 0)
@@ -103,9 +123,14 @@ public class HighScoreMenu extends InGameMenu{
 		}	
 	}
 
+	/** Set the end game menu
+	 * @param levelId The leve id of the level we are creating
+	 */
 	public void setLevelId(int levelId) {
 		HighScoreMenu.levelid=levelId;
 		firstupdate=true;
 	}
+	
+	
 
 }

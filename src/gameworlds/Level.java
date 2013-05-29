@@ -17,7 +17,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
 import scoringsystem.AchievementPopup;
 import scoringsystem.GLaDOS;
 
@@ -68,11 +67,14 @@ public class Level {
 	/** Gravity **/
 	private final Vec2 gravity = new Vec2(0,-18f);
 
+	/** The constructor for level
+	 * initialises everything.
+	 * @throws SlickException
+	 */
 	public Level() throws SlickException{
-
 		// Create physics worlds
 		world = new World(gravity);
-
+		
 		// Initialises ArrayLists
 		cubes = new HashMap<String,CompanionCube>();
 		walls = new HashMap<String,Wall>();
@@ -95,6 +97,13 @@ public class Level {
 		glados = new GLaDOS(this.levelid);
 	}
 
+	/** The update method that controls the update flow for all game objects
+	 * @param dir_x Movement in the x axis
+	 * @param dir_y Movement in the y axis
+	 * @param delta The time passed since last update.
+	 * @param sbg The state based game that this level is part of
+	 * @throws SlickException
+	 */
 	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
 		final float timeStep = (float)delta/1000;
 		player.moveXDir(dir_x, delta);
@@ -154,6 +163,12 @@ public class Level {
 
 	}
 
+	/** The render call that calls render engine to render all objects in the correct order 
+	 * @param g The graphics context to draw
+	 * @param debug Whether we are in debug mode or not
+	 * @param cam The camera that controls rendering
+	 * @param gc The game container that this will render for.
+	 */
 	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
 		RenderEngine.drawBG(bg, cam);
 		RenderEngine.drawGameObjects(dissipationFields, cam);
@@ -180,6 +195,9 @@ public class Level {
 
 	}
 
+	/** Remove a cube from the level
+	 * @param string Cube bodyId
+	 */
 	public void removeCube(final String string) {
 		if(cubes.get(string)!=null){
 			cubes.get(string).cubeDestroy();
@@ -187,54 +205,112 @@ public class Level {
 
 	}
 
+	/** Add a big switch to the array list
+	 * @param s the switch to add
+	 * @param bodyid it's body id
+	 */
 	public void addBigSwitch(final BigSwitch s, final String bodyid){
 		bigSwitches.put(bodyid,s);
 	}
 
+	/** Add a cube to the level
+	 * @param cube
+	 * @param bodyid
+	 */
 	public void addCube(final CompanionCube cube, final String bodyid){
 		cubes.put(bodyid, cube);
 	}
 	
+	/** Add a dissipation field to the level
+	 * @param field
+	 * @param bodyID
+	 */
 	public void addDissipationField(DissipationField field, String bodyID) {
 		dissipationFields.put(bodyID,field);
 	}
 
+	/** Add a door to the level
+	 * 
+	 * @param door
+	 * @param bodyid
+	 */
 	public void addDoor(final Door door, final String bodyid){
 		doors.put(bodyid,door);
 	}
 
+	/** Add a level end point to the level
+	 * 
+	 * @param end
+	 */
 	public void addEndLevel(final EndLevel end) {
 		levelend = end;
 	}
 
+	/** Add a switch to the level
+	 * 
+	 * @param s
+	 * @param bodyid
+	 */
 	public void addLittleSwitch(final LittleSwitch s, final String bodyid){
 		lilSwitches.put(bodyid,s);
 	}
 
+	/**Add a moving platform to the level
+	 * 
+	 * @param platform
+	 * @param bodyid
+	 */
 	public void addMovingPlatform(final MovingPlatform platform, final String bodyid){
 		movingplatforms.put(bodyid,platform);
 	}
 
+	/** Add a nomral platform (i.e. non moving) to the level
+	 * 
+	 * @param platform
+	 * @param bodyid
+	 */
 	public void addPlatform(final Platform platform, final String bodyid){
 		platforms.put(bodyid,platform);
 	}
 	
+	/** Create a portal bullet and add it to the world
+	 * 
+	 * @param pb
+	 * @param bodyID
+	 */
 	public void addPortalBullet(PortalBullet pb, String bodyID) {
 		portalbullets.put(bodyID, pb);
 	}
 
+	/** Add a wall that cannot support portals to the world
+	 * 
+	 * @param wall
+	 * @param bodyId
+	 */
 	public void addPortallessWall(Wall wall, String bodyId) {
 		noportalwalls.put(bodyId, wall);
 	}
 
+	/** Add a normal wall to the level
+	 * 
+	 * @param wall
+	 * @param bodyid
+	 */
 	public void addWall(final Wall wall, final String bodyid){
 		walls.put(bodyid,wall);
 	}
 
+	/** Get the background image for the level
+	 * @return
+	 */
 	public Image getBg() {
 		return bg;
 	}
 
+	/** Get a body type from a given body (used for contacts and AABB queries)
+	 * @param other The body of the object in question
+	 * @return type A string determining the type
+	 */
 	public String getBodyType (Body other){
 		final String key = other.toString();
 		String type="";
@@ -266,72 +342,132 @@ public class Level {
 		return type;
 	}
 
+	/** Get a companion cube from a given body id
+	 * 
+	 * @param bodyId
+	 * @return
+	 */
 	public CompanionCube getCube(final String bodyId){
 		return cubes.get(bodyId);
 	}
 
+	/** Get all doors as a collection
+	 * 
+	 * @return cube 
+	 */
 	public Collection<Door> getDoorCollection() {
 		return doors.values();
 	}
 
+	/** Get the doors as a hash map
+	 * 
+	 * @return doors
+	 */
 	public Map<String, Door> getDoors() {
 		return doors;
 	}
 
+	/** Get glados for updating
+	 * 
+	 * @return glados
+	 */
 	public GLaDOS getGlados() {
 		return glados;
 	}
 
+	/** Get the level id of the level for updating high scores etc.
+	 * 
+	 * @return
+	 */
 	public int getLevelId() {
 		return levelid;
 	}
 
+	/** Get the current level player for updates
+	 * 
+	 * @return
+	 */
 	public Player getLevelPlayer() {
 		return player;
 	}
 
+	/** Get the JBox 2D physics world that belongs to this level
+	 * 
+	 * @return
+	 */
 	public World getWorld(){
 		return world;
 	}
 
+	/** Get an array of all portals
+	 * 
+	 * @return
+	 */
 	public Portal[] getPortals() {
 		return portals;
 	}
 	
+	/** Get a hash map of the normal walls
+	 * 
+	 * @return
+	 */
 	public Map<String, Wall> getWalls() {
 		return walls;
 	}
 
+	/** Get a little switch specified by body id
+	 * 
+	 * @param bodyId
+	 * @return
+	 */
 	public LittleSwitch getSwitch(final String bodyId) {
 		return lilSwitches.get(bodyId);
 	}
 
+	/** Set the background image for the level
+	 * 
+	 * @param bg
+	 */
 	public void setBg(final Image bg) {
 		this.bg = bg;
 	}
 
+	/** Set the foreground image for the level
+	 * 
+	 * @param image
+	 */
 	public void setFg(final Image image) {
 		fg=image;
 	}
 
+	/** Set the level id and update the level oracle and paused menus accordingly
+	 * 
+	 * @param id
+	 */
 	public void setLevelId(final int id) {
 		levelid = id;
 		glados.getLevelStats().setLevelID(id);
 		Paused.setLevelid(id);
 	}
 
+	/** Set the level player (used for level creation)
+	 * 
+	 * @param player
+	 */
 	public void setLevelPlayer(final Player player) {
 		this.player = player;
 	}
 
+	/** Get the achievement popups for rendering and adding to
+	 * 
+	 * @return
+	 */
 	public ArrayList<AchievementPopup> getAchievementPopups() {
 		return achievementPopups;
 	}
 
-	public void setAchievementPopups(ArrayList<AchievementPopup> achievementPopups) {
-		this.achievementPopups = achievementPopups;
-	}
-
+	/** Clear all portals, used when going through a dissipation field
+	 */
 	public void clearPortals() {
 		for (Portal p : portals)
 			try {
@@ -343,6 +479,10 @@ public class Level {
 			}
 	}
 
+	/** Get the foreground image for the level,
+	 * returns null if not set.
+	 * @return
+	 */
 	public Image getFg() {
 		return fg;
 	}
