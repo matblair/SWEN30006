@@ -153,23 +153,24 @@
 
 	
 	<!-- LevelXML -->
-	<resource type="LEVELXML" id="0">levels/levelone.xml</resource>
-	<resource type="LEVELXML" id="1">levels/levelthree.xml</resource>
-	<resource type="LEVELXML" id="2">levels/levelfour.xml</resource>
-	<resource type="LEVELXML" id="3">levels/levelfive.xml</resource>
-	<resource type="LEVELXML" id="4">levels/levelsix.xml</resource>
-	<resource type="LEVELXML" id="5">levels/levelseven.xml</resource>
-	<resource type="LEVELXML" id="6">levels/leveleight.xml</resource>
-	<resource type="LEVELXML" id="7">levels/levelnine.xml</resource>
-	<resource type="LEVELXML" id="8">levels/levelten.xml</resource>
-	<resource type="LEVELXML" id="9">levels/leveleleven.xml</resource>
-	<resource type="LEVELXML" id="10">levels/leveltwelve.xml</resource>
-	<resource type="LEVELXML" id="11">levels/levelthirteen.xml</resource>
-	<resource type="LEVELXML" id="12">levels/levelfourteen.xml</resource>
-	<resource type="LEVELXML" id="13">levels/levelfifteen.xml</resource>
-	<resource type="LEVELXML" id="14">levels/levelsixteen.xml</resource>
-	<resource type="LEVELXML" id="15">levels/level1x4FF.xml</resource>
-	<resource type="LEVELXML" id="16">levels/mario.xml</resource>
+	<resource type="LEVELXML" id="0">levels/level01.xml</resource>
+	<resource type="LEVELXML" id="1">levels/level03.xml</resource>
+	<resource type="LEVELXML" id="2">levels/level04.xml</resource>
+	<resource type="LEVELXML" id="3">levels/level05.xml</resource>
+	<resource type="LEVELXML" id="4">levels/level06.xml</resource>
+	<resource type="LEVELXML" id="5">levels/level07.xml</resource>
+	<resource type="LEVELXML" id="6">levels/level08.xml</resource>
+	<resource type="LEVELXML" id="7">levels/level09.xml</resource>
+	<resource type="LEVELXML" id="8">levels/level10.xml</resource>
+	<resource type="LEVELXML" id="9">levels/level11.xml</resource>
+	<resource type="LEVELXML" id="10">levels/level12.xml</resource>
+	<resource type="LEVELXML" id="11">levels/level13.xml</resource>
+	<resource type="LEVELXML" id="12">levels/level14.xml</resource>
+	<resource type="LEVELXML" id="13">levels/level15.xml</resource>
+	<resource type="LEVELXML" id="14">levels/level16.xml</resource>
+	<resource type="LEVELXML" id="15">levels/level17.xml</resource>
+	<resource type="LEVELXML" id="16">levels/level18.xml</resource>
+	<resource type="LEVELXML" id="17">levels/mario.xml</resource>
 	
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
