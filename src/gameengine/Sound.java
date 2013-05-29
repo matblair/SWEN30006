@@ -20,6 +20,7 @@ public class Sound {
 
 	// Music
 	public static final String TITLE="TITLE";
+	public static final String INGAME="INGAME";
 	public static final String VILLAGE="VILLAGE";
 
 	public Sound (String path, String style) {
