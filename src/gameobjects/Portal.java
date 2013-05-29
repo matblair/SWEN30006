@@ -174,7 +174,6 @@ public class Portal extends GameObject {
 				sharedSegment = new Wall(loc.add(unitTangent.mul(height/2)), targetWall.getEnd(), world);
 				endSegment = new Wall(loc.add(unitTangent.mul(height/2)), wall.getEnd(), world);
 				endSegment.disable();
-				
 				otherPortal.startSegment.disable();
 				otherPortal.sharedSegment = sharedSegment;
 				

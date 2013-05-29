@@ -91,6 +91,17 @@
 	<resource type="IMAGE" id="BLUEPORTAL6">assets/sprites/animations/blueportal/6.png</resource>
 	<resource type="IMAGE" id="BLUEPORTAL7">assets/sprites/animations/blueportal/7.png</resource>
 	<resource type="IMAGE" id="BLUEPORTAL8">assets/sprites/animations/blueportal/8.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY1">assets/sprites/animations/cube/1.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY2">assets/sprites/animations/cube/2.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY3">assets/sprites/animations/cube/3.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY4">assets/sprites/animations/cube/4.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY5">assets/sprites/animations/cube/5.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY6">assets/sprites/animations/cube/6.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY7">assets/sprites/animations/cube/7.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY8">assets/sprites/animations/cube/8.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY9">assets/sprites/animations/cube/9.png</resource>
+	<resource type="IMAGE" id="CUBEDESTROY10">assets/sprites/animations/cube/10.png</resource>
+
 	
 	<!-- Field animatons -->
 	<resource type="IMAGE" id="FIELD1">assets/sprites/animations/field/1.png</resource>
@@ -181,7 +192,8 @@
 	<resource type="ANIMATION" id="ORANGEPORTAL" duration="20">assets/xmlresources/animations/orangeportal.xml</resource>
 	<resource type="ANIMATION" id="BLUEPORTAL" duration="20">assets/xmlresources/animations/blueportal.xml</resource>
 	<resource type="ANIMATION" id="FIELD" duration="20">assets/xmlresources/animations/field.xml</resource>
-	
+	<resource type="ANIMATION" id="CUBEDESTROY" duration="30">assets/xmlresources/animations/cube.xml</resource>
+
 	<!-- Fonts -->
 	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>
 	<resource type="FONT" id="PAUSEFONT" fontsize="24">assets/fonts/RETRO.ttf</resource>

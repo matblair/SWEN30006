@@ -96,12 +96,15 @@ public class Level {
 
 		// Update dynamic objects (for portals)
 		player.update(this, delta);
-		for (GameObject o : cubes.values()) {
-			o.update(this);
+		for (CompanionCube c : cubes.values().toArray(new CompanionCube[cubes.size()])) {
+			c.update(this);
+			c.update(delta);
+			if (c.isDestroyed()){
+				world.destroyBody(c.getBody());
+				cubes.remove(c.getBodyID());		
+			}
 		}
-
-		world.step(timeStep, velocityIterations, positionIterations);
-		player.checkCube();
+		
 		for (BigSwitch bs: bigSwitches.values()){
 			bs.updateState();
 		}
@@ -120,6 +123,9 @@ public class Level {
 		for (DissipationField field: dissipationFields.values()){
 			field.update(delta);
 		}
+
+		world.step(timeStep, velocityIterations, positionIterations);
+		player.checkCube();
 		
 		glados.updateTesting(delta,player);
 
@@ -185,8 +191,7 @@ public class Level {
 
 	public void removeCube(final String string) {
 		if(cubes.get(string)!=null){
-			world.destroyBody(cubes.get(string).getBody());
-			cubes.remove(string);
+			cubes.get(string).cubeDestroy();
 		}
 
 	}

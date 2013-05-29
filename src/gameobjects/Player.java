@@ -242,4 +242,15 @@ public class Player extends GameObject{
 			}
 		}
 	}
+	
+	public CompanionCube getCubeCarrying(){
+		return cubecarrying;
+	}
+
+	public boolean isCarryingCube() {
+		if(cubecarrying!=null){
+			return true;
+		}
+		return false;
+	}
 }

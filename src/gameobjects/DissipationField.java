@@ -18,6 +18,7 @@ public class DissipationField extends GameObject {
 	private static final String ANIMID="FIELD";
 	private static final String SHAPEID="FIELDSHAPE";
 	private static final int BODYTYPE = PhysUtils.STATIC;
+	private static final float DIST = 0.5f;
 	private Animation animation;
 	
 	public DissipationField(Vec2 location, World world)
@@ -37,10 +38,13 @@ public class DissipationField extends GameObject {
 		ContactEdge edge = this.getBody().getContactList();
 		while (edge != null) {
 			String type=GameState.getLevel().getBodyType(edge.other);
-			if(type.equals("player")){
+			if(type.equals("player") && PhysUtils.distance(this.getLocation(), GameState.getLevel().getLevelPlayer().getLocation())<=DIST){
 				System.out.println("Should be clearing portals here");
 				GameState.getLevel().clearPortals();
-			} else if (type.equals("cube")){
+			} else if (type.equals("cube") && PhysUtils.distance(this.getLocation(), edge.other.getPosition())<=DIST){
+				if(GameState.getLevel().getLevelPlayer().isCarryingCube() && GameState.getLevel().getLevelPlayer().getCubeCarrying().getBodyID().equals(edge.other.toString())){
+					GameState.getLevel().getLevelPlayer().dropCube();
+				}
 				GameState.getLevel().removeCube(edge.other.toString());
 			}
 			edge = edge.next;

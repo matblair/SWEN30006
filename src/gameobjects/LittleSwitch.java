@@ -39,7 +39,7 @@ public class LittleSwitch extends GameObject {
 	public void trigger() throws SlickException{
 		if(cube!=null){
 			// Then destroy the old one.
-			GameState.getLevel().removeCube(cube.getBodyID());
+			cube.cubeDestroy();
 			cube=null;
 		}
 		cube = new CompanionCube(spawnpoint, GameState.getLevel().getPhysWorld());
