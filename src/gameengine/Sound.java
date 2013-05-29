@@ -15,9 +15,12 @@ public class Sound {
 	public static final String JUMP="JUMP";
 	public static final String PORTALTRAVEL="PORTALTRANSITION";
 	public static final String PORTALOPEN="PORTALOPEN";
+	public static final String DOOROPEN="DOOROPEN";
+	public static final String DOORCLOSE="DOORCLOSE";
 
 	// Music
 	public static final String TITLE="TITLE";
+	public static final String INGAME="INGAME";
 	public static final String VILLAGE="VILLAGE";
 
 	public Sound (String path, String style) {

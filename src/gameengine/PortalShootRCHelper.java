@@ -1,6 +1,6 @@
 package gameengine;
 
-import gameworlds.Level;
+import gameobjects.PortalBullet;
 
 import org.jbox2d.callbacks.RayCastCallback;
 import org.jbox2d.common.Vec2;
@@ -9,18 +9,18 @@ import org.jbox2d.dynamics.Fixture;
 public class PortalShootRCHelper implements RayCastCallback {
 	public Fixture fixture;
 	public Vec2 point;
-	public Level level;
+	public PortalBullet pb;
 	private float fraction;
 
-	public PortalShootRCHelper (Level level) {
+	public PortalShootRCHelper (PortalBullet pb) {
 		super();
-		this.level = level;
+		this.pb = pb;
 		this.fraction = 1f;
 	}
 	
 	@Override
 	public float reportFixture(Fixture fixture, Vec2 point, Vec2 normal, float fraction) {
-		if (!level.portalBulletInteracts(fixture.getBody().toString()))
+		if (!pb.interacts(fixture.getBody()))
 			return -1;
 		
 		if (fraction < this.fraction) {

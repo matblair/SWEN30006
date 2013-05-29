@@ -5,7 +5,7 @@ import org.newdawn.slick.Image;
 import resourcemanagers.AssetManager;
 
 public abstract class Achievement {
-	private Image image, imageLocked;
+	private Image image;
 	private String name, description, imgid;
 	private boolean unlocked;
 	private String actype;
@@ -13,9 +13,6 @@ public abstract class Achievement {
 	protected int levelId;
 	private float diff=0;
 	private boolean persistant;
-
-	
-	private final float filterAmount = 0.1f;
 	
 	public Achievement (String name, String description, boolean unlocked, String imgID, String actype, int levelid, float target, boolean persistant) {
 		this.name = name;
@@ -26,8 +23,6 @@ public abstract class Achievement {
 		this.unlocked = unlocked;
 		imgid = imgID;
 		image = AssetManager.requestAchiemeventResource(imgID);
-		imageLocked = image.copy();
-		imageLocked.setImageColor(filterAmount, filterAmount, filterAmount);
 		this.persistant=persistant;
 	}
 	
@@ -43,12 +38,8 @@ public abstract class Achievement {
 		return unlocked;
 	}
 	
-	public Image getUnlockedImage() {
+	public Image getImage() {
 		return image;
-	}
-	
-	public Image getLockedImage() {
-		return imageLocked;
 	}
 
 	public String getImgid() {

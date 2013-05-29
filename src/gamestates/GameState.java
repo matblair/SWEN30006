@@ -6,6 +6,7 @@ import gameengine.PhysUtils;
 import gameengine.Portal2D;
 import gameengine.Sound;
 import gameobjects.Portal;
+import gameobjects.PortalBullet;
 import gameworlds.EndGameMenu;
 import gameworlds.Level;
 import gameworlds.Paused;
@@ -55,7 +56,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		paused.setLevelId(level.getLevelId());
 		EndGameMenu.setUploadedScores(false);
 		ispaused=false;
-		SoundController.play(Sound.TITLE);
+		SoundController.play(Sound.INGAME);
 	}
 	
 	@Override
@@ -69,7 +70,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			throws SlickException {
 	
 		level.render(g, false, cam, gc);
-		if(isIspaused()){
+		if(isPaused()){
 			paused.Render(g,gc);
 		} else if(displayEndGame){
 			endgame.Render(g,gc);
@@ -83,7 +84,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		int dir_x = 0;
 		Input input = gc.getInput();
 
-		if(!isIspaused() && !displayEndGame){
+		if(!isPaused() && !displayEndGame){
 			if (input.isKeyDown(InputManager.MOVE_RIGHT))
 				dir_x++;
 			if (input.isKeyDown(InputManager.MOVE_LEFT))
@@ -91,9 +92,9 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			if (input.isKeyPressed(InputManager.JUMP))
 				level.getLevelPlayer().jump();
 			if (input.isKeyPressed(InputManager.INTERACT)){
-				level.getLevelPlayer().interact(level.getPhysWorld(), level);
+				level.getLevelPlayer().interact(level.getWorld(), level);
 			}if( input.isKeyPressed(InputManager.PAUSE)){
-				setIspaused(!isIspaused());
+				setIspaused(!isPaused());
 			}
 			level.update(dir_x,0, delta, sbg);
 			cam.follow(gc, level.getLevelPlayer());
@@ -147,26 +148,12 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	@Override
 	public void keyPressed(int key, char c) {
 		System.out.println("Key pressed in GameState int: " + key);
-		if(isIspaused()){
+		if(isPaused()){
 			paused.ProcessInput(key);
 		}
 		
 		if(key==InputManager.SELECT && EndGameMenu.isUploadedScores()){
 			finishedEndGame=true;
-		}
-		
-		switch (c){
-		case 'i':
-			SoundController.stopMusic();
-			break;
-		case 'o':
-			SoundController.play(Sound.TITLE);
-			break;
-		case 'p':
-			SoundController.play(Sound.VILLAGE);
-			break;
-		default:
-			break;
 		}
 	}
 
@@ -191,18 +178,21 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	@Override
 	public void mousePressed(int button, int x, int y) {
 		Vec2 clickLoc = PhysUtils.SlickToJBoxVec(new Vec2(x, height - y));
-		try {
-			if (button == Input.MOUSE_LEFT_BUTTON)
-				level.playerShootPortal(Portal.BLUE, clickLoc.add(cam.getLocation()));
-			else if (button == Input.MOUSE_RIGHT_BUTTON)
-				level.playerShootPortal(Portal.ORANGE, clickLoc.add(cam.getLocation()));
-		} catch (SlickException e) {
-			e.printStackTrace();
+		Vec2 playerLoc = level.getLevelPlayer().getLocation();
+		Vec2 dir = PhysUtils.unitVector(clickLoc.sub(playerLoc));
+		
+		PortalBullet pb;
+		if (button == Input.MOUSE_LEFT_BUTTON) {
+			pb = new PortalBullet(Portal.BLUE, playerLoc, dir);
+			level.addPortalBullet(pb, pb.getBodyID());
+		} else if (button == Input.MOUSE_RIGHT_BUTTON) {
+			pb = new PortalBullet(Portal.ORANGE, playerLoc, dir);
+			level.addPortalBullet(pb, pb.getBodyID());
 		}
 	}
 	
 	public static void switchPaused() {
-		setIspaused(!isIspaused());
+		setIspaused(!isPaused());
 	}
 
 	public static void destroyLevel() {
@@ -212,7 +202,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	/**
 	 * @return the ispaused
 	 */
-	public static boolean isIspaused() {
+	public static boolean isPaused() {
 		return ispaused;
 	}
 

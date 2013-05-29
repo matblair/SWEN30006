@@ -1,6 +1,7 @@
 package gameobjects;
 
 import gameengine.PhysUtils;
+import gameengine.Sound;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.FixtureDef;
@@ -10,6 +11,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import resourcemanagers.AssetManager;
+import resourcemanagers.SoundController;
 
 public class Door extends GameObject {
 	private static final String ANIMID="DOOR";
@@ -45,6 +47,7 @@ public class Door extends GameObject {
 		if (!isOpen) {
 			isOpen = true;
 			getBody().getFixtureList().setSensor(true);
+			SoundController.play(Sound.DOOROPEN);
 		}
 	}
 	
@@ -52,6 +55,7 @@ public class Door extends GameObject {
 		if (isOpen) {
 			isOpen = false;
 			getBody().getFixtureList().setSensor(false);
+			SoundController.play(Sound.DOORCLOSE);
 		}
 	}
 	
