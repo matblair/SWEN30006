@@ -1,9 +1,6 @@
 package resourcemanagers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import gameengine.Portal2D;
 import scoringsystem.HighScore;
 import st.mark.highscores.HighscoreBoard;
@@ -11,13 +8,14 @@ import st.mark.highscores.HighscoreItem;
 
 public class OnlineHighScoreLoader {
 
-	public static boolean needupdate=false;
-	private static ArrayList<Integer> toupdate = new ArrayList<Integer>();
-
+	/** Our object for our online high score board **/
 	private static HighscoreBoard hs;
 
-	private static Map<Integer, ArrayList<HighScore>> localcopies;
-
+	/** Requests all scores for a given level id
+	 * 
+	 * @param levelid
+	 * @return
+	 */
 	public static ArrayList<HighScore> getScores(int levelid){
 		String id = Integer.toString(levelid);
 
@@ -34,71 +32,30 @@ public class OnlineHighScoreLoader {
 			i=max;
 			max+=100;
 		}
-		System.out.println(levelscores.size());
 		return levelscores;
 	}
 
+	/** Sets up the connection to the server using the game key located in the main game
+	 *  class
+	 */
 	public static void initiateScores(){
 		hs = new HighscoreBoard(Portal2D.gameKey);
-		localcopies = new HashMap<Integer, ArrayList<HighScore>>();
 	}
 
+	/** Adds a score to the online high score board
+	 * 
+	 * @param name
+	 * @param time
+	 * @param levelid
+	 */
 	public static void addScore(String name, int time, int levelid){
 		hs.addNewScore(time, name, Integer.toString(levelid), "", "", "");
 	}
 
-	public static ArrayList<HighScore> getTop(int levelid, int number){
-		ArrayList<HighScore> temp = getScores(levelid);
-		ArrayList<HighScore> fin = new ArrayList<HighScore>();
-		if(temp.size()<number){
-			number=temp.size();
-		}
-		for(int i=0; i<number; i++){
-			fin.add(temp.get(i));
-		}
-
-		return fin;
-	}
-
-	public static ArrayList<HighScore> getLocalFirst(int levelid, int number){
-		if(needupdate){
-			if(getToupdate().contains(levelid)){
-				localcopies.put(levelid, getTop(levelid,number));
-				getToupdate().remove(levelid);
-				if(getToupdate().isEmpty()){
-					setNeedupdate(false);
-				}
-			}
-		}
-
-		if(!localcopies.containsKey(levelid)){
-			localcopies.put(levelid, getTop(levelid,number));
-		}
-
-		return localcopies.get(levelid);		
-	}
-
-	/**
-	 * @param needupdate the needupdate to set
+	/** Adds a list of scores to the online score board
+	 * 
+	 * @param toAdd
 	 */
-	public static void setNeedupdate(boolean needupdate) {
-		OnlineHighScoreLoader.needupdate = needupdate;
-	}
-
-	/**
-	 * @return the toupdate
-	 */
-	public static ArrayList<Integer> getToupdate() {
-		return toupdate;
-	}
-
-	/**
-	 * @param toupdate the toupdate to set
-	 */
-	public static void setToupdate(ArrayList<Integer> toupdate) {
-		OnlineHighScoreLoader.toupdate = toupdate;
-	}
-
 	public static void addScoreList(ArrayList<HighScore> toAdd){
 		for(HighScore hs: toAdd){
 			addScore(hs.getName(),(int) hs.getScore(),hs.getLevelid());

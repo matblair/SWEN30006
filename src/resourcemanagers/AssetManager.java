@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jbox2d.collision.shapes.Shape;
-import org.jbox2d.common.Vec2;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
@@ -41,7 +40,6 @@ public class AssetManager {
 	/**Creates a resource repository of commonly used items **/
 	private static Map<String, Image> imageResources = new HashMap<String, Image>(); //All images used for game objects
 	private static Map<String, Sound> soundResources = new HashMap<String, Sound>(); //All sounds resources
-	private static Map<String, Vec2> vectorResources = new HashMap<String, Vec2>(); //All vector locations
 	private static Map<String, Image> uiElementResources = new HashMap<String, Image>(); //All UI Resources
 	private static Map<Integer, String> levelXmlResources = new HashMap<Integer, String>(); //All the level xml resources
 	private static Map<Integer, String> inputXmlResources = new HashMap<Integer, String>(); //All the level xml resources
@@ -53,14 +51,20 @@ public class AssetManager {
 	private static Map<String, Shape> shapeDefinitions = new HashMap<String, Shape>();
 	private static Map<Integer, Boolean> levelUnlocks = new HashMap<Integer,Boolean>();
 
+	/** The total number of resources loaded **/
 	private static int totalresources=0;
 
-	//General File Locations
+	/**General File Locations for loading **/
 	private static final String loadinglist ="loadinglist.xml";
 	private static final String generalresource = "assets/xmlresources/";
 	private static final String achievementxml = "achievements.xml";
 	private static final String highscorexml = "highscores.xml";
 
+	/** The contstructor using the singleton pattern 
+	 * to ensure that only one instance can be called 
+	 * @return
+	 * @throws SlickException
+	 */
 	public static AssetManager getAssetManager()
 			throws SlickException{
 		if(manager==null){
@@ -69,6 +73,9 @@ public class AssetManager {
 		return manager;
 	}
 
+	/** Load all the game assets from the loading list 
+	 * described in the static locations above
+	 */
 	public static void loadAllGameAssets(){
 
 		try {
@@ -104,7 +111,6 @@ public class AssetManager {
 		if(Portal2D.debug){
 			System.out.println(imageResources.size() +" images loaded.");
 			System.out.println(soundResources.size() +" sounds loaded.");
-			System.out.println(vectorResources.size() +" vectors loaded.");
 			System.out.println(uiElementResources.size() +" ui elements loaded.");
 			System.out.println(levelXmlResources.size() +" xml levels loaded.");
 			System.out.println(inputXmlResources.size() +" input xml loaded.");
@@ -116,6 +122,9 @@ public class AssetManager {
 	}
 
 
+	/** Load the game achievements using the achievement loader
+	 *  @return void
+	 */
 	public static void loadAchievements(){
 		final File f = new File(generalresource, achievementxml);
 		InputStream is = null;
@@ -137,6 +146,9 @@ public class AssetManager {
 
 	}
 
+	/** Load the high scores using the high score loader
+	 * 
+	 */
 	public static void loadHighScores(){
 		final File f = new File(generalresource, highscorexml);
 		InputStream is = null;
@@ -157,6 +169,12 @@ public class AssetManager {
 
 	}
 
+	/** Load a level by retrieving the level xml file using
+	 * the given level id and then calling level loader
+	 * @param levelid
+	 * @return
+	 * @throws SlickException
+	 */
 	public static Level loadLevel(final int levelid) throws SlickException{
 		String levelxml = AssetManager.requestLevelXMLPath(levelid);
 		Level level = new Level();
@@ -181,6 +199,11 @@ public class AssetManager {
 		return level;
 	}
 
+	/** Load the input from the input xml paths and then 
+	 * call the input manager to parse the file
+	 * @param inputtype
+	 * @throws SlickException
+	 */
 	public static void loadInput(int inputtype) throws SlickException{
 		String inputxml = AssetManager.requestInputXMLPath(inputtype);
 		System.out.println(inputxml);
@@ -203,121 +226,216 @@ public class AssetManager {
 		}
 	}
 
+	/** Request an image by ID 
+	 * @param imgid
+	 * @return
+	 */
 	public static Image requestImage(String imgid){
 		return imageResources.get(imgid);
 	}
+
+	/** Request an achievement by id
+	 * 
+	 * @param imgid
+	 * @return
+	 */
 	public static Image requestAchiemeventResource(String imgid){
 		return achievementResources.get(imgid);
 	}
 
-	public static Vec2 requestVec(String vecid){
-		return vectorResources.get(vecid);
-	}
-
+	/** Request a particular sound for a given sound id
+	 * 
+	 * @param soundid
+	 * @return
+	 */
 	public static Sound requestSound(String soundid){
 		return soundResources.get(soundid);
 	}
 
+	/** Request a particular ui element for a ui element id
+	 * 
+	 * @param uiid
+	 * @return
+	 */
 	public static Image requestUIElement(String uiid){
 		return uiElementResources.get(uiid);
 	}
-	
+
+	/** Request a level xml path for a given level id
+	 * 
+	 * @param levelid
+	 * @return
+	 */
 	public static String requestLevelXMLPath(int levelid){
 		return levelXmlResources.get(levelid);
 	}
-	
+
+	/** Request input xml path for a given input identifier
+	 * 
+	 * @param inputid
+	 * @return
+	 */
 	public static String requestInputXMLPath(int inputid){
 		return inputXmlResources.get(inputid);
 	}
 
+	/** Get a particular font by font id
+	 * 
+	 * @param fontid
+	 * @return
+	 */
 	public static Font requestFontResource(String fontid){
 		return fontResources.get(fontid);
 	}
 
+	/** Get all animations for a given animation id
+	 *  
+	 * @param animid
+	 * @return
+	 */
 	public static Animation requestAnimationResources(String animid){
 		return animationResources.get(animid).copy();
 	}
 
-	public ResourceLoader getResourceLoader() {
-		return resourceLoader;
-	}
-
-	public LevelLoader getLevelLoader() {
-		return levelLoader;
-	}
-
+	/** Get all image resources to add to
+	 * 
+	 * @return
+	 */
 	public static Map<String, Image> getImageResources() {
 		return imageResources;
 	}
 
+	/** Get the achievement map of all achievements to add to
+	 * 
+	 * @return
+	 */
 	public static Map<String, Image> getAchievementResources() {
 		return achievementResources;
 	}
 
+	/**  Get a collection of achievements for use in achievement rendering
+	 * 
+	 * @return
+	 */
 	public static Collection<Achievement> getAchievements() {
 		return achievements.values();
 	}
 
+	/** Get the achievement map of all achievements to add to
+	 * 
+	 * @return
+	 */
 	public static Map<String, Achievement> getAchievementMap() {
 		return achievements;
 	}
 
+	/** Get sound resources to add to
+	 * 
+	 * @return
+	 */
 	public static Map<String, Sound> getSoundResources() {
 		return soundResources;
 	}
 
-	public static Map<String, Vec2> getVectorResources() {
-		return vectorResources;
-	}
-
+	/** Get uielement resources to add to
+	 * @return
+	 */
 	public static Map<String, Image> getUiElementResources() {
 		return uiElementResources;
 	}
 
+	/** Get level xml resources to add to
+	 * 
+	 * @return
+	 */
 	public static Map<Integer, String> getLevelXmlResources() {
 		return levelXmlResources;
 	}
+
+	/** Get all xml resources for input to add to
+	 * 
+	 * @return
+	 */
 	public static Map<Integer, String> getInputResources() {
 		return inputXmlResources;
 	}
 
+	/** Get all font resources to add to
+	 * 
+	 * @return
+	 */
 	public static Map<String, Font> getFontResources() {
 		return fontResources;
 	}
 
+	/** Get all aniamtions to add to
+	 * 
+	 * @return
+	 */
 	public static Map<String, Animation> getAnimationResources() {
 		return animationResources;
 	}
 
+	/** Get all shapes to add to
+	 * 
+	 * @return
+	 */
 	public static Map<String, Shape> getShapes(){
 		return shapeDefinitions;
 	}
 
+	/** Set the animation resources
+	 * 
+	 * @param animationResources
+	 */
 	public static void setAnimationResources(
 			Map<String, Animation> animationResources) {
 		AssetManager.animationResources = animationResources;
 	}
 
+	/** Get the high score map
+	 * 
+	 * @return
+	 */
 	public static Map<Integer, ArrayList<HighScore>> getHighscores() {
 		return highscores;
 	}
 
+	/** Set the high score map
+	 * 
+	 * @param highscores
+	 */
 	public static void setHighscores(Map<Integer, ArrayList<HighScore>> highscores) {
 		synchronized (AssetManager.highscores){
 			AssetManager.highscores = highscores;
 		}
 	}
 
+	/** Request all high scores on file for a given level id
+	 * 
+	 * @param levelid
+	 * @return
+	 */
 	public static ArrayList<HighScore> requestHighScores(int levelid){
 		synchronized (AssetManager.highscores){
 			return highscores.get(levelid);
 		}
 	}
 
+
+	/** Request a shap for fixture definitions
+	 * 
+	 * @param shapeid
+	 * @return
+	 */
 	public static Shape requestShape(String shapeid) {
 		return shapeDefinitions.get(shapeid);
 	}
 
+	/** Check if a level is unlocked
+	 * 
+	 * @return
+	 */
 	public static Map<Integer, Boolean> getLevelUnlock() {
 		return levelUnlocks;
 	}

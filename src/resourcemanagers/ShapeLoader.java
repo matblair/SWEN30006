@@ -24,8 +24,13 @@ import org.xml.sax.SAXException;
 
 public class ShapeLoader {
 	
+	/** The vertices we will used to create our shape **/
 	private static ArrayList<Vec2> vertices;
 	
+	/** Creates a vertex from a given resource element and adds it to the array list 
+	 * 
+	 * @param resourceElement
+	 */
 	public static void addVertex(Element resourceElement){
 		float xloc = Float.parseFloat(resourceElement.getAttribute("xloc"));
 		float yloc = Float.parseFloat(resourceElement.getAttribute("yloc"));
@@ -34,6 +39,11 @@ public class ShapeLoader {
 
 	}
 	
+	/** Loads the shape specified in a shape xml file and returns that shape to the calling function
+	 * 
+	 * @param vertpath
+	 * @return
+	 */
 	public static PolygonShape loadShapes(String vertpath){
 		vertices = new ArrayList<Vec2>();
 		String generalresource = "assets/xmlresources/vertices/";
@@ -62,6 +72,11 @@ public class ShapeLoader {
 		
 	}
 	
+	/** Read from an iput stream and call load vertex to parse the resource elements
+	 * 
+	 * @param is
+	 * @throws SlickException
+	 */
 	public static void loadVertices(InputStream is) throws SlickException{
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;

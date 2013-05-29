@@ -33,7 +33,6 @@ import scoringsystem.TimingAchievement;
 import scoringsystem.VelocityAchievement;
 
 
-
 public class AchievementLoader {
 
 	/** A simple xml resource loader **/
@@ -43,6 +42,13 @@ public class AchievementLoader {
 	public AchievementLoader(){	
 	}
 
+	/** Load all achievements from an input stream
+	 * 
+	 * @param is the input stream to load from
+	 * @param deferred whether we are using deffered loading or not
+	 * @return
+	 * @throws SlickException
+	 */
 	public int loadAchievements(final InputStream is, final boolean deferred) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
@@ -86,6 +92,10 @@ public class AchievementLoader {
 		return resourcenumber;
 	}
 
+	/** Parse a resourceElement and add the appropriate achievement 
+	 * given the attributes of the resource element
+	 * @param resourceElement
+	 */
 	private void addAchievement(Element resourceElement) {
 		String imgid = resourceElement.getAttribute("id");
 		int levelid = Integer.parseInt(resourceElement.getAttribute("levelid"));
@@ -116,6 +126,10 @@ public class AchievementLoader {
 		}
 	}
 	
+	/** Get the current achievements and unlocks and write them to file
+	 * 
+	 * @throws SlickException
+	 */
 	public static void saveAchievements() throws SlickException{	
 		File outputfile = new File("assets/xmlresources/achievements.xml");
 		OutputStream os = null;
@@ -138,6 +152,12 @@ public class AchievementLoader {
 		return;
 	}
 
+	/** Helper function for saving achievements, writes an achievement map to a given
+	 * output stream
+	 * @param map The achievements to save
+	 * @param os The output stream to write to
+	 * @throws IOException
+	 */
 	private static void writeOutput(Map<String, Achievement> map, OutputStream os) throws IOException {
 		//First write xml header 
 		String header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";

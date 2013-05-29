@@ -23,8 +23,15 @@ import org.xml.sax.SAXException;
 
 public class AnimationLoader {
 	
+	/** An arraylist of images used to create the animation **/
 	private static ArrayList<Image> images;
 	
+	/** The basic class to load an animation of a given duration from an xml file
+	 * 
+	 * @param path
+	 * @param duration
+	 * @return
+	 */
 	public static Animation loadAnimation(String path, int duration){
 		images = new ArrayList<Image>();
 		final File f = new File(path);
@@ -51,11 +58,20 @@ public class AnimationLoader {
 		
 	}
 	
+	/** Adds an image to the array list from the 
+	 * asset manager
+	 * @param resourceElement
+	 */
 	public static void addImage(Element resourceElement){
 		String imgid = resourceElement.getAttribute("id");
 		images.add(AssetManager.requestImage(imgid));
 	}
 	
+	/** Load all the images used to make the animation from the resource 
+	 * stream, adding them to the array list
+	 * @param is
+	 * @throws SlickException
+	 */
 	public static void loadImages(InputStream is) throws SlickException{
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;

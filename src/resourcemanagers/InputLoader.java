@@ -18,9 +18,16 @@ import org.xml.sax.SAXException;
 
 public class InputLoader {
 
+	/** Constructor, isn't required to do anything **/
 	public InputLoader(){
 	}
 
+	/** Load all input mappings for a given input stream 
+	 *  assigning the correct key maps to the input manager
+	 * @param is
+	 * @param deferred
+	 * @throws SlickException
+	 */
 	public void loadInput(final InputStream is, final boolean deferred) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
