@@ -43,7 +43,6 @@ public class PortalBullet extends GameObject {
 		fd.shape = shape;
 		createBody(start, world, fd, PhysUtils.KINEMATIC);
 		getBody().setLinearVelocity(direction.mul(SPEED));
-		System.out.println(getBody().getLinearVelocity());
 		last = start;
 	}
 	
@@ -67,7 +66,6 @@ public class PortalBullet extends GameObject {
 		if (level.getBodyType(rch.fixture.getBody()).equals("wall")) {
 			Wall wall = level.getWalls().get(rch.fixture.getBody().toString());
 			Vec2 loc = rch.point;
-			System.out.println(wall.getStart() + " " + wall.getUnitTangent());
 			level.getGlados().createdPortal();
 			level.getPortals()[colour].hitWall(loc, wall);
 		}
@@ -79,7 +77,7 @@ public class PortalBullet extends GameObject {
 	
 	public boolean interacts (Body b) {
 		String type = level.getBodyType(b);
-		if (type.equals("wall") || type.equals("cube") || type.equals("noportalwall")
+		if (type.equals("wall") || type.equals("cube") || type.equals("noportalwall") || type.equals("dissipationfield")
 				|| type.equals("platform") || type.equals("movingplatform") || type.equals("bigswitch"))
 			return true;
 		Door door = level.getDoors().get(b.toString());

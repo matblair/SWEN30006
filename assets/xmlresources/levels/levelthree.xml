@@ -9,12 +9,12 @@
 	<resource type="WALL" id="WALL" xStart="13.0" yStart="6.0" xEnd="13" yEnd="10">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="13" yStart="10.0" xEnd="21" yEnd="10">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="21" yStart="10" xEnd="21" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="21" yStart="1" xEnd="27" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="27" yStart="1" xEnd="27" yEnd="5">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="27" yStart="5" xEnd="37" yEnd="5">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="37" yStart="5" xEnd="37" yEnd="10">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="37" yStart="10" xEnd="27" yEnd="10">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="27" yStart="10" xEnd="27" yEnd="15">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="21" yStart="1" xEnd="28" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="28" yStart="1" xEnd="28" yEnd="6">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="28" yStart="6" xEnd="37" yEnd="6">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="37" yStart="6" xEnd="37" yEnd="9">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="37" yStart="9" xEnd="27" yEnd="9">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="27" yStart="9" xEnd="27" yEnd="15">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="NOPORTALWALL" xStart="27" yStart="15" xEnd="9" yEnd="15">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="9" yStart="15" xEnd="9" yEnd="11">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="9" yStart="11" xEnd="1" yEnd="11">assets/sprites/wall.png</resource>
@@ -27,7 +27,7 @@
 	
     
 	<!-- End Zone -->
-	<resource type="ENDZONE" xStart="36" yStart="5">endzone</resource>
+	<resource type="ENDZONE" xStart="36" yStart="7.5">endzone</resource>
 
 	<!-- Cubes -->
     
@@ -38,6 +38,6 @@
 
 
 	<!-- Start Location -->
-	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="2">assets/sprites/chell.png</resource>
+	<resource type="PLAYER" id="CHELLSPRITE" startx="26" starty="2">assets/sprites/chell.png</resource>
 
 </resources>

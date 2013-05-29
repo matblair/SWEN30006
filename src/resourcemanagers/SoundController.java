@@ -17,7 +17,7 @@ public class SoundController {
 	
 	public static void play (String id) {
 		Sound s = sounds.get(id);
-		s.play();
+		//s.play();
 	}
 	
 	public static void stopMusic() {

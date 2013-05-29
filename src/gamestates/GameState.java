@@ -98,6 +98,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			}
 			level.update(dir_x,0, delta, sbg);
 			cam.follow(gc, level.getLevelPlayer());
+			
 		} else if (displayEndGame){
 			endgame.Update(gc.getGraphics(),gc,sbg);
 			if(finishedEndGame){
@@ -111,6 +112,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 				finishedEndGame=false;
 				sbg.enterState(Portal2D.LOADSTATE);
 			}
+			
 		} else {
 			paused.Update(gc.getGraphics(), gc, sbg);
 		}
@@ -177,7 +179,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	// Mouse listener stuff //
 	@Override
 	public void mousePressed(int button, int x, int y) {
-		Vec2 clickLoc = PhysUtils.SlickToJBoxVec(new Vec2(x, height - y));
+		Vec2 clickLoc = PhysUtils.SlickToJBoxVec(new Vec2(x, height - y)).add(cam.getLocation());
 		Vec2 playerLoc = level.getLevelPlayer().getLocation();
 		Vec2 dir = PhysUtils.unitVector(clickLoc.sub(playerLoc));
 		
