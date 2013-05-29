@@ -81,8 +81,8 @@ public class Level {
 		bigSwitches = new HashMap<String,BigSwitch>();	
 		noportalwalls = new HashMap<String,Wall>();
 		achievementPopups = new ArrayList<AchievementPopup>();
-		portals[Portal.ORANGE] = new Portal("ORANGEPORTAL", new Vec2(-1,0), world);
-		portals[Portal.BLUE] = new Portal("BLUEPORTAL", new Vec2(-1,0), world);
+		portals[Portal.ORANGE] = new Portal(Portal.ORANGE, new Vec2(-1,0), world);
+		portals[Portal.BLUE] = new Portal(Portal.BLUE, new Vec2(-1,0), world);
 		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
 		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
 		glados = new GLaDOS(this.levelid);
@@ -102,7 +102,7 @@ public class Level {
 
 		world.step(timeStep, velocityIterations, positionIterations);
 		player.checkCube();
-		for(final BigSwitch bs: bigSwitches.values()){
+		for (BigSwitch bs: bigSwitches.values()){
 			bs.updateState();
 		}
 		for(final LittleSwitch ls: lilSwitches.values()){
@@ -114,10 +114,13 @@ public class Level {
 		for (Door d : doors.values()) {
 			d.update(delta);
 		}
+		for (Portal p : portals) {
+			p.update(delta);
+		}
 		for (DissipationField field: dissipationFields.values()){
 			field.update(delta);
 		}
-
+		
 		glados.updateTesting(delta,player);
 
 		if(levelend.getBody().m_contactList!=null){
@@ -145,7 +148,7 @@ public class Level {
 		if(fg!=null){
 			RenderEngine.drawBG(fg, cam);
 		}
-		RenderEngine.drawGameObjects(portals, cam);
+		RenderEngine.drawPortals(portals, cam);
 		RenderEngine.drawNoPortalWalls(noportalwalls, g, cam);
 		RenderEngine.drawWalls(walls, g, cam);
 		if(!achievementPopups.isEmpty()){

@@ -92,8 +92,6 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 				level.getLevelPlayer().jump();
 			if (input.isKeyPressed(InputManager.INTERACT)){
 				level.getLevelPlayer().interact(level.getPhysWorld(), level);
-			}if (input.isKeyPressed(InputManager.SHOOT_BLUE)) {
-				level.playerShootPortal(Portal.BLUE, new Vec2 (0,1.5f));
 			}if( input.isKeyPressed(InputManager.PAUSE)){
 				setIspaused(!isIspaused());
 			}

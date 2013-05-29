@@ -23,7 +23,10 @@
 	<resource type="UIELEMENT" id="INPUTTWO">assets/sprites/uielements/inputdisplay/inputtwo.png</resource>
 	<resource type="UIELEMENT" id="INPUTONE">assets/sprites/uielements/inputdisplay/inputone.png</resource>
 	<resource type="UIELEMENT" id="ACHPOPUP">assets/sprites/uielements/achievementpopup.png</resource>
-
+	<resource type="UIELEMENT" id="ACHLOCK">assets/sprites/uielements/lock.png</resource>
+	<resource type="UIELEMENT" id="BLUEARROW">assets/sprites/uielements/bluearrow.png</resource>
+	<resource type="UIELEMENT" id="ORANGEARROW">assets/sprites/uielements/orangearrow.png</resource>
+	
 	<!-- Sounds -->
 	<resource type="SOUND" id="JUMP" style="SFX">assets/audio/sfx/jump.ogg</resource>
 	<resource type="SOUND" id="PORTALTRANSITION" style="SFX">assets/audio/sfx/portal_transition.ogg</resource>
@@ -72,6 +75,22 @@
 	<resource type="IMAGE" id="DOOR9">assets/sprites/animations/door/9.png</resource>
 	<resource type="IMAGE" id="DOOR10">assets/sprites/animations/door/10.png</resource>
 	<resource type="IMAGE" id="DOOR11">assets/sprites/animations/door/11.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL1">assets/sprites/animations/orangeportal/1.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL2">assets/sprites/animations/orangeportal/2.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL3">assets/sprites/animations/orangeportal/3.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL4">assets/sprites/animations/orangeportal/4.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL5">assets/sprites/animations/orangeportal/5.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL6">assets/sprites/animations/orangeportal/6.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL7">assets/sprites/animations/orangeportal/7.png</resource>
+	<resource type="IMAGE" id="ORANGEPORTAL8">assets/sprites/animations/orangeportal/8.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL1">assets/sprites/animations/blueportal/1.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL2">assets/sprites/animations/blueportal/2.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL3">assets/sprites/animations/blueportal/3.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL4">assets/sprites/animations/blueportal/4.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL5">assets/sprites/animations/blueportal/5.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL6">assets/sprites/animations/blueportal/6.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL7">assets/sprites/animations/blueportal/7.png</resource>
+	<resource type="IMAGE" id="BLUEPORTAL8">assets/sprites/animations/blueportal/8.png</resource>
 	
 	<!-- Field animatons -->
 	<resource type="IMAGE" id="FIELD1">assets/sprites/animations/field/1.png</resource>
@@ -159,8 +178,8 @@
 	<!-- Animations -->
 	<resource type="ANIMATION" id="CHELLRUN" duration="75">assets/xmlresources/animations/chellrun.xml</resource>
 	<resource type="ANIMATION" id="DOOR" duration="20">assets/xmlresources/animations/door.xml</resource>
-	<resource type="ANIMATION" id="FIELD" duration="20">assets/xmlresources/animations/field.xml</resource>
-
+	<resource type="ANIMATION" id="ORANGEPORTAL" duration="20">assets/xmlresources/animations/orangeportal.xml</resource>
+	<resource type="ANIMATION" id="BLUEPORTAL" duration="20">assets/xmlresources/animations/blueportal.xml</resource>
 	
 	<!-- Fonts -->
 	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>

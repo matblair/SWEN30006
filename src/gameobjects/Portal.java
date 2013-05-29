@@ -7,36 +7,53 @@ import gameengine.PhysUtils;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
+
+import resourcemanagers.AssetManager;
 
 public class Portal extends GameObject {
 	public static final int BLUE=0, ORANGE=1;
+	private final String BLUEANIMID="BLUEPORTAL", ORANGEANIMID="ORANGEPORTAL";
 	private static final int BEFORE=0, AFTER=1;
 	private int relativeLoc;
 	
 	private static final String SHAPEID="PORTALSHAPE";
 	private static final int BODYTYPE=PhysUtils.STATIC;
-
 	
 	private float height;
 	private boolean enabled=false, sameWall=false;
 	private Portal otherPortal;
 	private Wall wall;
-	public Wall startSegment, sharedSegment, endSegment;
+	private Wall startSegment, sharedSegment, endSegment;
 	private World world;
+	private Animation animation;
+	private int colour;
 	
-	public Portal(String imgid, Vec2 location, World world)
+	
+	public Portal(int colour, Vec2 location, World world)
 			throws SlickException {
-		super(imgid);
+		super();
 		FixtureDef fixture = createFixture(SHAPEID);
 		this.createBody(location, world, fixture, BODYTYPE);
 		this.world = world;
-		Vec2 dim = new Vec2(0.2f, 2.65625f);
-		this.setDimensions(dim);
-		System.out.println(getDimensions());
+		this.setDimensions(new Vec2(0.2f, 2.5f));
 		height = this.getDimensions().y;
+		
+		String animID = (colour==BLUE) ? BLUEANIMID : ORANGEANIMID;
+		this.colour = colour;
+		animation = AssetManager.requestAnimationResources(animID);
+		animation.setLooping(false);
 	}
-
+	
+	public int getColour() {
+		return colour;
+	}
+	
+	public void update (int delta) {
+		animation.update (delta);
+		this.setSprite(animation.getCurrentFrame());
+	}
 	
 	public void linkPortals(Portal portal){
 		otherPortal = portal;
@@ -78,7 +95,7 @@ public class Portal extends GameObject {
 		
 		getBody().setTransform(new Vec2(-1, 0), 0);
 		this.close();
-		setEnabled(false);
+		enabled = true;
 	}
 	
 	public void open() {
@@ -95,6 +112,10 @@ public class Portal extends GameObject {
 	
 	public boolean isOpen() {
 		return this.getBody().getFixtureList().isSensor();
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
 	}
 	
 	public ArrayList<Wall> getTempWalls() {
@@ -180,17 +201,23 @@ public class Portal extends GameObject {
 		this.wall = wall;
 		this.wall.disable();
 		
-		setEnabled(true);
+		animation.restart();
+		enabled = true;
 		this.open();
 	}
-
-
-	public boolean isEnabled() {
-		return enabled;
+	
+	/** Get the translated location (eg: for traveling through portals)
+	 * 
+	 * @param from The location to go from
+	 * @return The translated location
+	 */
+	public Vec2 translateLocation(Vec2 from) {
+		Vec2 vecToFrom = from.sub(getLocation());
+		Vec2 newLoc = otherPortal.getLocation().add(PhysUtils.rotateVector(vecToFrom, getRotationDifference()));
+		return newLoc;
 	}
-
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	
+	public float getRotationDifference() {
+		return PhysUtils.getAngle(otherPortal.getUnitTangent()) - PhysUtils.getAngle(this.getUnitTangent()) + (float) Math.PI;
 	}
 }
