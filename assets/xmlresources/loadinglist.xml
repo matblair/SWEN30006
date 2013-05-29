@@ -180,6 +180,7 @@
 	<resource type="ANIMATION" id="DOOR" duration="20">assets/xmlresources/animations/door.xml</resource>
 	<resource type="ANIMATION" id="ORANGEPORTAL" duration="20">assets/xmlresources/animations/orangeportal.xml</resource>
 	<resource type="ANIMATION" id="BLUEPORTAL" duration="20">assets/xmlresources/animations/blueportal.xml</resource>
+	<resource type="ANIMATION" id="FIELD" duration="20">assets/xmlresources/animations/field.xml</resource>
 	
 	<!-- Fonts -->
 	<resource type="FONT" id="RETROFONT" fontsize="16">assets/fonts/RETRO.ttf</resource>
