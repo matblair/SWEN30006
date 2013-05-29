@@ -110,6 +110,11 @@ public class Level {
 			}
 		}
 		
+		// Update the physics world
+		world.step(timeStep, velocityIterations, positionIterations);
+		player.checkCube();
+		
+		// Update other game objects
 		for (BigSwitch bs: bigSwitches.values()){
 			bs.updateState();
 		}
@@ -135,9 +140,6 @@ public class Level {
 		for (DissipationField field: dissipationFields.values()){
 			field.update(delta);
 		}
-
-		world.step(timeStep, velocityIterations, positionIterations);
-		player.checkCube();
 		
 		glados.updateTesting(delta,player);
 

@@ -20,6 +20,10 @@ public class Camera {
 		dimensions = new Vec2();
 	}
 	
+	/** Bound the camera to the dimensions of the level.
+	 * 
+	 * @param bounds The size of the level
+	 */
 	public void setBounds(Vec2 bounds){
 		this.bounds = bounds;
 	}
