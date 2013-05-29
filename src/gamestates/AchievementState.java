@@ -107,6 +107,8 @@ public class AchievementState extends BasicGameState implements KeyListener {
 		for (Achievement a : achievements) {
 			x = (int) ((float) width / 2 + (index % ITEMSPERROW - (float) (ITEMSPERROW - 1) / 2) * XSPACING);
 			y = YSTARTHEIGHT + YSPACING * (int) Math.floor(index / ITEMSPERROW) - viewOffset;
+			
+			// Calculate alpha for rendering
 			if (y > YSPACING * (NUMROWS - 1) + YSTARTHEIGHT) {
 				alpha = 1 - ((float) y - (YSPACING * (NUMROWS - 1) + YSTARTHEIGHT)) / FADEOUTDIST;
 			} else if (y < YSTARTHEIGHT) {
@@ -115,6 +117,7 @@ public class AchievementState extends BasicGameState implements KeyListener {
 				alpha = 1;
 			}
 			
+			// Draw things relevant to selected achievement
 			if (index == achievementSelected) {
 				selected.drawCentered(x, y + 52);
 				
@@ -126,11 +129,13 @@ public class AchievementState extends BasicGameState implements KeyListener {
 				g.setColor(Color.gray);
 				g.drawString(text, 300, 120);
 			}
-
-			image = a.getUnlockedImage();
+			
+			// Get the image and set its properties before rendering
+			image = a.getImage();
 			image.setAlpha(alpha);
 			image.drawCentered(x, y);
 			
+			// Show lock if locked
 			if (!a.isUnlocked()) {
 				lock.setAlpha(alpha);
 				lock.drawCentered(x+30, y+30);

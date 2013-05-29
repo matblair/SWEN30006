@@ -191,7 +191,7 @@ public class Player extends GameObject{
 		AABB area = new AABB(lower,upper);
 		FixtureCallback callback = new FixtureCallback();
 
-		GameState.getLevel().getPhysWorld().queryAABB(callback, area);
+		GameState.getLevel().getWorld().queryAABB(callback, area);
 		CompanionCube cube = callback.getCube();
 		if(cube!=null && PhysUtils.distance(this.getLocation(),cube.getLocation())<=DISTCHECK){
 			return cube;
@@ -216,7 +216,7 @@ public class Player extends GameObject{
 			def.enableMotor=true;
 			def.upperTranslation=1;
 			def.collideConnected=true;
-			GameState.getLevel().getPhysWorld().createJoint(def);
+			GameState.getLevel().getWorld().createJoint(def);
 			holdingcube=true;
 			cubecarrying = cube;
 		}
@@ -226,7 +226,7 @@ public class Player extends GameObject{
 		cubecarrying.getBody().resetMassData();
 		cubecarrying.getBody().setFixedRotation(false);
 		Joint joint=cubecarrying.getBody().getJointList().joint;
-		GameState.getLevel().getPhysWorld().destroyJoint(joint);
+		GameState.getLevel().getWorld().destroyJoint(joint);
 		holdingcube=false;
 		cubecarrying=null;
 	}

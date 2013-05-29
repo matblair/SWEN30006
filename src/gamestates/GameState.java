@@ -6,6 +6,7 @@ import gameengine.PhysUtils;
 import gameengine.Portal2D;
 import gameengine.Sound;
 import gameobjects.Portal;
+import gameobjects.PortalBullet;
 import gameworlds.EndGameMenu;
 import gameworlds.Level;
 import gameworlds.Paused;
@@ -91,7 +92,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 			if (input.isKeyPressed(InputManager.JUMP))
 				level.getLevelPlayer().jump();
 			if (input.isKeyPressed(InputManager.INTERACT)){
-				level.getLevelPlayer().interact(level.getPhysWorld(), level);
+				level.getLevelPlayer().interact(level.getWorld(), level);
 			}if( input.isKeyPressed(InputManager.PAUSE)){
 				setIspaused(!isPaused());
 			}
@@ -177,13 +178,16 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	@Override
 	public void mousePressed(int button, int x, int y) {
 		Vec2 clickLoc = PhysUtils.SlickToJBoxVec(new Vec2(x, height - y));
-		try {
-			if (button == Input.MOUSE_LEFT_BUTTON)
-				level.playerShootPortal(Portal.BLUE, clickLoc.add(cam.getLocation()));
-			else if (button == Input.MOUSE_RIGHT_BUTTON)
-				level.playerShootPortal(Portal.ORANGE, clickLoc.add(cam.getLocation()));
-		} catch (SlickException e) {
-			e.printStackTrace();
+		Vec2 playerLoc = level.getLevelPlayer().getLocation();
+		Vec2 dir = PhysUtils.unitVector(clickLoc.sub(playerLoc));
+		
+		PortalBullet pb;
+		if (button == Input.MOUSE_LEFT_BUTTON) {
+			pb = new PortalBullet(Portal.BLUE, playerLoc, dir);
+			level.addPortalBullet(pb, pb.getBodyID());
+		} else if (button == Input.MOUSE_RIGHT_BUTTON) {
+			pb = new PortalBullet(Portal.ORANGE, playerLoc, dir);
+			level.addPortalBullet(pb, pb.getBodyID());
 		}
 	}
 	

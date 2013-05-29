@@ -154,7 +154,7 @@ public class GameObject {
 		Vec2 lower = new Vec2(xmid-dim.x/2+CLIPDIST, ymid-dim.y/2-DISTDOWN);
 		AABB area = new AABB(lower,upper);
 		FixtureCallback callback = new FixtureCallback();
-		GameState.getLevel().getPhysWorld().queryAABB(callback, area);
+		GameState.getLevel().getWorld().queryAABB(callback, area);
 		return callback.isContainsJumpableObject();
 	}
 

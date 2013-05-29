@@ -42,7 +42,7 @@ public class LittleSwitch extends GameObject {
 			GameState.getLevel().removeCube(cube.getBodyID());
 			cube=null;
 		}
-		cube = new CompanionCube(spawnpoint, GameState.getLevel().getPhysWorld());
+		cube = new CompanionCube(spawnpoint, GameState.getLevel().getWorld());
 		GameState.getLevel().addCube(cube, cube.getBodyID());
 		this.setSprite(AssetManager.requestImage(DOWNIMGID));
 		countdown=1000;

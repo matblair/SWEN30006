@@ -32,30 +32,32 @@ public class Level {
 	/** Our Player **/
 	private Player player;
 	/** A vector containing all cubes **/
-	protected Map<String,CompanionCube> cubes;
+	private Map<String,CompanionCube> cubes;
 	/** A vector containing all walls **/
-	protected Map<String,Wall> walls;
-	/** A vector containing all doors **/
-	protected Map<String,Door> doors;
-	/** A vector containing all static platforms **/
-	protected Map<String,Platform> platforms;
-	/** A vector containing all moving platforms **/
-	protected Map<String,MovingPlatform> movingplatforms;
-	/** A vector containing all portals **/
-	protected Portal[] portals = new Portal[2];
-	/** A vector containing all switches **/
-	protected Map<String,LittleSwitch> lilSwitches;
-	/** A vector containing all switches **/
-	protected Map<String,BigSwitch> bigSwitches;
-	/** Walls that can't be interacted with **/
-	protected Map<String, Wall> noportalwalls;
-	/** Our end point **/
-	protected EndLevel levelend;
+	private Map<String,Wall> walls;
 	/** Dissipation Fields **/
-	protected Map<String, DissipationField> dissipationFields;
+	private Map<String, DissipationField> dissipationFields;
+	/** A vector containing all doors **/
+	private Map<String,Door> doors;
+	/** A vector containing all static platforms **/
+	private Map<String,Platform> platforms;
+	/** A vector containing all moving platforms **/
+	private Map<String,MovingPlatform> movingplatforms;
+	/** A vector containing all portals **/
+	private Portal[] portals = new Portal[2];
+	/** A map containing active portal bullets */
+	private Map<String, PortalBullet> portalbullets;
+	/** A vector containing all switches **/
+	private Map<String,LittleSwitch> lilSwitches;
+	/** A vector containing all switches **/
+	private Map<String,BigSwitch> bigSwitches;
+	/** Walls that can't be interacted with **/
+	private Map<String, Wall> noportalwalls;
+	/** Our end point **/
+	private EndLevel levelend;
 
 	/** Our level oracle and achievement data **/
-	protected GLaDOS glados;
+	private GLaDOS glados;
 	private ArrayList<AchievementPopup> achievementPopups;
 
 	/** Our physics world **/
@@ -74,20 +76,23 @@ public class Level {
 		// Initialises ArrayLists
 		cubes = new HashMap<String,CompanionCube>();
 		walls = new HashMap<String,Wall>();
+		dissipationFields = new HashMap<String, DissipationField>();
 		doors = new HashMap<String,Door>();
 		platforms = new HashMap<String,Platform>();
 		movingplatforms = new HashMap<String,MovingPlatform>();
 		lilSwitches = new HashMap<String,LittleSwitch>();
 		bigSwitches = new HashMap<String,BigSwitch>();	
 		noportalwalls = new HashMap<String,Wall>();
-		achievementPopups = new ArrayList<AchievementPopup>();
+		portalbullets = new HashMap<String, PortalBullet>();
+		
+		// Set up portal links
 		portals[Portal.ORANGE] = new Portal(Portal.ORANGE, new Vec2(-1,0), world);
 		portals[Portal.BLUE] = new Portal(Portal.BLUE, new Vec2(-1,0), world);
 		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
 		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
+		
+		achievementPopups = new ArrayList<AchievementPopup>();
 		glados = new GLaDOS(this.levelid);
-		dissipationFields = new HashMap<String, DissipationField>();
-
 	}
 
 	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
@@ -117,6 +122,13 @@ public class Level {
 		for (Portal p : portals) {
 			p.update(delta);
 		}
+		for (PortalBullet pb : portalbullets.values().toArray(new PortalBullet[0])) {
+			pb.update();
+			if (pb.hasCollided()) {
+				portalbullets.remove(pb.getBodyID());
+				pb.destroy();
+			}
+		}
 		for (DissipationField field: dissipationFields.values()){
 			field.update(delta);
 		}
@@ -137,6 +149,7 @@ public class Level {
 	public void render(final Graphics g, final boolean debug,final Camera cam, final GameContainer gc) {
 		RenderEngine.drawBG(bg, cam);
 		RenderEngine.drawGameObjects(dissipationFields, cam);
+		RenderEngine.drawGameObjects(portalbullets, cam);
 		RenderEngine.drawGameObject(levelend, cam);
 		RenderEngine.drawGameObjects(lilSwitches, cam);
 		RenderEngine.drawGameObject(player, cam);
@@ -157,32 +170,6 @@ public class Level {
 
 	}
 
-	public void playerShootPortal(int color, Vec2 target) throws SlickException {
-		PortalShootRCHelper rch = new PortalShootRCHelper(this);
-		Vec2 dir = target.sub(player.getLocation());
-		dir.mulLocal(1/dir.length());
-		world.raycast(rch, player.getLocation(), player.getLocation().add(dir.mul(100)));
-		if (rch.fixture == null)
-			return;
-
-		if (this.getBodyType(rch.fixture.getBody()).equals("wall")) {
-			final Wall wall = walls.get(rch.fixture.getBody().toString());
-			final Vec2 loc = rch.point;
-			System.out.println(wall.getStart() + " " + wall.getUnitTangent());
-			glados.createdPortal();
-			portals[color].hitWall(loc, wall);
-		}
-	}
-
-	public boolean portalBulletInteracts(final String bodyID) {
-		if (walls.containsKey(bodyID) | cubes.containsKey(bodyID) | noportalwalls.containsKey(bodyID) | platforms.containsKey(bodyID) | movingplatforms.containsKey(bodyID) | bigSwitches.containsKey(bodyID))
-			return true;
-		Door door = doors.get(bodyID);
-		if ((door = doors.get(bodyID)) != null && !door.isOpen())
-			return true;
-		return false;
-	}
-
 	public void removeCube(final String string) {
 		if(cubes.get(string)!=null){
 			world.destroyBody(cubes.get(string).getBody());
@@ -191,13 +178,16 @@ public class Level {
 
 	}
 
-
 	public void addBigSwitch(final BigSwitch s, final String bodyid){
 		bigSwitches.put(bodyid,s);
 	}
 
 	public void addCube(final CompanionCube cube, final String bodyid){
 		cubes.put(bodyid, cube);
+	}
+	
+	public void addDissipationField(DissipationField field, String bodyID) {
+		dissipationFields.put(bodyID,field);
 	}
 
 	public void addDoor(final Door door, final String bodyid){
@@ -219,6 +209,10 @@ public class Level {
 	public void addPlatform(final Platform platform, final String bodyid){
 		platforms.put(bodyid,platform);
 	}
+	
+	public void addPortalBullet(PortalBullet pb, String bodyID) {
+		portalbullets.put(bodyID, pb);
+	}
 
 	public void addPortallessWall(Wall wall, String bodyId) {
 		noportalwalls.put(bodyId, wall);
@@ -232,7 +226,7 @@ public class Level {
 		return bg;
 	}
 
-	public String getBodyType(final Body other){
+	public String getBodyType (Body other){
 		final String key = other.toString();
 		String type="";
 		if(player.getBodyID().equals(key)){
@@ -255,6 +249,10 @@ public class Level {
 			type="portal";
 		}else if(movingplatforms.containsKey(key)){
 			type="movingplatform";
+		}else if(dissipationFields.containsKey(key)){
+			type="dissipationfield";
+		}else if(portalbullets.containsKey(key)){
+			type="portalbullet";
 		}
 		return type;
 	}
@@ -283,12 +281,16 @@ public class Level {
 		return player;
 	}
 
-	public World getPhysWorld(){
+	public World getWorld(){
 		return world;
 	}
 
 	public Portal[] getPortals() {
 		return portals;
+	}
+	
+	public Map<String, Wall> getWalls() {
+		return walls;
 	}
 
 	public LittleSwitch getSwitch(final String bodyId) {
@@ -331,9 +333,4 @@ public class Level {
 				e.printStackTrace();
 			}
 	}
-
-	public void addDissipationField(DissipationField field, String bodyID) {
-		dissipationFields.put(bodyID,field);
-	}
-
 }

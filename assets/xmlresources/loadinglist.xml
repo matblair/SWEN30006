@@ -49,6 +49,8 @@
 	<resource type="IMAGE" id="ORANGEPORTAL">assets/sprites/levelobjects/orangeportal.png</resource>
 	<resource type="IMAGE" id="BIGSWITCHBASE">assets/sprites/levelobjects/switchbase.png</resource>
 	<resource type="IMAGE" id="BIGSWITCHSENSOR">assets/sprites/levelobjects/switchsensor.png</resource>
+	<resource type="IMAGE" id="BLUEBULLET">assets/sprites/gameobjects/bluebullet.png</resource>
+	<resource type="IMAGE" id="ORANGEBULLET">assets/sprites/gameobjects/orangebullet.png</resource>
 	
 	<!-- Images for animations -->
 	

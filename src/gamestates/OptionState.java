@@ -87,6 +87,7 @@ public class OptionState extends BasicGameState implements KeyListener{
 		menuItems.add("Controller Select");
 		stringMaps.put("Audio Level", MENU_SOUNDLEVEL);
 		stringMaps.put("Controller Select", MENU_DISPLAYINPUT);
+		volimages.add(AssetManager.requestUIElement("VOL"));
 		volimages.add(AssetManager.requestUIElement("VOL0"));
 		volimages.add(AssetManager.requestUIElement("VOL1"));
 		volimages.add(AssetManager.requestUIElement("VOL2"));

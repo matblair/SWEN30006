@@ -106,7 +106,7 @@ public class LevelLoader {
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);
 		
-		DissipationField field = new DissipationField(startloc,level.getPhysWorld());
+		DissipationField field = new DissipationField(startloc,level.getWorld());
 		level.addDissipationField(field, field.getBodyID());
 	}
 
@@ -115,7 +115,7 @@ public class LevelLoader {
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);
 
-		EndLevel end = new EndLevel(startloc, level.getPhysWorld());
+		EndLevel end = new EndLevel(startloc, level.getWorld());
 		level.addEndLevel(end);
 	}
 
@@ -126,7 +126,7 @@ public class LevelLoader {
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);
 
-		Door door = new Door(startloc, level.getPhysWorld(),doorId);
+		Door door = new Door(startloc, level.getWorld(),doorId);
 		level.addDoor(door, door.getBodyID());
 	}
 
@@ -137,7 +137,7 @@ public class LevelLoader {
 		Float cubex = Float.parseFloat(resourceElement.getAttribute("xCube"));
 		Float cubey = Float.parseFloat(resourceElement.getAttribute("yCube"));
 		Vec2 cubespawn = new Vec2(cubex,cubey);
-		LittleSwitch newswitch = new LittleSwitch(startloc, level.getPhysWorld(), cubespawn);
+		LittleSwitch newswitch = new LittleSwitch(startloc, level.getWorld(), cubespawn);
 		level.addLittleSwitch(newswitch, newswitch.getBodyID());
 		
 	}
@@ -148,7 +148,7 @@ public class LevelLoader {
 		Vec2 startloc = new Vec2(startx,starty);
 		String doorid = resourceElement.getAttribute("doorid");
 		System.out.println(startloc);
-		BigSwitch bswitch = new BigSwitch(startloc,level.getPhysWorld(), doorid);
+		BigSwitch bswitch = new BigSwitch(startloc,level.getWorld(), doorid);
 		level.addBigSwitch(bswitch, bswitch.getBodyID());
 	}
 
@@ -167,7 +167,7 @@ public class LevelLoader {
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);
-		Platform platform = new Platform(startloc, level.getPhysWorld(),size,0);
+		Platform platform = new Platform(startloc, level.getWorld(),size,0);
 		level.addPlatform(platform, platform.getBodyID());
 	}
 	
@@ -191,7 +191,7 @@ public class LevelLoader {
 		Vec2 trackstart = new Vec2(xTrackStart,yTrackStart);
 		Vec2 trackfin = new Vec2(xTrackFin, yTrackFin);
 		Vec2 startloc = new Vec2(startx,starty);
-		MovingPlatform platform = new MovingPlatform(startloc,level.getPhysWorld(), trackstart, trackfin,size, contMovement);
+		MovingPlatform platform = new MovingPlatform(startloc,level.getWorld(), trackstart, trackfin,size, contMovement);
 		level.addMovingPlatform(platform, platform.getBodyID());
 	}
 
@@ -208,7 +208,7 @@ public class LevelLoader {
 		
 		Vec2 start = new Vec2(startx,starty);
 		Vec2 end = new Vec2(endx, endy);
-		Wall wall = new Wall(start, end, level.getPhysWorld());
+		Wall wall = new Wall(start, end, level.getWorld());
 		
 		if(type.equals("NOPORTALWALL")){
 			level.addPortallessWall(wall, wall.getBodyId());
@@ -221,7 +221,7 @@ public class LevelLoader {
 		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
 		Vec2 startloc = new Vec2(xstart,ystart);
-		CompanionCube cube = new CompanionCube(startloc, level.getPhysWorld());
+		CompanionCube cube = new CompanionCube(startloc, level.getWorld());
 		level.addCube(cube, cube.getBodyID());
 	}
 	
@@ -232,7 +232,7 @@ public class LevelLoader {
 		System.out.println(xstart + ", " + ystart + ", " + imgid);
 		
 		Vec2 startloc = new Vec2(xstart,ystart);
-		Player newplayer = new Player(startloc, level.getPhysWorld());
+		Player newplayer = new Player(startloc, level.getWorld());
 		level.setLevelPlayer(newplayer);
 		
 		//Debug Code
