@@ -94,7 +94,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 				level.getLevelPlayer().jump();
 			if (input.isKeyPressed(InputManager.INTERACT)){
 				level.getLevelPlayer().interact(level.getWorld(), level);
-			}if( input.isKeyPressed(InputManager.PAUSE)){
+			}if( input.isKeyDown(InputManager.PAUSE)){
 				setIspaused(!isPaused());
 			}
 			level.update(dir_x,0, delta, sbg);
@@ -190,6 +190,7 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 		Vec2 playerLoc = level.getLevelPlayer().getLocation();
 		Vec2 dir = PhysUtils.unitVector(clickLoc.sub(playerLoc));
 		
+		// Shoot a portal bullet based on which mouse button was pressed
 		PortalBullet pb;
 		if (button == Input.MOUSE_LEFT_BUTTON) {
 			pb = new PortalBullet(Portal.BLUE, playerLoc, dir);

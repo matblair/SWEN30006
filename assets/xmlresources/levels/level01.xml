@@ -38,7 +38,7 @@
 	
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/backgrounds/bg1.png</resource>
-	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg1.png</resource>
+	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg01.png</resource>
 
 	<!-- End Zone -->
 	<resource type="ENDZONE" xStart="27" yStart="2.5">endzone</resource>

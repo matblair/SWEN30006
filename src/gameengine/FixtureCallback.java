@@ -15,6 +15,10 @@ public class FixtureCallback implements QueryCallback{
 	private CompanionCube cube;
 	private boolean containsJumpableObject=false;
 	
+	/** Method for handling fixture collisions. Used by AABB.
+	 * 
+	 * @param fixture The fixture being reported
+	 */
 	public boolean reportFixture(Fixture fixture) {
 		String id = fixture.getBody().toString();
 		String type = GameState.getLevel().getBodyType(fixture.getBody());
@@ -23,13 +27,18 @@ public class FixtureCallback implements QueryCallback{
 		checkJump(type, fixture);
 		
 		if(type.equals("cube")){
-			setCube(GameState.getLevel().getCube(id));
+			cube = GameState.getLevel().getCube(id);
 			return false;
 		}
 		
 		return true;
 	}
 	
+	/** Check if the fixture is something the player can jump off
+	 * 
+	 * @param type Type of object
+	 * @param fixture The fixture associated with the object
+	 */
 	private void checkJump(String type, Fixture fixture) {
 		if((type.equals("wall") && !fixture.isSensor()) || type.equals("bigswitch") || type.equals("cube")
 				|| type.equals("platform") || type.equals("movingplatform") || type.equals("noportalwall")) {
@@ -49,29 +58,22 @@ public class FixtureCallback implements QueryCallback{
 		}
 	}
 
-	/**
+	/** Get the ArrayList of interactable objects in the AABB
 	 * @return the interactableObjects
 	 */
 	public  ArrayList<String> getInteractableObjects() {
 		return interactableObjects;
 	}
 	
-	/**
+	/** Get the cube that was found in the AABB
 	 * @return the cube
 	 */
 	public CompanionCube getCube() {
 		return cube;
 	}
 
-	/**
-	 * @param cube the cube to set
-	 */
-	public void setCube(CompanionCube cube) {
-		this.cube = cube;
-	}
-
-	/**
-	 * @return the containsJumpableObject
+	/** Query if jumpable object was found
+	 * @return true if jumpable object was found
 	 */
 	public boolean isContainsJumpableObject() {
 		return containsJumpableObject;

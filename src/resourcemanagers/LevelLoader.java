@@ -1,5 +1,6 @@
 package resourcemanagers;
 
+import gameengine.PhysUtils;
 import gameobjects.BigSwitch;
 import gameobjects.CompanionCube;
 import gameobjects.DissipationField;
@@ -9,6 +10,7 @@ import gameobjects.LittleSwitch;
 import gameobjects.MovingPlatform;
 import gameobjects.Platform;
 import gameobjects.Player;
+import gameobjects.Portal;
 import gameobjects.Wall;
 import gameworlds.Level;
 
@@ -193,7 +195,11 @@ public class LevelLoader {
 	 * @param level
 	 */
 	private void addElementAsPortal(Element resourceElement, Level level) {
-		
+		String colour = resourceElement.getAttribute("colour");
+		int c = colour.equals("BLUE") ? Portal.BLUE : Portal.ORANGE;
+		Vec2 start = new Vec2 (Float.parseFloat(resourceElement.getAttribute("xStart")), Float.parseFloat(resourceElement.getAttribute("yStart")));
+		Vec2 dir = PhysUtils.unitVector(new Vec2 (Float.parseFloat(resourceElement.getAttribute("xDir")), Float.parseFloat(resourceElement.getAttribute("yDir"))));
+		level.deferPortalBullet (c, start, dir);
 	}
 
 	/** Adds a platform to the level using the attributes described in the resource element

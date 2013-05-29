@@ -22,7 +22,12 @@ public class Sound {
 	public static final String TITLE="TITLE";
 	public static final String INGAME="INGAME";
 	public static final String VILLAGE="VILLAGE";
-
+	
+	/** Create a new Sound object
+	 * 
+	 * @param path Path to the sound resource
+	 * @param style Type of sound (either "music" or "sfx")
+	 */
 	public Sound (String path, String style) {
 		music = style.equalsIgnoreCase("music");
 		try {
@@ -33,6 +38,8 @@ public class Sound {
 		}
 	}
 
+	/** Play a particular sound.
+	 */
 	public void play() {
 		if (music)
 			sound.playAsMusic(1f, 1f, true);

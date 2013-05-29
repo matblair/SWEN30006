@@ -1,5 +1,9 @@
 package gameengine;
 
+/** Class that contains constants to be used when checking what action input
+ * corresponds to.
+ *
+ */
 public class InputManager {
 	public static int NAV_UP=-1, NAV_DOWN=-1, NAV_LEFT=-1, NAV_RIGHT=-1;
 	public static int MOVE_LEFT=-1, MOVE_RIGHT=-1;

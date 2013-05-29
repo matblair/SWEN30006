@@ -69,10 +69,6 @@ public class LoadingState extends BasicGameState {
 		level.setLevelId(levelid);
 		GameState.setLevel(level);
 		GameState.updateCamera();
-		System.out.println("\n\n\n\n\n\n\n");
-		System.out.println(GameState.getLevel().getLevelId());
-		System.out.println("\n\n\n\n\n\n\n");
-
 		sbg.enterState(Portal2D.GAMESTATE);
 		finishedloading=true;
 	}
@@ -91,9 +87,7 @@ public class LoadingState extends BasicGameState {
 		}
 
 	}
-
-
-
+	
 	@Override
 	public int getID() {
 		return StateId;

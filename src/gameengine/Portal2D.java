@@ -40,6 +40,9 @@ public class Portal2D extends StateBasedGame {
 	/** Whether the game is running fullscreen or not **/
 	public boolean fullscreen;
 
+	/** Create a new Portal2D game.
+	 * 
+	 */
 	public Portal2D() {
 		super("Portal 2D");
 	}
@@ -64,9 +67,7 @@ public class Portal2D extends StateBasedGame {
 
 	/** Start-up method. Creates the game and runs it.
 	 */
-	public static void main(final String[] args)
-			throws SlickException
-			{
+	public static void main(final String[] args) throws SlickException {
 		app = new AppGameContainer(new Portal2D());
 		app.setDisplayMode(screenwidth, screenheight, false);
 		app.setShowFPS(true);
@@ -74,12 +75,5 @@ public class Portal2D extends StateBasedGame {
 		app.setTargetFrameRate(60);
 		new Thread(new HighScoreBackgroundThread()).start();	
 		app.start();
-		}    
-	public static void setResolution(final int width, final int height, final boolean key) throws SlickException{
-		app.setDisplayMode(width, height, key);
-	}
-
-	public static void setFullscreen() throws SlickException {
-		app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
 	}
 }

@@ -21,18 +21,33 @@ public class RenderEngine {
 	private static final float ACOFFSET = 50;
 	private static Image achpopup, bluearrow, orangearrow;
 	
+	/** Draw GameObjects from a map
+	 * 
+	 * @param map Map containing GameObjects to draw
+	 * @param cam The camera object that defines the field of view.
+	 */
 	public static <T extends GameObject> void drawGameObjects(Map<String, T> map, Camera cam){
 		for (T obj : map.values()) {
 			drawGameObject(obj,cam);
 		}
 	}
 	
+	/** Draw an array of GameObjects
+	 * 
+	 * @param array Array of GameObjects to draw
+	 * @param cam The camera object that defines the field of view.
+	 */
 	public static <T extends GameObject> void drawGameObjects(T[] array, Camera cam){
 		for (T obj : array) {
 			drawGameObject(obj,cam);
 		}
 	}
 	
+	/** Draw BigSwitches if they are in view.
+	 * 
+	 * @param switches Map of switches to draw
+	 * @param cam The camera object that defines the field of view.
+	 */
 	public static void drawBigSwitches (Map<String, BigSwitch> switches, Camera cam) {
 		for (BigSwitch s : switches.values()) {
 			drawGameObject(s.getButton(), cam);
@@ -107,6 +122,9 @@ public class RenderEngine {
 	/** Draw a game object at a different location in the world. That is,
 	 * override its actual location
 	 * 
+	 * @param obj The GameObject to draw
+	 * @param loc The location of the GameObject in the world
+	 * @param cam The camera object that defines the field of view.
 	 */
 	public static <T extends GameObject> void drawGameObject (T obj, Vec2 location, Camera cam) {
 		float rotation = (float) (-obj.getRotation() * 180 / Math.PI);
@@ -131,7 +149,15 @@ public class RenderEngine {
 		bg.draw(0, 0, slickCamDim.x, slickCamDim.y, topLeftCoord.x, topLeftCoord.y, bottomRightCoord.x, bottomRightCoord.y);
 	}
 	
-	public static void drawWalls(Map<String, Wall> walls, Graphics g, Camera cam){
+	/** Draw walls as lines. Useful for debugging.
+	 * 
+	 * @param walls Map that contains walls to draw
+	 * @param g Graphics context
+	 * @param colour The colour to draw the walls
+	 * @param cam The camera that defines the field of view.
+	 */
+	public static void drawWalls(Map<String, Wall> walls, Graphics g, Color colour, Camera cam){
+		g.setColor(colour);
 		for(Wall wl: walls.values()){
 			if (!wl.isEnabled())
 				continue;
@@ -139,26 +165,17 @@ public class RenderEngine {
 			Vec2 camDim = cam.getDimensions();
 			Vec2 wallstart = PhysUtils.JBoxToSlickVec(new Vec2(wl.getStart().x-camLoc.x,camDim.y - (wl.getStart().y - camLoc.y)));
 			Vec2 wallend = PhysUtils.JBoxToSlickVec(new Vec2(wl.getEnd().x-camLoc.x,camDim.y - (wl.getEnd().y - camLoc.y)));
-			g.setColor(Color.magenta);
 			g.setLineWidth(3);
 			g.drawLine(wallstart.x, wallstart.y, wallend.x, wallend.y);
 		}
 	}
 	
-	public static void drawNoPortalWalls(Map<String, Wall> walls, Graphics g, Camera cam){
-		for(Wall wl: walls.values()){
-			if (!wl.isEnabled())
-				continue;
-			Vec2 camLoc = cam.getLocation();
-			Vec2 camDim = cam.getDimensions();
-			Vec2 wallstart = PhysUtils.JBoxToSlickVec(new Vec2(wl.getStart().x-camLoc.x,camDim.y - (wl.getStart().y - camLoc.y)));
-			Vec2 wallend = PhysUtils.JBoxToSlickVec(new Vec2(wl.getEnd().x-camLoc.x,camDim.y - (wl.getEnd().y - camLoc.y)));
-			g.setColor(Color.green);
-			g.setLineWidth(3);
-			g.drawLine(wallstart.x, wallstart.y, wallend.x, wallend.y);
-		}
-	}
-	
+	/** Draw achievement popups
+	 * 
+	 * @param popups ArrayList of achievements to draw
+	 * @param g Graphics context
+	 * @param cam The camera that defines the field of view.
+	 */
 	public static void renderAchievementPopups(ArrayList<AchievementPopup> popups, Graphics g, Camera cam){
 		//Ensure we have loaded the achievement popup
 		if(achpopup==null){

@@ -12,6 +12,7 @@ import gamestates.GameState;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -60,19 +61,22 @@ public class Level {
 	private ArrayList<AchievementPopup> achievementPopups;
 
 	/** Our physics world **/
-	private final World world;
+	private World world;
 	/** Our Physics Engine Constants **/
 	private final int velocityIterations = 8;
 	private final int positionIterations = 4;
 	/** Gravity **/
 	private final Vec2 gravity = new Vec2(0,-18f);
+	
+	private Vec2[] ds = new Vec2[2];
+	private Vec2[] dd = new Vec2[2];
 
 	/** The constructor for level
 	 * initialises everything.
 	 * @throws SlickException
 	 */
 	public Level() throws SlickException{
-		// Create physics worlds
+		// Create physics world
 		world = new World(gravity);
 		
 		// Initialises ArrayLists
@@ -93,6 +97,10 @@ public class Level {
 		portals[Portal.ORANGE].linkPortals(portals[Portal.BLUE]);
 		portals[Portal.BLUE].linkPortals(portals[Portal.ORANGE]);
 		
+		// Set up deferred loading for portal bullets
+		ds[0] = null;
+		ds[1] = null;
+		
 		achievementPopups = new ArrayList<AchievementPopup>();
 		glados = new GLaDOS(this.levelid);
 	}
@@ -107,7 +115,20 @@ public class Level {
 	public void update(final float dir_x, final float dir_y, final int delta, final StateBasedGame sbg) throws SlickException {
 		final float timeStep = (float)delta/1000;
 		player.moveXDir(dir_x, delta);
-
+		
+		// Stupid hack to add portals at level creation. Can't use normal way because for some
+		// reason portal bullets don't move despite having non-zero velocity.
+		if (ds[Portal.BLUE]!=null) {
+			PortalBullet pb = new PortalBullet(Portal.BLUE, ds[Portal.BLUE], dd[Portal.BLUE]);
+			this.addPortalBullet(pb, pb.getBodyID());
+			ds[Portal.BLUE] = null;
+		}
+		if (ds[Portal.ORANGE]!=null) {
+			PortalBullet pb = new PortalBullet(Portal.ORANGE, ds[Portal.ORANGE], dd[Portal.ORANGE]);
+			this.addPortalBullet(pb, pb.getBodyID());
+			ds[Portal.ORANGE] = null;
+		}
+		
 		// Update dynamic objects (for portals)
 		player.update(this, delta);
 		for (CompanionCube c : cubes.values().toArray(new CompanionCube[cubes.size()])) {
@@ -183,12 +204,11 @@ public class Level {
 		RenderEngine.drawGameObjects(movingplatforms, cam);
 		if(fg!=null){
 			RenderEngine.drawBG(fg, cam);
-		}else {
-			RenderEngine.drawWalls(walls, g, cam);
 		}
 		RenderEngine.drawPortals(portals, cam);
 		RenderEngine.drawGameObject(levelend, cam);
-		RenderEngine.drawNoPortalWalls(noportalwalls, g, cam);
+		RenderEngine.drawWalls(walls, g, Color.magenta, cam);
+		RenderEngine.drawWalls(noportalwalls, g, Color.green, cam);
 		if(!achievementPopups.isEmpty()){
 			RenderEngine.renderAchievementPopups(achievementPopups, g,cam);
 		}
@@ -280,6 +300,17 @@ public class Level {
 	 */
 	public void addPortalBullet(PortalBullet pb, String bodyID) {
 		portalbullets.put(bodyID, pb);
+	}
+	
+	/** Method for telling level to later add portal bullets. Stupid hack, but for
+	 * some stupid reason, it is required.
+	 * @param c Colour of PortalBullet
+	 * @param start Start location
+	 * @param dir Direction of travel
+	 */
+	public void deferPortalBullet(int c, Vec2 start, Vec2 dir){
+		ds[c] = start;
+		dd[c] = dir;
 	}
 
 	/** Add a wall that cannot support portals to the world

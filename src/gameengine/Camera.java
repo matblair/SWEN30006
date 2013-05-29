@@ -9,11 +9,18 @@ public class Camera {
 	private Vec2 location, bounds, dimensions; // JBox coords
 	private final float RENDERBUFFER=2; // Metres outside edge of camera to render
 	
+	/** Create a camera without setting bounds (will require setting later)
+	 * 
+	 */
 	public Camera(){
 		location = new Vec2();
 		dimensions = new Vec2();
 	}
 	
+	/** Create a camera object and set its bounds.
+	 * 
+	 * @param bounds The bounds of the camera
+	 */
 	public Camera(Vec2 bounds) {
 		this.bounds = bounds;
 		location = new Vec2();
