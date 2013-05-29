@@ -31,9 +31,17 @@ import org.xml.sax.SAXException;
 
 public class LevelLoader {
 
+	/** The constructor for the level loader **/
 	public LevelLoader(){
 	}
 	
+	/** Loads all attributes for a level calling delegate functions to handle resource element parsing for 
+	 *  each of the different type of level objects
+	 * @param is
+	 * @param deferred
+	 * @param level
+	 * @throws SlickException
+	 */
 	public void loadLevel(final InputStream is, final boolean deferred, Level level) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
@@ -72,8 +80,6 @@ public class LevelLoader {
 					addElementAsCube(resourceElement,level);
 				}else if(type.equals("WALL")){ 
 					addElementAsWall(resourceElement,level);
-				}else if(type.equals("TURRET")){  
-					addElementAsTurret(resourceElement,level);
 				}else if(type.equals("PLATFORM")){  
 					addElementAsPlatform(resourceElement,level);
 				}else if(type.equals("MOVINGPLATFORM")){  
@@ -101,6 +107,12 @@ public class LevelLoader {
 		}
 	}
 	
+	/** Adds a dissipation field to the level from a resource element read from file
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsField(Element resourceElement, Level level) throws SlickException {
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
@@ -110,6 +122,12 @@ public class LevelLoader {
 		level.addDissipationField(field, field.getBodyID());
 	}
 
+	/** Add an end level object to the level from a resource element
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsEndLevel(Element resourceElement, Level level) throws SlickException {
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
@@ -119,6 +137,12 @@ public class LevelLoader {
 		level.addEndLevel(end);
 	}
 
+	/** Adds a door to the level from the attributes described in the resource element
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsDoor(Element resourceElement, Level level) throws SlickException {
 		String doorId = resourceElement.getAttribute("doorid");
 
@@ -130,6 +154,12 @@ public class LevelLoader {
 		level.addDoor(door, door.getBodyID());
 	}
 
+	/** Adds a little siwtch to the level from the attributes described in the resource element
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsLittleSwitch(Element resourceElement, Level level) throws SlickException{
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
@@ -142,20 +172,36 @@ public class LevelLoader {
 		
 	}
 	
+	/** Adds a big switch to the level from the attributes described in the resource element
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsBigSwitch(Element resourceElement, Level level) throws SlickException{
 		Float startx = Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);
 		String doorid = resourceElement.getAttribute("doorid");
-		System.out.println(startloc);
 		BigSwitch bswitch = new BigSwitch(startloc,level.getWorld(), doorid);
 		level.addBigSwitch(bswitch, bswitch.getBodyID());
 	}
 
+	/** Adds a predefined poratl to the level from the attributes described in the resource element
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 */
 	private void addElementAsPortal(Element resourceElement, Level level) {
 		
 	}
 
+	/** Adds a platform to the level using the attributes described in the resource element
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsPlatform(Element resourceElement, Level level) throws SlickException{
 		String type = resourceElement.getAttribute("id");
 		int size;
@@ -171,6 +217,12 @@ public class LevelLoader {
 		level.addPlatform(platform, platform.getBodyID());
 	}
 	
+	/** Add a moving platform to the level from the attributes described in the resource element
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsMovingPlatform(Element resourceElement, Level level) throws SlickException{
 	
 		String type = resourceElement.getAttribute("id");
@@ -195,10 +247,12 @@ public class LevelLoader {
 		level.addMovingPlatform(platform, platform.getBodyID());
 	}
 
-	private void addElementAsTurret(Element resourceElement, Level level) {
-
-	}
-
+	/** Adds a wall to the level from the attributes described in the resource element
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsWall(Element resourceElement, Level level) throws SlickException {
 		Float startx =   Float.parseFloat(resourceElement.getAttribute("xStart"));
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
@@ -217,6 +271,12 @@ public class LevelLoader {
 		}
 	}
 
+	/** Adds a cube to the level from the attributes described in the resource loader
+	 * 
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsCube(Element resourceElement, Level level) throws SlickException {
 		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
@@ -225,18 +285,17 @@ public class LevelLoader {
 		level.addCube(cube, cube.getBodyID());
 	}
 	
+	/** Adds the players initial starting position to the world from the attributes
+	 * described in the given resource element
+	 * @param resourceElement
+	 * @param level
+	 * @throws SlickException
+	 */
 	private void addElementAsPlayer(Element resourceElement, Level level) throws SlickException{
-		String imgid = resourceElement.getAttribute("id");
 		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
-		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
-		System.out.println(xstart + ", " + ystart + ", " + imgid);
-		
+		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));		
 		Vec2 startloc = new Vec2(xstart,ystart);
 		Player newplayer = new Player(startloc, level.getWorld());
 		level.setLevelPlayer(newplayer);
-		
-		//Debug Code
-		System.out.println(newplayer.getBody() + " is the players body id");
-		System.out.println(newplayer.getBody().getType()+ " is the players body type");
 	}
 }

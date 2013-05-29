@@ -12,12 +12,18 @@ import resourcemanagers.OnlineHighScoreLoader;
 
 public class HighScoreBackgroundThread implements Runnable {
 	
+	/** The local copies and the copies we need to update to the server **/
 	private static ArrayList<HighScore> toUpdate;
 	private static Map<Integer, ArrayList<HighScore>> onlineHighScores = new HashMap<Integer, ArrayList<HighScore>>();
 
+	/** The timer for the interval at which we refresh from the server **/
 	long startTime = System.currentTimeMillis();
 	long elapsedTime =0;
 
+	/**Create the high score background thread, initiating
+	 * the online high score board and initiating
+	 * the array list
+	 */
 	public HighScoreBackgroundThread(){
 		//Initiate online high scores.
 		OnlineHighScoreLoader.initiateScores();
@@ -26,6 +32,9 @@ public class HighScoreBackgroundThread implements Runnable {
 	}
 	
 	@Override
+	/**The runnable portion of the thread, checks intermittently for new scores and 
+	 * adds new scores scheduled for upload to the server as they arrive
+	 */
 	public void run() {
 		while(true){
 			//Add any highscores neccessary to the online database
@@ -60,6 +69,10 @@ public class HighScoreBackgroundThread implements Runnable {
 		}
 	}
 	
+	/** Add a high score to the list waiting to be updated 
+	 * 
+	 * @param score
+	 */
 	public static void addScore(HighScore score){
 		System.out.println(score + " " + toUpdate);
 		toUpdate.add(score);

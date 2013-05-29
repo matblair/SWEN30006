@@ -27,12 +27,23 @@ import scoringsystem.HighScore;
 
 public class HighScoreLoader {
 
+	/** The object used for locking synchronized access **/
 	private static Object synlock;
 
+	/** The constructor, essentially just creates the sync lock 
+	 * 
+	 */
 	public HighScoreLoader(){
 		synlock = new Object();
 	}
 
+	/** Load all high scores from a given input stream, loads the local cached files first
+	 * 
+	 * @param is
+	 * @param deferred
+	 * @return
+	 * @throws SlickException
+	 */
 	public int loadHighScores(final InputStream is, final boolean deferred) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
@@ -76,6 +87,10 @@ public class HighScoreLoader {
 		return resourcenumber;
 	}
 
+	/** Parse a resource element for the requisite attributes and create a new
+	 * high score object from it
+	 * @param resourceElement
+	 */
 	private void addHighScore(Element resourceElement) {
 		int levelid = Integer.parseInt(resourceElement.getAttribute("levelid"));
 
@@ -91,6 +106,10 @@ public class HighScoreLoader {
 
 	}
 
+	/** Save the high scores to local file and open an output stream to 
+	 * pass to writeOutput
+	 * @throws SlickException
+	 */
 	public static void saveHighScores() throws SlickException{	
 		synchronized (synlock){
 			File outputfile = new File("assets/xmlresources/highscores.xml");
@@ -115,6 +134,12 @@ public class HighScoreLoader {
 		return;
 	}
 
+	/** Write the output to a given output stream
+	 * and write the high scores in the requisite manner
+	 * @param highscores
+	 * @param os
+	 * @throws IOException
+	 */
 	private static void writeOutput(Map<Integer, ArrayList<HighScore>> highscores, OutputStream os) throws IOException {
 
 		//First write xml header 

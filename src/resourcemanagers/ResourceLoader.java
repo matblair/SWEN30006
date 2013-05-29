@@ -26,11 +26,17 @@ public class ResourceLoader {
 
 	/** A simple xml resource loader **/
 	/** Main function reads all data and calls sub functions to create the units**/
-
 	/**Constructor doesn't need to do anything **/
 	public ResourceLoader(){	
 	}
 
+	/** Load all resources into the array lists in the asset manager by parsing a given input stream 
+	 *  and calling the requisite delgate functions
+	 * @param is
+	 * @param deferred
+	 * @return
+	 * @throws SlickException
+	 */
 	public int loadResources(final InputStream is, final boolean deferred) throws SlickException {
 		final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
@@ -101,42 +107,79 @@ public class ResourceLoader {
 		return resourcenumber;
 	}
 
+	/** Add the xml file for a particular input mapping to the Asset Manager
+	 * 
+	 * @param resourceElement
+	 */
 	private void addElementAsInputMap(Element resourceElement) {	
 		String xml = resourceElement.getTextContent();
 		int id = Integer.parseInt(resourceElement.getAttribute("id"));
 		AssetManager.getInputResources().put(id,xml);
 	}
 
+	/** Add the level xml file parsed from the resource element to the asset manager
+	 * 
+	 * @param resourceElement
+	 */
 	private void addElementAsLevelXML(Element resourceElement) {	
 		String xml=resourceElement.getTextContent();
 		int id=Integer.parseInt(resourceElement.getAttribute("id"));
 		AssetManager.getLevelXmlResources().put(id, xml);
 	}
 	
+	/** Add an image to the asset manager by parsing the resource element
+	 * 
+	 * @param resourceElement
+	 * @throws DOMException
+	 * @throws SlickException
+	 */
 	private void addElementAsImage(Element resourceElement) throws DOMException, SlickException {
 		Image newimg= new Image(resourceElement.getTextContent());
 		String imgid= resourceElement.getAttribute("id");
 		AssetManager.getImageResources().put(imgid, newimg);
 	}
 	
+	/** Add an achievement image to the correct hash map by parsing the resource element
+	 * 
+	 * @param resourceElement
+	 * @throws DOMException
+	 * @throws SlickException
+	 */
 	private void addElementAsAchievementImage(Element resourceElement) throws DOMException, SlickException {
 		Image newimg= new Image(resourceElement.getTextContent());
 		String imgid= resourceElement.getAttribute("id");
 		AssetManager.getAchievementResources().put(imgid, newimg);
 	}
-	
+
+	/** Add a .ogg sound file to the Asset Manager by parsing the resource element 
+	 * 
+	 * @param resourceElement
+	 * @throws DOMException
+	 * @throws SlickException
+	 */
 	private void addElementAsSound(Element resourceElement) throws DOMException, SlickException {
 		Sound sound = new Sound (resourceElement.getTextContent(), resourceElement.getAttribute("style"));
 		String id = resourceElement.getAttribute("id");
 		AssetManager.getSoundResources().put(id, sound);
 	}
 
+	/** Add a user interface element by parsing the resource element and adding it to the correct hash map
+	 * 
+	 * @param resourceElement
+	 * @throws DOMException
+	 * @throws SlickException
+	 */
 	private void addElementAsUIElement(Element resourceElement) throws DOMException, SlickException {
 		Image newimg=new Image(resourceElement.getTextContent());
 		String uiid=resourceElement.getAttribute("id");
 		AssetManager.getUiElementResources().put(uiid, newimg);
 	}
 	
+	/** Add the requested animation to the hash map by delegating to animation loader with the appropraite path
+	 * and then placing the returned animation in the hash map
+	 * 
+	 * @param resourceElement
+	 */
 	private void addElementAsAnimation(Element resourceElement) {
 		String animpath=resourceElement.getTextContent();
 		String animid=resourceElement.getAttribute("id");
@@ -145,6 +188,12 @@ public class ResourceLoader {
 		AssetManager.getAnimationResources().put(animid, newanim);
 	}
 	
+	/** Parse the resource element and use the font loader to load a font
+	 * and add it to the appropriate hash map
+	 * @param resourceElement
+	 * @throws DOMException
+	 * @throws SlickException
+	 */
 	private void addElementAsFont(Element resourceElement) throws DOMException, SlickException {
 		float fontsize = (float)Integer.parseInt(resourceElement.getAttribute("fontsize"));
 		Font font= FontLoader.loadFont(resourceElement.getTextContent(), fontsize);
@@ -152,6 +201,13 @@ public class ResourceLoader {
 		AssetManager.getFontResources().put(fontid, font);
 	}
 	
+	/** Use the shape loader to load a shape from a given vertices xml path then
+	 * add that shape to the correct hash map
+	 * 
+	 * @param resourceElement
+	 * @throws DOMException
+	 * @throws SlickException
+	 */
 	private void addElementAsShape(Element resourceElement) throws DOMException, SlickException {
 		String shapeid = resourceElement.getAttribute("id");
 		String vertpath = resourceElement.getAttribute("vertpath");

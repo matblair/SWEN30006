@@ -2,10 +2,14 @@ package scoringsystem;
 
 public class HighScore implements Comparable<HighScore>{
 
+	/** The score for this high score **/
 	private Float score;
+	/** The level on which it occured **/
 	private int levelid;
+	/** The name of the player **/
 	private String name;
 	
+	/** Construct the high score **/
 	public HighScore (String setname, float setscore, int setlevelid) {
 		setScore(setscore);
 		setLevelid(setlevelid);
@@ -55,8 +59,10 @@ public class HighScore implements Comparable<HighScore>{
 	}
 
 	@Override
+	/** Comparing high scores for use in array comparisons
+	 *  @param hs The high score to compare to;
+	 */
 	public int compareTo(HighScore hs) {
-		// TODO Auto-generated method stub
 		Float score2 = hs.getScore();
 		return score.compareTo(score2);
 	}
