@@ -9,30 +9,19 @@
 	<resource type="WALL" id="WALL" xStart="13.0" yStart="8.0" xEnd="13" yEnd="1">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="13" yStart="1" xEnd="19" yEnd="1">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="NOPORTALWALL" xStart="19" yStart="1" xEnd="19" yEnd="5">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="19" yStart="5" xEnd="23" yEnd="5">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="23" yStart="5" xEnd="23" yEnd="7">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="23" yStart="7" xEnd="17" yEnd="7">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="NOPORTALWALL" xStart="17" yStart="7" xEnd="17" yEnd="11.5">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="17" yStart="11.5" xEnd="5" yEnd="11.5">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="5" yStart="11.5" xEnd="1" yEnd="11.5">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="1" yStart="11.5" xEnd="1" yEnd="1">assets/sprites/wall.png</resource>
-	
-	
-	
+	<resource type="WALL" id="NOPORTALWALL" xStart="19" yStart="5" xEnd="23" yEnd="5">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="23" yStart="5" xEnd="23" yEnd="8">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="23" yStart="8" xEnd="17" yEnd="8">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="17" yStart="8" xEnd="17" yEnd="12">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="17" yStart="12" xEnd="1" yEnd="12">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="1" yStart="12" xEnd="1" yEnd="1">assets/sprites/wall.png</resource>
+		
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/biglevel.png</resource>
-	
-    
+    	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg10.png</resource>
+
 	<!-- End Zone -->
-	<resource type="ENDZONE" xStart="22" yStart="6">endzone</resource>
-
-	<!-- Cubes -->
-    
-    <!-- DOORS -->
-    
-
-	<!-- Switches -->
-
+	<resource type="ENDZONE" xStart="22" yStart="6.5">endzone</resource>
 
 	<!-- Start Location -->
 	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="2">assets/sprites/chell.png</resource>

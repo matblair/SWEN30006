@@ -1,9 +1,8 @@
 package gameengine;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
 
 public class PhysUtils {
-	
+	// Constants for defining BodyType
 	public static final int STATIC=0;
 	public static final int KINEMATIC=1;
 	public static final int DYNAMIC=2; 
@@ -52,15 +51,6 @@ public class PhysUtils {
 		float x = vector.x;
 		float y = vector.y;
 		return new Vec2(x * cost - y * sint, x * sint + y * cost);
-	}
-	
-	public static void printAllBodyIds(World world){
-		System.out.println(world.getBodyCount()+" bodies in the physics world");	
-		org.jbox2d.dynamics.Body bodylist = world.getBodyList();
-		while(bodylist!=null){
-			System.out.println(bodylist + " is the body id");
-			bodylist=bodylist.getNext();
-		}
 	}
 	
 	/** Get the distance between two vectors

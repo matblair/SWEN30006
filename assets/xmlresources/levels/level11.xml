@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resources>
-
-	<!-- Walls -->
 	
-    <resource type="WALL" id="WALL" xStart="1" yStart="1.0" xEnd="18" yEnd="1.0">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="18" yStart="1.0" xEnd="18" yEnd="7">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="18" yStart="7" xEnd="12" yEnd="7">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="12" yStart="7" xEnd="12" yEnd="11">assets/sprites/wall.png</resource>
-    <resource type="WALL" id="WALL" xStart="12" yStart="11" xEnd="1" yEnd="11">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="1" yStart="11" xEnd="1" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="18" yStart="7" xEnd="18" yEnd="11">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="18" yStart="11" xEnd="12" yEnd="11">assets/sprites/wall.png</resource>
-    
-    <!-- DOORS -->
-    <resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="17" yStart="8" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
-    
-    <!-- Switches -->
-	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="4" yStart="1" xCube="4" yCube="22" cubeid="CUBE">assets/sprites/wall.png</resource>
-	<resource type="BIGSWITCH" id="SWITCHUP" xStart="6" yStart="1" contactimg="SWITCHSENSOR" downid="SWITCHDOWN" doorid="MAINDOOR">assets/sprites/hitbox.png</resource>
-    
-    <!-- Background -->
+	<!-- Walls -->
+	<resource type="WALL" id="NOPORTALWALL" xStart="1" yStart="1" xEnd="20" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="20" yStart="1" xEnd="20" yEnd="4">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="20" yStart="4" xEnd="1" yEnd="4">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="1" yStart="4" xEnd="1" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="10" yStart="8" xEnd="30" yEnd="8">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="30" yStart="8" xEnd="30" yEnd="11">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="30" yStart="11" xEnd="10" yEnd="11">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="10" yStart="11" xEnd="10" yEnd="8">assets/sprites/wall.png</resource>
+	
+	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg11.png</resource>
 	
 	<!-- End Zone -->
-	<resource type="ENDZONE" xStart="17" yStart="8">endzone</resource>
-
+	<resource type="ENDZONE" xStart="29" yStart="9.5">endzone</resource>
+	
+	<!-- Portal (Bullets) -->
+	<resource type="PORTAL" colour="BLUE" xStart="19.5" yStart="2" xDir="1" yDir="0">portal</resource>
+	<resource type="PORTAL" colour="ORANGE" xStart="10.5" yStart="9" xDir="-1" yDir="0">portal</resource>
+	
 	<!-- Start Location -->
 	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="2">assets/sprites/chell.png</resource>
-
+	
 </resources>

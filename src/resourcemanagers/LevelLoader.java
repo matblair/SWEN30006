@@ -1,5 +1,6 @@
 package resourcemanagers;
 
+import gameengine.PhysUtils;
 import gameobjects.BigSwitch;
 import gameobjects.CompanionCube;
 import gameobjects.DissipationField;
@@ -9,6 +10,7 @@ import gameobjects.LittleSwitch;
 import gameobjects.MovingPlatform;
 import gameobjects.Platform;
 import gameobjects.Player;
+import gameobjects.Portal;
 import gameobjects.Wall;
 import gameworlds.Level;
 
@@ -67,7 +69,8 @@ public class LevelLoader {
 			final Node resourceNode = listResources.item(resourceIdx);
 			if(resourceNode.getNodeType() == Node.ELEMENT_NODE){
 				final Element resourceElement = (Element)resourceNode;
-				final String type = resourceElement.getAttribute("type");  
+				final String type = resourceElement.getAttribute("type");
+				System.out.println("adding " + type);
 				if(type.equals("CUBE")){  
 					addElementAsCube(resourceElement,level);
 				}else if(type.equals("WALL")){ 
@@ -147,13 +150,16 @@ public class LevelLoader {
 		Float starty = Float.parseFloat(resourceElement.getAttribute("yStart"));
 		Vec2 startloc = new Vec2(startx,starty);
 		String doorid = resourceElement.getAttribute("doorid");
-		System.out.println(startloc);
 		BigSwitch bswitch = new BigSwitch(startloc,level.getWorld(), doorid);
 		level.addBigSwitch(bswitch, bswitch.getBodyID());
 	}
 
 	private void addElementAsPortal(Element resourceElement, Level level) {
-		
+		String colour = resourceElement.getAttribute("colour");
+		int c = colour.equals("BLUE") ? Portal.BLUE : Portal.ORANGE;
+		Vec2 start = new Vec2 (Float.parseFloat(resourceElement.getAttribute("xStart")), Float.parseFloat(resourceElement.getAttribute("yStart")));
+		Vec2 dir = PhysUtils.unitVector(new Vec2 (Float.parseFloat(resourceElement.getAttribute("xDir")), Float.parseFloat(resourceElement.getAttribute("yDir"))));
+		level.deferPortalBullet (c, start, dir);
 	}
 
 	private void addElementAsPlatform(Element resourceElement, Level level) throws SlickException{
@@ -226,17 +232,11 @@ public class LevelLoader {
 	}
 	
 	private void addElementAsPlayer(Element resourceElement, Level level) throws SlickException{
-		String imgid = resourceElement.getAttribute("id");
 		Float xstart = Float.parseFloat(resourceElement.getAttribute("startx"));
 		Float ystart = Float.parseFloat(resourceElement.getAttribute("starty"));
-		System.out.println(xstart + ", " + ystart + ", " + imgid);
 		
 		Vec2 startloc = new Vec2(xstart,ystart);
 		Player newplayer = new Player(startloc, level.getWorld());
 		level.setLevelPlayer(newplayer);
-		
-		//Debug Code
-		System.out.println(newplayer.getBody() + " is the players body id");
-		System.out.println(newplayer.getBody().getType()+ " is the players body type");
 	}
 }
