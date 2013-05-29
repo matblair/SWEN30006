@@ -37,5 +37,7 @@
 <resource levelid="8" name="Mat" score="17.0">highscore</resource>
 <resource levelid="9" name="Mat" score="45.0">highscore</resource>
 <resource levelid="9" name="Mat" score="9.0">highscore</resource>
+<resource levelid="10" name="Mat" score="50.0">highscore</resource>
 <resource levelid="11" name="Mat" score="61.0">highscore</resource>
+<resource levelid="11" name="Mat" score="15.0">highscore</resource>
 </resources>
