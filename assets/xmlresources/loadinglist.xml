@@ -32,6 +32,8 @@
 	<resource type="SOUND" id="PORTALTRANSITION" style="SFX">assets/audio/sfx/portal_transition.ogg</resource>
 	<resource type="SOUND" id="TITLE" style="MUSIC">assets/audio/music/title.ogg</resource>
 	<resource type="SOUND" id="VILLAGE" style="MUSIC">assets/audio/music/village.ogg</resource>
+	<resource type="SOUND" id="DOOROPEN" style="SFX">assets/audio/sfx/door_open.ogg</resource>
+	<resource type="SOUND" id="DOORCLOSE" style="SFX">assets/audio/sfx/door_close.ogg</resource>
 	
 	<!-- Images -->
 	<resource type="IMAGE" id="CHELLIDLE">assets/sprites/gameobjects/chell.png</resource>
