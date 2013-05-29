@@ -70,10 +70,12 @@ public class GameObject {
 		ContactEdge edge = getBody().getContactList();
 		while (edge != null) {
 			if (level.getBodyType(edge.other).equals("portal")) {
-				inPortal = true;
 				Portal[] ps = level.getPortals();
 				portalIn = edge.other.toString().equals(ps[Portal.BLUE].getBodyID()) ? ps[Portal.BLUE] : ps[Portal.ORANGE];
-				break;
+				if (PhysUtils.distance(this.getLocation(), portalIn.getBody().getPosition()) < 1.0f) { 
+					inPortal = true;
+					break;
+				}
 			}
 			inPortal = false;
 			edge = edge.next;
