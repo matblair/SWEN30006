@@ -15,6 +15,7 @@ import resourcemanagers.SoundController;
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.MouseListener;
@@ -143,7 +144,13 @@ public class GameState extends BasicGameState implements KeyListener, MouseListe
 	}
 
 	public static void updateCamera(){
-		cam.setBounds(PhysUtils.SlickToJBoxVec(new Vec2(level.getFg().getWidth(), level.getFg().getHeight())));
+		Image i;
+		if ((i = level.getFg()) != null)
+			cam.setBounds(PhysUtils.SlickToJBoxVec(new Vec2(i.getWidth(), i.getHeight())));
+		else {
+			i = level.getBg();
+			cam.setBounds(PhysUtils.SlickToJBoxVec(new Vec2(i.getWidth(), i.getHeight())));
+		}
 	}
 
 	// Key Listener stuff //

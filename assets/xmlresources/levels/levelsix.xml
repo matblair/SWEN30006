@@ -8,12 +8,15 @@
 	<resource type="WALL" id="WALL" xStart="9.0" yStart="5" xEnd="15" yEnd="5">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="NOPORTALWALL" xStart="15" yStart="5" xEnd="15" yEnd="9">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="15" yStart="9" xEnd="21" yEnd="9">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="NOPORTALWALL" xStart="21" yStart="9" xEnd="21" yEnd="13">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="21" yStart="13" xEnd="27" yEnd="13">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="27" yStart="13" xEnd="27" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="27" yStart="1" xEnd="33" yEnd="1">assets/sprites/wall.png</resource>	
-	<resource type="WALL" id="WALL" xStart="33" yStart="1" xEnd="33" yEnd="17">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="NOPORTALWALL" xStart="33" yStart="17" xEnd="15" yEnd="17">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="21" yStart="9" xEnd="21" yEnd="14">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="21" yStart="14" xEnd="27" yEnd="14">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="27" yStart="14" xEnd="27" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="27" yStart="1" xEnd="32" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="32" yStart="1" xEnd="34" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="34" yStart="1" xEnd="34" yEnd="4">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="34" yStart="4" xEnd="32" yEnd="4">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="32" yStart="4" xEnd="32" yEnd="17">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="32" yStart="17" xEnd="15" yEnd="17">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="15" yStart="17" xEnd="15" yEnd="14">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="NOPORTALWALL" xStart="15" yStart="14" xEnd="11" yEnd="14">assets/sprites/wall.png</resource>	
 	<resource type="WALL" id="WALL" xStart="11" yStart="14" xEnd="11" yEnd="11">assets/sprites/wall.png</resource>
@@ -28,7 +31,7 @@
 	
     
 	<!-- End Zone -->
-	<resource type="ENDZONE" xStart="32" yStart="2">endzone</resource>
+	<resource type="ENDZONE" xStart="33" yStart="2.5">endzone</resource>
 
 	<!-- Cubes -->
     
