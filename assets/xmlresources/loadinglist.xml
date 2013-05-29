@@ -154,11 +154,11 @@
 	
 	<!-- LevelXML -->
 	<resource type="LEVELXML" id="0">levels/level01.xml</resource>
-	<resource type="LEVELXML" id="1">levels/level03.xml</resource>
-	<resource type="LEVELXML" id="2">levels/level04.xml</resource>
-	<resource type="LEVELXML" id="3">levels/level05.xml</resource>
-	<resource type="LEVELXML" id="4">levels/level06.xml</resource>
-	<resource type="LEVELXML" id="5">levels/level07.xml</resource>
+	<resource type="LEVELXML" id="1">levels/level02.xml</resource>
+	<resource type="LEVELXML" id="2">levels/level03.xml</resource>
+	<resource type="LEVELXML" id="3">levels/level04.xml</resource>
+	<resource type="LEVELXML" id="4">levels/level05.xml</resource>
+	<resource type="LEVELXML" id="5">levels/level06.xml</resource>
 	<resource type="LEVELXML" id="6">levels/level08.xml</resource>
 	<resource type="LEVELXML" id="7">levels/level09.xml</resource>
 	<resource type="LEVELXML" id="8">levels/level10.xml</resource>

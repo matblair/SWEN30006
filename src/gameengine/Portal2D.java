@@ -31,9 +31,9 @@ public class Portal2D extends StateBasedGame {
 	public static final String name="Mat";
 
 	/** Screen width, in pixels. */
-	public static final int screenwidth = 1280;
+	public static final int screenwidth = 1920;
 	/** Screen height, in pixels. */
-	public static final int screenheight = 800;
+	public static final int screenheight = 1080;
 	public static final boolean debug = false;
 	/** The app game container **/
 	public static AppGameContainer app;

@@ -19,7 +19,7 @@
 	
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
-	
+	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg05.png</resource>
     
 	<!-- End Zone -->
 	<resource type="ENDZONE" xStart="21" yStart="13.5">endzone</resource>

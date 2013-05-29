@@ -168,9 +168,9 @@ public class Level {
 		RenderEngine.drawGameObjects(movingplatforms, cam);
 		if(fg!=null){
 			RenderEngine.drawBG(fg, cam);
-		}else {
+		}//else {
 			RenderEngine.drawWalls(walls, g, cam);
-		}
+		//}
 		RenderEngine.drawPortals(portals, cam);
 		RenderEngine.drawGameObject(levelend, cam);
 		RenderEngine.drawNoPortalWalls(noportalwalls, g, cam);
