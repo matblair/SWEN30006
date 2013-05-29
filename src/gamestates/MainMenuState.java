@@ -37,7 +37,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	private static Image menubg;
 	private int selected =-1;
 	private static String titleText = new String("Welcome to Portal 2D");
-	private static String subtitleText = new String("Version 0.4");
+	private static String subtitleText = new String("Version 1.0");
 
 	private static Vector<String> menuItems = new Vector<String>();
 	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();

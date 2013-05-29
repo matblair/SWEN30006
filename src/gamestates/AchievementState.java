@@ -24,22 +24,26 @@ import scoringsystem.Achievement;
 public class AchievementState extends BasicGameState implements KeyListener {
 	/** The state id for this part **/
 	private static int StateId = Portal2D.ACHIEVEMENTSTATE; // State ID
+	
+	// Constants
+	private final int ITEMSPERROW = 5;
+	private final int NUMROWS = 3;
+	private final int XSPACING = 180;
+	private final int YSPACING = 180;
+	private final int YSTARTHEIGHT = 280;
+	private final int FADEOUTDIST = 100;
 
 	private boolean listening=true;
-	boolean debug, fullscreen;
 	private static Font font, titleFont;
 	private static String titleText = new String("Achievements");
-	private static String subtitleText = new String("Version 0.4");
+	private static String subtitleText = new String("Version 1.0");
 
 	private Collection<Achievement> achievements;
 	private int achievementSelected;
 	
 	private Image selected;
-
-	private final int itemsPerRow = 6;
-	private final int xSpacing = 140;
-	private final int ySpacing = 140;
-	private final int yStartHeight = 250;
+	private Image lock;
+	private int viewOffset=0, targetRowOffset;
 
 	public AchievementState() throws SlickException {
 		super();
@@ -55,9 +59,9 @@ public class AchievementState extends BasicGameState implements KeyListener {
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		font = AssetManager.requestFontResource("RETROFONT");
 		titleFont = AssetManager.requestFontResource("TITLEFONT");
-		debug = false;
-		fullscreen = false;
 		selected=AssetManager.requestUIElement("SELECTED");
+		lock = AssetManager.requestUIElement("ACHLOCK");
+		targetRowOffset = 0;
 	}
 
 	@Override
@@ -67,6 +71,20 @@ public class AchievementState extends BasicGameState implements KeyListener {
 		if (input.isKeyDown(InputManager.BACK)) {
 			System.out.println("leaving");
 			sbg.enterState(Portal2D.MAINMENUSTATE);
+		}
+		
+		// Calculate view offset
+		while (achievementSelected / ITEMSPERROW < targetRowOffset)
+			targetRowOffset--;
+		while (achievementSelected / ITEMSPERROW > targetRowOffset + NUMROWS - 1)
+			targetRowOffset++;
+		if (viewOffset != targetRowOffset * YSPACING) {
+			int moveAmount;
+			if (Math.abs(targetRowOffset * YSPACING - viewOffset) < delta)
+				moveAmount = targetRowOffset * YSPACING - viewOffset;
+			else
+				moveAmount = (int) Math.signum(targetRowOffset * YSPACING - viewOffset) * delta;
+			viewOffset += moveAmount;
 		}
 	}
 
@@ -83,12 +101,20 @@ public class AchievementState extends BasicGameState implements KeyListener {
 		int index = 0;
 		int x, y;
 		int width = gc.getWidth();
+		float alpha;
 		String text;
 
 		for (Achievement a : achievements) {
-			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
-			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
-
+			x = (int) ((float) width / 2 + (index % ITEMSPERROW - (float) (ITEMSPERROW - 1) / 2) * XSPACING);
+			y = YSTARTHEIGHT + YSPACING * (int) Math.floor(index / ITEMSPERROW) - viewOffset;
+			if (y > YSPACING * (NUMROWS - 1) + YSTARTHEIGHT) {
+				alpha = 1 - ((float) y - (YSPACING * (NUMROWS - 1) + YSTARTHEIGHT)) / FADEOUTDIST;
+			} else if (y < YSTARTHEIGHT) {
+				alpha = 1 - (float) (YSTARTHEIGHT - y) / FADEOUTDIST;
+			} else {
+				alpha = 1;
+			}
+			
 			if (index == achievementSelected) {
 				selected.drawCentered(x, y + 52);
 				
@@ -101,13 +127,14 @@ public class AchievementState extends BasicGameState implements KeyListener {
 				g.drawString(text, 300, 120);
 			}
 
-			if (a.isUnlocked()) {
-				image = a.getUnlockedImage();
-			} else {
-				image = a.getLockedImage();
-			}
-
+			image = a.getUnlockedImage();
+			image.setAlpha(alpha);
 			image.drawCentered(x, y);
+			
+			if (!a.isUnlocked()) {
+				lock.setAlpha(alpha);
+				lock.drawCentered(x, y);
+			}
 
 			index++;
 		}
@@ -134,12 +161,12 @@ public class AchievementState extends BasicGameState implements KeyListener {
 				achievementSelected = 0;
 
 		} else if (key == InputManager.NAV_UP) {
-			if (achievementSelected >= itemsPerRow)
-				achievementSelected -= itemsPerRow;
+			if (achievementSelected >= ITEMSPERROW)
+				achievementSelected -= ITEMSPERROW;
 
 		} else if (key == InputManager.NAV_DOWN) {
-			if ((int) (achievementSelected / itemsPerRow) + itemsPerRow < achievements.size()) 
-				achievementSelected += itemsPerRow;
+			if ((int) (achievementSelected / ITEMSPERROW) + ITEMSPERROW < achievements.size()) 
+				achievementSelected += ITEMSPERROW;
 			if (achievementSelected >= achievements.size())
 				achievementSelected = achievements.size() - 1;
 		}
