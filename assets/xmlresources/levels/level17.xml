@@ -7,33 +7,41 @@
 	<resource type="WALL" id="WALL" xStart="10" yStart="20" xEnd="10" yEnd="1">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="10" yStart="1" xEnd="15" yEnd="1">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="15" yStart="1" xEnd="15" yEnd="25">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="15" yStart="25" xEnd="25" yEnd="25">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="25" yStart="25" xEnd="25" yEnd="12">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="25" yStart="12" xEnd="30" yEnd="10">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="30" yStart="10" xEnd="30" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="30" yStart="1" xEnd="35" yEnd="1">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="35" yStart="1" xEnd="35" yEnd="25">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="35" yStart="25" xEnd="39" yEnd="25">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="39" yStart="25" xEnd="39" yEnd="34">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="39" yStart="34" xEnd="25" yEnd="34">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="25" yStart="34" xEnd="25" yEnd="27">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="25" yStart="27" xEnd="24" yEnd="27">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="24" yStart="27" xEnd="24" yEnd="34">assets/sprites/wall.png</resource>
-	<resource type="WALL" id="WALL" xStart="24" yStart="34" xEnd="1" yEnd="34">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="15" yStart="25" xEnd="16" yEnd="25">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="18" yStart="25" xEnd="25" yEnd="25">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="25" yStart="25" xEnd="25" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="25" yStart="20" xEnd="28" yEnd="17">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="28" yStart="17" xEnd="28" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="28" yStart="1" xEnd="39" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="39" yStart="1" xEnd="39" yEnd="25">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="39" yStart="25" xEnd="43" yEnd="25">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="43" yStart="25" xEnd="43" yEnd="28">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="43" yStart="28" xEnd="38" yEnd="28">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="38" yStart="28" xEnd="38" yEnd="34">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="38" yStart="34" xEnd="25" yEnd="34">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="25" yStart="34" xEnd="25" yEnd="27">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="25" yStart="27" xEnd="24" yEnd="27">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="24" yStart="27" xEnd="23" yEnd="27">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="23" yStart="27" xEnd="23" yEnd="34">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="23" yStart="34" xEnd="1" yEnd="34">assets/sprites/wall.png</resource>
 	<resource type="WALL" id="WALL" xStart="1" yStart="34" xEnd="1" yEnd="20">assets/sprites/wall.png</resource>
 	
 	<!-- Background -->
 	<resource type="BACKGROUNDIMG">assets/levels/biglevel.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/foregrounds/fg17.png</resource>
 	
 	<!-- End Zone -->
-	<resource type="ENDZONE" xStart="37.5" yStart="28.5">endzone</resource>
+	<resource type="ENDZONE" xStart="42" yStart="26.5">endzone</resource>
+	
+	<!-- Dissipation field -->
+	<resource type="FIELD" id="FIELD" xStart="24.5" yStart="26">assets/sprites/levelobjects/door.png</resource>
 	
 	<!-- DOORS -->
-	<resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="24" yStart="26" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
+	<resource type="DOOR" id="DOOROPEN" closedid="DOORCLOSE" xStart="24.5" yStart="26" doorid="MAINDOOR">assets/sprites/levelobjects/door.png</resource>
 	
 	<!-- Switches -->
 	<resource type="LITTLESWITCH" id="SMALLSWITCH" xStart="8" yStart="20.5" xCube="12.5" yCube="32" cubeid="CUBE">assets/sprites/wall.png</resource>
-	<resource type="BIGSWITCH" id="SWITCHUP" xStart="17" yStart="25.2" doorid="MAINDOOR">assets/sng</resource>
+	<resource type="BIGSWITCH" id="SWITCHUP" xStart="17" yStart="25" doorid="MAINDOOR">assets/sng</resource>
 	
 	<!-- Start Location -->
 	<resource type="PLAYER" id="CHELLSPRITE" startx = "4" starty="22">assets/sprites/chell.png</resource>

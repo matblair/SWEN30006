@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+	
+	<!-- Walls -->
+	
+	<resource type="WALL" id="WALL" xStart="1" yStart="5.0" xEnd="5" yEnd="5.0">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="5" yStart="5" xEnd="5" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="5" yStart="1" xEnd="25" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="25" yStart="1" xEnd="25" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="NOPORTALWALL" xStart="25" yStart="20" xEnd="1" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="1" yStart="20" xEnd="1" yEnd="5">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="15" yStart="1" xEnd="15" yEnd="10">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="15" yStart="10" xEnd="19" yEnd="10">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="19" yStart="10" xEnd="19" yEnd="13">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="19" yStart="13" xEnd="15" yEnd="13">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="15" yStart="13" xEnd="15" yEnd="16">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="15" yStart="18" xEnd="15" yEnd="20">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="16" yStart="9" xEnd="16" yEnd="1">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="20" yStart="9" xEnd="16" yEnd="9">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="20" yStart="14" xEnd="20" yEnd="9">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="16" yStart="14" xEnd="20" yEnd="14">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="16" yStart="16" xEnd="16" yEnd="13">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="16" yStart="20" xEnd="16" yEnd="18">assets/sprites/wall.png</resource>
+	<resource type="WALL" id="WALL" xStart="16" yStart="3" xEnd="18" yEnd="3">assets/sprites/wall.png</resource>
+	
+	<!-- Platforms -->
+	<resource type="PLATFORM" id="PLATFORM" xStart="4.0" yStart="13" width="4.0" height="0.25">assets/sprites/wall.png</resource>
+	
+	
+	<!-- Background -->
+	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	
+	
+	<!-- End Zone -->
+	<resource type="ENDZONE" xStart="17" yStart="1">endzone</resource>
+	
+	<!-- Start Location -->
+	<resource type="PLAYER" id="CHELLSPRITE" startx = "2" starty="6">assets/sprites/chell.png</resource>
+	
+</resources>

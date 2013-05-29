@@ -164,12 +164,9 @@
 	<resource type="LEVELXML" id="8">levels/level10.xml</resource>
 	<resource type="LEVELXML" id="9">levels/level11.xml</resource>
 	<resource type="LEVELXML" id="10">levels/level13.xml</resource>
-	<resource type="LEVELXML" id="11">levels/level14.xml</resource>
-	<resource type="LEVELXML" id="12">levels/level15.xml</resource>
-	<resource type="LEVELXML" id="13">levels/level16.xml</resource>
-	<resource type="LEVELXML" id="14">levels/level17.xml</resource>
-	<resource type="LEVELXML" id="15">levels/level18.xml</resource>
-	<resource type="LEVELXML" id="16">levels/mario.xml</resource>
+	<resource type="LEVELXML" id="11">levels/level15.xml</resource>
+	<resource type="LEVELXML" id="12">levels/level17.xml</resource>
+	<resource type="LEVELXML" id="13">levels/mario.xml</resource>
 	
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
