@@ -189,7 +189,7 @@
 	<resource type="WALL" id="WALL" xStart="172.0" yStart="5.0" xEnd="168.0" yEnd="5.0">assets/sprites/wall.png</resource>
 	
 	<!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/mariobg.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/backgrounds/mariobg.png</resource>
 	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/mariofg.png</resource>
 	
 	<!-- End Zone -->

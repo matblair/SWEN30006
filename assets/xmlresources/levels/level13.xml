@@ -38,7 +38,7 @@
 	<resource type="PLATFORM" id="PLATFORM" xStart="11" yStart="17" width="4.0" height="0.25">assets/sprites/wall.png</resource>
 	
 	<!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/biglevel.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/backgrounds/bg1.png</resource>
 	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg13.png</resource>
 	
 	<!-- DOORS -->

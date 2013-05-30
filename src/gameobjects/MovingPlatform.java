@@ -17,6 +17,16 @@ public class MovingPlatform extends Platform{
 	private boolean continuousMovement;
 	private boolean shouldStop=false;
 
+	/** Create a MovingPlatform object
+	 * 
+	 * @param location The starting location of the object
+	 * @param world The world in which to create the body
+	 * @param spos The location of one end of the track
+	 * @param fpos The location of the second end of the track
+	 * @param type The type of platform (small/large)
+	 * @param continuousMovement Whether the platform should keep moving (loop)
+	 * @throws SlickException
+	 */
 	public MovingPlatform(Vec2 location, World world, Vec2 spos, Vec2 fpos, int type, boolean continuousMovement) throws SlickException {
 		super(location, world, type, Platform.MOVING);
 		this.continuousMovement = continuousMovement;
@@ -35,7 +45,11 @@ public class MovingPlatform extends Platform{
 		}
 	}
 
-	public void updatePos(float delta){
+	/** Update the moving platform (calculate new velocity)
+	 * 
+	 * @param delta Milliseconds since last update
+	 */
+	public void update(float delta){
 		theta+=(DTHETA*(delta/1000));
 		if(continuousMovement){
 			if(theta>2*Math.PI){

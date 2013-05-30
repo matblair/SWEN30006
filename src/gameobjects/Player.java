@@ -34,6 +34,7 @@ public class Player extends GameObject{
 	private final float accelFactor = 0.02f;
 	private final float accelInAir = 0.01f;
 	private final float jumpFactor = 10;
+	private final float ROTATIONFACTOR = 100;
 
 	private static final float MAXCUBEDIST = 2.0f;
 	private static final float DISTCHECK = 2.0f;
@@ -49,9 +50,10 @@ public class Player extends GameObject{
 	private Animation run;
 	private Image fall;
 	private Image idle;
+	private float rotation;
 
 	/** Constructor
-	 * @param pos Coordinates in metres specifying where the player spawns.
+=	 * @param pos Coordinates in metres specifying where the player spawns.
 	 * @param world The JBox world in which the players physical body should be added.
 	 * @throws SlickException
 	 */
@@ -129,7 +131,14 @@ public class Player extends GameObject{
 		facingleft=false;
 	}
 
+	/** Update the player
+	 * 
+	 * @param level The level in which the player resides
+	 * @param delta Milliseconds since last update
+	 */
 	public void update(Level level, int delta) {
+		super.update(level);
+
 		// Update the sprite
 		if (!isOnGround()) {
 			run.restart();
@@ -144,11 +153,23 @@ public class Player extends GameObject{
 		
 		if (facingleft)
 			this.setSprite(this.getImage().getFlippedCopy(true, false));
-
-		// Do other updating stuff
-		super.update(level);
+		
+		// Update rotation
+		if (this.didTransition()) {
+			rotation = this.getPortalIn().getLinkedPortal().getRotationDifference();
+		} else if (rotation > 0) {
+			rotation -= Math.min(delta/ROTATIONFACTOR, rotation);
+		} else if (rotation < 0) {
+			rotation += Math.min(delta/ROTATIONFACTOR, -rotation);
+		}
 	}
 
+	/** Tell the player to try and interact with the world.
+	 * 
+	 * @param world The world in which the player's body lives
+	 * @param level The level in which the player exists
+	 * @throws SlickException
+	 */
 	public void interact(World world, Level level) throws SlickException{
 		if(holdingcube){
 			dropCube();
@@ -174,7 +195,11 @@ public class Player extends GameObject{
 		}
 	}
 
-	public CompanionCube getCubesWithinDist(){
+	/** Try and get a cube nearby
+	 * 
+	 * @return A companion cube within the maximum distance for pickup, otherwise null.
+	 */
+	private CompanionCube getCubesWithinDist(){
 		float playerx = this.getLocation().x;
 		float playery = this.getLocation().y;
 		Vec2 upper = new Vec2();
@@ -198,7 +223,11 @@ public class Player extends GameObject{
 		return null;
 	}
 
-	public void pickupCube(CompanionCube cube){
+	/** All the logic associated with having to pick up a cube
+	 * 
+	 * @param cube The cube to pick up.
+	 */
+	private void pickupCube(CompanionCube cube){
 		while(!holdingcube){
 			GameState.getLevel().getGlados().pickupCube();
 			MassData massData=null;
@@ -221,6 +250,8 @@ public class Player extends GameObject{
 		}
 	}
 
+	/** Tell the player to drop the cube it is holding.
+	 */
 	public void dropCube(){
 		cubecarrying.getBody().resetMassData();
 		cubecarrying.getBody().setFixedRotation(false);
@@ -230,7 +261,8 @@ public class Player extends GameObject{
 		cubecarrying=null;
 	}
 
-
+	/** Check to make sure the cube is still within a maximum range for carrying
+	 */
 	public void checkCube(){
 		if(holdingcube){
 			Vec2 cubepos = cubecarrying.getLocation();
@@ -242,10 +274,26 @@ public class Player extends GameObject{
 		}
 	}
 	
+	/** Get the rotation at which to draw the player
+	 * 
+	 * @return Rotation in radians
+	 */
+	public float getRotation() {
+		return rotation;
+	}
+	
+	/** Get the cube the player is carrying
+	 * 
+	 * @return The cube the player is carrying
+	 */
 	public CompanionCube getCubeCarrying(){
 		return cubecarrying;
 	}
 
+	/** Check if the player is carrying a cube
+	 * 
+	 * @return true if the player is carrying a cube
+	 */
 	public boolean isCarryingCube() {
 		if(cubecarrying!=null){
 			return true;

@@ -21,6 +21,12 @@ public class DissipationField extends GameObject {
 	private static final float DIST = 0.5f;
 	private Animation animation;
 	
+	/** Create a DissipationField object
+	 * 
+	 * @param location Location of the field in the world (centre)
+	 * @param world The physics world
+	 * @throws SlickException
+	 */
 	public DissipationField(Vec2 location, World world)
 			throws SlickException {
 		super();
@@ -31,6 +37,10 @@ public class DissipationField extends GameObject {
 		animation.start();
 	}
 	
+	/** Update the field. Check for collisions with cubes (destroy) or player (reset portals)
+	 * 
+	 * @param delta Milliseconds since last update.
+	 */
 	public void update(int delta){
 		animation.update(delta);
 	
@@ -53,6 +63,8 @@ public class DissipationField extends GameObject {
 		return;
 	}
 	
+	/** Get the current image representing the field.
+	 */
 	@Override
 	public Image getImage() {
 		return animation.getCurrentFrame();

@@ -25,6 +25,13 @@ public class PortalBullet extends GameObject {
 	private int colour;
 	private boolean collided=false;
 
+	/** Create a PortalBullet object
+	 * 
+	 * @param colour The colour of the portal that will be created by this bullet
+	 * @param start Location of the bullet to start in the world (centre)
+	 * @param direction Unit vector in the direction of the shot
+	 * @throws SlickException
+	 */
 	public PortalBullet (int colour, Vec2 start, Vec2 direction) {
 		super();
 		
@@ -46,6 +53,8 @@ public class PortalBullet extends GameObject {
 		last = start;
 	}
 	
+	/** Update the portal bullet
+	 */
 	public void update() {
 		try {
 			shoot (last, this.getLocation());
@@ -55,6 +64,12 @@ public class PortalBullet extends GameObject {
 		last = this.getLocation().clone();
 	}
 	
+	/** Trigger a limited range shot and check for relevant collisions
+	 * 
+	 * @param from Location to shoot from
+	 * @param to Location to shoot to
+	 * @throws SlickException
+	 */
 	public void shoot (Vec2 from, Vec2 to) throws SlickException {
 		PortalShootRCHelper rch = new PortalShootRCHelper(this);
 		world.raycast(rch, from, to);
@@ -71,10 +86,19 @@ public class PortalBullet extends GameObject {
 		}
 	}
 	
+	/** Check if the portal bullet has collided with something
+	 * 
+	 * @return true if collision has occurred
+	 */
 	public boolean hasCollided() {
 		return collided;
 	}
 	
+	/** Check whether the portal bullet interacts with a particular body
+	 * 
+	 * @param b The body to check
+	 * @return true if the portal bullet interacts
+	 */
 	public boolean interacts (Body b) {
 		String type = level.getBodyType(b);
 		if (type.equals("wall") || type.equals("cube") || type.equals("noportalwall") || type.equals("dissipationfield")
@@ -86,6 +110,8 @@ public class PortalBullet extends GameObject {
 		return false;
 	}
 	
+	/** Destroy this portal bullet
+	 */
 	public void destroy() {
 		world.destroyBody(this.getBody());
 	}

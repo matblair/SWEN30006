@@ -13,7 +13,7 @@
 	<resource type="WALL" id="WALL" xStart="10" yStart="11" xEnd="10" yEnd="8">assets/sprites/wall.png</resource>
 	
 	<!-- Background -->
-	<resource type="BACKGROUNDIMG">assets/levels/leveltwobg.png</resource>
+	<resource type="BACKGROUNDIMG">assets/levels/backgrounds/bg1.png</resource>
 	<resource type="FOREGROUNDIMG">assets/levels/foregrounds/fg11.png</resource>
 	
 	<!-- End Zone -->

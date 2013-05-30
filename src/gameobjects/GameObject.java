@@ -32,15 +32,29 @@ public class GameObject {
 	private Portal portalIn;
 	private Vec2 last;
 	private static final float MINYEXIT = 6f;
+	private boolean transitioned;
 
+	/** Create a GameObject
+	 * 
+	 * @param imgid The ID of the image to request from AssetManager
+	 */
 	public GameObject(String imgid){
 		setSprite(AssetManager.requestImage(imgid));
 	}
 
+	/** Create a GameObject
+	 */
 	public GameObject(){
-
+		return;
 	}
 
+	/** Create a body in the physics world
+	 * 
+	 * @param location The location to put the body
+	 * @param world The physics world in which to put the body
+	 * @param definition A FixtureDef to associate with the body
+	 * @param bodytype The BodyType
+	 */
 	protected void createBody(Vec2 location, World world, FixtureDef definition, int bodytype) {
 		BodyDef bd = new BodyDef();
 		bd.position.set(location);
@@ -62,10 +76,14 @@ public class GameObject {
 		}
 		
 		bd.fixedRotation = true;
-		setBody(world.createBody(bd));
+		this.body = world.createBody(bd);
 		getBody().createFixture(definition);
 	}
 	
+	/** Update the GameObject (check for portal transitions)
+	 * 
+	 * @param level The level in which the GameObject resides
+	 */
 	public void update(Level level) {
 		ContactEdge edge = getBody().getContactList();
 		while (edge != null) {
@@ -82,12 +100,20 @@ public class GameObject {
 		}
 
 		if (inPortal)
-			checkPortalTransition(level);
+			if (checkPortalTransition(level))
+				transitioned = true;
+			else
+				transitioned = false;
 
 		last = getLocation().clone();
 	}
 	
-	private void checkPortalTransition(Level level) {
+	/** Check for transition between portals. Only really need to call if contact with portal is registered)
+	 * 
+	 * @param level The level in which the GameObject (and everything else) resides.
+	 * @return true if a transition occurred
+	 */
+	private boolean checkPortalTransition(Level level) {
 		PortalCollisionRCHelper rch = new PortalCollisionRCHelper(level);
 		getBody().getWorld().raycast(rch, last, getLocation());
 		if (rch.fixture != null) {
@@ -95,6 +121,7 @@ public class GameObject {
 			String bodyID = rch.fixture.getBody().toString();
 			Portal portalHit;
 			
+			// Get the portal we're going through
 			if (bodyID.equals(portals[Portal.BLUE].getBodyID())) {
 				System.out.println("entering blue");
 				portalHit = portals[Portal.BLUE];
@@ -103,6 +130,7 @@ public class GameObject {
 				portalHit = portals[Portal.ORANGE];
 			}
 
+			// Calculate transformations
 			Portal otherPortal = portalHit.getLinkedPortal();
 			portalIn = otherPortal;
 			float rotateBy = portalHit.getRotationDifference();
@@ -118,9 +146,16 @@ public class GameObject {
 			
 			// Finally, play the sound!
 			SoundController.play(Sound.PORTALTRAVEL);
+			return true;
 		}
+		return false;
 	}
 
+	/** Create the fixture to be used by the body
+	 * 
+	 * @param shapeid The ID of the shape to request from AssetManager
+	 * @return The FixtureDef created
+	 */
 	protected FixtureDef createFixture(String shapeid){
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = AssetManager.requestShape(shapeid);
@@ -129,23 +164,50 @@ public class GameObject {
 		return fixtureDef;
 	}
 
+	/** Get the body of the GameObject
+	 * 
+	 * @return The body of the GameObject
+	 */
 	public Body getBody() {
 		return body;
 	}
 
-
+	/** Get the location of the GameObject
+	 * 
+	 * @return The location of the GameObject
+	 */
 	public Vec2 getLocation() {
 		return getBody().getPosition();
 	}
 
+	/** Get the rotation of the GameObject
+	 * 
+	 * @return The rotation of the GameObject in radians
+	 */
 	public float getRotation() {
 		return getBody().getAngle();
 	}
 
+	/** Get the mass of the GameObject
+	 * 
+	 * @return The mass of the GameObject
+	 */
 	public float getMass() {
 		return getBody().getMass();
 	}
+	
+	/** Check if the GameObject went through a portal
+	 * 
+	 * @return true if transition through portal occurred
+	 */
+	public boolean didTransition() {
+		return transitioned;
+	}
 
+	/** Check if the GameObject is on the ground
+	 * 
+	 * @return true if deemed to be on the ground
+	 */
 	public boolean isOnGround() {
 		float xmid = this.getLocation().x;
 		float ymid = this.getLocation().y;
@@ -158,38 +220,47 @@ public class GameObject {
 		return callback.isContainsJumpableObject();
 	}
 
+	/** Get the dimensions of the GameObject
+	 * 
+	 * @return The dimensions of the GameObject
+	 */
 	public Vec2 getDimensions(){
 		return dimensions;
 	}
 
+	/** Set the dimensions of the GameObject
+	 * 
+	 * @param dim The dimensions of the GameObject
+	 */
 	public void setDimensions(Vec2 dim){
 		dimensions=dim;
 	}
 
+	/** Get the image that represents the GameObject
+	 * 
+	 * @return The image that represents the GameObject
+	 */
 	public Image getImage() {
 		return sprite;
 	}
 
+	/** Set the image to represent the GameObject
+	 * 
+	 * @param sprite The image to set
+	 */
 	public void setSprite(Image sprite) {
 		this.sprite = sprite;
 	}
 
-	/**
-	 * @return the bodyId
+	/** Get the ID of the body of the GameObject
+	 * @return The BodyID
 	 */
 	public String getBodyID() {
 		return getBody().toString();
 	}
-
-	/**
-	 * @param body the body to set
-	 */
-	public void setBody(Body body) {
-		this.body = body;
-	}
 	
 	/** Get whether the GameObject is in a portal
-	 * @return True if in contact with a portal
+	 * @return true if in contact with a portal
 	 */
 	public boolean isInPortal() {
 		return inPortal;

@@ -44,23 +44,26 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	private static int menuItemSelected = 0;
 	private static Image mainbg;
 
-
-
+	/** Constructor
+	 * @throws SlickException
+	 */
 	public MainMenuState() throws SlickException
 	{
 		super();
+	}
+	
+	/** Method called by Slick to initialise the state. Loads fonts and menu items.
+	 * 
+	 */
+	@Override
+	public void init(GameContainer gc, StateBasedGame sbg)
+			throws SlickException {
 		font = AssetManager.requestFontResource("RETROFONT");
 		menubg = AssetManager.requestUIElement("MENUBG");
 		debug = false;
 		fullscreen = false;
-		mainbg = AssetManager.requestUIElement("MAINMENUBG");
-
-	}
-	@Override
-	public void init(GameContainer gc, StateBasedGame sbg)
-			throws SlickException {
-		// Menu items
 		
+		// Menu items
 		menuItems.add("Start Game");
 		menuItems.add("Level Select");
 		menuItems.add("Achievements");
@@ -72,37 +75,19 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 		stringMaps.put("High Scores", MENU_HIGHSCORES);
 		stringMaps.put("Options", MENU_OPTIONS);
 	}
-
-	@Override
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
-			throws SlickException {
-		mainbg.draw(gc.getWidth()-mainbg.getWidth(), gc.getHeight()-mainbg.getHeight());
-		menubg.draw(50,50);
-		g.setFont(font);
-		g.setBackground(Color.white);
-		g.setColor(Color.gray);
-		g.drawString(titleText, 140, 380);
-		g.drawString(subtitleText, 227, 400);
-
-		for (int i = 0; i < menuItems.size(); i++) {
-			if (i ==  menuItemSelected) {
-				g.setColor(Color.orange);
-			} else {
-				g.setColor(Color.darkGray);
-			}
-			g.drawString(menuItems.get(i), 120, 440 + i * 20);
-		}
 	
-
-	}
-
+	/** Method called by Slick when entering the state. Tells LoadingState to start
+	 * new game.
+	 */
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
 		LoadingState.startnew=true;
-		
 	}
+	
+	/** Method called by Slick to update the state. Handles entering the selected state
+	 */
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
@@ -132,14 +117,46 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 		return;
 	}
 
+	/** Method called by Slick to render the view
+	 */
+	@Override
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
+			throws SlickException {
+		// Draw background and titles
+		menubg.draw(50,50);
+		g.setFont(font);
+		g.setBackground(Color.white);
+		g.setColor(Color.gray);
+		g.drawString(titleText, 140, 380);
+		g.drawString(subtitleText, 227, 400);
+
+		// Draw the menu items
+		for (int i = 0; i < menuItems.size(); i++) {
+			if (i ==  menuItemSelected) {
+				g.setColor(Color.orange);
+			} else {
+				g.setColor(Color.darkGray);
+			}
+			g.drawString(menuItems.get(i), 120, 440 + i * 20);
+		}
+	}
+
+	/** Get the ID of the state
+	 * 
+	 * @return The ID of the state
+	 */
 	@Override
 	public int getID() {
 		return MainMenuState.StateId;
 	}
 
+	/** Method for handling key presses. Controls navigation in the state
+	 * 
+	 * @param key Key pressed as integer
+	 * @param c Key pressed as character
+	 */
 	@Override
 	public void keyPressed(int key, char c) {
-		System.out.println("Key pressed in MainMenuState int: " + key);
 		if (key == InputManager.NAV_UP) {
 			if (menuItemSelected == 0)
 				menuItemSelected = menuItems.size() - 1;
@@ -156,7 +173,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	}
 
 	@Override
-	public void keyReleased(int key, char c) {System.out.println("Key released in MainMenuState int: " + key);}
+	public void keyReleased(int key, char c) {return;}
 
 	@Override
 	public void inputEnded() {listening = false;}
@@ -169,23 +186,4 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 
 	@Override
 	public void setInput(Input input) {input.addKeyListener(this);}
-	
-	public static Font getFont() {
-		return font;
-	}
-	public static void setFont(Font newfont) {
-		font = newfont;
-	}
-	public static Vector<String> getMenuItems() {
-		return menuItems;
-	}
-	public static void setMenuItems(Vector<String> menu) {
-		menuItems = menu;
-	}
-	public static Map<String, Integer> getStringMaps() {
-		return stringMaps;
-	}
-	public static void setStringMaps(Map<String, Integer> strings) {
-		stringMaps = strings;
-	}
 }

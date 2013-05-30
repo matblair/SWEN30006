@@ -22,11 +22,13 @@ public class CompanionCube extends GameObject {
 	private Animation animation;
 	private boolean destroying;
 	private boolean destroyed;
-		
-	public boolean isDestroyed() {
-		return destroyed;
-	}
 
+	/** Create a CompanionCube object
+	 * 
+	 * @param location Location of the cube to start in the world (centre)
+	 * @param world The physics world
+	 * @throws SlickException
+	 */
 	public CompanionCube(Vec2 location, World world)
 			throws SlickException {
 		super(IMGID);	
@@ -37,6 +39,11 @@ public class CompanionCube extends GameObject {
 		animation.setLooping(false);
 	}
 	
+	/** Create the fixture to be used by the body
+	 * 
+	 * @param shapeid The ID of the shape to request from AssetManager
+	 * @return The FixtureDef created
+	 */
 	@Override
 	protected FixtureDef createFixture(String shapeid) {
 		FixtureDef def = super.createFixture(shapeid);
@@ -44,6 +51,10 @@ public class CompanionCube extends GameObject {
 		return def;
 	}
 
+	/** Update the cube's state.
+	 * 
+	 * @param delta Milliseconds since last update
+	 */
 	public void update (int delta) {
 		if(destroying){
 			animation.update(delta);
@@ -54,7 +65,16 @@ public class CompanionCube extends GameObject {
 		}	
 	}
 	
+	/** Check if the cube is destroyed
+	 * 
+	 * @return true if destroyed
+	 */
+	public boolean isDestroyed() {
+		return destroyed;
+	}
 
+	/** Destroy the cube.
+	 */
 	public void cubeDestroy(){
 		animation.start();
 		destroying=true;

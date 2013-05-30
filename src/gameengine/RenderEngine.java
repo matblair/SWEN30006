@@ -115,8 +115,26 @@ public class RenderEngine {
 			drawGameObject (obj, obj.getLocation(), cam);
 		}
 		if (obj.isInPortal() && obj.getPortalIn().isOpen()) {
-			drawGameObject (obj, obj.getPortalIn().translateLocation(obj.getLocation()), cam);
+			float rotation = (float) (-(obj.getPortalIn().getRotationDifference()+obj.getRotation()) * 180 / Math.PI);
+			drawGameObject (obj, obj.getPortalIn().translateLocation(obj.getLocation()), rotation, cam);
 		}
+	}
+	
+	/** Draw a game object at a different location in the world, and with different
+	 * rotation.
+	 * 
+	 * @param obj The GameObject to draw
+	 * @param loc The location of the GameObject in the world
+	 * @param rotation The rotation to draw with.
+	 * @param cam The camera object that defines the field of view.
+	 */
+	public static <T extends GameObject> void drawGameObject (T obj, Vec2 location, float rotation, Camera cam) {
+		Vec2 camLoc = cam.getLocation();
+		Vec2 camDim = cam.getDimensions();
+		Vec2 slickRenderPoint = PhysUtils.JBoxToSlickVec(new Vec2(location.x - camLoc.x, camDim.y - (location.y - camLoc.y)));
+		Image image = obj.getImage();
+		image.setRotation(rotation);
+		image.drawCentered((int) slickRenderPoint.x, (int) slickRenderPoint.y);
 	}
 	
 	/** Draw a game object at a different location in the world. That is,

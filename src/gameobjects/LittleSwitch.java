@@ -24,6 +24,12 @@ public class LittleSwitch extends GameObject {
 	
 	private CompanionCube cube;
 	
+	/** Create a LittleSwitch object
+	 * 
+	 * @param location Location of the cube to start in the world (centre)
+	 * @param world The physics world
+	 * @throws SlickException
+	 */
 	public LittleSwitch(Vec2 location, World world, Vec2 spawn)
 			throws SlickException {
 		super(IMGID);
@@ -33,9 +39,10 @@ public class LittleSwitch extends GameObject {
 		getBody().getFixtureList().setSensor(true);
 
 	}
-
-
 	
+	/** Press the button, drop a cube.
+	 * @throws SlickException
+	 */
 	public void trigger() throws SlickException{
 		if(cube!=null){
 			// Then destroy the old one.
@@ -49,15 +56,15 @@ public class LittleSwitch extends GameObject {
 		System.out.println("success");
 	}
 
-
-
-	public void updateState(float delta) {
+	/** Update the switch
+	 * 
+	 * @param delta Milliseconds since last update
+	 */
+	public void update(float delta) {
 		if(countdown!=0){
 			countdown = (int) (countdown-delta);
 		} else {
 			this.setSprite(AssetManager.requestImage(IMGID));
 		}
 	}
-
-
 }

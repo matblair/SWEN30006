@@ -30,7 +30,13 @@ public class Portal extends GameObject {
 	private Animation animation;
 	private int colour;
 	
-	
+	/** Create a Portal object
+	 * 
+	 * @param colour The colour of this portal (use public static ints)
+	 * @param location Location of the cube to start in the world (centre)
+	 * @param world The physics world
+	 * @throws SlickException
+	 */
 	public Portal(int colour, Vec2 location, World world)
 			throws SlickException {
 		super();
@@ -46,27 +52,50 @@ public class Portal extends GameObject {
 		animation.setLooping(false);
 	}
 	
-	public int getColour() {
-		return colour;
-	}
-	
+	/** Update the portal
+	 * 
+	 * @param delta Milliseconds since last update
+	 */
 	public void update (int delta) {
 		animation.update (delta);
 		this.setSprite(animation.getCurrentFrame());
 	}
 	
+	/** Get the colour of the portal
+	 * 
+	 * @return The colour of the portal
+	 */
+	public int getColour() {
+		return colour;
+	}
+	
+	/** Link the portal to another portal
+	 * 
+	 * @param portal The portal to link to
+	 */
 	public void linkPortals(Portal portal){
 		otherPortal = portal;
 	}
 	
+	/** Get the portal this one links to
+	 * 
+	 * @return The linked portal
+	 */
 	public Portal getLinkedPortal() {
 		return otherPortal;
 	}
 	
+	/** Get a unit vector tangent to the portal
+	 * 
+	 * @return Unit vector tangent to the portal
+	 */
 	public Vec2 getUnitTangent() {
 		return wall.getUnitTangent();
 	}
 	
+	/** Disable the portal
+	 * @throws SlickException
+	 */
 	public void disable() throws SlickException {
 		if (this.wall == otherPortal.wall) {
 			if (relativeLoc == BEFORE) {
@@ -99,6 +128,8 @@ public class Portal extends GameObject {
 		enabled = false;
 	}
 	
+	/** Open the portal
+	 */
 	public void open() {
 		if (this.isEnabled() & otherPortal.isEnabled()) {
 			this.getBody().getFixtureList().setSensor(true);
@@ -106,19 +137,33 @@ public class Portal extends GameObject {
 		}
 	}
 	
-	public void close() {
+	/** Close the portal
+	 */
+	private void close() {
 		this.getBody().getFixtureList().setSensor(false);
 		otherPortal.getBody().getFixtureList().setSensor(false);
 	}
 	
+	/** Check if the portal is open (requires other portal to be open too)
+	 * 
+	 * @return true if the portal is open
+	 */
 	public boolean isOpen() {
 		return this.getBody().getFixtureList().isSensor();
 	}
 	
+	/** Check if the portal is enabled (does not require other portal to be enabled)
+	 * 
+	 * @return true if the portal is enabled
+	 */
 	public boolean isEnabled() {
 		return enabled;
 	}
 	
+	/** Get an ArrayList of temporary walls created by this portal
+	 * 
+	 * @return an ArrayList of temporary walls created by this portal
+	 */
 	public ArrayList<Wall> getTempWalls() {
 		ArrayList<Wall> walls = new ArrayList<Wall>();
 		if (startSegment != null && startSegment.isEnabled())
@@ -131,10 +176,17 @@ public class Portal extends GameObject {
 		return walls;
 	}
 	
+	/** Tell the portal that it has hit a new wall
+	 * 
+	 * @param loc The location at which the portal hit the wall
+	 * @param wall The wall that the portal hit
+	 * @throws SlickException
+	 */
 	public void hitWall (Vec2 loc, Wall wall) throws SlickException {
 		Wall targetWall = wall;
 		int relativeLoc = -1;
 		
+		// Logic to do with getting two portals on one wall
 		if (otherPortal.wall == wall) {
 			if (PhysUtils.unitVector(loc.sub(otherPortal.getLocation())).add(wall.getUnitTangent()).length() > 1) {
 				relativeLoc = AFTER;
@@ -188,7 +240,7 @@ public class Portal extends GameObject {
 			}
 			
 			this.relativeLoc = relativeLoc;
-			
+		
 		} else {
 			startSegment = new Wall(wall.getStart(), loc.sub(unitTangent.mul(height/2)), world);
 			System.out.println(startSegment);
@@ -196,11 +248,12 @@ public class Portal extends GameObject {
 			System.out.println(endSegment);
 		}
 		
+		// Rotate to be in parallel with wall
 		this.getBody().setTransform(loc, PhysUtils.getAngle(wall.getUnitNormal()));
 
+		// General housekeeping
 		this.wall = wall;
 		this.wall.disable();
-		
 		animation.restart();
 		enabled = true;
 		this.open();
@@ -217,7 +270,15 @@ public class Portal extends GameObject {
 		return newLoc;
 	}
 	
+	/** Get the rotation difference that is introduced when traveling between the two portals
+	 * 
+	 * @return The rotation in radians
+	 */
 	public float getRotationDifference() {
-		return PhysUtils.getAngle(otherPortal.getUnitTangent()) - PhysUtils.getAngle(this.getUnitTangent()) + (float) Math.PI;
+		float rot = PhysUtils.getAngle(otherPortal.getUnitTangent()) - PhysUtils.getAngle(this.getUnitTangent()) + (float) Math.PI;
+		if (rot > Math.PI) {
+			rot -= (float) 2*Math.PI;
+		}
+		return rot;
 	}
 }
