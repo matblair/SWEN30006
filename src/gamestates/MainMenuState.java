@@ -27,8 +27,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	private final static int MENU_ACHIEVEMENTS=2;
 	private final static int MENU_HIGHSCORES=3;
 	private final static int MENU_OPTIONS=4;
-
-
+	
 	/** The state id for this part **/
 	private static int StateId = Portal2D.MAINMENUSTATE;
 	private boolean listening=true;
@@ -52,7 +51,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	{
 		super();
 	}
-
+	
 	/** Method called by Slick to initialise the state. Loads fonts and menu items.
 	 * 
 	 */
@@ -63,7 +62,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 		menubg = AssetManager.requestUIElement("MENUBG");
 		debug = false;
 		fullscreen = false;
-
+		
 		// Menu items
 		menuItems.add("Start Game");
 		menuItems.add("Level Select");
@@ -191,9 +190,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 				usernameentered=true;
 			}
 		}
-
 	}
-
 
 	@Override
 	public void keyReleased(int key, char c) {return;}
@@ -209,5 +206,4 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 
 	@Override
 	public void setInput(Input input) {input.addKeyListener(this);}
-
 }

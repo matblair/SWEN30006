@@ -28,7 +28,22 @@
 	<resource type="UIELEMENT" id="ORANGEARROW">assets/sprites/uielements/orangearrow.png</resource>
 	<resource type="UIELEMENT" id="LEVELLOCKED">assets/sprites/uielements/levelunknown.png</resource>
 	<resource type="UIELEMENT" id="MAINMENUBG">assets/sprites/uielements/mainmenubg.png</resource>
-
+	
+	<!-- Level previews -->
+	<resource type="UIELEMENT" id="PREVIEW0">assets/levels/previews/fg01.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW1">assets/levels/previews/fg02.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW2">assets/levels/previews/fg03.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW3">assets/levels/previews/fg04.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW4">assets/levels/previews/fg05.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW5">assets/levels/previews/fg06.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW6">assets/levels/previews/fg08.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW7">assets/levels/previews/fg09.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW8">assets/levels/previews/fg10.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW9">assets/levels/previews/fg11.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW10">assets/levels/previews/fg13.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW11">assets/levels/previews/fg15.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW12">assets/levels/previews/fg17.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW13">assets/levels/previews/mariofg.png</resource>
 
 	<!-- Sounds -->
 	<resource type="SOUND" id="JUMP" style="SFX">assets/audio/sfx/jump.ogg</resource>
