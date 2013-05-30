@@ -4,7 +4,7 @@
 	<!-- GeneralResources -->
 	
 	<!-- UIElements -->
-	<resource type="UIELEMENT" id="MENUBG">assets/sprites/uielements/menubg.jpg</resource>
+	<resource type="UIELEMENT" id="MENUBG">assets/sprites/uielements/menubg.png</resource>
 	<resource type="UIELEMENT" id="MENUTILING">assets/sprites/uielements/menutiling.png</resource>
 	<resource type="UIELEMENT" id="SELECTED">assets/sprites/uielements/selected.png</resource>
 	<resource type="UIELEMENT" id="PAUSEBG">assets/sprites/uielements/pausebg.png</resource>

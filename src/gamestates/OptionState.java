@@ -24,6 +24,10 @@ import resourcemanagers.SoundController;
 
 public class OptionState extends BasicGameState implements KeyListener{
 	private static int StateId = Portal2D.OPTIONSTATE; // State ID
+	protected static final int INSET = 50;
+	protected static final int TITLEHEIGHT = 150;
+	protected static final int SPACING = 30;
+	private static final String TITLE = "Options";
 
 	protected static Vector<String> menuItems = new Vector<String>();
 	protected static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
@@ -36,7 +40,6 @@ public class OptionState extends BasicGameState implements KeyListener{
 	private static boolean displayinputload=false;
 	private static boolean backtomenu=false;
 
-	private static int screenItemSelected=0;
 	private static int soundLevelSelected=0;
 	private static int inputItemSelected=0;
 
@@ -47,10 +50,8 @@ public class OptionState extends BasicGameState implements KeyListener{
 	private static ArrayList<Image> inputimages= new ArrayList<Image>();
 
 	private static final int SOUNDINTERVAL = 5;
-
-	private static Font title;
-	private static Font mediumfont;
-	private static String titleText = new String("Options");
+	private Image mainbg, pausebg;
+	private Font titlefont, font;
 	
 	/** Constructor
 	 * @throws SlickException
@@ -66,9 +67,11 @@ public class OptionState extends BasicGameState implements KeyListener{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		// Load the fonts
-		mediumfont = AssetManager.requestFontResource("PAUSEFONT");
-		title = AssetManager.requestFontResource("TITLEFONT");
+		// Load general assets
+		pausebg = AssetManager.requestUIElement("PAUSEBG");
+		mainbg = AssetManager.requestUIElement("MAINMENUBG");
+		titlefont = AssetManager.requestFontResource("TITLEFONT");
+		font = AssetManager.requestFontResource("RETROFONT");
 		
 		// Add menu items
 		menuItems.add("Audio Level");
@@ -132,40 +135,47 @@ public class OptionState extends BasicGameState implements KeyListener{
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		g.setFont(title);
-		g.setColor(Color.black);
-		g.drawString(titleText, 40, 40);
-		g.setFont(mediumfont);
-		if(displayscreensize){
-			g.drawString(String.valueOf(screenItemSelected), 400,150);
-		}else if(displaysoundlevel){
-			drawVolume();
-		}else if (displayinputload){
-			drawInput();
-		}
-
-		for (int i = 0; i < menuItems.size(); i++) {
-			if (i ==  mainMenuItemSelected) {
-				g.setColor(Color.orange);
-			} else {
-				g.setColor(Color.darkGray);
+		mainbg.draw(gc.getWidth()-mainbg.getWidth(), gc.getHeight()-mainbg.getHeight());
+		pausebg.drawCentered(gc.getWidth()/2, gc.getHeight()/2);
+		
+		if (displayinputload){
+			drawInput(gc);
+		}else {
+			g.setFont(titlefont);
+			g.setColor(Color.black);
+			g.drawString(TITLE, gc.getWidth()/2 - titlefont.getWidth(TITLE)/2, gc.getHeight()/2 - TITLEHEIGHT);
+			
+			g.setFont(font);
+			if(displayscreensize){
+				//g.drawString(String.valueOf(screenItemSelected), 800,340);
+			}else if(displaysoundlevel){
+				drawVolume(gc);
 			}
-			g.drawString(menuItems.get(i), 40, 150 + i * 50);
+			for (int i = 0; i < menuItems.size(); i++) {
+				if (i ==  mainMenuItemSelected) {
+					g.setColor(Color.orange);
+				} else {
+					g.setColor(Color.darkGray);
+				}
+				g.drawString(menuItems.get(i),  gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
+			}
 		}
 	}
 
-	/** Method to draw representation of current volume.
+	/** Draw the volume images based on the sound level selected
 	 */
-	public void drawVolume(){
+	public void drawVolume(GameContainer gc){
 		int imagelaod = (int)(soundLevelSelected/10);
-		Image newimage = volimages.get(imagelaod).getScaledCopy(400, 200);
-		newimage.drawCentered(750, 370);
+		volimages.get(imagelaod).drawCentered(gc.getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (4) * SPACING);
 	}
 
-	/** Method to draw input information.
+	/** Draw the input images for controllers
+	 * 
+	 * @param gc The Game 
+	 * 
 	 */
-	public void drawInput(){
-		inputimages.get(inputItemSelected).drawCentered(750, 300);
+	public void drawInput(GameContainer gc){
+		inputimages.get(inputItemSelected).drawCentered(gc.getWidth()/2, gc.getHeight()/2);
 	}
 	
 	/** Get the ID of the state
