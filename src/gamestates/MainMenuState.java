@@ -186,6 +186,10 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 					Portal2D.name = Portal2D.name + c;
 			} 
 			
+			if(key==Input.KEY_BACK && !Portal2D.name.equals("")){
+				Portal2D.name = Portal2D.name.substring(0, Portal2D.name.length()-1);
+			}
+			
 			if(key==InputManager.SELECT && !Portal2D.name.equals("")){
 				usernameentered=true;
 			}
