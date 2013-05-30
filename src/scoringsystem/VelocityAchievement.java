@@ -9,11 +9,10 @@ public class VelocityAchievement extends Achievement{
 	 * type and the information from the resource loader 
 	 * @param name
 	 * @param description
-	 * @param unlocked
+	 * @param unlocked 
 	 * @param imgID
-	 * @param levelid
-	 * @param cubeTarget
-	 * @param persistant
+	 * @param levelId
+	 * @param targetvel
 	 */
 	public VelocityAchievement(String name, String description,
 			boolean unlocked, String imgID, int levelId, float targetvel,boolean persistant) {

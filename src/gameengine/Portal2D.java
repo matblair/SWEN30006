@@ -28,12 +28,12 @@ public class Portal2D extends StateBasedGame {
 	
 	// Live game key (only swap if you are testing the game for real with real levels) 8b32c6268959f7bf940d3c0e61532aaa0d82434e
 	public static final String gameKey="7635c631d57e049f231f683195bf9366ebc65576";
-	public static final String name="Mat";
+	public static String name="Mat";
 
 	/** Screen width, in pixels. */
-	public static final int screenwidth = 1440;
+	public static final int screenwidth = 1280;
 	/** Screen height, in pixels. */
-	public static final int screenheight = 900;
+	public static final int screenheight = 800;
 	public static final boolean debug = false;
 	/** The app game container **/
 	public static AppGameContainer app;

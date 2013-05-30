@@ -11,8 +11,8 @@ public class FallingAchievement extends Achievement{
 	 * @param description
 	 * @param unlocked
 	 * @param imgID
-	 * @param levelid
-	 * @param cubeTarget
+	 * @param levelId
+	 * @param distFallen
 	 * @param persistant
 	 */
 	public FallingAchievement(String name, String description,

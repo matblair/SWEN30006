@@ -11,8 +11,8 @@ public class JumpAchievement extends Achievement {
 	 * @param description
 	 * @param unlocked
 	 * @param imgID
-	 * @param levelid
-	 * @param cubeTarget
+	 * @param levelId
+	 * @param target
 	 * @param persistant
 	 */
 	public JumpAchievement(String name, String description, boolean unlocked,

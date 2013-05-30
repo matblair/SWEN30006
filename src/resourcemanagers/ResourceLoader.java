@@ -34,7 +34,7 @@ public class ResourceLoader {
 	 *  and calling the requisite delgate functions
 	 * @param is
 	 * @param deferred
-	 * @return
+	 * @return resourceNumber the number of resources loaded
 	 * @throws SlickException
 	 */
 	public int loadResources(final InputStream is, final boolean deferred) throws SlickException {

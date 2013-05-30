@@ -56,7 +56,7 @@ public abstract class Achievement {
 	
 	/** Get the achievement name for rendering
 	 * 
-	 * @return
+	 * @return name
 	 */
 	public String getName() {
 		return name;
@@ -64,15 +64,15 @@ public abstract class Achievement {
 	
 	/** Get the achievement description for rendering
 	 * 
-	 * @return
+	 * @return description
 	 */
 	public String getDescription() {
 		return description;
 	}
 	
 	/** Get the achievment unlock status
-	 * 
-	 * @return
+	 *  
+	 * @return unlocked
 	 */
 	public boolean isUnlocked() {
 		return unlocked;
@@ -80,14 +80,13 @@ public abstract class Achievement {
 	
 	/** Get the achievement image for rendering
 	 * 
-	 * @return
+	 * @return image
 	 */
 	public Image getImage() {
 		return image;
 	}
 
 	/** Unlock an achievement
-	 * 
 	 */
 	public void unlockAchievement(){
 		unlocked=true;
@@ -96,7 +95,7 @@ public abstract class Achievement {
 	/** Get the image id for creating popus
 	 * and saving achievements to file
 	 *
-	 * @return
+	 * @return imgid
 	 */
 	public String getImgid(){
 		return this.imgid;
@@ -104,7 +103,7 @@ public abstract class Achievement {
 
 	/** Return the target for saving to file
 	 * 
-	 * @return
+	 * @return target
 	 */
 	public float getTarget() {
 		return target;
@@ -112,7 +111,7 @@ public abstract class Achievement {
 
 	/** Return this level id for saving to file
 	 * 
-	 * @return
+	 * @return levelId
 	 */
 	public int getLevelId() {
 		return levelId;
@@ -128,7 +127,7 @@ public abstract class Achievement {
 
 	/** Check if the achievement is persistant when writing and updating achievement 
 	 * states
-	 * @return
+	 * @return persistant
 	 */
 	public boolean isPersistant() {
 		return persistant;
@@ -144,7 +143,7 @@ public abstract class Achievement {
 
 	/** Get the difference for testing unlock state
 	 * 
-	 * @return
+	 * @return diff
 	 */
 	public float getDiff() {
 		return diff;
@@ -160,7 +159,7 @@ public abstract class Achievement {
 	
 	/** Return the ac type for writing to file
 	 * 
-	 * @return
+	 * @return actype
 	 */
 	public String getActype() {
 		return this.actype;

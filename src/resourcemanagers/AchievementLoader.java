@@ -46,7 +46,7 @@ public class AchievementLoader {
 	 * 
 	 * @param is the input stream to load from
 	 * @param deferred whether we are using deffered loading or not
-	 * @return
+	 * @return resourceNumber
 	 * @throws SlickException
 	 */
 	public int loadAchievements(final InputStream is, final boolean deferred) throws SlickException {

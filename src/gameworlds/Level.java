@@ -332,7 +332,7 @@ public class Level {
 	}
 
 	/** Get the background image for the level
-	 * @return
+	 * @return bg
 	 */
 	public Image getBg() {
 		return bg;
@@ -376,7 +376,7 @@ public class Level {
 	/** Get a companion cube from a given body id
 	 * 
 	 * @param bodyId
-	 * @return
+	 * @return cube Specified by the body id
 	 */
 	public CompanionCube getCube(final String bodyId){
 		return cubes.get(bodyId);
@@ -408,7 +408,7 @@ public class Level {
 
 	/** Get the level id of the level for updating high scores etc.
 	 * 
-	 * @return
+	 * @return levelid
 	 */
 	public int getLevelId() {
 		return levelid;
@@ -416,7 +416,7 @@ public class Level {
 
 	/** Get the current level player for updates
 	 * 
-	 * @return
+	 * @return player
 	 */
 	public Player getLevelPlayer() {
 		return player;
@@ -424,7 +424,7 @@ public class Level {
 
 	/** Get the JBox 2D physics world that belongs to this level
 	 * 
-	 * @return
+	 * @return world
 	 */
 	public World getWorld(){
 		return world;
@@ -432,7 +432,7 @@ public class Level {
 
 	/** Get an array of all portals
 	 * 
-	 * @return
+	 * @return portals
 	 */
 	public Portal[] getPortals() {
 		return portals;
@@ -440,7 +440,7 @@ public class Level {
 	
 	/** Get a hash map of the normal walls
 	 * 
-	 * @return
+	 * @return walls
 	 */
 	public Map<String, Wall> getWalls() {
 		return walls;
@@ -449,7 +449,7 @@ public class Level {
 	/** Get a little switch specified by body id
 	 * 
 	 * @param bodyId
-	 * @return
+	 * @return littleSwitch
 	 */
 	public LittleSwitch getSwitch(final String bodyId) {
 		return lilSwitches.get(bodyId);
@@ -491,7 +491,7 @@ public class Level {
 
 	/** Get the achievement popups for rendering and adding to
 	 * 
-	 * @return
+	 * @return achievementPopus
 	 */
 	public ArrayList<AchievementPopup> getAchievementPopups() {
 		return achievementPopups;
@@ -512,7 +512,7 @@ public class Level {
 
 	/** Get the foreground image for the level,
 	 * returns null if not set.
-	 * @return
+	 * @return fg
 	 */
 	public Image getFg() {
 		return fg;

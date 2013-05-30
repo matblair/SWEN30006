@@ -19,8 +19,6 @@ public abstract class InGameMenu {
 	protected static final int INSET = 50;
 	protected static final int TITLEHEIGHT = 150;
 	protected static final int SPACING = 30;
-
-
 	
 	/** Abstract methods that have to be implemented by each class **/
 	abstract public void Render(Graphics g, GameContainer gc);

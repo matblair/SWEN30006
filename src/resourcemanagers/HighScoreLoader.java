@@ -31,7 +31,6 @@ public class HighScoreLoader {
 	private static Object synlock;
 
 	/** The constructor, essentially just creates the sync lock 
-	 * 
 	 */
 	public HighScoreLoader(){
 		synlock = new Object();
@@ -41,7 +40,7 @@ public class HighScoreLoader {
 	 * 
 	 * @param is
 	 * @param deferred
-	 * @return
+	 * @return resourceNumber an integer of resource number
 	 * @throws SlickException
 	 */
 	public int loadHighScores(final InputStream is, final boolean deferred) throws SlickException {

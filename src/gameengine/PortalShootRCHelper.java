@@ -14,7 +14,7 @@ public class PortalShootRCHelper implements RayCastCallback {
 
 	/** Create a new PortalShootRCHelper in the level. Used by portal bullets.
 	 * 
-	 * @param level The level in which the raycasting will be done
+	 * @param pb The level in which the raycasting will be done
 	 */
 	public PortalShootRCHelper (PortalBullet pb) {
 		super();

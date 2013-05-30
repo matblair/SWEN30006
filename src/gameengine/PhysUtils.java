@@ -32,7 +32,7 @@ public class PhysUtils {
 	
 	/** Convert from pixels to metres.
 	 * 
-	 * @param from Value in pixels.
+	 * @param pixels Value in pixels.
 	 * @return Value in metres.
 	 */
 	public static float pixelsToMetres (float pixels) {

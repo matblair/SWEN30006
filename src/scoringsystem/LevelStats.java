@@ -54,7 +54,7 @@ public class LevelStats {
 
 	/** Get teh level id for achievement checking
 	 * 
-	 * @return
+	 * @return the level id 
 	 */
 	public int getLevelID() {
 		return levelID;
@@ -78,7 +78,7 @@ public class LevelStats {
 
 	/** Get the distance fallen so far
 	 * 
-	 * @return
+	 * @return the distance fallen so far
 	 */
 	public float getDistFallen() {
 		return distFallen;
@@ -182,7 +182,7 @@ public class LevelStats {
 
 	/** Get the total time fallen so far in level
 	 * 
-	 * @return
+	 * @return the time fallen in level
 	 */
 	public float getTimeFallen() {
 		return timeFallen;

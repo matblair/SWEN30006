@@ -42,6 +42,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	private static Vector<String> menuItems = new Vector<String>();
 	private static Map<String,Integer> stringMaps = new HashMap<String,Integer>();
 	private static int menuItemSelected = 0;
+	private static Image mainbg;
 
 
 
@@ -52,6 +53,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 		menubg = AssetManager.requestUIElement("MENUBG");
 		debug = false;
 		fullscreen = false;
+		mainbg = AssetManager.requestUIElement("MAINMENUBG");
 
 	}
 	@Override
@@ -74,6 +76,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		mainbg.draw(gc.getWidth()-mainbg.getWidth(), gc.getHeight()-mainbg.getHeight());
 		menubg.draw(50,50);
 		g.setFont(font);
 		g.setBackground(Color.white);

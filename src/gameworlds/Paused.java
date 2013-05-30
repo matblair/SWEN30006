@@ -47,7 +47,6 @@ public class Paused extends InGameMenu{
 
 	/**	The constructor for the paused state
 	 * @param levelid The level id to set
-	 * @return void
 	 */
 	public Paused(int levelid)  {
 		Paused.setLevelid(levelid);
@@ -163,7 +162,6 @@ public class Paused extends InGameMenu{
 	}
 
 	/**	Process the switching of the first paused menu
-	 * @return void
 	 */
 	private void firstMenu() throws SlickException{
 		if(selected!=-1){
@@ -193,7 +191,6 @@ public class Paused extends InGameMenu{
 	 * 
 	 * @param g The graphics context to render to.
 	 * 
-	 * @return void
 	 */
 	public void drawFirstMenu(Graphics g, GameContainer gc){
 		for (int i = 0; i < menuItems.size(); i++) {
@@ -209,30 +206,27 @@ public class Paused extends InGameMenu{
 	
 	/** Set the display quit option menu.
 	 * @param displayscores Whether we display or not.
-	 * @return void
 	 */
 	public static void setDisplayscores(boolean displayscores) {
 		Paused.displayscores = displayscores;
 	}
 
 	/** Set the display option menu
-	 * @param displayscores Whether we display or not.
-	 * @return void
+	 * @param displayoptions Whether we display or not.
 	 */
 	public static void setDisplayoptions(boolean displayoptions) {
 		Paused.displayoptions = displayoptions;
 	}
 
 	/** Set the display quit option menu.
-	 * @param displayscores Whether we display or not.
-	 * @return void
+	 * @param displayquitoption Whether we display or not.
 	 */
 	public static void setDisplayquitoption(boolean displayquitoption) {
 		Paused.displayquitoption = displayquitoption;
 	}
 
 	/** Intro to level id setting
-	 * @param levelid The level id of the current level
+	 * @param levelId The level id of the current level
 	 */
 	public void setLevelId(int levelId) {
 		Paused.setLevelid(levelId);

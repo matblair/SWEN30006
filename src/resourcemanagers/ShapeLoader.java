@@ -42,7 +42,7 @@ public class ShapeLoader {
 	/** Loads the shape specified in a shape xml file and returns that shape to the calling function
 	 * 
 	 * @param vertpath
-	 * @return
+	 * @return newshape
 	 */
 	public static PolygonShape loadShapes(String vertpath){
 		vertices = new ArrayList<Vec2>();

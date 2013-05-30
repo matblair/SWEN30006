@@ -11,8 +11,8 @@ public class DistanceWalkedAchievement extends Achievement{
 	 * @param description
 	 * @param unlocked
 	 * @param imgID
-	 * @param levelid
-	 * @param cubeTarget
+	 * @param levelId
+	 * @param distWalked
 	 * @param persistant
 	 */
 	public DistanceWalkedAchievement(String name, String description,
@@ -23,7 +23,6 @@ public class DistanceWalkedAchievement extends Achievement{
 	@Override
 	/** Check if the achievement has reached it's particular target
 	 * by reading from the level stats
-	 * 
 	 * @param stats The level stats from glados
 	 */
 	public boolean checkUnlock(LevelStats stats) {

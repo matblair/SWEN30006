@@ -28,8 +28,7 @@ public class QuitMenu extends InGameMenu{
 	private static final int MENU_PAUSEGAME = 1;
 
 	/**	Process input from the game state 
-	 * @return void
-	 */
+8	 */
 	public QuitMenu(){
 		menuItems.add("No");
 		menuItems.add("Yes");

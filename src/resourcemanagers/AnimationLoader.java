@@ -30,7 +30,7 @@ public class AnimationLoader {
 	 * 
 	 * @param path
 	 * @param duration
-	 * @return
+	 * @return anim The animation
 	 */
 	public static Animation loadAnimation(String path, int duration){
 		images = new ArrayList<Image>();

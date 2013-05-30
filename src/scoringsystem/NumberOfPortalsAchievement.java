@@ -11,8 +11,8 @@ public class NumberOfPortalsAchievement extends Achievement{
 	 * @param description
 	 * @param unlocked
 	 * @param imgID
-	 * @param levelid
-	 * @param cubeTarget
+	 * @param levelId
+	 * @param portals
 	 * @param persistant
 	 */
 	public NumberOfPortalsAchievement(String name, String description,

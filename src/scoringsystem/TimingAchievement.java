@@ -11,8 +11,8 @@ public class TimingAchievement extends Achievement{
 	 * @param description
 	 * @param unlocked
 	 * @param imgID
-	 * @param levelid
-	 * @param cubeTarget
+	 * @param levelId
+	 * @param timetarget
 	 * @param persistant
 	 */
 	public TimingAchievement(String name, String description, boolean unlocked,

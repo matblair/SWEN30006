@@ -66,7 +66,7 @@ public class AssetManager {
 
 	/** The contstructor using the singleton pattern 
 	 * to ensure that only one instance can be called 
-	 * @return
+	 * @return manager The Asset Manager
 	 * @throws SlickException
 	 */
 	public static AssetManager getAssetManager()
@@ -127,7 +127,6 @@ public class AssetManager {
 
 
 	/** Load the game achievements using the achievement loader
-	 *  @return void
 	 */
 	public static void loadAchievements(){
 		final File f = new File(generalresource, achievementxml);
@@ -150,7 +149,6 @@ public class AssetManager {
 	}
 	
 	/** Load the level unlocks using the level unlock loader
-	 *  @return void
 	 */
 	public static void loadLevelUnlocks(){
 		final File f = new File(generalresource, levelunlocks);
@@ -198,7 +196,7 @@ public class AssetManager {
 	/** Load a level by retrieving the level xml file using
 	 * the given level id and then calling level loader
 	 * @param levelid
-	 * @return
+	 * @return level The level created
 	 * @throws SlickException
 	 */
 	public static Level loadLevel(final int levelid) throws SlickException{
@@ -253,7 +251,7 @@ public class AssetManager {
 
 	/** Request an image by ID 
 	 * @param imgid
-	 * @return
+	 * @return Image
 	 */
 	public static Image requestImage(String imgid){
 		return imageResources.get(imgid);
@@ -262,7 +260,7 @@ public class AssetManager {
 	/** Request an achievement by id
 	 * 
 	 * @param imgid
-	 * @return
+	 * @return Image
 	 */
 	public static Image requestAchiemeventResource(String imgid){
 		return achievementResources.get(imgid);
@@ -271,7 +269,7 @@ public class AssetManager {
 	/** Request a particular sound for a given sound id
 	 * 
 	 * @param soundid
-	 * @return
+	 * @return sound
 	 */
 	public static Sound requestSound(String soundid){
 		return soundResources.get(soundid);
@@ -280,7 +278,7 @@ public class AssetManager {
 	/** Request a particular ui element for a ui element id
 	 * 
 	 * @param uiid
-	 * @return
+	 * @return Image 
 	 */
 	public static Image requestUIElement(String uiid){
 		return uiElementResources.get(uiid);
@@ -289,7 +287,7 @@ public class AssetManager {
 	/** Request a level xml path for a given level id
 	 * 
 	 * @param levelid
-	 * @return
+	 * @return string
 	 */
 	public static String requestLevelXMLPath(int levelid){
 		return levelXmlResources.get(levelid);
@@ -298,7 +296,7 @@ public class AssetManager {
 	/** Request input xml path for a given input identifier
 	 * 
 	 * @param inputid
-	 * @return
+	 * @return string
 	 */
 	public static String requestInputXMLPath(int inputid){
 		return inputXmlResources.get(inputid);
@@ -307,7 +305,7 @@ public class AssetManager {
 	/** Get a particular font by font id
 	 * 
 	 * @param fontid
-	 * @return
+	 * @return font
 	 */
 	public static Font requestFontResource(String fontid){
 		return fontResources.get(fontid);
@@ -316,7 +314,7 @@ public class AssetManager {
 	/** Get all animations for a given animation id
 	 *  
 	 * @param animid
-	 * @return
+	 * @return animation
 	 */
 	public static Animation requestAnimationResources(String animid){
 		return animationResources.get(animid).copy();
@@ -324,7 +322,7 @@ public class AssetManager {
 
 	/** Get all image resources to add to
 	 * 
-	 * @return
+	 * @return imageResources
 	 */
 	public static Map<String, Image> getImageResources() {
 		return imageResources;
@@ -332,7 +330,7 @@ public class AssetManager {
 
 	/** Get the achievement map of all achievements to add to
 	 * 
-	 * @return
+	 * @return achievementResources
 	 */
 	public static Map<String, Image> getAchievementResources() {
 		return achievementResources;
@@ -340,7 +338,7 @@ public class AssetManager {
 
 	/**  Get a collection of achievements for use in achievement rendering
 	 * 
-	 * @return
+	 * @return achievements.values()
 	 */
 	public static Collection<Achievement> getAchievements() {
 		return achievements.values();
@@ -348,7 +346,7 @@ public class AssetManager {
 
 	/** Get the achievement map of all achievements to add to
 	 * 
-	 * @return
+	 * @return achievements
 	 */
 	public static Map<String, Achievement> getAchievementMap() {
 		return achievements;
@@ -356,14 +354,14 @@ public class AssetManager {
 
 	/** Get sound resources to add to
 	 * 
-	 * @return
+	 * @return soundResources
 	 */
 	public static Map<String, Sound> getSoundResources() {
 		return soundResources;
 	}
 
 	/** Get uielement resources to add to
-	 * @return
+	 * @return  uiElementResources;
 	 */
 	public static Map<String, Image> getUiElementResources() {
 		return uiElementResources;
@@ -371,7 +369,7 @@ public class AssetManager {
 
 	/** Get level xml resources to add to
 	 * 
-	 * @return
+	 * @return levelXmlResources
 	 */
 	public static Map<Integer, String> getLevelXmlResources() {
 		return levelXmlResources;
@@ -379,7 +377,7 @@ public class AssetManager {
 
 	/** Get all xml resources for input to add to
 	 * 
-	 * @return
+	 * @return inputXmlResources
 	 */
 	public static Map<Integer, String> getInputResources() {
 		return inputXmlResources;
@@ -387,15 +385,15 @@ public class AssetManager {
 
 	/** Get all font resources to add to
 	 * 
-	 * @return
-	 */
+	 * @return fontResources the font resources
+	 */ 
 	public static Map<String, Font> getFontResources() {
 		return fontResources;
 	}
 
 	/** Get all aniamtions to add to
 	 * 
-	 * @return
+	 * @return get the animation resources
 	 */
 	public static Map<String, Animation> getAnimationResources() {
 		return animationResources;
@@ -403,7 +401,7 @@ public class AssetManager {
 
 	/** Get all shapes to add to
 	 * 
-	 * @return
+	 * @return shapes The shape definitions
 	 */
 	public static Map<String, Shape> getShapes(){
 		return shapeDefinitions;
@@ -420,7 +418,7 @@ public class AssetManager {
 
 	/** Get the high score map
 	 * 
-	 * @return
+	 * @return highscore The highscore map
 	 */
 	public static Map<Integer, ArrayList<HighScore>> getHighscores() {
 		return highscores;
@@ -439,7 +437,7 @@ public class AssetManager {
 	/** Request all high scores on file for a given level id
 	 * 
 	 * @param levelid
-	 * @return
+	 * @return highscores The levelid
 	 */
 	public static ArrayList<HighScore> requestHighScores(int levelid){
 		synchronized (AssetManager.highscores){
@@ -451,7 +449,7 @@ public class AssetManager {
 	/** Request a shap for fixture definitions
 	 * 
 	 * @param shapeid
-	 * @return
+	 * @return shape
 	 */
 	public static Shape requestShape(String shapeid) {
 		return shapeDefinitions.get(shapeid);
@@ -459,7 +457,7 @@ public class AssetManager {
 
 	/** Check if a level is unlocked
 	 * 
-	 * @return
+	 * @return levelUnlocks
 	 */
 	public static Map<Integer, Boolean> getLevelUnlocks() {
 		return levelUnlocks;

@@ -26,7 +26,7 @@ public class LoadingState extends BasicGameState {
 	{
 		super();
 		AssetManager.loadAllGameAssets();
-		AssetManager.loadInput(0);
+		AssetManager.loadInput(1);
 	}
 
 	@Override

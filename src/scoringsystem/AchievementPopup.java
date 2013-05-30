@@ -26,7 +26,7 @@ public class AchievementPopup {
 
 	/** Return the timer to check if it should still be displayed
 	 * 
-	 * @return
+	 * @return timer
 	 */
 	public int getTimer() {
 		return timer;
@@ -42,7 +42,7 @@ public class AchievementPopup {
 
 	/** Get the image for rendering
 	 * 
-	 * @return
+	 * @return img
 	 */
 	public Image getImg() {
 		return img;
@@ -50,7 +50,7 @@ public class AchievementPopup {
 
 	/** Return the name for rendering
 	 * 
-	 * @return
+	 * @return name
 	 */
 	public String getName() {
 		return name;

@@ -14,7 +14,7 @@ public class OnlineHighScoreLoader {
 	/** Requests all scores for a given level id
 	 * 
 	 * @param levelid
-	 * @return
+	 * @return ArrayList<HighScore>
 	 */
 	public static ArrayList<HighScore> getScores(int levelid){
 		String id = Integer.toString(levelid);

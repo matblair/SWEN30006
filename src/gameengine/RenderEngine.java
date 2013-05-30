@@ -58,7 +58,7 @@ public class RenderEngine {
 	/** Draw a portal on the screen, and if it is out of view, draw a marker that points to the portal
 	 * on the edge of the screen.
 	 * 
-	 * @param p The portal to draw.
+	 * @param ps The portal to draw.
 	 * @param cam The camera object that defines the field of view.
 	 */
 	public static void drawPortals (Portal[] ps, Camera cam) {
@@ -123,7 +123,7 @@ public class RenderEngine {
 	 * override its actual location
 	 * 
 	 * @param obj The GameObject to draw
-	 * @param loc The location of the GameObject in the world
+	 * @param location The location of the GameObject in the world
 	 * @param cam The camera object that defines the field of view.
 	 */
 	public static <T extends GameObject> void drawGameObject (T obj, Vec2 location, Camera cam) {

@@ -51,7 +51,6 @@ public class Player extends GameObject{
 	private Image idle;
 
 	/** Constructor
-	 * @param imgid The Sprites Image Id to get resource
 	 * @param pos Coordinates in metres specifying where the player spawns.
 	 * @param world The JBox world in which the players physical body should be added.
 	 * @throws SlickException

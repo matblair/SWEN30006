@@ -27,6 +27,8 @@
 	<resource type="UIELEMENT" id="BLUEARROW">assets/sprites/uielements/bluearrow.png</resource>
 	<resource type="UIELEMENT" id="ORANGEARROW">assets/sprites/uielements/orangearrow.png</resource>
 	<resource type="UIELEMENT" id="LEVELLOCKED">assets/sprites/uielements/levelunknown.png</resource>
+	<resource type="UIELEMENT" id="MAINMENUBG">assets/sprites/uielements/mainmenubg.png</resource>
+
 
 	<!-- Sounds -->
 	<resource type="SOUND" id="JUMP" style="SFX">assets/audio/sfx/jump.ogg</resource>

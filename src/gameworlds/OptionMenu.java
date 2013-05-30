@@ -1,7 +1,6 @@
 package gameworlds;
 
 import gameengine.InputManager;
-import gameengine.Portal2D;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +34,6 @@ public class OptionMenu extends InGameMenu {
 
 	/** Integers to control what has been selected and the input values **/
 	protected static int mainMenuItemSelected = 0;
-	private static int screenItemSelected=0;
 	private static int soundLevelSelected=0;
 	private static int inputItemSelected=0;
 	
@@ -45,7 +43,6 @@ public class OptionMenu extends InGameMenu {
 
 
 	/** The constructor for our option menu, creates all the array lists
-	 * @return void
 	 */	
 	public OptionMenu(){
 		menuItems.add("Audio Level");
@@ -74,7 +71,6 @@ public class OptionMenu extends InGameMenu {
 	 * @param g The graphics context to render to.
 	 * @param gc The Game Container
 	 * 
-	 * @return void
 	 */	
 	public void Render(Graphics g, GameContainer gc) {
 		if (displayinputload){
@@ -128,7 +124,6 @@ public class OptionMenu extends InGameMenu {
 	 * 
 	 * @param gc The Game 
 	 * 
-	 * @return void
 	 */
 	public void drawInput(GameContainer gc){
 		inputimages.get(inputItemSelected).drawCentered(gc.getWidth()/2, gc.getHeight()/2);
@@ -196,9 +191,7 @@ public class OptionMenu extends InGameMenu {
 
 	/** Update the key mappings by pulling from the xml files and loading to input manager.
 	 * 
-	 * @param key The new keymapping integer to load new keys
-	 * 
-	 * @return void
+	 * @param newkey The new keymapping integer to load new keys
 	 */
 	public void updateKeys(int newkey) throws SlickException{
 		AssetManager.loadInput(newkey);
@@ -206,7 +199,6 @@ public class OptionMenu extends InGameMenu {
 
 
 	/** Draw the volume images based on the sound level selected
-	 * @return void
 	 */
 	public void drawVolume(GameContainer gc){
 		int imagelaod = (int)(soundLevelSelected/10);

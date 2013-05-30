@@ -41,7 +41,6 @@ public class EndGameMenu extends InGameMenu {
 	 * @param g The graphics context to render to.
 	 * @param gc The Game Container
 	 * 
-	 * @return void
 	 */	
 	public void Render(Graphics g, GameContainer gc) {
 		Color filter = new Color(0,0,0,0.7f);
@@ -54,17 +53,17 @@ public class EndGameMenu extends InGameMenu {
 		if(glados!=null){
 			g.setColor(Color.orange);
 			g.setFont(font);
-			int ystart=310, i=0;
-			g.drawString(LEVELSTATS , 430, ystart+i*30);
+			int i=0;
+			g.drawString(LEVELSTATS , gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
 			g.setColor(Color.darkGray);
 			i++;
-			g.drawString(TAKE + glados.getLevelStats().getTimeInLevel()/1000 + SECONDS, 430, ystart+i*30);
+			g.drawString(TAKE + glados.getLevelStats().getTimeInLevel()/1000 + SECONDS, gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
 			i++;
-			g.drawString("You fell " + glados.getLevelStats().getDistFallen() + " metres.", 430, ystart+i*30);
+			g.drawString("You fell " + glados.getLevelStats().getDistFallen() + " metres.", gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
 			i++;
-			g.drawString("You walked " + glados.getLevelStats().getDistWalked() + " metres.", 430, ystart+i*30);
+			g.drawString("You walked " + glados.getLevelStats().getDistWalked() + " metres.", gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
 			i++;
-			g.drawString("You unlocked " + glados.getLevelStats().getAchievementsUnlocked() + " achievements.", 430, ystart+i*30);			
+			g.drawString("You unlocked " + glados.getLevelStats().getAchievementsUnlocked() + " achievements.", gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);			
 			
 			if(!isUploadedScores()){
 				g.drawString(SAVING,  gc.getWidth()/2 - font.getWidth(SAVING)/2, gc.getHeight()/2 + endbg.getHeight()/2 - 60);
@@ -82,7 +81,6 @@ public class EndGameMenu extends InGameMenu {
 	 * @param gc The Game 
 	 * @param sbg The StateBasedGame object to switch states
 	 * 
-	 * @return void
 	 */	
 	public void Update(Graphics g, GameContainer gc, StateBasedGame sbg) {
 		if(glados!=null && !isUploadedScores()){
@@ -104,8 +102,7 @@ public class EndGameMenu extends InGameMenu {
 	
 	/** Receive GLaDOS for the level for use in stats.
 	 * 
-	 * @param GLaDOS The level oracle passed from the level.
-	 * @return void
+	 * @param glados The level oracle passed from the level.
 	 */	
 	public static void giveGlados(GLaDOS glados) {
 		glados.finaliseStats();
@@ -120,7 +117,6 @@ public class EndGameMenu extends InGameMenu {
 	}
 
 	/** Set the score uploaded status
-	 * @return uploadedScores
 	 */
 	public static void setUploadedScores(boolean uploadedScores) {
 		EndGameMenu.uploadedScores = uploadedScores;
@@ -128,7 +124,6 @@ public class EndGameMenu extends InGameMenu {
 
 	@Override
 	/** Input handler if required for the game menu.
-	 * @return void
 	 */
 	public void ProcessInput(int key) {
 		return;
