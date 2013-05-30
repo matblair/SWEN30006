@@ -29,7 +29,7 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	private static Font font;
 	private static Font titleFont;
 	private static String TITLE = new String("High Scores");
-	private static int MAXLEVEL=14;
+	private static int MAXLEVEL=13;
 	private static int NUMDISPLAY = 5;
 	private static final int INSET = 50;
 	private static final int TITLEHEIGHT = 150;
