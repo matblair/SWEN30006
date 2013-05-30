@@ -29,7 +29,7 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	private static Font font;
 	private static Font titleFont;
 	private static String TITLE = new String("High Scores");
-	private static int MAXLEVEL=1;
+	private static int MAXLEVEL=14;
 	private static int NUMDISPLAY = 5;
 	private static final int INSET = 50;
 	private static final int TITLEHEIGHT = 150;
@@ -93,6 +93,10 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 		g.drawString(TITLE, gc.getWidth()/2 - titleFont.getWidth(TITLE)/2, gc.getHeight()/2 - TITLEHEIGHT);
 
 		g.setFont(font);
+		g.setColor(Color.gray);
+		String text = "Level " + (currentlevel + 1);
+		g.drawString(text, gc.getWidth()/2 - titleFont.getWidth(text)/2, gc.getHeight()/2 - TITLEHEIGHT + 50);
+		
 		renderScores(gc, g);
 	}
 
@@ -102,19 +106,20 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	 * @param g The Graphics context to use.
 	 */
 	private void renderScores(GameContainer gc, Graphics g) {
-		if(scores.size()!=0){
+		if(scores!=null && scores.size()!=0){
 			if(NUMDISPLAY>scores.size()){
 				NUMDISPLAY=(scores.size());
 			}
 			for(int i=0; i < NUMDISPLAY; i++){
 				g.setColor(Color.darkGray);
-				g.drawString(scores.get(i).getName(), gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
+				g.drawString(scores.get(i).getName(), gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+3) * SPACING);
 				g.setColor(Color.orange);
 				g.drawString(String.valueOf(scores.get(i).getScore()),  gc.getWidth()/2 + AssetManager.requestUIElement("PAUSEBG").getWidth()/2 - INSET -
-							g.getFont().getWidth(String.valueOf(scores.get(i).getScore())), gc.getHeight()/2 - TITLEHEIGHT + (i+2) * SPACING);
+							g.getFont().getWidth(String.valueOf(scores.get(i).getScore())), gc.getHeight()/2 - TITLEHEIGHT + (i+3) * SPACING);
 			}
 		}else {
-			g.drawString("No High Scores Yet", 430, 320);
+			String text = "No High Scores Yet";
+			g.drawString(text, gc.getWidth()/2 - g.getFont().getWidth(text)/2, gc.getHeight()/2-40);
 		}
 	}
 
@@ -135,7 +140,7 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	@Override
 	public void keyPressed(int key, char c) {
 		if (key == InputManager.NAV_RIGHT) {
-			if (currentlevel + 1 < (MAXLEVEL+1)) {
+			if (currentlevel + 1 < MAXLEVEL) {
 				currentlevel++;
 				System.out.println(currentlevel);
 				scores = AssetManager.requestHighScores(currentlevel);
