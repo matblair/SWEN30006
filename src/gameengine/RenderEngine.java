@@ -58,7 +58,7 @@ public class RenderEngine {
 	/** Draw a portal on the screen, and if it is out of view, draw a marker that points to the portal
 	 * on the edge of the screen.
 	 * 
-	 * @param p The portal to draw.
+	 * @param ps The portals to draw.
 	 * @param cam The camera object that defines the field of view.
 	 */
 	public static void drawPortals (Portal[] ps, Camera cam) {

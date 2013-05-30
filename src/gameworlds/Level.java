@@ -12,7 +12,6 @@ import gamestates.GameState;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -207,8 +206,6 @@ public class Level {
 		}
 		RenderEngine.drawPortals(portals, cam);
 		RenderEngine.drawGameObject(levelend, cam);
-		RenderEngine.drawWalls(walls, g, Color.magenta, cam);
-		RenderEngine.drawWalls(noportalwalls, g, Color.green, cam);
 		if(!achievementPopups.isEmpty()){
 			RenderEngine.renderAchievementPopups(achievementPopups, g,cam);
 		}
