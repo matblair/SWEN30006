@@ -47,7 +47,6 @@ public class HighScoreMenu extends InGameMenu{
 	public void Render(Graphics g, GameContainer gc) {
 		if(!firstupdate){
 			if(scores.size()!=0){
-				System.out.println(NUMDISPLAY + " " + scores.size());
 				if(NUMDISPLAY>scores.size()){
 					NUMDISPLAY=(scores.size());
 				}
@@ -69,7 +68,7 @@ public class HighScoreMenu extends InGameMenu{
 				} else {
 					g.setColor(Color.darkGray);
 				}
-				g.drawString(menuItems.get(i), - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 + TITLEHEIGHT + (i+2) * SPACING);
+				g.drawString(menuItems.get(i),gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 + AssetManager.requestUIElement("PAUSEBG").getHeight()/2 - 2*INSET);
 			}	
 		} else {
 			g.drawString("Updating High Scores",  gc.getWidth()/2 - 3*INSET, gc.getHeight()/2 - TITLEHEIGHT + (2) * SPACING);

@@ -1,7 +1,6 @@
 package gamestates;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import gameengine.InputManager;
 import gameengine.Portal2D;
@@ -10,6 +9,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
@@ -28,16 +28,15 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	boolean debug, fullscreen;
 	private static Font font;
 	private static Font titleFont;
-	private static String titleText = new String("High Scores");
-	private static int MAXLEVEL=18;
-
-	private final int itemsPerRow = 1;
-	private final int xSpacing = 180;
-	private final int ySpacing = 90;
-	private final int yStartHeight = 250;
-	private int width;
+	private static String TITLE = new String("High Scores");
+	private static int MAXLEVEL=13;
+	private static int NUMDISPLAY = 5;
+	private static final int INSET = 50;
+	private static final int TITLEHEIGHT = 150;
+	private static final int SPACING = 30;
 
 	private ArrayList<HighScore> scores;
+	private Image mainbg, pausebg;
 
 	int currentlevel = 0;
 
@@ -58,6 +57,8 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 		titleFont = AssetManager.requestFontResource("TITLEFONT");
 		debug = false;
 		fullscreen = false;
+		pausebg = AssetManager.requestUIElement("PAUSEBG");
+		mainbg = AssetManager.requestUIElement("MAINMENUBG");
 	}
 	
 	/** Method called by Slick when entering the state. Pre-loads high scores.
@@ -65,7 +66,6 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
-		width=container.getWidth();
 		scores = AssetManager.requestHighScores(currentlevel);
 	}
 
@@ -85,64 +85,41 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-
+		mainbg.draw(gc.getWidth()-mainbg.getWidth(), gc.getHeight()-mainbg.getHeight());
+		pausebg.drawCentered(gc.getWidth()/2, gc.getHeight()/2);
+		
 		g.setFont(titleFont);
 		g.setColor(Color.black);
-		g.drawString(titleText, 40, 40);
+		g.drawString(TITLE, gc.getWidth()/2 - titleFont.getWidth(TITLE)/2, gc.getHeight()/2 - TITLEHEIGHT);
 
 		g.setFont(font);
-		renderScores(g);
+		g.setColor(Color.gray);
+		String text = "Level " + (currentlevel + 1);
+		g.drawString(text, gc.getWidth()/2 - titleFont.getWidth(text)/2, gc.getHeight()/2 - TITLEHEIGHT + 50);
+		
+		renderScores(gc, g);
 	}
 
 	/** Render the high scores using a Graphics context
 	 * 
+	 * @param gc The GameContainer
 	 * @param g The Graphics context to use.
 	 */
-	private void renderScores(Graphics g) {
-		int index = 0;
-		int x, y;
-		String text;
-		int levelid;
-		float score;
-		String scoreS;
-		
-		// Show high scores
-		if(scores!=null && !scores.isEmpty()){
-			for (HighScore hs : scores) {
-				Collections.sort(scores);
-				x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
-				y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
-
-
-				levelid = hs.getLevelid();
-				levelid++;
-				g.setColor(Color.darkGray);
-				g.drawString("LEVEL "+levelid, x-10, 120);
-
-
-				text = hs.getName();
-				g.setColor(Color.gray);
-				g.drawString(text, x-50, y);
-
-				score = hs.getScore();
-				scoreS = String.valueOf(score);
-				g.setColor(Color.gray);
-				g.drawString(scoreS, x+ 50, y);
-
-				index++;
-				if(index>5){
-					break;
-				}
+	private void renderScores(GameContainer gc, Graphics g) {
+		if(scores!=null && scores.size()!=0){
+			if(NUMDISPLAY>scores.size()){
+				NUMDISPLAY=(scores.size());
 			}
-			
-		// No scores. Show error.
-		} else {
-			x = (int) ((float) width / 2 + (index % itemsPerRow - (float) (itemsPerRow - 1) / 2) * xSpacing);
-			y = yStartHeight + ySpacing * (int) Math.floor(index / itemsPerRow);
-			g.setColor(Color.darkGray);
-			g.drawString("LEVEL "+ (currentlevel+1), x-10, 120);	
-			g.setColor(Color.orange);
-			g.drawString("No High Scores For This Level Yet!", x-(font.getWidth("No High Scores For This Level Yet!")/2), y);
+			for(int i=0; i < NUMDISPLAY; i++){
+				g.setColor(Color.darkGray);
+				g.drawString(scores.get(i).getName(), gc.getWidth()/2 - AssetManager.requestUIElement("PAUSEBG").getWidth()/2 + INSET, gc.getHeight()/2 - TITLEHEIGHT + (i+3) * SPACING);
+				g.setColor(Color.orange);
+				g.drawString(String.valueOf(scores.get(i).getScore()),  gc.getWidth()/2 + AssetManager.requestUIElement("PAUSEBG").getWidth()/2 - INSET -
+							g.getFont().getWidth(String.valueOf(scores.get(i).getScore())), gc.getHeight()/2 - TITLEHEIGHT + (i+3) * SPACING);
+			}
+		}else {
+			String text = "No High Scores Yet";
+			g.drawString(text, gc.getWidth()/2 - g.getFont().getWidth(text)/2, gc.getHeight()/2-40);
 		}
 	}
 
@@ -163,7 +140,7 @@ private static int StateId = Portal2D.HIGHSCORESTATE; // State ID
 	@Override
 	public void keyPressed(int key, char c) {
 		if (key == InputManager.NAV_RIGHT) {
-			if (currentlevel + 1 < (MAXLEVEL+1)) {
+			if (currentlevel + 1 < MAXLEVEL) {
 				currentlevel++;
 				System.out.println(currentlevel);
 				scores = AssetManager.requestHighScores(currentlevel);

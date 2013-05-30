@@ -56,7 +56,7 @@ public abstract class Achievement {
 	
 	/** Get the achievement name for rendering
 	 * 
-	 * @return name
+	 * @return name The name of the achievement
 	 */
 	public String getName() {
 		return name;
@@ -64,7 +64,7 @@ public abstract class Achievement {
 	
 	/** Get the achievement description for rendering
 	 * 
-	 * @return description
+	 * @return description The description
 	 */
 	public String getDescription() {
 		return description;
@@ -72,7 +72,7 @@ public abstract class Achievement {
 	
 	/** Get the achievment unlock status
 	 *  
-	 * @return unlocked
+	 * @return true if unlocked
 	 */
 	public boolean isUnlocked() {
 		return unlocked;
@@ -92,7 +92,7 @@ public abstract class Achievement {
 		unlocked=true;
 	}
 
-	/** Get the image id for creating popus
+	/** Get the image id for creating popups
 	 * and saving achievements to file
 	 *
 	 * @return imgid

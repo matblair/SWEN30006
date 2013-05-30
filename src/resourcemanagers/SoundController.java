@@ -11,15 +11,23 @@ public class SoundController {
 	
 	public static final int MAXLEVEL=100;
 	
+	/** Initialise the Sound Controller
+	 */
 	public static void initialise() {
 		sounds = AssetManager.getSoundResources();
 	}
 	
+	/** Play a particular sound
+	 * 
+	 * @param id The ID of the sound to play
+	 */
 	public static void play (String id) {
 		Sound s = sounds.get(id);
 		s.play();
 	}
 	
+	/** Stop playing any playing music
+	 */
 	public static void stopMusic() {
 		SoundStore.get().pauseLoop();
 	}

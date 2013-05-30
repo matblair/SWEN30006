@@ -63,7 +63,7 @@ public class LevelSelectState extends BasicGameState {
 			throws SlickException {
 		if(enterselected){
 			enterselected=false;
-			if (!unlockedstate.get(levelselected)) {
+			if (!unlockedstate.get(levelselected-1)) {
 				LoadingState.startnew=false;
 				LoadingState.loadLevel(sbg, levelselected-1);
 				sbg.enterState(Portal2D.LOADSTATE);
@@ -88,15 +88,16 @@ public class LevelSelectState extends BasicGameState {
 
 		// Draw preview of level if unlocked or question mark if locked
 		g.setFont(titleFont);
-		if(!unlockedstate.get(levelselected)){
-			
+		if(!unlockedstate.get(levelselected-1)){
+			Image prev = AssetManager.requestUIElement("PREVIEW" + (levelselected-1));
+			prev.drawCentered(gc.getWidth()/2, gc.getHeight()/2);
 		} else {
 			unknown.drawCentered(gc.getWidth()/2, gc.getHeight()/2);
 		}
 		
 		// Draw level number
 		String towrite = levelSelect + levelselected;
-		g.drawString(towrite, gc.getWidth()/2-(titleFont.getWidth(towrite)/2), (6*gc.getHeight()/2)/4);
+		g.drawString(towrite, gc.getWidth()/2-(titleFont.getWidth(towrite)/2), gc.getHeight() - 100);
 	}
 
 	/** Get the ID of the state
@@ -120,11 +121,11 @@ public class LevelSelectState extends BasicGameState {
 		if (key == InputManager.NAV_LEFT){
 			levelselected--;
 			if(levelselected<1){
-				levelselected=maxlevel-1;
+				levelselected=maxlevel;
 			}
 		}else if (key == InputManager.NAV_RIGHT){ 
 			levelselected++;
-			if(levelselected>maxlevel-1){
+			if(levelselected>maxlevel){
 				levelselected=1;
 			} 
 		}else if (key == InputManager.SELECT) {

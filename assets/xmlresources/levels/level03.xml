@@ -38,6 +38,6 @@
 
 
 	<!-- Start Location -->
-	<resource type="PLAYER" id="CHELLSPRITE" startx="26" starty="2">assets/sprites/chell.png</resource>
+	<resource type="PLAYER" id="CHELLSPRITE" startx="2" starty="2">assets/sprites/chell.png</resource>
 
 </resources>
