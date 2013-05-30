@@ -146,8 +146,12 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 				g.drawString(menuItems.get(i), 120, 440 + i * 20);
 			}
 		} else {
-			g.drawString("Enter your name:",120, 440);
-			g.drawString(Portal2D.name, 120, 460);
+			g.drawString("Welcome to Apeture",120, 440);
+			g.drawString("Science Testing",120, 460);
+			g.drawString("Candidate, please enter",120, 500);
+			g.drawString("your name to continue:",120, 520);
+			g.setColor(Color.orange);
+			g.drawString(Portal2D.name, 120, 560);
 		}
 	}
 
@@ -182,7 +186,7 @@ public class MainMenuState extends BasicGameState implements KeyListener {
 				selected=stringMaps.get(menuItems.get(menuItemSelected));
 			}
 		} else {
-			if(Character.isLetter(c)){
+			if(Character.isLetter(c) && Portal2D.name.length()<30){
 					Portal2D.name = Portal2D.name + c;
 			} 
 			

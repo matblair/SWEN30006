@@ -83,14 +83,6 @@ public class AssetManager {
 	 */
 	public static void loadAllGameAssets(){
 
-		try {
-			Image loading = new Image("assets/sprites/uielements/loading.png");
-			loading.drawCentered(Portal2D.app.getHeight()/2, Portal2D.app.getWidth()/2);
-		} catch (SlickException e1) {
-			e1.printStackTrace();
-		}
-
-
 		final File f = new File(generalresource, loadinglist);
 		InputStream is = null;
 		try {
