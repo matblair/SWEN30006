@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 <resource levelid="-1" id="DIST5" achid="19" target="1024720.7" actype="distwalked" name="I would walk 500 miles..." persistant="false" unlocked="false">
-And I would walk 500 more, to be the robot who walked 500 miles to... Wait no I wouldn't, because I hate you.</resource>
-<resource levelid="-1" id="PORTALS1" achid="22" target="10.0" actype="portals" name="Blue Man" persistant="false" unlocked="true">
+And I would walk 500 more, to be the robot who walked 1000 miles to... Wait no I wouldn't, because I hate you.</resource>
+<resource levelid="-1" id="PORTALS1" achid="22" target="10.0" actype="portals" name="Blue Man" persistant="false" unlocked="false">
 Congratulations you managed to make ten portals, I bet you still didn't finish the level...</resource>
-<resource levelid="-1" id="DIST4" achid="17" target="330438.44" actype="distwalked" name="Half Marathon" persistant="true" unlocked="false">
+<resource levelid="-1" id="PORTALS2" achid="22" target="100.0" actype="portals" name="Portal Master" persistant="false" unlocked="false">
+Now you're starting to get it</resource>
+<resource levelid="-1" id="PORTALS3" achid="22" target="1000.0" actype="portals" name="Too Many Portals on the Dancefloor." persistant="false" unlocked="false">
+I'd hope you'd have finished the game by now...</resource>
+<resource levelid="-1" id="DIST4" achid="17" target="342616.16" actype="distwalked" name="Half Marathon" persistant="true" unlocked="false">
 21000m down, I'd pretend I was impressed but I don't think I could manage it without laughing</resource>
-<resource levelid="-1" id="DIST4" achid="18" target="351438.9" actype="distwalked" name="Marathon Man" persistant="true" unlocked="false">
+<resource levelid="-1" id="DIST4" achid="18" target="363616.6" actype="distwalked" name="Marathon Man" persistant="true" unlocked="false">
 You've walked 42km in this game... Don't you think that's a little sad?</resource>
-<resource levelid="-1" id="DIST1" achid="15" target="100.0" actype="distwalked" name="Baby Steps" persistant="false" unlocked="true">You have to start somewhere, walk more than 200m</resource>
-<resource levelid="-1" id="DIST2" achid="16" target="313438.7" actype="distwalked" name="Out For A Stroll" persistant="true" unlocked="false">
+<resource levelid="-1" id="DIST1" achid="15" target="200.0" actype="distwalked" name="Baby Steps" persistant="false" unlocked="false">You have to start somewhere, walk more than 200m</resource>
+<resource levelid="-1" id="DIST2" achid="16" target="325616.4" actype="distwalked" name="Out For A Stroll" persistant="true" unlocked="false">
 I'd say a good stroll would be somewhere around 4000m wouldn't you?</resource>
-<resource levelid="-1" id="VEL4" achid="13" target="60.0" actype="velocity" name="We'll have to fine you soon.." persistant="false" unlocked="true">Get a taste for speed, go more than 10 m/s.</resource>
-<resource levelid="-1" id="VEL5" achid="14" target="100.0" actype="velocity" name="Speed Freak" persistant="false" unlocked="true">Get a taste for speed, go more than 10 m/s.</resource>
-<resource levelid="-1" id="VEL2" achid="11" target="20.0" actype="velocity" name="Speeding Up" persistant="false" unlocked="true">Faster! go more than 20 m/s.</resource>
-<resource levelid="-1" id="VEL3" achid="12" target="40.0" actype="velocity" name="Need For Speed" persistant="false" unlocked="true">
+<resource levelid="-1" id="VEL4" achid="13" target="60.0" actype="velocity" name="We'll have to fine you soon.." persistant="false" unlocked="false">Get a taste for speed, go more than 10 m/s.</resource>
+<resource levelid="-1" id="VEL5" achid="14" target="100.0" actype="velocity" name="Speed Freak" persistant="false" unlocked="false">Get a taste for speed, go more than 10 m/s.</resource>
+<resource levelid="-1" id="VEL2" achid="11" target="20.0" actype="velocity" name="Speeding Up" persistant="false" unlocked="false">Faster! go more than 20 m/s.</resource>
+<resource levelid="-1" id="VEL3" achid="12" target="40.0" actype="velocity" name="Need For Speed" persistant="false" unlocked="false">
 If this were a school zone, you'd be in trouble now. go more than 40 m/s.</resource>
-<resource levelid="-1" id="JUMP1" achid="21" target="10.0" actype="jumps" name="Boing Boing" persistant="false" unlocked="true">
+<resource levelid="-1" id="JUMP1" achid="21" target="10.0" actype="jumps" name="Boing Boing" persistant="false" unlocked="false">
 Oh look, you've managed to jump ten times. I suppose you'd like a medal or something?</resource>
-<resource levelid="-1" id="TIME3" achid="3" target="120.0" actype="timefallen" name="Slow Down Cowboy." persistant="false" unlocked="true">Fall for more than 120 seconds in any level.</resource>
-<resource levelid="-1" id="TIME2" achid="2" target="60.0" actype="timefallen" name="Free Falling." persistant="false" unlocked="true">Fall for more than 60 seconds in any level.</resource>
-<resource levelid="-1" id="DIST1" achid="20" target="1.0239715E7" actype="distwalked" name="Walking On The Sun" persistant="true" unlocked="false">Well this is just a bit sad...</resource>
-<resource levelid="-1" id="VEL1" achid="10" target="15.0" actype="velocity" name="Starting Small" persistant="false" unlocked="true">Get a taste for speed, go more than 10 m/s.</resource>
-<resource levelid="-1" id="TIME1" achid="1" target="40.0" actype="timefallen" name="Falling..." persistant="false" unlocked="true">Fall for more than 10 seconds in any level.</resource>
-<resource levelid="-1" id="CUBE2" achid="7" target="13.0" actype="cubesused" name="Making Friends, For Science!" persistant="true" unlocked="true">Get well acquainted with 10 companion cubes.</resource>
-<resource levelid="-1" id="CUBE1" achid="6" target="4.0" actype="cubesused" name="A Friendly Companion" persistant="true" unlocked="true">Get well acquainted with a companion cube.</resource>
-<resource levelid="-1" id="TIME5" achid="5" target="1000.0" actype="timefallen" name="Now We're Getting Somewhere..." persistant="false" unlocked="true">Fall for more than 1000 seconds in any level.</resource>
-<resource levelid="-1" id="TIME4" achid="4" target="200.0" actype="timefallen" name="You Call That Falling?" persistant="false" unlocked="true">Fall for more than 200 seconds in any level.</resource>
-<resource levelid="-1" id="CUBE3" achid="9" target="994.0" actype="cubesused" name="Cubed Love" persistant="true" unlocked="false">Use and abuse more than 1000 cubes!</resource>
-<resource levelid="-1" id="CUBE3" achid="8" target="94.0" actype="cubesused" name="Cube Afficianado" persistant="true" unlocked="false">
+<resource levelid="-1" id="JUMP1" achid="21" target="100.0" actype="jumps" name="Bouncy Castle" persistant="false" unlocked="false">What are you, five?</resource>
+<resource levelid="-1" id="JUMP1" achid="21" target="1000.0" actype="jumps" name="Trampolining It" persistant="false" unlocked="false">Having fun there?</resource>
+<resource levelid="-1" id="TIME3" achid="3" target="120.0" actype="timefallen" name="Slow Down Cowboy." persistant="false" unlocked="false">Fall for more than 120 seconds in any level.</resource>
+<resource levelid="-1" id="DIST1" achid="20" target="1.02519E7" actype="distwalked" name="Walking On The Sun" persistant="true" unlocked="false">Well this is just a bit sad...</resource>
+<resource levelid="-1" id="TIME2" achid="2" target="60.0" actype="timefallen" name="Free Falling." persistant="false" unlocked="false">Fall for more than 60 seconds in any level.</resource>
+<resource levelid="-1" id="TIME1" achid="1" target="40.0" actype="timefallen" name="Falling..." persistant="false" unlocked="false">Fall for more than 10 seconds in any level.</resource>
+<resource levelid="-1" id="VEL1" achid="10" target="15.0" actype="velocity" name="Starting Small" persistant="false" unlocked="false">Get a taste for speed, go more than 10 m/s.</resource>
+<resource levelid="-1" id="CUBE2" achid="7" target="13.0" actype="cubesused" name="Making Friends, For Science!" persistant="false" unlocked="false">Get well acquainted with 10 companion cubes.</resource>
+<resource levelid="-1" id="CUBE1" achid="6" target="1" actype="cubesused" name="A Friendly Companion" persistant="true" unlocked="false">Get well acquainted with a companion cube.</resource>
+<resource levelid="-1" id="TIME5" achid="5" target="1000.0" actype="timefallen" name="Now We're Getting Somewhere..." persistant="false" unlocked="false">Fall for more than 1000 seconds in any level.</resource>
+<resource levelid="-1" id="TIME4" achid="4" target="200.0" actype="timefallen" name="You Call That Falling?" persistant="false" unlocked="false">Fall for more than 200 seconds in any level.</resource>
+<resource levelid="-1" id="CUBE3" achid="9" target="1000.0" actype="cubesused" name="Cubed Love" persistant="true" unlocked="false">Use and abuse more than 1000 cubes!</resource>
+<resource levelid="-1" id="CUBE3" achid="8" target="100.0" actype="cubesused" name="Cube Afficianado" persistant="true" unlocked="false">
 Get well acquainted with one hundred companion cube.</resource>
 </resources>

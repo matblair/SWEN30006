@@ -28,7 +28,7 @@ public class LoadingState extends BasicGameState {
 	{
 		super();
 		AssetManager.loadAllGameAssets();
-		AssetManager.loadInput(1);
+		AssetManager.loadInput(0);
 	}
 	
 	/** Method called by Slick when entering the state.
