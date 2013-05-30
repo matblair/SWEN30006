@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -441,7 +442,10 @@ public class AssetManager {
 	 */
 	public static ArrayList<HighScore> requestHighScores(int levelid){
 		synchronized (AssetManager.highscores){
-			return highscores.get(levelid);
+			ArrayList<HighScore> hs = highscores.get(levelid);
+			if (hs != null)
+				Collections.sort(hs);
+			return hs;
 		}
 	}
 
