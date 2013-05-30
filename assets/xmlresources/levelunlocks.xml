@@ -3,16 +3,16 @@
 <resources>
 	<resource id="0" locked="false">levels/level01.xml</resource>
 	<resource id="1" locked="false">levels/level02.xml</resource>
-	<resource id="2" locked="true">levels/level03.xml</resource>
-	<resource id="3" locked="true">levels/level04.xml</resource>
-	<resource id="4" locked="true">levels/level05.xml</resource>
-	<resource id="5" locked="true">levels/level06.xml</resource>
-	<resource id="6" locked="true">levels/level08.xml</resource>
-	<resource id="7" locked="true">levels/level09.xml</resource>
-	<resource id="8" locked="true">levels/level10.xml</resource>
-	<resource id="9" locked="true">levels/level11.xml</resource>
-	<resource id="10" locked="true">levels/level13.xml</resource>
-	<resource id="11" locked="true">levels/level15.xml</resource>
-	<resource id="12" locked="true">levels/level17.xml</resource>
-	<resource id="13" locked="true">levels/mario.xml</resource>
+	<resource id="2" locked="false">levels/level03.xml</resource>
+	<resource id="3" locked="false">levels/level04.xml</resource>
+	<resource id="4" locked="false">levels/level05.xml</resource>
+	<resource id="5" locked="false">levels/level06.xml</resource>
+	<resource id="6" locked="false">levels/level08.xml</resource>
+	<resource id="7" locked="false">levels/level09.xml</resource>
+	<resource id="8" locked="false">levels/level10.xml</resource>
+	<resource id="9" locked="false">levels/level11.xml</resource>
+	<resource id="10" locked="false">levels/level13.xml</resource>
+	<resource id="11" locked="false">levels/level15.xml</resource>
+	<resource id="12" locked="false">levels/level17.xml</resource>
+	<resource id="13" locked="false">levels/mario.xml</resource>
 </resources>
