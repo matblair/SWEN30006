@@ -32,17 +32,18 @@
 	<!-- Level previews -->
 	<resource type="UIELEMENT" id="PREVIEW0">assets/levels/previews/fg01.png</resource>
 	<resource type="UIELEMENT" id="PREVIEW1">assets/levels/previews/fg02.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW2">assets/levels/previews/fg04.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW3">assets/levels/previews/fg05.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW4">assets/levels/previews/fg06.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW5">assets/levels/previews/fg08.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW6">assets/levels/previews/fg09.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW7">assets/levels/previews/fg10.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW8">assets/levels/previews/fg11.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW9">assets/levels/previews/fg13.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW10">assets/levels/previews/fg15.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW11">assets/levels/previews/fg17.png</resource>
-	<resource type="UIELEMENT" id="PREVIEW12">assets/levels/previews/mariofg.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW2">assets/levels/previews/fg03.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW3">assets/levels/previews/fg04.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW4">assets/levels/previews/fg05.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW5">assets/levels/previews/fg06.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW6">assets/levels/previews/fg08.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW7">assets/levels/previews/fg09.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW8">assets/levels/previews/fg10.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW9">assets/levels/previews/fg11.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW10">assets/levels/previews/fg13.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW11">assets/levels/previews/fg15.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW12">assets/levels/previews/fg17.png</resource>
+	<resource type="UIELEMENT" id="PREVIEW13">assets/levels/previews/mariofg.png</resource>
 
 	<!-- Sounds -->
 	<resource type="SOUND" id="JUMP" style="SFX">assets/audio/sfx/jump.ogg</resource>
@@ -172,17 +173,18 @@
 	<!-- LevelXML -->
 	<resource type="LEVELXML" id="0">levels/level01.xml</resource>
 	<resource type="LEVELXML" id="1">levels/level02.xml</resource>
-	<resource type="LEVELXML" id="2">levels/level04.xml</resource>
-	<resource type="LEVELXML" id="3">levels/level05.xml</resource>
-	<resource type="LEVELXML" id="4">levels/level06.xml</resource>
-	<resource type="LEVELXML" id="5">levels/level08.xml</resource>
-	<resource type="LEVELXML" id="6">levels/level09.xml</resource>
-	<resource type="LEVELXML" id="7">levels/level10.xml</resource>
-	<resource type="LEVELXML" id="8">levels/level11.xml</resource>
-	<resource type="LEVELXML" id="9">levels/level13.xml</resource>
-	<resource type="LEVELXML" id="10">levels/level15.xml</resource>
-	<resource type="LEVELXML" id="11">levels/level17.xml</resource>
-	<resource type="LEVELXML" id="12">levels/mario.xml</resource>
+	<resource type="LEVELXML" id="2">levels/level03.xml</resource>
+	<resource type="LEVELXML" id="3">levels/level04.xml</resource>
+	<resource type="LEVELXML" id="4">levels/level05.xml</resource>
+	<resource type="LEVELXML" id="5">levels/level06.xml</resource>
+	<resource type="LEVELXML" id="6">levels/level08.xml</resource>
+	<resource type="LEVELXML" id="7">levels/level09.xml</resource>
+	<resource type="LEVELXML" id="8">levels/level10.xml</resource>
+	<resource type="LEVELXML" id="9">levels/level11.xml</resource>
+	<resource type="LEVELXML" id="10">levels/level13.xml</resource>
+	<resource type="LEVELXML" id="11">levels/level15.xml</resource>
+	<resource type="LEVELXML" id="12">levels/level17.xml</resource>
+	<resource type="LEVELXML" id="13">levels/mario.xml</resource>
 	
 	<!-- Input XML -->
 	<resource type="INPUTXML" id="0">inputs/inputone.xml</resource>
